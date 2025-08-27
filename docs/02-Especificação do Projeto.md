@@ -61,8 +61,11 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| A aplicação deve ser responsiva | MÉDIA | 
-|RNF-002| A aplicação deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-01| A aplicação deve proteger os dados dos usuários e criptografar a comunicação (HTTPS), em conformidade com a LGPD.| MÉDIA | 
+|RNF-02| A aplicação deve oferecer uma interface intuitiva, acessível e de fácil aprendizado. |  ALTA | 
+|RNF-03| A aplicação deve ser responsiva, adaptando-se a diferentes dispositivos e funcionar nos principais navegadores web. |  ALTA | 
+|RNF-04| A aplicação deve executar as principais operações (como a busca no mapa) em menos de 3 segundos. |  MÉDIA | 
+|RNF-05| A aplicação deve manter disponibilidade mínima de 99% para os usuários. | BAIXA | | 
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
