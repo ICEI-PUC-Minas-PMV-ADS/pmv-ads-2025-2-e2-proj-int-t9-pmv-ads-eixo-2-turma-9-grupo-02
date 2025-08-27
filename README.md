@@ -1,23 +1,25 @@
-# TÍTULO DO PROJETO
+# MedShare
 
-`CURSO`
+`ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
-`DISCIPLINA`
+`DISCIPLINA: Projeto - Desenvolvimento de uma Aplicação Interativa`
 
-`SEMESTRE`
+`SEGUNDO SEMESTRE - EIXO 2`
 
 Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Estevão Dias Mello dos Santos
+* Higor Eduardo da Paz Conceição
+* Jefferson Torres do Patrocinio
+* Lavínia Santos Garcia
+* Maria Luisa Resende Greco Madeira Silva
+* Thaís Souto Ferreira Moreira Alves
 
 ## Orientador
 
-* Nome completo do professor
+* José Wilson da Costa
 
 ## Instruções de Instalação, Execução e Acesso
 
