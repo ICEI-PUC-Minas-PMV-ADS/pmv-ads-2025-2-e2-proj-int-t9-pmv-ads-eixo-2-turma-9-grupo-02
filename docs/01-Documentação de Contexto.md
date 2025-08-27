@@ -32,7 +32,10 @@ Dados recentes evidenciam a magnitude desse desafio. Na esfera pública, por exe
 O impacto se estende ainda ao meio ambiente. Estudos apontam que, no Brasil, milhares de toneladas de medicamentos são descartadas de forma inadequada anualmente no lixo doméstico, prática que contamina o solo e a água, trazendo riscos à fauna, à flora e à saúde humana (REVISTA IBERO-AMERICANA DE HUMANIDADES, CIÊNCIAS E EDUCAÇÃO, 2025).
 
 Diante desse quadro, a criação de uma plataforma como o MedShare não é apenas uma solução prática, mas uma resposta estratégica para mitigar um problema triplo: reduzir o prejuízo econômico causado pelo desperdício, minimizar os danos ambientais do descarte inadequado e, sobretudo, ampliar o acesso à saúde para as populações mais vulneráveis por meio da redistribuição de medicamentos.
-Essa contribuição se alinha diretamente ao Objetivo de Desenvolvimento Sustentável (ODS) 3 – Saúde e Bem-Estar, que busca assegurar uma vida saudável e promover o bem-estar para todos, em todas as idades (NAÇÕES UNIDAS BRASIL, 2025). O projeto apoia de forma clara duas metas específicas: o ODS 3.8, ao favorecer o acesso a medicamentos essenciais por meio da redistribuição solidária, e o ODS 3.9, ao reduzir os riscos de doenças causadas pelo descarte inadequado de substâncias químicas que contaminam o meio ambiente.
+
+Essa contribuição se alinha diretamente ao Objetivo de Desenvolvimento Sustentável (ODS) 3 – Saúde e Bem-Estar, que busca assegurar uma vida saudável e promover o bem-estar para todos, em todas as idades (NAÇÕES UNIDAS BRASIL, 2025). O projeto apoia de forma clara duas metas específicas:
+- ODS 3.8, ao favorecer o acesso a medicamentos essenciais por meio da redistribuição solidária;
+- ODS 3.9, ao reduzir os riscos de doenças causadas pelo descarte inadequado de substâncias químicas que contaminam o meio ambiente.
 
 Assim, o MedShare fortalece a eficiência no uso de recursos de saúde, promove a equidade no acesso a tratamentos e contribui para a redução de impactos ambientais nocivos, garantindo coerência entre os resultados mensurados e as metas da Agenda 2030.
 
