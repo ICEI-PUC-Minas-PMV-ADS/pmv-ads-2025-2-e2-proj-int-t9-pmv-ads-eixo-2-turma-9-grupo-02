@@ -31,19 +31,18 @@ Lembre-se que você deve ser enumerar e descrever precisamente e personalizada t
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Ana Clara  | Uma forma de identificar se uma agência é realmente confiável           | Me sentir mais segura ao contratar seus serviços               |
-|Ana Clara       | Ter um mecanismo eficiente e rápido de comunicação                 | Que eu possa sanar todas as minhas dúvidas rapidamente |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
+| EU COMO... `PERSONA`  |  QUERO/PRECISO ... `FUNCIONALIDADE`     | PARA ... `MOTIVO/VALOR`     |
+| --------------------- | --------------------------------------- | ---------------------------------------- |
+| Marina (Doadora)         | Localizar instituições próximas em um mapa e selecionar para envio os medicamentos que posso doar          | Ter a certeza de que eles chegarão a quem realmente precisa                 |
+| Marina (Doadora)         | Cadastrar medicamentos com informações completas (nome, validade, quantidade, foto e receita digitalizada) | Não correr o risco de doar algo que não será aceito                         |
+| João (Doador)            | Registrar pequenas quantidades de medicamentos para doação                                                 | Não deixar que meus remédios sobrando fiquem guardados sem utilidade        |
+| João (Doador)            | Ter informações objetivas sobre validade e condições de doação ao cadastrar medicamentos                   | Me sentir seguro de que estou fazendo o procedimento corretamente           |
+| ONG Bem Viver            | Receber doações de medicamentos e visualizar as listas de doações disponíveis                              | Garantir a continuidade dos tratamentos dos pacientes atendidos             |
+| ONG Bem Viver            | Acompanhar de forma transparente o status das doações e receber notificações automáticas                   | Prestar contas às famílias e fortalecer a confiança na instituição          |
+| Posto de Saúde Vila Nova | Gerenciar o recebimento de medicamentos no painel e aprovar/rejeitar doações                               | Complementar o estoque de medicamentos faltantes                            |
+| Posto de Saúde Vila Nova | Receber medicamentos dentro do prazo de validade e em boas condições                                       | Garantir segurança e qualidade no tratamento dos pacientes                  |
+| Lar Esperança            | Acessar facilmente o histórico de doações e gerar relatórios de impacto                                    | Assegurar que os idosos tenham seus tratamentos garantidos sem interrupções |
+| Lar Esperança            | Conectar rapidamente com doadores e facilitar o envio de medicamentos                                      | Não depender apenas de recursos financeiros limitados para comprar remédios |
 
 ## Requisitos
 
@@ -53,9 +52,20 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| A aplicação deve permitir que o usuário avalie uma agência de intercâmbio com base na sua experiência| ALTA | 
-|RF-002| A aplicação deve permitir que o usuário inclua comentários ao fazer uma avaliação de uma agência de intercâmbio    | ALTA |
-|RF-003| A aplicação deve permitir que o usuário consulte todas as agências de intercâmbio cadastradas ordenando-as com base em suas notas | ALTA |
+| RF-01 | A aplicação deve permitir que doadores (pessoa física) e instituições (pessoa jurídica) cadastrem seus perfis.                                                                              | ALTA       |
+| RF-02 | A aplicação deve autenticar doadores e instituições por meio de login e senha.                                                                                                              | ALTA       |
+| RF-03 | O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada (quando aplicável).                                                                 | ALTA       |
+| RF-04 | O doador deve visualizar instituições próximas em um mapa com base na geolocalização.                                                                                                       | MÉDIA      |
+| RF-05 | O doador deve selecionar uma instituição específica para enviar o medicamento.                                                                                                              | ALTA       |
+| RF-06 | O doador deve acompanhar o status das suas doações em uma tela dedicada ("Minhas Doações").                                                                                                 | MÉDIA      |
+| RF-07 | A instituição deve listar medicamentos prioritários em status “crítico” visível no painel.                                                                                                  | MÉDIA      |
+| RF-08 | A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita.                                                                    | ALTA       |
+| RF-09 | A instituição deve aprovar ou rejeitar doações em até 24 horas.                                                                                                                             | ALTA       |
+| RF-10 | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão da instituição e prazos de entrega/análise. | MÉDIA      |
+| RF-11 | A instituição deve confirmar o recebimento dos medicamentos no painel.                                                                                                                      | ALTA       |
+| RF-12 | A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição.                                                          | BAIXA      |
+| RF-13 | A aplicação deve gerar relatórios de impacto com base no histórico de doações.                                                                                                              | BAIXA      |
+
 
 ### Requisitos não Funcionais
 
@@ -67,36 +77,18 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF-04| A aplicação deve executar as principais operações (como a busca no mapa) em menos de 3 segundos. |  MÉDIA | 
 |RNF-05| A aplicação deve manter disponibilidade mínima de 99% para os usuários. | BAIXA | | 
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
-
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+| ID | Restrição                                                                                                             |
+| -- | --------------------------------------------------------------------------------------------------------------------- |
+| 01 | O projeto deverá ser entregue até o final do semestre.                                                                |
+| 02 | A aplicação deverá funcionar apenas em ambiente web.                                                                  |
+| 03 | O projeto não contará com integração a sistemas de pagamento ou monetização.                                          |
+| 04 | O gerenciamento de usuários será simplificado, sem autenticação complexa.                                             |
+| 05 | A aplicação não deverá armazenar dados sensíveis de saúde ou informações pessoais além do necessário para uso básico. |
+| 06 | O projeto será limitado a uma versão protótipo funcional, sem escalabilidade para uso em larga escala.                |
 
 ## Diagrama de Casos de Uso
 
