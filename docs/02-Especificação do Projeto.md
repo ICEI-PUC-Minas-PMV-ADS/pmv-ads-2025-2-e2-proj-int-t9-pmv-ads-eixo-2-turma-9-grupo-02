@@ -23,14 +23,14 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 | --------------------- | --------------------------------------- | ---------------------------------------- |
 | Marina (Doadora)         | Localizar instituições próximas em um mapa e selecionar para envio os medicamentos que posso doar          | Ter a certeza de que eles chegarão a quem realmente precisa                 |
 | Marina (Doadora)         | Cadastrar medicamentos com informações completas (nome, validade, quantidade, foto e receita digitalizada) | Não correr o risco de doar algo que não será aceito                         |
-| João (Doador)            | Registrar pequenas quantidades de medicamentos para doação                                                 | Não deixar que meus remédios sobrando fiquem guardados sem utilidade        |
-| João (Doador)            | Ter informações objetivas sobre validade e condições de doação ao cadastrar medicamentos                   | Me sentir seguro de que estou fazendo o procedimento corretamente           |
-| ONG Bem Viver            | Receber doações de medicamentos e visualizar as listas de doações disponíveis                              | Garantir a continuidade dos tratamentos dos pacientes atendidos             |
-| ONG Bem Viver            | Acompanhar de forma transparente o status das doações e receber notificações automáticas                   | Prestar contas às famílias e fortalecer a confiança na instituição          |
-| Posto de Saúde Vila Nova | Gerenciar o recebimento de medicamentos no painel e aprovar/rejeitar doações                               | Complementar o estoque de medicamentos faltantes                            |
-| Posto de Saúde Vila Nova | Receber medicamentos dentro do prazo de validade e em boas condições                                       | Garantir segurança e qualidade no tratamento dos pacientes                  |
-| Lar Esperança            | Acessar facilmente o histórico de doações e gerar relatórios de impacto                                    | Assegurar que os idosos tenham seus tratamentos garantidos sem interrupções |
-| Lar Esperança            | Conectar rapidamente com doadores e facilitar o envio de medicamentos                                      | Não depender apenas de recursos financeiros limitados para comprar remédios |
+| João Pedro (Doador)            | Registrar pequenas quantidades de medicamentos para doação                                                 | Não deixar que meus remédios sobrando fiquem guardados sem utilidade        |
+| João Pedro (Doador)            | Ter informações objetivas sobre validade e condições de doação ao cadastrar medicamentos                   | Me sentir seguro de que estou fazendo o procedimento corretamente           |
+| Roberto (ONG Bem Viver)            | Receber doações de medicamentos e visualizar as listas de doações disponíveis                              | Garantir a continuidade dos tratamentos dos pacientes atendidos             |
+| Roberto (ONG Bem Viver)            | Acompanhar de forma transparente o status das doações e receber notificações automáticas                   | Prestar contas às famílias e fortalecer a confiança na instituição          |
+| Fernanda (Posto de Saúde Vila Nova) | Gerenciar o recebimento de medicamentos no painel e aprovar/rejeitar doações                               | Complementar o estoque de medicamentos faltantes                            |
+| Fernanda (Posto de Saúde Vila Nova) | Receber medicamentos dentro do prazo de validade e em boas condições                                       | Garantir segurança e qualidade no tratamento dos pacientes                  |
+| Helena (Lar Esperança)            | Acessar facilmente o histórico de doações e gerar relatórios de impacto                                    | Assegurar que os idosos tenham seus tratamentos garantidos sem interrupções |
+| Helena (Lar Esperança)            | Conectar rapidamente com doadores e facilitar o envio de medicamentos                                      | Não depender apenas de recursos financeiros limitados para comprar remédios |
 
 ## Requisitos
 
@@ -72,11 +72,10 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 | ID | Restrição                                                                                                             |
 | -- | --------------------------------------------------------------------------------------------------------------------- |
 | 01 | O projeto deverá ser entregue até o final do semestre.                                                                |
-| 02 | A aplicação deverá funcionar apenas em ambiente web.                                                                  |
-| 03 | O projeto não contará com integração a sistemas de pagamento ou monetização.                                          |
-| 04 | O gerenciamento de usuários será simplificado, sem autenticação complexa.                                             |
-| 05 | A aplicação não deverá armazenar dados sensíveis de saúde ou informações pessoais além do necessário para uso básico. |
-| 06 | O projeto será limitado a uma versão protótipo funcional, sem escalabilidade para uso em larga escala.                |
+| 02 | O projeto não contará com integração a sistemas de pagamento ou monetização.                                          |
+| 03 | O gerenciamento de usuários será simplificado, sem autenticação complexa.                                             |
+| 04 | A aplicação não deverá armazenar dados sensíveis de saúde ou informações pessoais além do necessário para uso básico. |
+| 05 | O projeto será limitado a uma versão protótipo funcional, sem escalabilidade para uso em larga escala.                |
 
 ## Diagrama de Casos de Uso
 
