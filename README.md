@@ -6,7 +6,9 @@
 
 `SEGUNDO SEMESTRE - EIXO 2`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O MedShare é uma aplicação web interativa voltada para o compartilhamento de medicamentos, conectando doadores a instituições beneficentes e de saúde. O sistema permite que o doador cadastre medicamentos informando dados como nome, validade, quantidade, foto e receita digitalizada, localize instituições próximas em um mapa e acompanhe o status das suas doações. As instituições, por sua vez, podem visualizar e gerenciar as doações recebidas, listar medicamentos prioritários e confirmar o recebimento, garantindo maior transparência e organização no processo.
+
+O projeto tem como objetivo promover o acesso a medicamentos por meio do reaproveitamento responsável, evitando desperdícios e fortalecendo a rede de apoio entre comunidade e instituições de saúde. Nesse sentido, o MedShare contribui diretamente para a ODS 3 – Saúde e Bem-Estar, ao favorecer práticas que ampliam a disponibilidade de tratamentos e melhoram a qualidade de vida da população.
 
 ## Integrantes
 
