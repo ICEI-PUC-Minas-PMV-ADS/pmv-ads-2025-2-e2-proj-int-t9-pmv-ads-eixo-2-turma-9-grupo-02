@@ -43,6 +43,6 @@ Assim, o MedShare fortalece a eficiência no uso de recursos de saúde, promove 
 
 O projeto MedShare atende a dois perfis principais de usuários:
 
-1. Doadores: farmácias e pessoas físicas de diversas faixas etárias e classes sociais, geralmente residentes em áreas urbanas. Incluem indivíduos que concluíram um tratamento, cuidadores de pacientes crônicos ou idosos, e familiares que ficaram com medicamentos em embalagens lacradas após o falecimento de um ente.
+1. Doadores: pessoas físicas de diversas faixas etárias e classes sociais, geralmente residentes em áreas urbanas. Incluem indivíduos que concluíram um tratamento, cuidadores de pacientes crônicos ou idosos, e familiares que ficaram com medicamentos em embalagens lacradas após o falecimento de um ente.
 
 2. Instituições Beneficiadas: pessoas jurídicas, como ONGs, farmácias comunitárias, lares de idosos e postos de saúde, representadas na plataforma por seus gestores, assistentes sociais ou farmacêuticos responsáveis. São organizações focadas em sua missão social e que frequentemente operam com recursos limitados.
