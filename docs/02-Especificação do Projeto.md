@@ -2,7 +2,7 @@
 
 <span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
 
-Nesta seção estão apresentadas as especificações do projeto, incluindo requisitos funcionais e não funcionais, além das restrições que delimitam a solução. Para as personas, foram considerados aspectos como faixa etária, profissão, objetivos, descrição do problema, dores e expectativas. Também foram elaboradas histórias de usuário para relacionar necessidades e funcionalidades. O diagrama de caso de uso foi construído com o apoio da ferramenta Astah.
+Nesta seção estão apresentadas as especificações do projeto, incluindo requisitos funcionais e não funcionais, além das restrições que delimitam a solução. Para as personas, foram considerados aspectos como faixa etária, profissão, objetivos, descrição do problema, dores e expectativas. Também foram elaboradas histórias de usuário para relacionar necessidades e funcionalidades. O diagrama de caso de uso foi construído com o apoio da ferramenta [Astah](https://astah.net/).
 
 ## Personas
 ![Persona 1](img/Persona1.jpg)
@@ -17,11 +17,11 @@ Nesta seção estão apresentadas as especificações do projeto, incluindo requ
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+Com base na análise das personas foram identificadas as seguintes histórias de usuários:
 
 | EU COMO... `PERSONA`  |  QUERO/PRECISO ... `FUNCIONALIDADE`     | PARA ... `MOTIVO/VALOR`     |
 | --------------------- | --------------------------------------- | ---------------------------------------- |
-| Marina (Doadora)         | Localizar instituições próximas em um mapa e selecionar para envio os medicamentos que posso doar          | Ter a certeza de que eles chegarão a quem realmente precisa                 |
+| Marina (Doadora)         | Localizar instituições próximas em um mapa e seleciona-las a fim de doar meus medicamentos          | Ter a certeza de que eles chegarão a quem realmente precisa                 |
 | Marina (Doadora)         | Cadastrar medicamentos com informações completas (nome, validade, quantidade, foto e receita digitalizada) | Não correr o risco de doar algo que não será aceito                         |
 | João Pedro (Doador)            | Registrar pequenas quantidades de medicamentos para doação                                                 | Não deixar que meus remédios sobrando fiquem guardados sem utilidade        |
 | João Pedro (Doador)            | Ter informações objetivas sobre validade e condições de doação ao cadastrar medicamentos                   | Me sentir seguro de que estou fazendo o procedimento corretamente           |
@@ -44,15 +44,16 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | RF-02 | A aplicação deve autenticar doadores e instituições por meio de login e senha.                                                                                                              | ALTA       |
 | RF-03 | O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada (quando aplicável).                                                                 | ALTA       |
 | RF-04 | O doador deve visualizar instituições próximas em um mapa com base na geolocalização.                                                                                                       | MÉDIA      |
-| RF-05 | O doador deve selecionar uma instituição específica para enviar o medicamento.                                                                                                              | ALTA       |
-| RF-06 | O doador deve acompanhar o status das suas doações em uma tela dedicada ("Minhas Doações").                                                                                                 | MÉDIA      |
-| RF-07 | A instituição deve listar medicamentos prioritários em status “crítico” visível no painel.                                                                                                  | MÉDIA      |
+| RF-05 | O doador deve selecionar uma instituição específica para doar o medicamento.                                                                                                                | ALTA       |
+| RF-06 | O doador deve acompanhar o status das suas doações em uma tela dedicada ("Minhas Doações").                                                                                                 | ALTA      |
+| RF-07 | A instituição deve listar medicamentos prioritários em status “Escassez critica” visível no painel.                                                                                      | MÉDIA      |
 | RF-08 | A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita.                                                                    | ALTA       |
 | RF-09 | A instituição deve aprovar ou rejeitar doações em até 24 horas.                                                                                                                             | ALTA       |
-| RF-10 | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão da instituição e prazos de entrega/análise. | MÉDIA      |
+| RF-10 | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. | MÉDIA      |
 | RF-11 | A instituição deve confirmar o recebimento dos medicamentos no painel.                                                                                                                      | ALTA       |
 | RF-12 | A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição.                                                          | BAIXA      |
 | RF-13 | A aplicação deve gerar relatórios de impacto com base no histórico de doações.                                                                                                              | BAIXA      |
+| RF-14 | A aplicação deve gerar relatórios de impacto com base no histórico de doações.                                                                                                              | BAIXA      |
 
 
 ### Requisitos não Funcionais
@@ -76,12 +77,13 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 | 03 | O gerenciamento de usuários será simplificado, sem autenticação complexa.                                             |
 | 04 | A aplicação não deverá armazenar dados sensíveis de saúde ou informações pessoais além do necessário para uso básico. |
 | 05 | O projeto será limitado a uma versão protótipo funcional, sem escalabilidade para uso em larga escala.                |
+| 06 | Não haverá integração logistica (coleta/entrega)                                                                      |
+| 07 | Sem integração com serviços de verificação de receita                                                                 |
 
 ## Diagrama de Casos de Uso
 
 O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Casos de Uso”.
 
 <img width="1902" height="1442" alt="Diagrama de casos de uso" src="https://github.com/user-attachments/assets/5c2be75e-6c11-4e9f-8328-2d71b043f2f3" />
 
