@@ -53,7 +53,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | RF-11 | A instituição deve confirmar o recebimento dos medicamentos no painel.                                                                                                                      | ALTA       |
 | RF-12 | A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição.                                                          | BAIXA      |
 | RF-13 | A aplicação deve gerar relatórios de impacto com base no histórico de doações.                                                                                                              | BAIXA      |
-| RF-14 | A aplicação deve gerar relatórios de impacto com base no histórico de doações.                                                                                                              | BAIXA      |
+
 
 
 ### Requisitos não Funcionais
