@@ -3,7 +3,7 @@
 
 <span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
 
-Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela  equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
+A metodologia adotada para o desenvolvimento do MedShare segue uma abordagem ágil, baseada no Scrum, com o apoio do Jira para gestão das atividades. O objetivo é garantir organização, colaboração entre os integrantes e entregas incrementais ao longo da disciplina.
 
 ## Controle de Versão
 
@@ -18,15 +18,20 @@ O projeto segue a seguinte convenção para o nome de branches:
 - `testing`: versão em testes do software
 - `dev`: versão de desenvolvimento do software
 
-Quanto à gerência de issues, o projeto adota a seguinte convenção para
-etiquetas:
+Quanto à gerência de issues, o Jira será usado como ferramenta principal para criação e acompanhamento de tarefas, mas etiquetas adicionais podem ser usadas no GitHub quando necessário:
 
 - `documentation`: melhorias ou acréscimos à documentação
-- `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
+- `bug`: funcionalidade com problemas
+- `enhancement`: melhoria de uma funcionalidade existente
+- `feature`: inclusão de uma nova funcionalidade
 
-Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
+Além disso:
+
+- `Commits` seguem mensagens padronizadas, curtas e objetivas ( `ex.: feat: cadastro de doador `).
+
+- `Merges` para a  `main ` só ocorrem após revisão de pelo menos um integrante via `pull request`.
+
+-  `Tags` são utilizadas para marcar versões significativas (ex.:  `v1.0.0 `).
 
 > **Links Úteis**:
 > - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
@@ -39,39 +44,51 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 
 ### Divisão de Papéis
 
-Apresente a divisão de papéis entre os membros do grupo.
+Divisão de Papéis
 
-> **Links Úteis**:
-> - [11 Passos Essenciais para Implantar Scrum no seu 
-> Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+- `Product Owner (PO)`: responsável por priorizar o **backlog** e alinhar requisitos.
+- `Scrum Master`: garante a aplicação da metodologia e facilita a comunicação.
+- `Time de Desenvolvimento`: responsável por implementar, testar e documentar as funcionalidades.
 
 ### Processo
 
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-> **Links Úteis**:
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/github/managing-your-work-on-github/about-project-boards)
-> - [Como criar Backlogs no Github](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
+O projeto segue ciclos curtos de desenvolvimento (**sprints de duas semanas**), com as seguintes etapas:
+
+`Sprint Planning `: definição das tarefas com base no **Product Backlog (Jira)**.
+
+ `Daily (acompanhamento) `: comunicação rápida via **WhatsApp/Teams** para alinhar atividades e bloqueios.
+
+ `Sprint Review `: apresentação das entregas ao final de cada **sprint.**
+
+ `Retrospectiva `: discussão sobre pontos de melhoria para o próximo ciclo.
+
+O gerenciamento é realizado com Jira (**Kanban e Scrum**), organizado nas colunas:** Backlog, To Do, In Progress, In Review e Done.**
 
 ### Ferramentas
 
 As ferramentas empregadas no projeto são:
 
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
+Editor de Código: Visual Studio Code — escolhido pela integração com GitHub e suporte a extensões.
 
-O editor de código foi escolhido porque ele possui uma integração com o
-sistema de versão. As ferramentas de comunicação utilizadas possuem
-integração semelhante e por isso foram selecionadas. Por fim, para criar
-diagramas utilizamos essa ferramenta por melhor captar as
-necessidades da nossa solução.
+- `Visual Studio (VS)`: utilizado principalmente para desenvolvimento da aplicação back-end em .NET, aproveitando o suporte completo a C# e integração com depuração e testes.
+
+- `Visual Studio Code (VS Code)`: utilizado para desenvolvimento de front-end (HTML, CSS, JavaScript/React) e edição de arquivos de configuração, com suporte a extensões e integração com GitHub.
+
+- `Versionamento`: GitHub — central para controle de código e revisão por **pull requests**.
+
+- `Gerenciamento de Projeto`: **Jira** — utilizado para organizar backlog, sprints, tarefas e acompanhar o progresso da equipe.
+
+- `Comunicação`: WhatsApp/Teams — para alinhamento rápido da equipe.
+
+- `Wireframing e Protótipos`: Figma — utilizado para a criação da interface e validação visual.
+
+- `Modelagem`: Astah — utilizado para diagramas **UML** e **BPMN.**
+
+O editor de código foi escolhido por oferecer integração com o sistema de versão. As ferramentas de comunicação utilizadas possuem integração semelhante e foram selecionadas por facilitar o acompanhamento do progresso. Por fim, Astah e Figma foram escolhidos por melhor captar as necessidades de prototipagem e modelagem da solução.  
 
 Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
  
 > **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - [Slack](https://slack.com/)
-> - [Github](https://github.com/)
+> - `Trello` — alternativa simples ao Jira, baseada em quadros Kanban
+>  `Postman` — apoio em testes e documentação de APIs
+> `Miro`— colaboração visual (mapas mentais, fluxos e brainstormings).
