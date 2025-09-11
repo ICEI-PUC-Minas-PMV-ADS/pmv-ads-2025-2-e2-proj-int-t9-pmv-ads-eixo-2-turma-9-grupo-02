@@ -90,5 +90,5 @@ Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justific
  
 > **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
 > - `Trello` — alternativa simples ao Jira, baseada em quadros Kanban
->  `Postman` — apoio em testes e documentação de APIs
-> `Miro`— colaboração visual (mapas mentais, fluxos e brainstormings).
+>  - `Postman` — apoio em testes e documentação de APIs
+>  - `Miro`— colaboração visual (mapas mentais, fluxos e brainstormings).
