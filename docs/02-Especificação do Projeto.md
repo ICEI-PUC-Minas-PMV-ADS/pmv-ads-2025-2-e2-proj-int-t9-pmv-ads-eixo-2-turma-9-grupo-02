@@ -1,7 +1,5 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: [Documentação de Contexto](./01-Documenta%C3%A7%C3%A3o%20de%20Contexto.md)
-
 Nesta seção estão apresentadas as especificações do projeto, incluindo requisitos funcionais e não funcionais, além das restrições que delimitam a solução. Para as personas, foram considerados aspectos como faixa etária, profissão, objetivos, descrição do problema, dores e expectativas. Também foram elaboradas histórias de usuário para relacionar necessidades e funcionalidades. O diagrama de caso de uso foi construído com o apoio da ferramenta [Astah](https://astah.net/).
 
 ## Personas
