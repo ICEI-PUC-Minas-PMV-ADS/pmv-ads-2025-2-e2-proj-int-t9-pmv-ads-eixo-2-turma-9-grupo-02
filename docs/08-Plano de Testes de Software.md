@@ -1,6 +1,6 @@
 # Plano de Testes de Software
 
-Este documento define a estratégia e casos de teste para validar os requisitos funcionais da plataforma MedShare, a qual conecta doadores de medicamentos a instituições de saúde verificadas. O seu escopo gira em torno de testes funcionais para validação dos requisitos funcionais descritos na especificação deste projeto.
+Este documento define a estratégia e casos de teste para validar os requisitos funcionais da plataforma MedShare, a qual conecta doadores de medicamentos a instituições de saúde verificadas. O seu escopo gira em torno de testes para validação dos requisitos funcionais descritos na especificação deste projeto.
 
 Os requisitos para realização dos testes de software são:
 
