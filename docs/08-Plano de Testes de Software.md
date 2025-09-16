@@ -1,12 +1,14 @@
 # Plano de Testes de Software
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>
+Este documento define a estratégia e casos de teste para validar os requisitos funcionais da plataforma MedShare, a qual conecta doadores de medicamentos a instituições de saúde verificadas. O seu escopo gira em torno de testes funcionais para validação dos requisitos funcionais descritos na especificação deste projeto.
 
-Apresente os cenários de testes utilizados na realização dos testes da sua aplicação. Escolha cenários de testes que demonstrem os requisitos sendo satisfeitos.
+Os requisitos para realização dos testes de software são:
 
-Não deixe de enumerar os casos de teste de forma sequencial e de garantir que o(s) requisito(s) associado(s) a cada um deles está(ão) correto(s) - de acordo com o que foi definido na seção "2 - Especificação do Projeto". 
-
-Por exemplo:
+<ul><li>Plataforma publicada na internet;</li>
+<li>Navegadores da internet: Chrome, Firefox ou Edge.</li>
+<li>Banco de dados com medicamentos e instituições cadastradas</li>
+<li>Usuários teste (doadores e instituições) disponíveis</li>
+</ul>
  
 | **Caso de Teste** 	| **CT01 – Cadastrar perfil** 	|
 |:---:	|:---:	|
