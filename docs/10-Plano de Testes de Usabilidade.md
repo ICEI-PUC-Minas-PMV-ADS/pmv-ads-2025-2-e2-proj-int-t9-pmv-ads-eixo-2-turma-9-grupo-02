@@ -1,71 +1,28 @@
 # Plano de Testes de Usabilidade
 
-Os testes de usabilidade permitem avaliar a qualidade da interface com o usuário da aplicação interativa.
+ Plano de Testes de Usabilidade – MedShare
+ 
+1. Objetivos do Teste
+Os testes de usabilidade do MedShare têm como objetivo:  - Verificar se os usuários conseguem concluir tarefas essenciais (cadastro, doação, acompanhamento) sem dificuldades. - Identificar barreiras na navegação e interação com o sistema, tanto para doadores quanto para instituições. - Avaliar a eficiência (tempo, número de cliques) e a satisfação do usuário ao utilizar a interface. - Testar a acessibilidade para diferentes perfis de usuários.
 
-Um plano de teste de usabilidade deverá conter: 
+2. Seleção dos Participantes
+Para garantir que o teste reflita o uso real do sistema, serão escolhidos participantes representativos do público-alvo:  - Perfis variados: doadores (pessoas físicas) e instituições (pessoas jurídicas). - Níveis de familiaridade com tecnologia: participantes experientes e iniciantes. - Necessidades especiais: se possível, incluir pelo menos 1 participante com alguma limitação (visão, audição, motricidade). - Quantidade recomendada: mínimo de 5 participantes, idealmente entre 8 e 12 para maior diversidade.
 
-## Definição do(s) objetivo(s)
+3. Definição de Cenários de Teste
+Os cenários representam tarefas reais dos usuários. Cada cenário inclui: objetivo, contexto, tarefa(s) e critérios de sucesso. 
+Cenário 1 – Cadastro de Perfil
+Objetivo: Avaliar a facilidade do usuário em se registrar como doador ou instituição. Contexto: Um novo usuário acessa o MedShare pela primeira vez. Tarefa(s): Acessar o sistema, preencher dados de cadastro e concluir registro. Critério(s) de Sucesso: - Usuário consegue completar o cadastro sem erros. - Todo processo ocorre em menos de 3 minutos.
+Cenário 2 – Login
+Objetivo: Avaliar a eficiência e clareza do login. Contexto: Usuário já possui conta. Tarefa(s): Acessar a tela de login, inserir credenciais, entrar na conta. Critério(s) de Sucesso: - Login feito corretamente sem mensagem de erro injustificada. - Tempo inferior a 1 minuto.
+Cenário 3 – Cadastro de Medicamento
+Objetivo: Avaliar clareza e praticidade do cadastro de medicamentos. Contexto: Doador quer doar um medicamento que sobrou em casa. Tarefa(s): Informar nome, validade, quantidade, foto e receita digitalizada. Critério(s) de Sucesso: - Todos os campos são preenchidos sem dúvidas. - Medicamento aparece na lista do usuário após cadastro.
+Cenário 4 – Seleção de Instituição
+Objetivo: Avaliar a usabilidade do mapa e seleção de instituição. Contexto: Doador quer encontrar uma instituição próxima para doar. Tarefa(s): Visualizar mapa, selecionar instituição e confirmar doação. Critério(s) de Sucesso: - Instituição encontrada e selecionada corretamente. - Doador recebe confirmação de que a doação foi enviada.
+Cenário 5 – Acompanhamento de Doação
+Objetivo: Avaliar clareza do status das doações. Contexto: Doador quer ver o andamento de suas doações. Tarefa(s): Acessar “Minhas Doações” e verificar status. Critério(s) de Sucesso: - Status exibido de forma clara. - Usuário entende se a doação foi aceita, rejeitada ou entregue.
 
-Antes de iniciar os testes, é essencial definir o que se deseja avaliar na usabilidade do sistema. 
-Alguns exemplos de objetivos são:
-- Verificar se os usuários conseguem concluir tarefas essenciais sem dificuldades.
-- Identificar barreiras na navegação e interação com o sistema.
-- Avaliar a eficiência e a satisfação do usuário ao utilizar a interface.
-- Testar a acessibilidade para diferentes perfis de usuários.
+4. Métodos de Coleta de Dados
+Para cada voluntário do teste, os dados/métricas serão coletados sem dados pessoais sensíveis (LGPD).  - Métricas Quantitativas:   - Tempo gasto por tarefa.   - Número de cliques.   - Número de erros cometidos.   - Taxa de sucesso por tarefa.  - Métricas Qualitativas:   - Dificuldades relatadas espontaneamente.   - Comentários sobre clareza, layout e navegação.   - Nível de satisfação após cada tarefa (escala 1 a 5).  - Questionário Pós-Teste:   - A interface foi fácil de entender?   - Encontrou dificuldades em alguma etapa?   - O que poderia ser melhorado?   - Nota geral de satisfação (1 a 5).
 
-## Seleção dos participantes
-
-Para garantir que o teste reflita o uso real do sistema, escolha participantes representativos do público-alvo.
-
-**Critérios para selecionar participantes:**
-- Perfis variados (experientes e iniciantes no sistema).
-- Diferentes níveis de familiaridade com tecnologia.
-- Pessoas com necessidades especiais (se aplicável).
-
-**Quantidade recomendada:**
-Mínimo: 5 participantes.
-Ideal: Entre 8 e 12 para maior diversidade.
-
-## Definição de cenários de teste
-
-Os cenários representam tarefas reais que os usuários executam no sistema. Neste projeto, cada grupo deverá definir, no mínimo, **CINCO cenários para a aplicação** e cada cenário deve incluir:
-
-- Objetivo: O que será avaliado.
-- Contexto: A situação que leva o usuário a interagir com o sistema.
-- Tarefa: A ação que o usuário deve realizar.
-- Critério de sucesso: Como determinar se a tarefa foi concluída corretamente.
-
-**Exemplo: Cenário 1**
-
-**Objetivo:** Avaliar a facilidade e eficiência do usuário em pesquisar, adicionar um produto ao carrinho e finalizar a compra sem dificuldades.
-
-**Contexto:** O usuário deseja comprar um notebook para uso pessoal. Para isso, ele deverá entrar no site www.compras.com.br para buscar opções disponíveis, comparar preços, adicionar o produto ao carrinho e finalizar a compra com pagamento via cartão de crédito.
-
-**Tarefa(s):** 
-- Acessar o site e localizar a barra de pesquisa.
-- Pesquisar por "notebook" e utilizar os filtros para refinar a busca (exemplo: marca, preço, processador).
-- Escolher um dos notebooks listados e acessar a página do produto.
-- Adicionar o produto ao carrinho.
-- Finalizar a compra, preenchendo os dados de pagamento e endereço de entrega.
-- Confirmar a transação e verificar a tela de pedido concluído.
-
-**Critério(s) de Sucesso(s):**
-- O usuário consegue encontrar e filtrar os produtos sem dificuldades.
-- O produto é adicionado ao carrinho corretamente.
-- O usuário consegue preencher as informações de pagamento e entrega sem erros.
-- A compra é finalizada com sucesso, e o usuário visualiza a confirmação do pedido.
-- Todo o processo ocorre em menos de 5 minutos, sem necessidade de assistência.
-
-## Métodos de coleta de dados
-
-Os dados coletados devem ajudar a entender a experiência dos usuários e os dados podem ser coletados por observação direta incluindo métricas quantitativas (quantidade de cliques, número de erros, tempo gasto para cada tarefa etc.), métricas qualitativas (dificuldades, comentários etc.) e questionários pós-teste (A interface foi fácil de entender? Você encontrou dificuldades em alguma etapa? O que poderia ser melhorado?)
-
-Para cada voluntário do teste, é fundamental coletar e apresentar todos os dados/métricas previamente definidos, mas não se esqueça: atendendo à LGPD (Lei Geral de Proteção de Dados), nenhum dado sensível, que permita identificar o voluntário, deverá ser apresentado).
-
-As referências abaixo irão auxiliá-lo na geração do artefato "Plano de Testes de Usabilidade".
-
-> **Links Úteis**:
-> - [Teste De Usabilidade: O Que É e Como Fazer Passo a Passo (neilpatel.com)](https://neilpatel.com/br/blog/teste-de-usabilidade/)
-> - [Teste de usabilidade: tudo o que você precisa saber! | by Jon Vieira | Aela.io | Medium](https://medium.com/aela/teste-de-usabilidade-o-que-voc%C3%AA-precisa-saber-39a36343d9a6/)
-> - [Planejando testes de usabilidade: o que (e o que não) fazer | iMasters](https://imasters.com.br/design-ux/planejando-testes-de-usabilidade-o-que-e-o-que-nao-fazer/)
-> - [Ferramentas de Testes de Usabilidade](https://www.usability.gov/how-to-and-tools/resources/templates.html)
+5. Resultados e Relatório
+Após os testes:  - Consolidar os resultados em planilha, separando por perfil (doador e instituição). - Calcular médias de tempo, taxas de sucesso e níveis de satisfação. - Listar os principais problemas e sugestões de melhoria. - Gerar um relatório final com conclusões e recomendações para o design do MedShare.
