@@ -5,9 +5,9 @@ Este documento define a estratégia e casos de teste para validar os requisitos 
 Os requisitos para realização dos testes de software são:
 
 <ul><li>Plataforma publicada na internet;</li>
-<li>Navegadores da internet: Chrome, Firefox ou Edge.</li>
-<li>Banco de dados com medicamentos e instituições cadastradas</li>
-<li>Usuários teste (doadores e instituições) disponíveis</li>
+<li>Navegadores da internet: Chrome, Firefox ou Edge;</li>
+<li>Banco de dados com medicamentos e instituições cadastradas;</li>
+<li>Usuários teste (doadores e instituições) disponíveis.</li>
 </ul>
  
 | **Caso de Teste** 	| **CT01 – Cadastrar perfil** 	|
