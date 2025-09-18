@@ -33,22 +33,15 @@ Além disso:
 
 -  `Tags` são utilizadas para marcar versões significativas (ex.:  `v1.0.0 `).
 
-> **Links Úteis**:
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
->  - [Comparando fluxos de trabalho](https://www.atlassian.com/br/git/tutorials/comparing-workflows)
-> - [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-> - [The gitflow workflow - in less than 5 mins](https://www.youtube.com/watch?v=1SXpE08hvGs)
-
 ## Gerenciamento de Projeto
 
 ### Divisão de Papéis
 
 Divisão de Papéis
 
-- `Product Owner (PO)`: responsável por priorizar o **backlog** e alinhar requisitos.
-- `Scrum Master`: garante a aplicação da metodologia e facilita a comunicação.
-- `Time de Desenvolvimento`: responsável por implementar, testar e documentar as funcionalidades.
+- `Product Owner (PO)`: responsável por priorizar o **backlog** e alinhar requisitos. (Lavínia Santos)
+- `Scrum Master`: garante a aplicação da metodologia e facilita a comunicação. (Maria Luiza)
+- `Time de Desenvolvimento`: responsável por implementar, testar e documentar as funcionalidades. (Estevão Dias, Higor Eduardo, Jefferson Torres, Lavínia Santos, Maria Luiza e Thaís Souto.)
 
 ### Processo
 
@@ -62,7 +55,7 @@ O projeto segue ciclos curtos de desenvolvimento (**sprints de duas semanas**), 
 
  `Retrospectiva `: discussão sobre pontos de melhoria para o próximo ciclo.
 
-O gerenciamento é realizado com Jira (**Kanban e Scrum**), organizado nas colunas:** Backlog, To Do, In Progress, In Review e Done.**
+O gerenciamento é realizado com Jira (**Kanban e Scrum**), organizado nas colunas: Backlog, To Do, In Progress, In Review e Done.
 
 ### Ferramentas
 
