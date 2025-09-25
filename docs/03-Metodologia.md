@@ -1,8 +1,6 @@
 
 # Metodologia
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
 A metodologia adotada para o desenvolvimento do MedShare segue uma abordagem ágil, baseada no Scrum, com o apoio do Jira para gestão das atividades. O objetivo é garantir organização, colaboração entre os integrantes e entregas incrementais ao longo da disciplina.
 
 ## Controle de Versão
@@ -40,8 +38,8 @@ Além disso:
 Divisão de Papéis
 
 - `Product Owner (PO)`: responsável por priorizar o **backlog** e alinhar requisitos. (Lavínia Santos)
-- `Scrum Master`: garante a aplicação da metodologia e facilita a comunicação. (Maria Luiza)
-- `Time de Desenvolvimento`: responsável por implementar, testar e documentar as funcionalidades. (Estevão Dias, Higor Eduardo, Jefferson Torres, Lavínia Santos, Maria Luiza e Thaís Souto.)
+- `Scrum Master`: garante a aplicação da metodologia e facilita a comunicação. (Maria Luisa Greco)
+- `Time de Desenvolvimento`: responsável por implementar, testar e documentar as funcionalidades. (Estevão Dias, Higor Eduardo, Jefferson Torres, Lavínia Santos, Maria Luisa Greco e Thaís Souto.)
 
 ### Processo
 
@@ -71,17 +69,10 @@ Editor de Código: Visual Studio Code — escolhido pela integração com GitHub
 
 - `Gerenciamento de Projeto`: **Jira** — utilizado para organizar backlog, sprints, tarefas e acompanhar o progresso da equipe.
 
-- `Comunicação`: WhatsApp/Teams — para alinhamento rápido da equipe.
+- `Comunicação`: WhatsApp e Teams — para alinhamento rápido da equipe.
 
 - `Wireframing e Protótipos`: Figma — utilizado para a criação da interface e validação visual.
 
-- `Modelagem`: Astah — utilizado para diagramas **UML** e **BPMN.**
+- `Modelagem`: Astah e Draw.io — utilizados para diagramas **UML** e **BPMN.**
 
-O editor de código foi escolhido por oferecer integração com o sistema de versão. As ferramentas de comunicação utilizadas possuem integração semelhante e foram selecionadas por facilitar o acompanhamento do progresso. Por fim, Astah e Figma foram escolhidos por melhor captar as necessidades de prototipagem e modelagem da solução.  
-
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
- 
-> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - `Trello` — alternativa simples ao Jira, baseada em quadros Kanban
->  - `Postman` — apoio em testes e documentação de APIs
->  - `Miro`— colaboração visual (mapas mentais, fluxos e brainstormings).
+O editor de código foi escolhido por oferecer integração com o sistema de versão. As ferramentas de comunicação utilizadas possuem integração semelhante e foram selecionadas por facilitar o acompanhamento do progresso. Por fim, Astah, Draw.io e Figma foram escolhidos por melhor captar as necessidades de prototipagem e modelagem da solução.
