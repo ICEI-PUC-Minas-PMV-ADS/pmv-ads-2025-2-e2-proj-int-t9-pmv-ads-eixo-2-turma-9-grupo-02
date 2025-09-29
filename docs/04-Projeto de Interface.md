@@ -1,34 +1,111 @@
 
 # Projeto de Interface
+---
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
+## User Flow
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
+O protótipo interativo de telas está disponível no <a href="https://marvelapp.com/prototype/34hgcbf6/screen/97876723"><ambiente MarvelApp</a>. Nesse ambiente está o protótipo do usuário pessoa física.
 
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a>.
+Há dois fluxos, um para pessoa física que mostra a funcionalidade principal de fazer doações, outro para pessoa jurídica que mostra a funcionalidade principal de buscar doações.
+
+### Pessoa Física
+
+- Login → Cadastro PF → Login → Home Page → Doar → Minhas Doações → Chat
+![userPF](img/userPF)
+
+
+### Pessoa Jurídica
+![userPJ](img/userPJ)
+---
 
 ## Diagrama de Fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo e  muitas vezes sem a necessidade do desenho do design das telas da interface. Isso permite que o design das interações seja bem planejado e gere impacto na qualidade no design do wireframe interativo que será desenvolvido logo em seguida.
+O diagrama abaixo representa **todo o fluxo de navegação e interações** da aplicação **MedShare**. Ele mostra de forma visual os caminhos que **doadores (Pessoa Física)** e **instituições (Pessoa Jurídica)** percorrem dentro do sistema, desde o login até as ações principais.
 
-O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem internamente a indicação dos principais elementos de interface - tais como menus e acessos - e funcionalidades, tais como editar, pesquisar, filtrar, configurar - e a conexão entre esses boxes a partir do processo de interação. Você pode ver mais explicações e exemplos https://www.lucidchart.com/blog/how-to-make-a-user-flow-diagram.
+### Estrutura Geral
+
+**Login/Cadastro**: ponto inicial do fluxo, onde o usuário escolhe se vai entrar como **Doador (PF)** ou **Instituição (PJ)**.  
+**Home Page**:
+**Home Doador**: para pessoas físicas que irão cadastrar e gerenciar doações.
+**Home Instituição**: para instituições que irão buscar e solicitar doações.
+- **Funcionalidades específicas**:
+**Doador (PF)**  
+    - Cadastrar novas doações  
+    - Visualizar doações cadastradas  
+    - Receber notificações de solicitações  
+    - Confirmar entregas  
+    - Interagir via chat com instituições
+**Instituição (PJ)**  
+    - Pesquisar e solicitar doações disponíveis  
+    - Visualizar histórico  
+    - Receber notificações de status e prazos  
+    - Interagir via chat com doadores
+
+---
+
+### Elementos Visuais do Diagrama
+
+**Losangos rosa**: pontos de decisão ou bifurcação (ex.: escolha do tipo de usuário, aceitar ou negar solicitação).
+**Retângulos verdes**: ações finais ou confirmações (ex.: fazer logout, confirmar entrega).
+**Retângulos roxos**: telas e ações intermediárias (ex.: Home Doador, Home Instituição, Notificações, Visualizar doações, Chat).
+**Setas**: indicam o fluxo de navegação e de notificações entre doador e instituição.
 
 ![Previa Diagrama de Fluxo MedShare](img/Diagrama_fluxo_MedShare_04.jpg)
 Obs: Abrir o projeto direto no https://app.diagrams.net/
 
 ## Wireframes
 
-![Exemplo de Wireframe](img/wireframe-example.png)
+Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 
-Os wireframes são protótipos utilizados no design de interfaces para representar a estrutura de um site e o relacionamento entre suas páginas. Eles funcionam como ilustrações do layout e da disposição dos elementos essenciais da interface.
+### Home Page
+![Home Page](img/Home Page)
 
-Nesta seção, é FUNDAMENTAL indicar, para cada tela/wireframe proposto, quais requisitos do projeto estão sendo contemplados por aquela tela.
- 
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
+- **Objetivo:** servir como hub principal para o doador.
+  **Elementos:**
+   Contadores de status:
+   🟩 **Total de medicamentos doados**
+   🟦 **Medicamentos disponíveis para doação**
+   🟨 **Medicamentos pendentes** (Precisam de alguma correção nas informações)
+  - Menu lateral com ações principais:
+     **Doar** (cadastrar uma nova doação)
+     **Buscar Instituições** (pesquisar instituições interessadas)
+     **Minhas Doações** (visualizar doações cadastradas)
+  - Menu do usuário (ícone no canto):
+     **Notificação**
+     **Chat**
+     **Relatório**
+     **Editar Perfil**
+     **Sair**
+
+---
+
+### Tela Doar
+![Tela Doar](img/Tela Doar)
+
+**Objetivo:** permitir que o doador cadastre uma nova doação de medicamento.
+**Principais campos:** nome do medicamento, quantidade, validade, observações, botão de envio.
+
+---
+
+### Tela Minhas Doações
+![Tela Minhas Doações](img/Tela Doações)
+
+**Objetivo:** listar e gerenciar as doações já cadastradas pelo usuário.
+**Funcionalidades:** visualizar status, acompanhar solicitações de instituições, editar ou cancelar doações se necessário.
+
+---
+
+### Tela Chat
+![Tela Chat](img/Tela Chat)
+
+**Objetivo:** possibilitar comunicação direta com as instituições que solicitaram determinada doação.
+**Funcionalidades:** troca de mensagens em tempo real, acompanhamento do status da solicitação.
+
+---
+
+### Tela Notificação
+![Tela Notificação](img/Tela Notificação)
+
+**Objetivo:** centralizar os avisos do sistema (novas solicitações, prazos de entrega, atualizações de status).
+**Funcionalidades:** listar notificações recebidas, marcar como lidas, acessar rapidamente a doação ou solicitação correspondente.
+
