@@ -46,10 +46,10 @@ O diagrama abaixo representa **todo o fluxo de navegação e interações** da a
 
 ### Elementos Visuais do Diagrama
 
-**Losangos rosa**: pontos de decisão ou bifurcação (ex.: escolha do tipo de usuário, aceitar ou negar solicitação). \n
-**Retângulos verdes**: ações finais ou confirmações (ex.: fazer logout, confirmar entrega). \n
-**Retângulos roxos**: telas e ações intermediárias (ex.: Home Doador, Home Instituição, Notificações, Visualizar doações, Chat). \n
-**Setas**: indicam o fluxo de navegação e de notificações entre doador e instituição. \n
+**Losangos rosa**: pontos de decisão ou bifurcação (ex.: escolha do tipo de usuário, aceitar ou negar solicitação). <br>
+**Retângulos verdes**: ações finais ou confirmações (ex.: fazer logout, confirmar entrega). <br>
+**Retângulos roxos**: telas e ações intermediárias (ex.: Home Doador, Home Instituição, Notificações, Visualizar doações, Chat). <br>
+**Setas**: indicam o fluxo de navegação e de notificações entre doador e instituição. <br>
 
 ![Previa Diagrama de Fluxo MedShare](img/Diagrama_fluxo_MedShare_04.jpg)
 Obs: Abrir o projeto direto no https://app.diagrams.net/
@@ -61,29 +61,29 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ### Home Page
 ![Home Page](img/Home Page.png)
 
-- **Objetivo:** servir como hub principal para o doador. \n
+- **Objetivo:** servir como hub principal para o doador.<br>
   **Elementos:**
    Contadores de status: \n
    🟩 **Total de medicamentos doados**
    🟦 **Medicamentos disponíveis para doação**
    🟨 **Medicamentos pendentes** (Precisam de alguma correção nas informações)
-  - Menu lateral com ações principais: \n
-     **Doar** (cadastrar uma nova doação) \n
-     **Buscar Instituições** (pesquisar instituições interessadas) \n
-     **Minhas Doações** (visualizar doações cadastradas) \n
+  - Menu lateral com ações principais: <br>
+     **Doar** (cadastrar uma nova doação) <br>
+     **Buscar Instituições** (pesquisar instituições interessadas) <br>
+     **Minhas Doações** (visualizar doações cadastradas) <br>
   - Menu do usuário (ícone no canto):
-     **Notificação** \n
-     **Chat** \n
-     **Relatório** \n
-     **Editar Perfil** \n
-     **Sair** \n
+     **Notificação** <br>
+     **Chat** <br>
+     **Relatório** <br>
+     **Editar Perfil** <br>
+     **Sair** <br>
 
 ---
 
 ### Tela Doar
 ![Tela Doar](img/Tela Doar.png)
 
-**Objetivo:** permitir que o doador cadastre uma nova doação de medicamento. \n
+**Objetivo:** permitir que o doador cadastre uma nova doação de medicamento. <br>
 **Principais campos:** nome do medicamento, quantidade, validade, observações, botão de envio.
 
 ---
@@ -91,7 +91,7 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ### Tela Minhas Doações
 ![Tela Minhas Doações](img/Tela Doações.png)
 
-**Objetivo:** listar e gerenciar as doações já cadastradas pelo usuário. \n
+**Objetivo:** listar e gerenciar as doações já cadastradas pelo usuário. <br>
 **Funcionalidades:** visualizar status, acompanhar solicitações de instituições, editar ou cancelar doações se necessário.
 
 ---
@@ -99,7 +99,7 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ### Tela Chat
 ![Tela Chat](img/Tela Chat.png)
 
-**Objetivo:** possibilitar comunicação direta com as instituições que solicitaram determinada doação. \n
+**Objetivo:** possibilitar comunicação direta com as instituições que solicitaram determinada doação. <br>
 **Funcionalidades:** troca de mensagens em tempo real, acompanhamento do status da solicitação.
 
 ---
@@ -107,6 +107,6 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ### Tela Notificação
 ![Tela Notificação](img/Tela Notificação.png)
 
-**Objetivo:** centralizar os avisos do sistema (novas solicitações, prazos de entrega, atualizações de status). \n
+**Objetivo:** centralizar os avisos do sistema (novas solicitações, prazos de entrega, atualizações de status). <br>
 **Funcionalidades:** listar notificações recebidas, marcar como lidas, acessar rapidamente a doação ou solicitação correspondente.
 
