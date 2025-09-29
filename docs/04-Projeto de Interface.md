@@ -59,11 +59,11 @@ Obs: Abrir o projeto direto no https://app.diagrams.net/
 Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 
 ### Home Page
-![Home Page](img/Home Page.png)
+![Home Page](img/Home%20Page.png)
 
 - **Objetivo:** servir como hub principal para o doador.<br>
   **Elementos:**
-   Contadores de status: \n
+   Contadores de status: <br>
    🟩 **Total de medicamentos doados**
    🟦 **Medicamentos disponíveis para doação**
    🟨 **Medicamentos pendentes** (Precisam de alguma correção nas informações)
@@ -81,7 +81,7 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ---
 
 ### Tela Doar
-![Tela Doar](img/Tela Doar.png)
+![Tela Doar](img/Tela%20Doar.png)
 
 **Objetivo:** permitir que o doador cadastre uma nova doação de medicamento. <br>
 **Principais campos:** nome do medicamento, quantidade, validade, observações, botão de envio.
@@ -89,7 +89,7 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ---
 
 ### Tela Minhas Doações
-![Tela Minhas Doações](img/Tela Doações.png)
+![Tela Minhas Doações](img/Tela%20Doações.png)
 
 **Objetivo:** listar e gerenciar as doações já cadastradas pelo usuário. <br>
 **Funcionalidades:** visualizar status, acompanhar solicitações de instituições, editar ou cancelar doações se necessário.
@@ -97,7 +97,7 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ---
 
 ### Tela Chat
-![Tela Chat](img/Tela Chat.png)
+![Tela Chat](img/Tela%20Chat.png)
 
 **Objetivo:** possibilitar comunicação direta com as instituições que solicitaram determinada doação. <br>
 **Funcionalidades:** troca de mensagens em tempo real, acompanhamento do status da solicitação.
@@ -105,7 +105,7 @@ Estas telas fazem parte do fluxo do usuário **Pessoa Física (PF)** no MedShare
 ---
 
 ### Tela Notificação
-![Tela Notificação](img/Tela Notificação.png)
+![Tela Notificação](img/Tela%20Notificação.png)
 
 **Objetivo:** centralizar os avisos do sistema (novas solicitações, prazos de entrega, atualizações de status). <br>
 **Funcionalidades:** listar notificações recebidas, marcar como lidas, acessar rapidamente a doação ou solicitação correspondente.
