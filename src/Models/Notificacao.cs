@@ -1,6 +1,13 @@
-﻿namespace MedShare.Models {
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MedShare.Models {
+
+    [Table("Notificacaos")]
     public class Notificacao 
     {
+
+        [Key]
         public int NotificacaoId { get; set; }
         public string NotificacaoMensagem { get; set; }
         public DateTime NotificacaoDataHora { get; set; }
