@@ -1,1 +1,17 @@
-﻿
+﻿@{
+    var notificacoes = ViewBag.NotificacoesVencimento as List<MedShare.Models.Notificacao>;
+}
+
+@if (notificacoes != null && notificacoes.Count > 0)
+{
+    <div class="alert alert-warning">
+        <h4>Medicamentos próximos da validade:</h4>
+        <ul>
+            @foreach (var notificacao in notificacoes)
+            {
+                <li>@notificacao.Mensagem</li>
+            }
+        </ul>
+    </div>
+}
+

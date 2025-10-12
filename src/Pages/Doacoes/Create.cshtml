@@ -1,0 +1,36 @@
+@page
+@model DoacoesCreateModel
+@{
+    ViewData["Title"] = "Nova Doação";
+}
+
+<h1>Nova Doação</h1>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Doacao.DoacaoNomeMedicamento"></label>
+        <input asp-for="Doacao.DoacaoNomeMedicamento" class="form-control" />
+        <span asp-validation-for="Doacao.DoacaoNomeMedicamento" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Doacao.DoacaoDataValidade"></label>
+        <input asp-for="Doacao.DoacaoDataValidade" class="form-control" type="date" />
+        <span asp-validation-for="Doacao.DoacaoDataValidade" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Doacao.DoacaoQuantidadeMedicamento"></label>
+        <input asp-for="Doacao.DoacaoQuantidadeMedicamento" class="form-control" />
+        <span asp-validation-for="Doacao.DoacaoQuantidadeMedicamento" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Doacao.DoadorId"></label>
+        <input asp-for="Doacao.DoadorId" class="form-control" />
+        <span asp-validation-for="Doacao.DoadorId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Doacao.InstituicaoId"></label>
+        <input asp-for="Doacao.InstituicaoId" class="form-control" />
+        <span asp-validation-for="Doacao.InstituicaoId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-page="Index" class="btn btn-secondary">Voltar</a>
+</form>

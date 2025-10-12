@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedShare.Models {
@@ -9,15 +10,15 @@ namespace MedShare.Models {
 
         [Key]
         public int NotificacaoId { get; set; }
-        public string NotificacaoMensagem { get; set; }
-        public DateTime NotificacaoDataHora { get; set; }
-        public int DoacaoId { get; set; }
+        public string Mensagem { get; set; }
+        public DateTime DataCriacao { get; set; } = DateTime.Now;
+        public int? DoacaoId { get; set; }
         public virtual Doacao Doacao { get; set; }
-
-        public int DoadorId { get; set; }
+        // Adicionando relacionamento com Doador
+        public int? DoadorId { get; set; }
         public virtual Doador Doador { get; set; }
-
-        public int InstituicaoId { get; set; }
+        // Adicionando relacionamento com Instituicao
+        public int? InstituicaoId { get; set; }
         public virtual Instituicao Instituicao { get; set; }
     }
 }
