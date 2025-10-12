@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MedShare.Models.Doador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Doadores</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Adicionar novo Doador</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DoadorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoadorCpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoadorEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoadorSenha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoadorDataNascimento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoadorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoadorCpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoadorEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoadorSenha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoadorDataNascimento)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.DoadorId">Editar</a> 
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.DoadorId">visualizar</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.DoadorId">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
