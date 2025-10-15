@@ -7,5 +7,7 @@ namespace MedShare.Models {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Doador> Doadores { get; set; }
+        public DbSet<Instituicao> Instituicoes { get; set; }
     }
 }

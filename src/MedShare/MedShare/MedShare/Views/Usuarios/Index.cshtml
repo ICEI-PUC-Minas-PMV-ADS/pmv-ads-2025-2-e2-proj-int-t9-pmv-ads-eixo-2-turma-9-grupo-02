@@ -1,47 +1,71 @@
-﻿@model IEnumerable<MedShare.Models.Usuario>
+﻿@model MedShare.Models.ContasViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Contas";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<!--
+    <h2>Usuários</h2>
+-->
+<h3>Admin</h3>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioSenha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Perfil)
-            </th>
-            <th></th>
+            <th>Email</th>
+            <th>Perfil</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var usuario in Model.Usuarios)
+        {
+            <tr>
+                <td>@usuario.UsuarioEmail</td>
+                <td>@usuario.Perfil</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Doadores</h2>
+<table class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioSenha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Perfil)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UsuarioId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UsuarioId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UsuarioId">Delete</a>
-            </td>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
         </tr>
-}
+    </thead>
+    <tbody>
+        @foreach (var doador in Model.Doadores)
+        {
+            <tr>
+                <td>@doador.DoadorNome</td>
+                <td>@doador.DoadorEmail</td>
+                <td>@doador.DoadorCPF</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Instituições</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CNPJ</th>
+            <th>Endereço</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inst in Model.Instituicoes)
+        {
+            <tr>
+                <td>@inst.InstituicaoNome</td>
+                <td>@inst.InstituicaoEmail</td>
+                <td>@inst.InstituicaoCNPJ</td>
+                <td>@inst.InstituicaoEndereco</td>
+            </tr>
+        }
     </tbody>
 </table>

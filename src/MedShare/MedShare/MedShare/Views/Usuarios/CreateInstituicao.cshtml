@@ -1,0 +1,53 @@
+﻿@model MedShare.Models.Instituicao
+
+@{
+    ViewData["Title"] = "CreateInstituicao";
+}
+
+<h1>CreateInstituicao</h1>
+
+<h4>Instituicao</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateInstituicao">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="InstituicaoNome" class="control-label"></label>
+                <input asp-for="InstituicaoNome" class="form-control" />
+                <span asp-validation-for="InstituicaoNome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstituicaoEmail" class="control-label"></label>
+                <input asp-for="InstituicaoEmail" class="form-control" />
+                <span asp-validation-for="InstituicaoEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstituicaoCNPJ" class="control-label"></label>
+                <input asp-for="InstituicaoCNPJ" class="form-control" />
+                <span asp-validation-for="InstituicaoCNPJ" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstituicaoEndereco" class="control-label"></label>
+                <input asp-for="InstituicaoEndereco" class="form-control" />
+                <span asp-validation-for="InstituicaoEndereco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstituicaoSenha" class="control-label"></label>
+                <input asp-for="InstituicaoSenha" class="form-control" />
+                <span asp-validation-for="InstituicaoSenha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

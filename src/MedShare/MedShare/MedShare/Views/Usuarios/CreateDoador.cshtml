@@ -1,0 +1,48 @@
+﻿@model MedShare.Models.Doador
+
+@{
+    ViewData["Title"] = "CreateDoador";
+}
+
+<h1>CreateDoador</h1>
+
+<h4>Doador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateDoador">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DoadorNome" class="control-label"></label>
+                <input asp-for="DoadorNome" class="form-control" />
+                <span asp-validation-for="DoadorNome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoadorEmail" class="control-label"></label>
+                <input asp-for="DoadorEmail" class="form-control" />
+                <span asp-validation-for="DoadorEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoadorCPF" class="control-label"></label>
+                <input asp-for="DoadorCPF" class="form-control" />
+                <span asp-validation-for="DoadorCPF" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoadorSenha" class="control-label"></label>
+                <input asp-for="DoadorSenha" class="form-control" />
+                <span asp-validation-for="DoadorSenha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
