@@ -1,8 +1,9 @@
 Coloque aqui os arquivos de imagem:
+
 - logo-medshare.png (logo)
-- google-icon.png (ícone Google)
+- google-icon.png (ï¿½cone Google)
 - medicamentos.png (imagem dos medicamentos)
-- pin.png (ícone endereço)
-- phone.png (ícone telefone)
-- email.png (ícone email)
-- about-icon.png (ícone sobre nós)
+- pin.png (ï¿½cone endereï¿½o)
+- phone.png (ï¿½cone telefone)
+- email.png (ï¿½cone email)
+- about-icon.png (ï¿½cone sobre nï¿½s)
