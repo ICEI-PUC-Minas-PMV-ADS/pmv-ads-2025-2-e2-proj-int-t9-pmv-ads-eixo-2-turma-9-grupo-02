@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Escolher Perfil";
+}
+
+<h2>Escolha o Perfil</h2>
+<form id="perfilForm">
+    <div class="form-group">
+        <label for="perfil">Selecione o perfil:</label>
+        <select id="perfil" name="perfil" class="form-control">
+            <option value="">Selecione...</option>
+            <option value="doador">Doador</option>
+            <option value="instituicao">Instituição</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Avançar</button>
+</form>
+
+@section Scripts {
+    <script>
+        document.getElementById('perfilForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var perfil = document.getElementById('perfil').value;
+            if (perfil === "doador") {
+                window.location.href = "/Usuarios/CreateDoador";
+            } else if (perfil === "instituicao") {
+                window.location.href = "/Usuarios/CreateInstituicao";
+            }
+        });
+    </script>
+}

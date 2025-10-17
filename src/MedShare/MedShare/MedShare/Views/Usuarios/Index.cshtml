@@ -1,0 +1,71 @@
+﻿@model MedShare.Models.ContasViewModel
+
+@{
+    ViewData["Title"] = "Lista de Contas";
+}
+
+<!--
+    <h2>Usuários</h2>
+-->
+<h3>Admin</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Perfil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model.Usuarios)
+        {
+            <tr>
+                <td>@usuario.UsuarioEmail</td>
+                <td>@usuario.Perfil</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Doadores</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doador in Model.Doadores)
+        {
+            <tr>
+                <td>@doador.DoadorNome</td>
+                <td>@doador.DoadorEmail</td>
+                <td>@doador.DoadorCPF</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Instituições</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CNPJ</th>
+            <th>Endereço</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inst in Model.Instituicoes)
+        {
+            <tr>
+                <td>@inst.InstituicaoNome</td>
+                <td>@inst.InstituicaoEmail</td>
+                <td>@inst.InstituicaoCNPJ</td>
+                <td>@inst.InstituicaoEndereco</td>
+            </tr>
+        }
+    </tbody>
+</table>
