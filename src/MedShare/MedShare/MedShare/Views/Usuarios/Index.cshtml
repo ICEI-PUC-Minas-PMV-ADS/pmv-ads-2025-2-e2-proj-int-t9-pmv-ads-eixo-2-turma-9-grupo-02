@@ -4,13 +4,12 @@
     ViewData["Title"] = "Lista de Contas";
 }
 
-<!--
-    <h2>Usuários</h2>
--->
+<form asp-action="DeleteMultipleUsuarios" method="post">
 <h3>Admin</h3>
 <table class="table">
     <thead>
         <tr>
+            <th><input type="checkbox" id="selectAllUsuarios" onclick="toggleAll('usuarioIds', this)" /></th>
             <th>Email</th>
             <th>Perfil</th>
         </tr>
@@ -19,53 +18,88 @@
         @foreach (var usuario in Model.Usuarios)
         {
             <tr>
+                <td><input type="checkbox" name="usuarioIds" value="@usuario.UsuarioId" @(usuario.Perfil.ToString() == "Usuario" ? "disabled" : "") /></td>
                 <td>@usuario.UsuarioEmail</td>
                 <td>@usuario.Perfil</td>
             </tr>
         }
     </tbody>
 </table>
+<button type="submit" class="btn btn-danger mb-4">Excluir Selecionados</button>
+</form>
 
+<form asp-action="DeleteMultipleDoadores" method="post">
 <h2>Doadores</h2>
 <table class="table">
     <thead>
         <tr>
+            <th><input type="checkbox" id="selectAllDoadores" onclick="toggleAll('doadorIds', this)" /></th>
             <th>Nome</th>
             <th>Email</th>
             <th>CPF</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var doador in Model.Doadores)
         {
             <tr>
+                <td><input type="checkbox" name="doadorIds" value="@doador.DoadorId" /></td>
                 <td>@doador.DoadorNome</td>
                 <td>@doador.DoadorEmail</td>
                 <td>@doador.DoadorCPF</td>
+                <td>
+                    <a asp-action="EditDoadorById" asp-route-id="@doador.DoadorId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="DeleteDoador" asp-route-id="@doador.DoadorId" class="btn btn-sm btn-danger" onclick="return confirm('Confirma a exclusão?');">Excluir</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+<button type="submit" class="btn btn-danger mb-4">Excluir Selecionados</button>
+</form>
 
+<form asp-action="DeleteMultipleInstituicoes" method="post">
 <h2>Instituições</h2>
 <table class="table">
     <thead>
         <tr>
+            <th><input type="checkbox" id="selectAllInstituicoes" onclick="toggleAll('instituicaoIds', this)" /></th>
             <th>Nome</th>
             <th>Email</th>
             <th>CNPJ</th>
             <th>Endereço</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var inst in Model.Instituicoes)
         {
             <tr>
+                <td><input type="checkbox" name="instituicaoIds" value="@inst.InstituicaoId" /></td>
                 <td>@inst.InstituicaoNome</td>
                 <td>@inst.InstituicaoEmail</td>
                 <td>@inst.InstituicaoCNPJ</td>
                 <td>@inst.InstituicaoEndereco</td>
+                <td>
+                    <a asp-action="EditInstituicaoById" asp-route-id="@inst.InstituicaoId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="DeleteInstituicao" asp-route-id="@inst.InstituicaoId" class="btn btn-sm btn-danger" onclick="return confirm('Confirma a exclusão?');">Excluir</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+<button type="submit" class="btn btn-danger mb-4">Excluir Selecionados</button>
+</form>
+
+@section Scripts {
+    <script>
+        function toggleAll(name, source) {
+            var checkboxes = document.getElementsByName(name);
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

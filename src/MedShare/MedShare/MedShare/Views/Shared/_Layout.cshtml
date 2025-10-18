@@ -25,13 +25,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.IsInRole("Usuario"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Usuarios" asp-action="Index">Usuários</a>
+                            </li>
+                        }
                     </ul>
-                    <!--Link navbar de login na tela principal. Essa parametrização faz referencia a rota login criada no "UsuariosController"-->
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                Olá, @User.Identity.Name <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Logout">Sair</a>
+                            <li class="nav-item d-flex align-items-center">
+                                <span class="me-2">Olá, <strong>@User.Identity.Name</strong></span>
+                                @if (User.IsInRole("Doador"))
+                                {
+                                    <a class="btn btn-outline-primary btn-sm me-2" asp-controller="Usuarios" asp-action="EditDoador">Editar Dados</a>
+                                }
+                                else if (User.IsInRole("Instituicao"))
+                                {
+                                    <a class="btn btn-outline-primary btn-sm me-2" asp-controller="Usuarios" asp-action="EditInstituicao">Editar Dados</a>
+                                }
+                                else if (User.IsInRole("Usuario"))
+                                {
+                                    <a class="btn btn-outline-primary btn-sm me-2" asp-controller="Usuarios" asp-action="EditUsuario">Editar Dados</a>
+                                }
+                                <a class="btn btn-outline-danger btn-sm" asp-area="" asp-controller="Usuarios" asp-action="Logout">Sair</a>
                             </li>
                         }
                         else
@@ -39,16 +57,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Login">Entrar</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Usuarios" asp-action="EscolherPerfil">Cadastrar-se</a>
                             </li>
-
-                            <!--
-                                <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Create">Cadastre-se</a>
-                            </li>
-                            -->
                         }
                     </ul>
 

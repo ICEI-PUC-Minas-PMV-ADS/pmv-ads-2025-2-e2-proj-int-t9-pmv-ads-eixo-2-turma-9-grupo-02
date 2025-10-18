@@ -23,6 +23,7 @@ namespace MedShare.Controllers
         }
 
         // Rota GET Usuarios
+        [Authorize(Roles = "Usuario")]
         public async Task<IActionResult> Index()
         {
             var model = new MedShare.Models.ContasViewModel
@@ -165,7 +166,227 @@ namespace MedShare.Controllers
             return View(instituicao);
         }
 
+        // Rota get edit Doador
+        [Authorize]
+        public IActionResult EditDoador()
+        {
+            var email = User.Identity.Name;
+            var doador = _context.Doadores.FirstOrDefault(d => d.DoadorEmail == email);
+            if (doador == null) return RedirectToAction("Login", "Usuarios");
+            return View(doador);
+        }
 
+        //Rora post edit Doador
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditDoador(Doador doador)
+        {
+            if (ModelState.IsValid)
+            {
+                doador.DoadorSenha = BCrypt.Net.BCrypt.HashPassword(doador.DoadorSenha);
+                _context.Doadores.Update(doador);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            return View(doador);
+        }
+
+        //Rota get edit Instituição
+        [Authorize]
+        public IActionResult EditInstituicao()
+        {
+            var email = User.Identity.Name;
+            var instituicao = _context.Instituicoes.FirstOrDefault(i => i.InstituicaoEmail == email);
+            if (instituicao == null) return RedirectToAction("Login", "Usuarios");
+            return View(instituicao);
+        }
+
+        //Rota post edit Instituição
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditInstituicao(Instituicao instituicao)
+        {
+            if (ModelState.IsValid)
+            {
+                instituicao.InstituicaoSenha = BCrypt.Net.BCrypt.HashPassword(instituicao.InstituicaoSenha);
+                _context.Instituicoes.Update(instituicao);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            return View(instituicao);
+        }
+
+        //Rota get EditUsuario
+        [Authorize]
+        public IActionResult EditUsuario()
+        {
+            var email = User.Identity.Name;
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.UsuarioEmail == email);
+            if (usuario == null) return RedirectToAction("Login", "Usuarios");
+            return View(usuario);
+        }
+
+        //Rota post EditUsuario
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUsuario(Usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                usuario.UsuarioSenha = BCrypt.Net.BCrypt.HashPassword(usuario.UsuarioSenha);
+                _context.Usuarios.Update(usuario);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            return View(usuario);
+        }
+
+        // Rota get EditUsuario por ID
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> EditUsuarioById(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null) return NotFound();
+            return View(usuario);
+        }
+
+        // Rota post EditUsuario por ID
+        [HttpPost]
+        [Authorize(Roles = "Usuario")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUsuarioById(Usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                usuario.UsuarioSenha = BCrypt.Net.BCrypt.HashPassword(usuario.UsuarioSenha);
+                _context.Usuarios.Update(usuario);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(usuario);
+        }
+
+        // Rota get EditDoador por ID
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> EditDoadorById(int id)
+        {
+            var doador = await _context.Doadores.FindAsync(id);
+            if (doador == null) return NotFound();
+            return View(doador);
+        }
+
+        // Rota post EditDoador por ID
+        [HttpPost]
+        [Authorize(Roles = "Usuario")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditDoadorById(Doador doador)
+        {
+            if (ModelState.IsValid)
+            {
+                doador.DoadorSenha = BCrypt.Net.BCrypt.HashPassword(doador.DoadorSenha);
+                _context.Doadores.Update(doador);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(doador);
+        }
+
+        // Rota get EditInstituicao por ID
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> EditInstituicaoById(int id)
+        {
+            var instituicao = await _context.Instituicoes.FindAsync(id);
+            if (instituicao == null) return NotFound();
+            return View(instituicao);
+        }
+
+        // Rota post EditInstituicao por ID
+        [HttpPost]
+        [Authorize(Roles = "Usuario")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditInstituicaoById(Instituicao instituicao)
+        {
+            if (ModelState.IsValid)
+            {
+                instituicao.InstituicaoSenha = BCrypt.Net.BCrypt.HashPassword(instituicao.InstituicaoSenha);
+                _context.Instituicoes.Update(instituicao);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(instituicao);
+        }
+
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> DeleteUsuario(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null) return NotFound();
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> DeleteDoador(int id)
+        {
+            var doador = await _context.Doadores.FindAsync(id);
+            if (doador == null) return NotFound();
+            _context.Doadores.Remove(doador);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> DeleteInstituicao(int id)
+        {
+            var instituicao = await _context.Instituicoes.FindAsync(id);
+            if (instituicao == null) return NotFound();
+            _context.Instituicoes.Remove(instituicao);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> DeleteMultipleUsuarios(int[] usuarioIds)
+        {
+            if (usuarioIds != null && usuarioIds.Length > 0)
+            {
+                var usuarios = _context.Usuarios.Where(u => usuarioIds.Contains(u.UsuarioId));
+                _context.Usuarios.RemoveRange(usuarios);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> DeleteMultipleDoadores(int[] doadorIds)
+        {
+            if (doadorIds != null && doadorIds.Length > 0)
+            {
+                var doadores = _context.Doadores.Where(d => doadorIds.Contains(d.DoadorId));
+                _context.Doadores.RemoveRange(doadores);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Usuario")]
+        public async Task<IActionResult> DeleteMultipleInstituicoes(int[] instituicaoIds)
+        {
+            if (instituicaoIds != null && instituicaoIds.Length > 0)
+            {
+                var instituicoes = _context.Instituicoes.Where(i => instituicaoIds.Contains(i.InstituicaoId));
+                _context.Instituicoes.RemoveRange(instituicoes);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
+        }
 
         /*
           [AllowAnonymous]
