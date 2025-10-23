@@ -1,0 +1,723 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: calc(100vh - 120px);
+}
+
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: #fff;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 40px;
+}
+
+.logo-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.logo-placeholder {
+    font-size: 60px;
+    margin-bottom: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+h1 {
+    font-size: 64px;
+    color: #2956a3;
+    margin: 0;
+    font-weight: normal;
+}
+
+.subtitle {
+    color: #bdbdbd;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 360px;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-form input,
+.perfil-select {
+    height: 50px;
+    border-radius: 4px;
+    border: 2px solid #e0e0e0;
+    padding: 0 16px;
+    font-size: 16px;
+    background: #fff;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.login-form input::placeholder,
+.perfil-select option:first-child {
+    color: #999;
+    text-transform: uppercase;
+}
+
+.login-form input:focus,
+.perfil-select:focus {
+    outline: none;
+    border-color: #42a5f5;
+    box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.2);
+}
+
+/* Melhorias para touch devices */
+.google-btn,
+.entrar-btn,
+.cadastro-btn,
+.forgot {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Ajustes para acessibilidade */
+.google-btn:focus,
+.entrar-btn:focus,
+.cadastro-btn:focus {
+    outline: 2px solid #42a5f5;
+    outline-offset: 2px;
+}
+
+.forgot:focus {
+    outline: 1px solid #42a5f5;
+    outline-offset: 1px;
+}
+
+.perfil-select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xIDFMNiA2TDExIDEiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.google-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-btn img {
+    width: 28px;
+    height: 28px;
+}
+
+.google-icon {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(45deg, #db4437, #4285f4, #0f9d58, #f4b400);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.entrar-btn {
+    background: #42a5f5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.entrar-btn:hover {
+    background: #1e88e5;
+}
+
+.cadastro-btn {
+    background: #8bc34a;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.cadastro-btn:hover {
+    background: #7cb342;
+    color: #fff;
+}
+
+.forgot {
+    text-align: center;
+    color: #757575;
+    font-size: 14px;
+    margin-top: 20px;
+    text-decoration: none;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.forgot:hover {
+    color: #42a5f5;
+}
+
+.meds-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meds-img img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.meds-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.med-pills {
+    font-size: 40px;
+    opacity: 0.8;
+    animation: float 3s ease-in-out infinite;
+}
+
+.med-pills:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.med-pills:nth-child(3) {
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Estilos para mensagens de validação */
+.validation-summary {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 16px;
+    color: #721c24;
+    font-size: 14px;
+}
+
+.validation-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+.alert-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    padding: 12px;
+    margin-top: 16px;
+    color: #155724;
+    font-size: 14px;
+    text-align: center;
+}
+
+footer {
+    width: 100%;
+    background: #fff;
+    position: relative;
+    margin-top: auto;
+}
+
+.footer-gradient {
+    height: 8px;
+    background: linear-gradient(90deg, #fbc02d 0%, #ff9800 50%, #e53935 100%);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    background: #fff;
+}
+
+.footer-info {
+    font-size: 12px;
+    color: #757575;
+    line-height: 1.4;
+}
+
+.footer-about {
+    display: flex;
+    align-items: center;
+    color: #757575;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.footer-about img {
+    width: 20px;
+    margin-right: 6px;
+}
+
+.about-icon {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+/* Responsividade */
+
+/* Extra Large screens (1200px e acima) */
+@media (min-width: 1200px) {
+    .main-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .left-section {
+        padding: 60px;
+    }
+    
+    .right-section {
+        padding: 60px;
+    }
+    
+    h1 {
+        font-size: 72px;
+    }
+    
+    .login-form {
+        max-width: 420px;
+    }
+    
+    .meds-placeholder {
+        padding: 60px;
+        max-width: 600px;
+    }
+}
+
+/* Large screens (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .left-section,
+    .right-section {
+        padding: 40px 30px;
+    }
+    
+    h1 {
+        font-size: 64px;
+    }
+    
+    .login-form {
+        max-width: 380px;
+    }
+    
+    .meds-placeholder {
+        max-width: 500px;
+    }
+}
+
+/* Medium screens (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .main-container {
+        height: auto;
+        min-height: calc(100vh - 120px);
+    }
+    
+    .left-section,
+    .right-section {
+        padding: 30px 25px;
+    }
+    
+    h1 {
+        font-size: 56px;
+    }
+    
+    .login-form {
+        max-width: 340px;
+    }
+    
+    .login-form input,
+    .perfil-select {
+        height: 48px;
+        font-size: 15px;
+    }
+    
+    .entrar-btn,
+    .cadastro-btn {
+        font-size: 15px;
+        padding: 10px 20px;
+    }
+    
+    .meds-placeholder {
+        padding: 30px;
+        max-width: 400px;
+    }
+    
+    .med-pills {
+        font-size: 35px;
+    }
+    
+    .footer-content {
+        padding: 12px 30px;
+    }
+    
+    .footer-info {
+        font-size: 11px;
+    }
+}
+
+/* Small screens (576px - 767px) */
+@media (max-width: 767px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        min-height: calc(100vh - 100px);
+    }
+    
+    .left-section {
+        order: 1;
+        padding: 30px 20px;
+        min-height: auto;
+    }
+    
+    .right-section {
+        order: 2;
+        padding: 20px;
+        min-height: 250px;
+    }
+    
+    .logo-title {
+        margin-bottom: 30px;
+    }
+    
+    .logo-placeholder {
+        font-size: 50px;
+    }
+    
+    h1 {
+        font-size: 42px;
+    }
+    
+    .subtitle {
+        font-size: 13px;
+    }
+    
+    .login-form {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .login-form input,
+    .perfil-select {
+        height: 46px;
+        font-size: 14px;
+        padding: 0 14px;
+    }
+    
+    .buttons {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .entrar-btn {
+        font-size: 14px;
+        padding: 12px 20px;
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .cadastro-btn {
+        font-size: 14px;
+        padding: 12px 16px;
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .google-btn {
+        order: -1;
+        margin-bottom: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .meds-placeholder {
+        padding: 20px;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .med-pills {
+        font-size: 30px;
+        gap: 15px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding: 12px 20px;
+    }
+    
+    .footer-info {
+        font-size: 10px;
+        line-height: 1.3;
+    }
+    
+    .footer-about {
+        font-size: 12px;
+    }
+}
+
+/* Extra Small screens (480px e abaixo) */
+@media (max-width: 480px) {
+    .left-section {
+        padding: 20px 15px;
+    }
+    
+    .right-section {
+        padding: 15px;
+        min-height: 200px;
+    }
+    
+    .logo-placeholder {
+        font-size: 40px;
+    }
+    
+    h1 {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .login-form input,
+    .perfil-select {
+        height: 44px;
+        font-size: 13px;
+        padding: 0 12px;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .entrar-btn,
+    .cadastro-btn {
+        width: 100%;
+        font-size: 13px;
+        padding: 14px 20px;
+    }
+    
+    .google-btn {
+        width: auto;
+        align-self: center;
+        margin-bottom: 0;
+    }
+    
+    .forgot {
+        font-size: 12px;
+        margin-top: 15px;
+    }
+    
+    .meds-placeholder {
+        padding: 15px;
+        max-width: 240px;
+    }
+    
+    .med-pills {
+        font-size: 24px;
+        gap: 10px;
+    }
+    
+    .footer-content {
+        padding: 10px 15px;
+    }
+    
+    .footer-info {
+        font-size: 9px;
+    }
+    
+    .footer-about {
+        font-size: 11px;
+    }
+    
+    .validation-summary,
+    .alert-message {
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    .validation-error {
+        font-size: 11px;
+    }
+}
+
+/* Landscape orientation em dispositivos móveis */
+@media (max-height: 600px) and (orientation: landscape) {
+    .main-container {
+        flex-direction: row;
+        height: auto;
+    }
+    
+    .left-section {
+        order: 1;
+        flex: 0.6;
+        padding: 20px 15px;
+    }
+    
+    .right-section {
+        order: 2;
+        flex: 0.4;
+        padding: 15px;
+    }
+    
+    .logo-title {
+        margin-bottom: 20px;
+    }
+    
+    .logo-placeholder {
+        font-size: 30px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    .subtitle {
+        font-size: 11px;
+    }
+    
+    .login-form input,
+    .perfil-select {
+        height: 40px;
+        font-size: 12px;
+    }
+    
+    .buttons {
+        gap: 8px;
+        margin-top: 12px;
+    }
+    
+    .entrar-btn,
+    .cadastro-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+    
+    .meds-placeholder {
+        padding: 10px;
+        max-width: 200px;
+    }
+    
+    .med-pills {
+        font-size: 20px;
+        gap: 8px;
+    }
+    
+    footer {
+        position: relative;
+    }
+    
+    .footer-content {
+        padding: 8px 15px;
+    }
+}
+
+/* Ajustes para telas muito altas */
+@media (min-height: 900px) {
+    .main-container {
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .left-section {
+        justify-content: center;
+    }
+}

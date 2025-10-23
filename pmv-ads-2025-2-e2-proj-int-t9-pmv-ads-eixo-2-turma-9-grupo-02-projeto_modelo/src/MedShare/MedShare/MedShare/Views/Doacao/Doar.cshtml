@@ -1,0 +1,463 @@
+@model MedShare.Models.Doacao
+
+@{
+    ViewData["Title"] = "Doar - MedShare";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .left-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .doacao-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .app-title {
+            color: #0d6efd;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        
+        .app-subtitle {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .page-title {
+            color: #495057;
+            font-weight: 600;
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 30px 0;
+            letter-spacing: 1px;
+        }
+        
+        .form-floating .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+        
+        .form-floating label {
+            font-weight: 500;
+            color: #6c757d;
+        }
+        
+        .btn-salvar {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-weight: 600;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-salvar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+        
+        .right-section {
+            width: 350px;
+            background: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .menu-lateral {
+            flex: 1;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .home-icon {
+            font-size: 2.5rem;
+            color: #0d6efd;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .home-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .menu-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .menu-item {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .menu-item.active {
+            background: linear-gradient(45deg, #0d6efd, #6610f2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+        }
+        
+        .menu-item:hover:not(.active) {
+            background: #f8f9fa;
+            color: #0d6efd;
+        }
+        
+        .user-menu {
+            margin-top: auto;
+            text-align: center;
+        }
+        
+        .user-icon {
+            font-size: 2rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        
+        .user-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .user-option {
+            text-decoration: none;
+            color: #6c757d;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .user-option:hover {
+            background: #f8f9fa;
+            color: #0d6efd;
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            right: -150px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #0d6efd, #6610f2);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .footer {
+            background: white;
+            padding: 20px 40px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer-gradient {
+            height: 4px;
+            background: linear-gradient(90deg, #ff9800 0%, #ff5722 50%, #e91e63 100%);
+            margin-bottom: 15px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #0d6efd;
+            background: #f0f8ff;
+        }
+        
+        .file-upload-icon {
+            font-size: 2.5rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        
+        .file-upload-text {
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        #imageFile {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Seção principal com formulário -->
+        <div class="left-section">
+            <div class="doacao-card">
+                <!-- Header com logo -->
+                <div class="logo-section">
+                    <img src="~/images/logo.png" alt="MedShare Logo" class="logo-image" />
+                    <h1 class="app-title">MedShare</h1>
+                    <p class="app-subtitle">O compartilhamento é indicado em casos de suspeita de sobras</p>
+                </div>
+                
+                <h2 class="page-title">DOAR</h2>
+                
+                <form asp-controller="Doacao" asp-action="Doar" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    
+                    <!-- Nome do medicamento -->
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="NomeMedicamento" type="text" class="form-control" id="floatingNomeMedicamento" placeholder="Nome do medicamento" required />
+                            <label for="floatingNomeMedicamento">NOME DO MEDICAMENTO</label>
+                            <span asp-validation-for="NomeMedicamento" class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Validade -->
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input asp-for="Validade" type="date" class="form-control" id="floatingValidade" required />
+                            <label for="floatingValidade">VALIDADE</label>
+                            <span asp-validation-for="Validade" class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Forma Farmacêutica -->
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <select asp-for="FormaFarmaceutica" class="form-select" id="floatingFormaFarmaceutica" required>
+                                <option value="">Selecione...</option>
+                                <option value="Comprimido">Comprimido</option>
+                                <option value="Cápsula">Cápsula</option>
+                                <option value="Xarope">Xarope</option>
+                                <option value="Pomada">Pomada</option>
+                                <option value="Injetável">Injetável</option>
+                                <option value="Gotas">Gotas</option>
+                                <option value="Spray">Spray</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                            <label for="floatingFormaFarmaceutica">FORMA FARMACÊUTICA</label>
+                            <span asp-validation-for="FormaFarmaceutica" class="invalid-feedback"></span>
+                        </div>
+                    </div>
+
+                    <!-- Row com Quantidade e Imagem -->
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input asp-for="Quantidade" type="number" class="form-control" id="floatingQuantidade" placeholder="Quantidade" min="1" required />
+                                <label for="floatingQuantidade">QUANTIDADE*</label>
+                                <span asp-validation-for="Quantidade" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <label class="form-label mb-2">IMAGEM*</label>
+                            <div class="file-upload-area" onclick="document.getElementById('imageFile').click()">
+                                <div class="file-upload-icon">
+                                    <i class="bi bi-camera"></i>
+                                </div>
+                                <div class="file-upload-text">Adicionar Imagem</div>
+                                <input type="file" id="imageFile" name="ImagemFile" accept="image/*" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Descrição -->
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <textarea asp-for="Descricao" class="form-control" id="floatingDescricao" placeholder="Descrição" style="height: 120px"></textarea>
+                            <label for="floatingDescricao">DESCRIÇÃO/COMENTÁRIO</label>
+                            <span asp-validation-for="Descricao" class="invalid-feedback"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Botão Salvar -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-salvar">
+                            <i class="bi bi-floppy me-2"></i>SALVAR
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Menu lateral direito -->
+        <div class="right-section">
+            <div class="menu-lateral">
+                <!-- Ícone Home -->
+                <div class="menu-header">
+                    <a href="/Home" class="home-icon">
+                        <i class="bi bi-house-fill"></i>
+                    </a>
+                </div>
+                
+                <!-- Menu Items -->
+                <div class="menu-items">
+                    <a href="/Doacao/Doar" class="menu-item active">
+                        DOAR
+                    </a>
+                    <a href="/Doacao/BuscarInstituicoes" class="menu-item">
+                        BUSCAR INSTITUIÇÕES
+                    </a>
+                    <a href="/Doacao/MinhasDoacoes" class="menu-item">
+                        MINHAS DOAÇÕES
+                    </a>
+                </div>
+                
+                <!-- User Menu -->
+                <div class="user-menu">
+                    <div class="user-icon">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div class="user-options">
+                        <a href="/Admin/Notificacoes" class="user-option">
+                            NOTIFICAÇÃO
+                        </a>
+                        <a href="/Admin/Chat" class="user-option">
+                            CHAT
+                        </a>
+                        <a href="/Admin/Relatorio" class="user-option">
+                            RELATÓRIO
+                        </a>
+                        <a href="/Admin/EditarPerfil" class="user-option">
+                            EDITAR PERFIL
+                        </a>
+                        <a href="/Auth/Logout" class="user-option">
+                            SAIR
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elemento circular azul decorativo -->
+            <div class="decorative-circle"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-gradient"></div>
+        <div class="footer-content">
+            <div class="footer-info">
+                <i class="bi bi-geo-alt me-1"></i>Av. Dom José Gaspar, 500 Coração Eucarístico – Belo Horizonte – MG 30535-901, Brasil<br />
+                <i class="bi bi-telephone me-1"></i>Telefone: (31) 3319-4444<br />
+                <i class="bi bi-envelope me-1"></i>E-mail: contato@medshare.com
+            </div>
+            <div class="footer-about">
+                <i class="bi bi-info-circle me-1"></i>
+                <span>SOBRE NÓS</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Validação do formulário
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+        
+        // Preview da imagem
+        document.getElementById('imageFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const uploadArea = document.querySelector('.file-upload-area');
+                uploadArea.innerHTML = `
+                    <div class="file-upload-icon">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <div class="file-upload-text">Imagem selecionada: ${file.name}</div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

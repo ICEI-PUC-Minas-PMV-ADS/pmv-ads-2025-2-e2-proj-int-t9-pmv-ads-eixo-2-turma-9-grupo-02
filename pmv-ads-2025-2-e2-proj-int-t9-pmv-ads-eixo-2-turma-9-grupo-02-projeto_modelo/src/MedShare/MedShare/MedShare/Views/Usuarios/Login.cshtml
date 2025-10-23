@@ -1,0 +1,97 @@
+﻿@model MedShare.Models.Usuario
+
+@{
+    ViewData["Title"] = "Login - MedShare";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#2956a3" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>Login - MedShare</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="main-container">
+        <div class="left-section">
+            <div class="logo-title">
+                <div class="logo-placeholder">💊</div>
+                <h1>MedShare</h1>
+                <p class="subtitle">O compartilhamento é indicado em casos de suspeita de sobras</p>
+            </div>
+            
+            <div class="login-form">
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger validation-summary"></div>
+                    
+                    <input asp-for="UsuarioEmail" type="email" placeholder="EMAIL" required />
+                    <span asp-validation-for="UsuarioEmail" class="text-danger validation-error"></span>
+                    
+                    <input asp-for="UsuarioSenha" type="password" placeholder="SENHA" required />
+                    <span asp-validation-for="UsuarioSenha" class="text-danger validation-error"></span>
+                    
+                    <select id="perfil" name="perfil" class="perfil-select" required>
+                        <option value="">SELECIONE SEU PERFIL</option>
+                        <option value="Usuario">Admin</option>
+                        <option value="Doador">Doador</option>
+                        <option value="Instituicao">Instituição</option>
+                    </select>
+                    
+                    <div class="buttons">
+                        <button type="button" class="google-btn">
+                            <span class="google-icon">G</span>
+                        </button>
+                        <button type="submit" class="entrar-btn">ENTRAR</button>
+                        <a href="/Usuarios/CreateDoador" class="cadastro-btn">CADASTRE-SE</a>
+                    </div>
+                    <a href="/RecuperarSenha" class="forgot">ESQUECI MINHA SENHA</a>
+                </form>
+                
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert-message">@ViewBag.Message</div>
+                }
+                <div class="text-center mt-3">
+                    <a href="/Auth/ChooseType" class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i>Voltar para Tela Inicial
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-section">
+            <div class="meds-img">
+                <div class="meds-placeholder">
+                    <div class="med-pills">💊💊💊</div>
+                    <div class="med-pills">🧪⚗️🩺</div>
+                    <div class="med-pills">💉🔬💊</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-gradient"></div>
+        <div class="footer-content">
+            <div class="footer-info">
+                <span>📍 Av. Dom José Gaspar, 500 Coração Eucarístico – Belo Horizonte – MG 30535-901, Brasil</span><br />
+                <span>📞 Telefone: (31) 3319-4444</span><br />
+                <span>📧 E-mail: contato@medshare.com</span>
+            </div>
+            <div class="footer-about">
+                <span class="about-icon">ℹ️</span>
+                <span>SOBRE NÓS</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
