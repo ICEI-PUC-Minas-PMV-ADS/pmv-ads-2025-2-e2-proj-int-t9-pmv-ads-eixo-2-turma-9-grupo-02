@@ -21,6 +21,8 @@ namespace MedShare.Controllers
         // GET: Doacao/Doar
         public IActionResult Doar()
         {
+            var instituicoes = _context.Instituicoes.ToList();
+            ViewBag.Instituicoes = instituicoes;
             return View();
         }
 
@@ -29,6 +31,7 @@ namespace MedShare.Controllers
         // POST: Doacao/Doar
         public async Task<IActionResult> Doar(Doacao doacao)
         {
+            // Não carrega ViewBag.Instituicoes pois o fluxo agora é via modal e InstituicaoId já vem preenchido
             if (ModelState.IsValid)
             {
                 try
@@ -44,7 +47,8 @@ namespace MedShare.Controllers
                     TempData["Erro"] = "Erro ao cadastrar doação. Tente novamente.";
                 }
             }
-            return View(doacao);
+            // Se der erro, volta para a tela de doação (campo de busca)
+            return RedirectToAction("Doar");
         }
 
         // GET: Doacao/MinhasDoacoes
@@ -53,6 +57,26 @@ namespace MedShare.Controllers
             // TODO: Filtrar pelas doações do usuário logado
             var doacoes = await _context.Doacoes.ToListAsync();
             return View(doacoes);
+        }
+
+        // GET: Doacao/BuscarInstituicoesAjax?query=xxx
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult BuscarInstituicoesAjax(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return Json(new List<object>());
+
+            var results = _context.Instituicoes
+                .Where(i => i.InstituicaoEndereco.Contains(query) || i.InstituicaoNome.Contains(query))
+                .Select(i => new {
+                    i.InstituicaoId,
+                    i.InstituicaoNome,
+                    i.InstituicaoEndereco
+                })
+                .Take(10)
+                .ToList();
+            return Json(results);
         }
 
         // GET: Doacao/BuscarInstituicoes
@@ -78,6 +102,26 @@ namespace MedShare.Controllers
             }
 
             return View(doacao);
+        }
+
+        // GET: Doacao/BuscarInstituicoesAjax?query=xxx
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult BuscarInstituicoesAjax(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return Json(new List<object>());
+
+            var results = _context.Instituicoes
+                .Where(i => i.InstituicaoEndereco.Contains(query) || i.InstituicaoNome.Contains(query))
+                .Select(i => new {
+                    i.InstituicaoId,
+                    i.InstituicaoNome,
+                    i.InstituicaoEndereco
+                })
+                .Take(10)
+                .ToList();
+            return Json(results);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

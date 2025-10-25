@@ -54,7 +54,12 @@
                 
                 @if (ViewBag.Message != null)
                 {
-                    <div class="alert-message">@ViewBag.Message</div>
+                    <div class="alert-message" style="display:none;">@ViewBag.Message</div>
+                    <script>
+                        window.onload = function() {
+                            alert('@ViewBag.Message');
+                        };
+                    </script>
                 }
                 <div class="text-center mt-3">
                     <a href="/Auth/ChooseType" class="btn btn-sm btn-outline-secondary">
@@ -79,7 +84,7 @@
         <div class="footer-gradient"></div>
         <div class="footer-content">
             <div class="footer-info">
-                <span>📍 Av. Dom José Gaspar, 500 Coração Eucarístico – Belo Horizonte – MG 30535-901, Brasil</span><br />
+                <span>📍 Av. Dom Jose Gaspar, 500 Coração Eucaristico – Belo Horizonte – MG 30535-901, Brasil</span><br />
                 <span>📞 Telefone: (31) 3319-4444</span><br />
                 <span>📧 E-mail: contato@medshare.com</span>
             </div>
@@ -91,7 +96,7 @@
     </footer>
 </body>
 </html>
-
+  
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

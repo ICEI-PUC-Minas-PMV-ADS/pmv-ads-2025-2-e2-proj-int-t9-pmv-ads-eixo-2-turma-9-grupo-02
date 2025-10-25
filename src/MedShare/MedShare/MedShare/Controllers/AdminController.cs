@@ -91,6 +91,16 @@ namespace MedShare.Controllers
             return View(perfil);
         }
 
+        // GET: Admin/EscassezCritica
+        public async Task<IActionResult> EscassezCritica()
+        {
+            var doacoesCriticas = await _context.Doacoes
+                .Include(d => d.Instituicao)
+                .Where(d => d.StatusEstoque == StatusEstoque.EscassezCritica)
+                .ToListAsync();
+            return View(doacoesCriticas);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

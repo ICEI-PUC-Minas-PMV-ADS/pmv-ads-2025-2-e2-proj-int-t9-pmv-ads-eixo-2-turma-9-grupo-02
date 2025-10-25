@@ -276,84 +276,68 @@
                 
                 <h2 class="page-title">DOAR</h2>
                 
-                <form asp-controller="Doacao" asp-action="Doar" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
-                    
-                    <!-- Nome do medicamento -->
-                    <div class="mb-3">
-                        <div class="form-floating">
-                            <input asp-for="NomeMedicamento" type="text" class="form-control" id="floatingNomeMedicamento" placeholder="Nome do medicamento" required />
-                            <label for="floatingNomeMedicamento">NOME DO MEDICAMENTO</label>
-                            <span asp-validation-for="NomeMedicamento" class="invalid-feedback"></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Validade -->
-                    <div class="mb-3">
-                        <div class="form-floating">
-                            <input asp-for="Validade" type="date" class="form-control" id="floatingValidade" required />
-                            <label for="floatingValidade">VALIDADE</label>
-                            <span asp-validation-for="Validade" class="invalid-feedback"></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Forma Farmacêutica -->
-                    <div class="mb-3">
-                        <div class="form-floating">
-                            <select asp-for="FormaFarmaceutica" class="form-select" id="floatingFormaFarmaceutica" required>
-                                <option value="">Selecione...</option>
-                                <option value="Comprimido">Comprimido</option>
-                                <option value="Cápsula">Cápsula</option>
-                                <option value="Xarope">Xarope</option>
-                                <option value="Pomada">Pomada</option>
-                                <option value="Injetável">Injetável</option>
-                                <option value="Gotas">Gotas</option>
-                                <option value="Spray">Spray</option>
-                                <option value="Outro">Outro</option>
-                            </select>
-                            <label for="floatingFormaFarmaceutica">FORMA FARMACÊUTICA</label>
-                            <span asp-validation-for="FormaFarmaceutica" class="invalid-feedback"></span>
-                        </div>
-                    </div>
 
-                    <!-- Row com Quantidade e Imagem -->
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <div class="form-floating">
-                                <input asp-for="Quantidade" type="number" class="form-control" id="floatingQuantidade" placeholder="Quantidade" min="1" required />
-                                <label for="floatingQuantidade">QUANTIDADE*</label>
-                                <span asp-validation-for="Quantidade" class="invalid-feedback"></span>
+                <!-- Campo de busca de instituição -->
+                <div class="mb-4 position-relative">
+                    <input type="text" id="buscaInstituicao" class="form-control" placeholder="Digite o endereço ou nome da instituição..." autocomplete="off" />
+                    <div id="listaInstituicoes" class="autocomplete-list" style="display:none;"></div>
+                </div>
+
+                <!-- Modal de doação -->
+                <div class="modal fade" id="modalDoacao" tabindex="-1" aria-labelledby="modalDoacaoLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalDoacaoLabel">Fazer Doação</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnCancelarModal"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="formDoacao" asp-controller="Doacao" asp-action="Doar" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            <input type="hidden" id="InstituicaoId" name="InstituicaoId" />
+                            <div class="mb-3">
+                                <label class="form-label">Instituição</label>
+                                <input type="text" id="InstituicaoNome" class="form-control" disabled />
                             </div>
-                        </div>
-                        
-                        <div class="col-md-8">
-                            <label class="form-label mb-2">IMAGEM*</label>
-                            <div class="file-upload-area" onclick="document.getElementById('imageFile').click()">
-                                <div class="file-upload-icon">
-                                    <i class="bi bi-camera"></i>
-                                </div>
-                                <div class="file-upload-text">Adicionar Imagem</div>
-                                <input type="file" id="imageFile" name="ImagemFile" accept="image/*" />
+                            <div class="mb-3">
+                                <input name="NomeMedicamento" type="text" class="form-control" placeholder="Nome do medicamento" required />
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <input name="Validade" type="date" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <select name="FormaFarmaceutica" class="form-select" required>
+                                    <option value="">Selecione a forma farmacêutica...</option>
+                                    <option value="Comprimido">Comprimido</option>
+                                    <option value="Cápsula">Cápsula</option>
+                                    <option value="Xarope">Xarope</option>
+                                    <option value="Pomada">Pomada</option>
+                                    <option value="Injetável">Injetável</option>
+                                    <option value="Gotas">Gotas</option>
+                                    <option value="Spray">Spray</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <input name="Quantidade" type="number" class="form-control" placeholder="Quantidade" min="1" required />
+                            </div>
+                            <div class="mb-3">
+                                <textarea name="Descricao" class="form-control" placeholder="Descrição/Comentário"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Imagem</label>
+                                <input type="file" name="ImagemFile" class="form-control" accept="image/*" />
+                            </div>
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary me-2" id="btnCancelar">Cancelar</button>
+                                <button type="submit" class="btn btn-success">Finalizar Doação</button>
+                            </div>
+                        </form>
+                      </div>
                     </div>
-                    
-                    <!-- Descrição -->
-                    <div class="mb-4">
-                        <div class="form-floating">
-                            <textarea asp-for="Descricao" class="form-control" id="floatingDescricao" placeholder="Descrição" style="height: 120px"></textarea>
-                            <label for="floatingDescricao">DESCRIÇÃO/COMENTÁRIO</label>
-                            <span asp-validation-for="Descricao" class="invalid-feedback"></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Botão Salvar -->
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-salvar">
-                            <i class="bi bi-floppy me-2"></i>SALVAR
-                        </button>
-                    </div>
-                </form>
+                  </div>
+                </div>
+                <!-- Mensagem de sucesso -->
+                <div id="mensagemSucesso" class="alert alert-success mt-4" style="display:none;"></div>
             </div>
         </div>
         
@@ -427,37 +411,81 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .autocomplete-list {
+            position: absolute;
+            z-index: 1000;
+            background: #fff;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            border-radius: 0 0 8px 8px;
+        }
+        .autocomplete-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-item:hover {
+            background: #f0f0f0;
+        }
+    </style>
     <script>
-        // Validação do formulário
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                var forms = document.getElementsByClassName('needs-validation');
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
+        // Busca AJAX de instituições
+        const buscaInput = document.getElementById('buscaInstituicao');
+        const listaDiv = document.getElementById('listaInstituicoes');
+        let timeout = null;
+        buscaInput.addEventListener('input', function() {
+            clearTimeout(timeout);
+            const query = this.value;
+            if (query.length < 2) {
+                listaDiv.style.display = 'none';
+                listaDiv.innerHTML = '';
+                return;
+            }
+            timeout = setTimeout(() => {
+                fetch(`/Doacao/BuscarInstituicoesAjax?query=${encodeURIComponent(query)}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.length === 0) {
+                            listaDiv.innerHTML = '<div class="autocomplete-item">Nenhuma instituição encontrada</div>';
+                        } else {
+                            listaDiv.innerHTML = data.map(i => `<div class='autocomplete-item' data-id='${i.instituicaoId}' data-nome='${i.instituicaoNome}'>${i.instituicaoNome} <br><small>${i.instituicaoEndereco}</small></div>`).join('');
                         }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-        
-        // Preview da imagem
-        document.getElementById('imageFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const uploadArea = document.querySelector('.file-upload-area');
-                uploadArea.innerHTML = `
-                    <div class="file-upload-icon">
-                        <i class="bi bi-check-circle-fill text-success"></i>
-                    </div>
-                    <div class="file-upload-text">Imagem selecionada: ${file.name}</div>
-                `;
+                        listaDiv.style.display = 'block';
+                    });
+            }, 300);
+        });
+        // Seleção da instituição na lista
+        listaDiv.addEventListener('click', function(e) {
+            const item = e.target.closest('.autocomplete-item');
+            if (item && item.dataset.id) {
+                document.getElementById('InstituicaoId').value = item.dataset.id;
+                document.getElementById('InstituicaoNome').value = item.dataset.nome;
+                listaDiv.style.display = 'none';
+                buscaInput.value = '';
+                // Abre o modal
+                var modal = new bootstrap.Modal(document.getElementById('modalDoacao'));
+                modal.show();
             }
         });
+        // Cancelar modal
+        document.getElementById('btnCancelar').onclick = function() {
+            bootstrap.Modal.getInstance(document.getElementById('modalDoacao')).hide();
+            document.getElementById('formDoacao').reset();
+        };
+        document.getElementById('btnCancelarModal').onclick = function() {
+            document.getElementById('formDoacao').reset();
+        };
+        // Mensagem de sucesso após submit
+        document.getElementById('formDoacao').onsubmit = function(e) {
+            setTimeout(function() {
+                document.getElementById('mensagemSucesso').innerText = 'Doação cadastrada com sucesso!';
+                document.getElementById('mensagemSucesso').style.display = 'block';
+                bootstrap.Modal.getInstance(document.getElementById('modalDoacao')).hide();
+                document.getElementById('formDoacao').reset();
+            }, 500);
+        };
     </script>
 </body>
 </html>

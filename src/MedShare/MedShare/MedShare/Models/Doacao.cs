@@ -35,5 +35,16 @@ namespace MedShare.Models
         // Relacionamento com doador
         public int DoadorId { get; set; }
         public Doador Doador { get; set; }
+
+        // Relacionamento com instituição
+        [Required(ErrorMessage = "A instituição é obrigatória")]
+        [Display(Name = "Instituição Destino")]
+        public int InstituicaoId { get; set; }
+        public Instituicao Instituicao { get; set; }
+
+        // Status do estoque: Normal, Baixo, EscassezCritica
+        [Required]
+        [Display(Name = "Status do Estoque")]
+        public StatusEstoque StatusEstoque { get; set; } = StatusEstoque.Normal;
     }
 }
