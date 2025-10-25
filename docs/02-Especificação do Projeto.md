@@ -40,17 +40,16 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |------|-----------------------------------------|----|
 | RF-01 | A aplicação deve permitir que doadores (pessoa física) e instituições (pessoa jurídica) cadastrem seus perfis.                                                                              | ALTA       |
 | RF-02 | A aplicação deve autenticar doadores e instituições por meio de login e senha.                                                                                                              | ALTA       |
-| RF-03 | O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada (quando aplicável).                                                                 | ALTA       |
-| RF-04 | O doador deve visualizar instituições próximas em um mapa com base na geolocalização.                                                                                                       | MÉDIA      |
-| RF-05 | O doador deve selecionar uma instituição específica para doar o medicamento.                                                                                                                | ALTA       |
-| RF-06 | O doador deve acompanhar o status das suas doações em uma tela dedicada ("Minhas Doações").                                                                                                 | ALTA      |
-| RF-07 | A instituição deve listar medicamentos prioritários em status “Escassez critica” visível no painel.                                                                                      | MÉDIA      |
-| RF-08 | A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita.                                                                    | ALTA       |
-| RF-09 | A instituição deve aprovar ou rejeitar doações em até 24 horas.                                                                                                                             | ALTA       |
-| RF-10 | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. | MÉDIA      |
-| RF-11 | A instituição deve confirmar o recebimento dos medicamentos no painel.                                                                                                                      | ALTA       |
-| RF-12 | A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição.                                                          | BAIXA      |
-| RF-13 | A aplicação deve gerar relatórios de impacto com base no histórico de doações.                                                                                                              | BAIXA      |
+| RF-03 | O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada (quando aplicável).                                                                 | ALTA       |                                                              
+| RF-04 | O doador deve selecionar uma instituição específica para doar o medicamento.                                                                                                                | ALTA       |
+| RF-05 | O doador deve acompanhar o status das suas doações em uma tela dedicada ("Minhas Doações").                                                                                                 | ALTA      |
+| RF-06 | A instituição deve publicar lista de medicamentos em falta.                                                                                      | MÉDIA      |
+| RF-07 | A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita.                                                                    | ALTA       |
+| RF-08 | A instituição deve aprovar ou rejeitar doações em até 24 horas.                                                                                                                             | ALTA       |
+| RF-09 | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. | MÉDIA      |
+| RF-10 | A instituição deve confirmar o recebimento dos medicamentos no painel.                                                                                                                      | ALTA       |
+| RF-11 | A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição.                                                          | BAIXA      |
+| RF-12 | A aplicação deve gerar relatórios de impacto com base no histórico de doações.                                                                                                              | BAIXA      |
 
 
 
