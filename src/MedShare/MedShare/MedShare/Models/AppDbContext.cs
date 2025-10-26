@@ -9,5 +9,6 @@ namespace MedShare.Models {
         public DbSet<Doador> Doadores { get; set; }
         public DbSet<Instituicao> Instituicoes { get; set; }
         public DbSet<Doacao> Doacoes { get; set; }
+        public DbSet<Notificacao> Notificacoes { get; set; }
     }
 }
