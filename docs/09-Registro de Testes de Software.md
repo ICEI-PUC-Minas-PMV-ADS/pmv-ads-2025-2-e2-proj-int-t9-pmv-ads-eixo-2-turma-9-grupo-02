@@ -16,9 +16,9 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 
 ## Relatório de testes de software
 
-Apresente e discuta detalhadamente os resultados obtidos nos testes realizados, destacando tanto os pontos fortes quanto as fragilidades identificadas na solução. Explique como os aspectos positivos contribuem para o desempenho e a usabilidade do sistema, e como os pontos fracos impactam sua eficácia.
+Com base nas funcionalidades testadas, os resultados foram positivos, onde destaco o fluxo de acesso do site bem intuitivo e velocidade padrão de um bom site. Até então o unico ponto fraco que pode impactar para o usuario é de ainda não ter todos os pop ups ativados.
 
-Descreva as principais falhas detectadas durante os testes, fornecendo exemplos concretos e evidências que sustentem essas observações. Explicite os impactos dessas falhas na experiência do usuário, na funcionalidade do sistema e nos objetivos do projeto.
+Nenhuma falha detectada que possa impedir o usuario de finalizar qualquer tarefa. Como falado acima, o unico ponto de melhoria seriam mais pop ups para tornar o site ainda mais explicativo e intuitivo.
 
 Com base nessas análises, detalhe as estratégias que o grupo pretende adotar para corrigir as deficiências e aprimorar a solução nas próximas iterações. Inclua ações específicas, como ajustes no código, modificações na interface, otimizações de desempenho ou melhorias na acessibilidade e usabilidade.
 
