@@ -7,7 +7,7 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 | **Caso de Teste** 	| **CT01 – Cadastrar perfil** 	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-00X - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que esses consigam criar e gerenciar seu perfil. |
-|Registro de evidência | https://sgapucminasbr-my.sharepoint.com/personal/1593324_sga_pucminas_br/_layouts/15/guestaccess.aspx?share=EY5J31YJflJGs-sJKyNuQJUBABUx9-jU1KvbjADZD2g2-w&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=0pLTjR |
+|Registro de evidência | https://surl.li/gvotio |
 
 | **Caso de Teste** 	| **CT02 – Realizar login** 	|
 |:---:	|:---:	|
