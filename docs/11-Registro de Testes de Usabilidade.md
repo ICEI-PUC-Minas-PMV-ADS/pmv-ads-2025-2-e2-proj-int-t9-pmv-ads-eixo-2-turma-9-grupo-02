@@ -13,11 +13,11 @@ O registro de testes de usabilidade é um documento ou planilha onde são coleta
 
 Para registrar os indicadores de cada cenário, é preciso manter a coerência com os critérios quantitativos e qualitativos que foram definidos no plano de testes de usabilidade.
 
-**Cenário 1**: O doador deseja realizar uma doação de medicamento. Para isso, ele deverá entrar no site www.medshare.com.br para acessar a pagina principal, criar sua conta, autenticar fazendo login e realizar sua doação.         
+**Cenário 1**: Para que tanto o doador quanto a instituição consigam realizar uma doação de medicamento, é preciso que, antes, ambos consigam criar um cadastro e, posteriormente, consigam fazer login. Para isso, tanto o doador quanto a instituição deverão entrar no site www.medshare.com.br para acessar a página principal, criar sua conta, autenticar fazendo login e realizar sua doação.         
 | **Usuário**   | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |-------------|--------------------|---------------------------------|-----------------|------------------------|------------------------------|
 | Usuário 1    |      5             |              10                 |      Sim        |        Nenhum          |     Site bem intuitivo       |                     |      
-| Usuário 2    |                    |                                 |                 |                        |                              |                     |      
+| Usuário 2    |      5             |              10                 |      Sim        |        Nenhum          |     Site bem intuitivo       |                     |      
 | Usuário 3    |                    |                                 |                 |                        |                              |                     |  
 | Usuário 4    |                    |                                 |                 |                        |                              |                     | 
 | Usuário 5    |                    |                                 |                 |                        |                              |                     | 
@@ -25,7 +25,7 @@ Para registrar os indicadores de cada cenário, é preciso manter a coerência c
 **Cenário 2**:         
 | **Usuário**  | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |-------------|--------------------|---------------------------------|-----------------|------------------------|------------------------------|
-| Usuário 1   |         5          |              10                 |       SIm       |          Nenhum        |       Site bem rapido        |                     |      
+| Usuário 1   |                    |                                 |                 |                        |                              |                     |      
 | Usuário 2   |                    |                                 |                 |                        |                              |                     |      
 | Usuário 3   |                    |                                 |                 |                        |                              |                     |  
 | Usuário 4   |                    |                                 |                 |                        |                              |                     | 
