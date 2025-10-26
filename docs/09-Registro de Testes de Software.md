@@ -16,13 +16,11 @@ Para cada caso de teste definido no Plano de Testes de Software, realize o regis
 
 ## Relatório de testes de software
 
-Com base nas funcionalidades testadas, os resultados foram positivos, onde destaco o fluxo de acesso do site bem intuitivo e velocidade padrão de um bom site. Até então o unico ponto fraco que pode impactar para o usuario é de ainda não ter todos os pop ups ativados.
+Com base nas funcionalidades testadas, os resultados foram positivos, em que destaco o fluxo de acesso do site bem intuitivo e velocidade padrão de um bom site. Até então, o único ponto fraco que pode impactar o usuário é ainda não ter todos os pop-ups ativados.
 
-Nenhuma falha detectada que possa impedir o usuario de finalizar qualquer tarefa. Como falado acima, o unico ponto de melhoria seriam mais pop ups para tornar o site ainda mais explicativo e intuitivo.
+Nenhuma falha detectada que possa impedir o usuário de finalizar qualquer tarefa. Como falado acima, o único ponto de melhoria seriam mais pop-ups para tornar o site ainda mais explicativo e intuitivo.
 
-Com base nessas análises, detalhe as estratégias que o grupo pretende adotar para corrigir as deficiências e aprimorar a solução nas próximas iterações. Inclua ações específicas, como ajustes no código, modificações na interface, otimizações de desempenho ou melhorias na acessibilidade e usabilidade.
-
-Por fim, apresente e/ou proponha as melhorias a partir dos testes realizados, destacando os ganhos obtidos e como essas alterações contribuem para a evolução do projeto.
+Com base nas funcionalidades: cadastro de conta e autenticação de usuário por meio de uma tela de login, serão adicionados os pontos de melhorias falados acima. Lembrando que as demais funcionalidades que compõem o sistema como um todo ainda serão enviadas para o repositório remoto e detalhadas pelos demais participantes do projeto.
 
 > **Links Úteis**:
 > - [Ferramentas de Test para Java Script](https://geekflare.com/javascript-unit-testing/)
