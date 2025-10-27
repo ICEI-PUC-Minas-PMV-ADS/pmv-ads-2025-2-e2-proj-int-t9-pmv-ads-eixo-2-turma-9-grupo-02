@@ -1,7 +1,13 @@
-﻿namespace MedShare.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MedShare.Models
 {
+    [Table("Notificacoes")]
     public class Notificacao
     {
+        [Key]
+        public int NotificacaoId { get; set; }
         public string Titulo { get; set; }
         public string Mensagem { get; set; }
         public bool Lida { get; set; }

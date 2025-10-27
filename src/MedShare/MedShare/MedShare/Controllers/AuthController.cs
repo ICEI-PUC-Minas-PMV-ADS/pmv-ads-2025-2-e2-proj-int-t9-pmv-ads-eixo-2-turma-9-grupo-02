@@ -49,7 +49,7 @@ namespace MedShare.Controllers
 
         [AllowAnonymous]
         // Rota GET: Auth/Login
-        public IActionResult Login(string type = null) 
+        public IActionResult Login(string type = null)
         {
             // Impede acesso à tela de login se já estiver autenticado
             if (User.Identity != null && User.Identity.IsAuthenticated)
@@ -139,22 +139,31 @@ namespace MedShare.Controllers
 
                 await HttpContext.SignInAsync(principal, props);
 
-                return RedirectToAction("Index", "Home");
+                if (perfil == "Instituicao")
+                {
+                    return RedirectToAction("HomePagePJ", "Instituicao");
+                }
+                else if (perfil == "Doador")
+                {
+                    return RedirectToAction("HomePage", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
-            {
-                ViewData["erro"] = "Email ou senha inválidos!";
-                return View();
-            }
-        }
 
-        [Authorize]
-        // Rota GET: Auth/Logout
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync();
-            return RedirectToAction("Login", "Auth");
+            ViewData["erro"] = "Email ou senha inválidos!";
+            return View();
+    }
+
+            [Authorize]
+            // Rota GET: Auth/Logout
+            public async Task<IActionResult> Logout()
+            {
+                await HttpContext.SignOutAsync();
+                return RedirectToAction("Login", "Auth");
+            }
         }
     }
-}
 /*Anotações [AllowAnonymous] não permitem*/

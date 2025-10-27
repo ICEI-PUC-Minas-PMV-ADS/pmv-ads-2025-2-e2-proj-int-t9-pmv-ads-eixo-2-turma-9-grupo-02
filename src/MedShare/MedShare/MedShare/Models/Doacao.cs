@@ -1,9 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedShare.Models
 {
+    [Table("Doacoes")]
     public class Doacao
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O nome do medicamento é obrigatório")]
@@ -31,7 +34,13 @@ namespace MedShare.Models
         public string ImagemPath { get; set; }
 
         public DateTime DataCriacao { get; set; } = DateTime.Now;
-        
+
+        [Display(Name = "Status da Doação")]
+        public string Status { get; set; } = "Disponível";
+
+        [Display(Name = "Prazo para Análise")]
+        public DateTime PrazoAnalise { get; set; } = DateTime.Now.AddHours(48);
+
         // Relacionamento com doador
         public int DoadorId { get; set; }
         public Doador Doador { get; set; }

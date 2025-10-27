@@ -33,6 +33,9 @@ namespace MedShare.Controllers
             {
                 try
                 {
+                    doacao.Status = "Disponível";
+                    doacao.DataCriacao = DateTime.Now;
+                    doacao.PrazoAnalise = DateTime.Now.AddHours(48);
                     _context.Doacoes.Add(doacao);
                     await _context.SaveChangesAsync();
                     TempData["Sucesso"] = "Doação cadastrada com sucesso!";
