@@ -1,0 +1,83 @@
+﻿@model MedShare.Models.Doacao
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Excluir</h1>
+
+<h3>Tem certeza que deseja remover essa doação?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.NomeDoacao)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.NomeDoacao)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.ValidadeDoacao)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ValidadeDoacao)
+        </dd>
+
+        <dt class="col-sm-3">
+            Quantidade
+        </dt>
+        <dd class="col-sm-9">
+            @Model.QuantidadeDoacao
+        </dd>
+
+        <dt class="col-sm-3">
+            Foto da Doação
+        </dt>
+        <dd class="col-sm-9">
+            @if (!string.IsNullOrEmpty(Model.CaminhoFoto))
+            {
+                <img src="@Url.Content(Model.CaminhoFoto)"
+                     alt="Foto da Doação"
+                     style="width:150px; height:150px; object-fit:cover; border-radius:6px; border:1px solid #ccc;" />
+            }
+            else
+            {
+                <span>Sem foto cadastrada.</span>
+            }
+        </dd>
+
+        <dt class="col-sm-3">
+            Receita da Doação
+        </dt>
+        <dd class="col-sm-9">
+            @if (!string.IsNullOrEmpty(Model.CaminhoReceita))
+            {
+                @if (Model.CaminhoReceita.EndsWith(".pdf"))
+                {
+                    <a href="@Url.Content(Model.CaminhoReceita)" target="_blank" class="btn btn-outline-secondary">
+                        📄 Abrir receita (PDF)
+                    </a>
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.CaminhoReceita)"
+                         alt="Receita da Doação"
+                         style="width:150px; height:150px; object-fit:cover; border-radius:6px; border:1px solid #ccc;" />
+                }
+            }
+            else
+            {
+                <span>Sem receita cadastrada.</span>
+            }
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+    </form>
+</div>

@@ -3,8 +3,8 @@
 O registro de testes de usabilidade é um documento ou planilha onde são coletadas e organizadas as informações sobre a experiência dos usuários ao interagir com um sistema. Ele inclui dados como tempo de execução de tarefas, taxa de sucesso, dificuldades encontradas, erros cometidos e _feedback_ dos usuários. Esse registro permite identificar padrões de uso, obstáculos/dificuldades encontrados na interface e oportunidades de melhoria, fornecendo _insights_ quantitativos e qualitativos para otimizar a experiência do usuário. Além disso, serve como base para análises, correções e futuras iterações do sistema, garantindo que ele atenda às necessidades do público-alvo de forma eficiente.
 
 ## Perfil dos usuários que participaram do teste
-- Usuário 1: 45 anos, nível básico incompleto, conhecimento básico tecnologia
-- Usuário 2: 18 anos, nível superior incompleto, conhecimento avançado tecnologia
+- Jefferson Patrocinio: Perfil Doador, 29 anos, nível básico incompleto, conhecimento básico tecnologia
+- Instituição Teste: Perfil Instituição, nível básico incompleto, conhecimento básico tecnologia
 - Usuário 1: 70 anos, nível básico incompleto, conhecimento básico tecnologia
 - Usuário 2: 25 anos, nível superior completo, conhecimento avançado tecnologia
 - Usuário 2: 28 anos, nível superior completo, conhecimento avançado tecnologia
@@ -13,11 +13,11 @@ O registro de testes de usabilidade é um documento ou planilha onde são coleta
 
 Para registrar os indicadores de cada cenário, é preciso manter a coerência com os critérios quantitativos e qualitativos que foram definidos no plano de testes de usabilidade.
 
-**Cenário 1**: O usuário deseja comprar um notebook para uso pessoal. Para isso, ele deverá entrar no site www.compras.com.br para buscar opções disponíveis, comparar preços, adicionar o produto ao carrinho e finalizar a compra com pagamento via cartão de crédito.         
+**Cenário 1**: Para que tanto o doador quanto a instituição consigam realizar uma doação de medicamento, é preciso que, antes, ambos consigam criar um cadastro e, posteriormente, consigam fazer login. Para isso, tanto o doador quanto a instituição deverão entrar no site www.medshare.com.br para acessar a página principal, criar sua conta, autenticar fazendo login e realizar sua doação.         
 | **Usuário**   | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |-------------|--------------------|---------------------------------|-----------------|------------------------|------------------------------|
-| Usuário 1    |                    |                                 |                 |                        |                              |                     |      
-| Usuário 2    |                    |                                 |                 |                        |                              |                     |      
+| Usuário 1    |      5             |              10                 |      Sim        |        Nenhum          |     Site bem intuitivo       |                     |      
+| Usuário 2    |      5             |              10                 |      Sim        |        Nenhum          |     Site bem intuitivo       |                     |      
 | Usuário 3    |                    |                                 |                 |                        |                              |                     |  
 | Usuário 4    |                    |                                 |                 |                        |                              |                     | 
 | Usuário 5    |                    |                                 |                 |                        |                              |                     | 

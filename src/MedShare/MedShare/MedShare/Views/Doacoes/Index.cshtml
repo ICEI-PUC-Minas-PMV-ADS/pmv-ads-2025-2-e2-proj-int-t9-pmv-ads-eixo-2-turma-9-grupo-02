@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MedShare.Models.Doacao>
+
+<h1>Minhas Doações</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Adicionar nova doação</a>
+</p>
+
+<table class="table table-bordered table-striped align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.NomeDoacao)</th>
+            <th>@Html.DisplayNameFor(model => model.ValidadeDoacao)</th>
+            <th>@Html.DisplayNameFor(model => model.QuantidadeDoacao)</th>
+            <th>@Html.DisplayNameFor(model => model.FotoDoacao)</th>
+            <th>@Html.DisplayNameFor(model => model.ReceitaDoacao)</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NomeDoacao</td>
+                <td>@item.ValidadeDoacao.ToString("MM/yyyy")</td>
+                <td>@item.QuantidadeDoacao</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.CaminhoFoto))
+                    {
+                        <img src="@item.CaminhoFoto" alt="Foto da Doação" width="80" height="80" style="object-fit: cover; border-radius: 6px;" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sem foto</span>
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.CaminhoReceita))
+                    {
+                        var ext = System.IO.Path.GetExtension(item.CaminhoReceita)?.ToLower() ?? "";
+
+                        if (ext == ".pdf")
+                        {
+                            <a href="@item.CaminhoReceita" target="_blank" class="btn btn-outline-secondary btn-sm">
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@item.CaminhoReceita" target="_blank">
+                                <img src="@item.CaminhoReceita" alt="Receita" width="80" height="80" style="object-fit: cover; border-radius: 6px;" />
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sem receita</span>
+                    }
+                </td>
+
+                <!-- AÇÕES -->
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">Visualizar</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

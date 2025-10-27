@@ -9,40 +9,36 @@ namespace MedShare.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "O nome do medicamento é obrigatório")]
+        [Required(ErrorMessage ="Obrigatório informar o nome do medicamento!")]
         [Display(Name = "Nome do Medicamento")]
-        public string NomeMedicamento { get; set; }
+        public string NomeDoacao { get; set; }
 
-        [Required(ErrorMessage = "A validade é obrigatória")]
+        [Required(ErrorMessage = "Obrigatório informar a validade do medicamento!")]
         [Display(Name = "Validade")]
-        [DataType(DataType.Date)]
-        public DateTime Validade { get; set; }
+        public DateOnly ValidadeDoacao { get; set; }
 
-        [Required(ErrorMessage = "A forma farmacêutica é obrigatória")]
-        [Display(Name = "Forma Farmacêutica")]
-        public string FormaFarmaceutica { get; set; }
-
-        [Required(ErrorMessage = "A quantidade é obrigatória")]
+        [Required(ErrorMessage = "Obrigatório informar a quantidade do medicamento!")]
+        [Range(1, int.MaxValue, ErrorMessage = "A quantidade deve ser maior que zero!")]
         [Display(Name = "Quantidade")]
-        [Range(1, int.MaxValue, ErrorMessage = "A quantidade deve ser maior que zero")]
-        public int Quantidade { get; set; }
+        public int QuantidadeDoacao { get; set; }
 
-        [Display(Name = "Descrição/Comentário")]
-        public string Descricao { get; set; }
+        [Required(ErrorMessage = "Obrigatório enviar foto da doação!")]
+        [Display(Name = "Foto")]
+        [NotMapped] 
+        public IFormFile FotoDoacao { get; set; }
 
-        [Display(Name = "Imagem")]
-        public string ImagemPath { get; set; }
-
-        public DateTime DataCriacao { get; set; } = DateTime.Now;
-
+        [Required(ErrorMessage = "Obrigatório enviar a receita do medicamento!")]
+        [Display(Name = "Receita")]
+        [NotMapped]
+        public IFormFile ReceitaDoacao { get; set; }
+        
         [Display(Name = "Status da Doação")]
         public string Status { get; set; } = "Disponível";
 
         [Display(Name = "Prazo para Análise")]
         public DateTime PrazoAnalise { get; set; } = DateTime.Now.AddHours(48);
 
-        // Relacionamento com doador
-        public int DoadorId { get; set; }
-        public Doador Doador { get; set; }
+        public string CaminhoFoto { get; set; }
+        public string CaminhoReceita { get; set; }
     }
 }
