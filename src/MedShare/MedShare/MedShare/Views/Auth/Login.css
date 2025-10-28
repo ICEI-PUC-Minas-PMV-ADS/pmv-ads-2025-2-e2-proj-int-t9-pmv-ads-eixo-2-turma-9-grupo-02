@@ -1,0 +1,420 @@
+/* Reset e configurações básicas */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Container principal */
+.main-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Seção esquerda - Formulário */
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: #fff;
+}
+
+/* Seção direita - Imagem */
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Logo e título */
+.logo-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.logo-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 20px;
+    filter: drop-shadow(0 4px 15px rgba(0,0,0,0.1));
+}
+
+.app-title {
+    font-size: 48px;
+    color: #1565C0;
+    font-weight: 600;
+    margin: 0;
+}
+
+.subtitle {
+    color: #757575;
+    font-size: 14px;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Formulário de login */
+.login-form {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 16px;
+    background: #FAFAFA;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #2196F3;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9E9E9E;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Seletor de perfil */
+.profile-select {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 16px;
+    background: #FAFAFA;
+    appearance: none;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xIDFMNiA2TDExIDEiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-select:focus {
+    outline: none;
+    border-color: #2196F3;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* Botões */
+.buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.google-btn {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #E0E0E0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.google-btn:hover {
+    border-color: #DB4437;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(219, 68, 55, 0.2);
+}
+
+.google-icon {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(45deg, #DB4437, #4285F4, #0F9D58, #F4B400);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+}
+
+.btn-primary:hover {
+    background: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.btn-secondary {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background: #388E3C;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+/* Link esqueci senha */
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
+    color: #757575;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #2196F3;
+}
+
+/* Link voltar */
+.back-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-to-choose {
+    color: #757575;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.back-to-choose:hover {
+    color: #2196F3;
+}
+
+/* Imagem de medicamentos */
+.medicine-image {
+    max-width: 80%;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-15px) scale(1.02); }
+}
+
+/* Footer */
+.footer {
+    background: #fff;
+    padding: 0;
+    margin-top: auto;
+}
+
+.footer-gradient {
+    height: 6px;
+    background: linear-gradient(90deg, #FF9800 0%, #FF5722 50%, #E91E63 100%);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #fff;
+}
+
+.footer-info {
+    font-size: 11px;
+    color: #757575;
+    line-height: 1.4;
+}
+
+.footer-about {
+    display: flex;
+    align-items: center;
+    color: #757575;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.about-icon {
+    margin-right: 8px;
+    font-size: 16px;
+    color: #2196F3;
+}
+
+/* Validação */
+.validation-summary {
+    background: #FFEBEE;
+    border: 1px solid #FFCDD2;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: #C62828;
+    font-size: 14px;
+}
+
+.validation-error {
+    color: #C62828;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .left-section {
+        order: 1;
+        padding: 30px 20px;
+    }
+    
+    .right-section {
+        order: 2;
+        padding: 20px;
+        min-height: 250px;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo-image {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .app-title {
+        font-size: 36px;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .google-btn {
+        align-self: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 15px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .left-section {
+        padding: 20px 15px;
+    }
+    
+    .app-title {
+        font-size: 28px;
+    }
+    
+    .form-input,
+    .profile-select {
+        height: 45px;
+        font-size: 14px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+}
