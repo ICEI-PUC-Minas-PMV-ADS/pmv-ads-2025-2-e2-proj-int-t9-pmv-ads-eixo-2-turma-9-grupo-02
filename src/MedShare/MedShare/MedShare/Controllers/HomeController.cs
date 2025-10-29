@@ -41,26 +41,26 @@ namespace MedShare.Controllers
             return View();
         }
 
-        public IActionResult Doar()
-        {
-            if (!User.Identity.IsAuthenticated)
-                return RedirectToAction("Login", "Auth");
-            return View();
-        }
+        //public IActionResult Doar()
+        //{
+        //    if (!User.Identity.IsAuthenticated)
+        //        return RedirectToAction("Login", "Auth");
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Doar(Doacao doacao)
-        {
-            if (ModelState.IsValid)
-            {
-                // TODO: Salvar no banco de dados
-                // Por enquanto, apenas redireciona para a página inicial
-                TempData["Sucesso"] = "Doação cadastrada com sucesso!";
-                return RedirectToAction("Index");
-            }
-            return View(doacao);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Doar(Doacao doacao)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        // TODO: Salvar no banco de dados
+        //        // Por enquanto, apenas redireciona para a página inicial
+        //        TempData["Sucesso"] = "Doação cadastrada com sucesso!";
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(doacao);
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

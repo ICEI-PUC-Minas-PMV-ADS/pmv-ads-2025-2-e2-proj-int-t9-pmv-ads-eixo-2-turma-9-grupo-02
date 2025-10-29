@@ -3,19 +3,19 @@
 <h2 class="mb-4">Detalhes da Doação</h2>
 
 <div class="card shadow-sm p-4">
-    <h4 class="text-primary mb-3">@Model.NomeMedicamento</h4>
+    <h4 class="text-primary mb-3">@Model.NomeDoacao</h4>
 
     <div class="mb-3">
-        <strong>Quantidade:</strong> @Model.Quantidade
+        <strong>QuantidadeDoacao:</strong> @Model.QuantidadeDoacao
     </div>
     <div class="mb-3">
-        <strong>Validade:</strong> @Model.Validade.ToShortDateString()
+        <strong>ValidadeDoacao:</strong> @Model.ValidadeDoacao.ToShortDateString()
     </div>
     <div class="mb-3">
         <strong>Status:</strong> @Model.Status
     </div>
     <div class="mb-3">
-        <strong>Imagem:</strong> @Model.ImagemPath
+        <strong>Imagem:</strong> @Model.CaminhoFoto
     </div>
 
     <hr />

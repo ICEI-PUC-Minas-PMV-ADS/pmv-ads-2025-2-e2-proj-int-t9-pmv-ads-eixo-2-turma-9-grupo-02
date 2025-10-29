@@ -106,7 +106,7 @@ namespace MedShare.Controllers
                 {
                     Usuario usuario = (Usuario)dados;
                     claims.Add(new Claim(ClaimTypes.Name, usuario.UsuarioEmail));
-                    claims.Add(new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString()));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, usuario.Doador.ToString()));
                     claims.Add(new Claim("UsuarioEmail", usuario.UsuarioEmail));
                     claims.Add(new Claim(ClaimTypes.Role, "Usuario"));
                 }

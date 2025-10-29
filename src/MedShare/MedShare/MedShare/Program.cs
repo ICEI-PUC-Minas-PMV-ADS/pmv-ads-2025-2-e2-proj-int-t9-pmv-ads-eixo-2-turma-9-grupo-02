@@ -8,10 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")),
+//    ServiceLifetime.Scoped
+//);
+
+var dbPath = Path.Combine(Directory.GetCurrentDirectory(), "MedShareDatabase.db");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")),
+    options.UseSqlite($"Data Source={dbPath}"),
     ServiceLifetime.Scoped
 );
+
+builder.Services.AddScoped<MedShare.Services.IDoacaoService, MedShare.Services.DoacaoService>();
+
 
 builder.Services.Configure<CookiePolicyOptions>(options => 
 {

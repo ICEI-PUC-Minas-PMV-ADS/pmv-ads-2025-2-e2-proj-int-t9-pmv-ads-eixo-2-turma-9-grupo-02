@@ -48,7 +48,7 @@ namespace MedShare.Migrations
                 name: "Usuarios",
                 columns: table => new
                 {
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Doador = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UsuarioEmail = table.Column<string>(type: "TEXT", nullable: false),
                     UsuarioSenha = table.Column<string>(type: "TEXT", nullable: false),
@@ -56,7 +56,7 @@ namespace MedShare.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
+                    table.PrimaryKey("PK_Usuarios", x => x.Doador);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,12 +65,12 @@ namespace MedShare.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NomeMedicamento = table.Column<string>(type: "TEXT", nullable: false),
-                    Validade = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    NomeDoacao = table.Column<string>(type: "TEXT", nullable: false),
+                    ValidadeDoacao = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FormaFarmaceutica = table.Column<string>(type: "TEXT", nullable: false),
-                    Quantidade = table.Column<int>(type: "INTEGER", nullable: false),
+                    QuantidadeDoacao = table.Column<int>(type: "INTEGER", nullable: false),
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
-                    ImagemPath = table.Column<string>(type: "TEXT", nullable: true),
+                    CaminhoFoto = table.Column<string>(type: "TEXT", nullable: true),
                     DataCriacao = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DoadorId = table.Column<int>(type: "INTEGER", nullable: false)
                 },

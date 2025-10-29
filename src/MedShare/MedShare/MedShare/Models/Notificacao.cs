@@ -9,7 +9,7 @@ namespace MedShare.Models
         [Key]
         public int NotificacaoId { get; set; }
         public int Id { get; set; }
-        public string UsuarioId { get; set; }
+        public string Doador { get; set; }
         public string Titulo { get; set; }
         public string Mensagem { get; set; }
         public bool Lida { get; set; }

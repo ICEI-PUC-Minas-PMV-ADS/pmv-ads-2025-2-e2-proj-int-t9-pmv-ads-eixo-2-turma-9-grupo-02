@@ -7,7 +7,7 @@ namespace MedShare.Models {
     public class Usuario 
     {
         [Key]
-        public int UsuarioId { get; set; }
+        public int Doador { get; set; }
 
         [Required(ErrorMessage ="Obrigatorio email!")]
         [Display(Name ="Email")]

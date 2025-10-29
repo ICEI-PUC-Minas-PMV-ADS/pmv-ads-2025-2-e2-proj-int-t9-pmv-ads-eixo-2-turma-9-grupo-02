@@ -282,18 +282,18 @@
                     <!-- Nome do medicamento -->
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input asp-for="NomeMedicamento" type="text" class="form-control" id="floatingNomeMedicamento" placeholder="Nome do medicamento" required />
+                            <input asp-for="NomeDoacao" type="text" class="form-control" id="floatingNomeMedicamento" placeholder="Nome do medicamento" required />
                             <label for="floatingNomeMedicamento">NOME DO MEDICAMENTO</label>
-                            <span asp-validation-for="NomeMedicamento" class="invalid-feedback"></span>
+                            <span asp-validation-for="NomeDoacao" class="invalid-feedback"></span>
                         </div>
                     </div>
                     
-                    <!-- Validade -->
+                    <!-- ValidadeDoacao -->
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input asp-for="Validade" type="date" class="form-control" id="floatingValidade" required />
+                            <input asp-for="ValidadeDoacao" type="date" class="form-control" id="floatingValidade" required />
                             <label for="floatingValidade">VALIDADE</label>
-                            <span asp-validation-for="Validade" class="invalid-feedback"></span>
+                            <span asp-validation-for="ValidadeDoacao" class="invalid-feedback"></span>
                         </div>
                     </div>
                     
@@ -316,13 +316,13 @@
                         </div>
                     </div>
 
-                    <!-- Row com Quantidade e Imagem -->
+                    <!-- Row com QuantidadeDoacao e Imagem -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="form-floating">
-                                <input asp-for="Quantidade" type="number" class="form-control" id="floatingQuantidade" placeholder="Quantidade" min="1" required />
+                                <input asp-for="QuantidadeDoacao" type="number" class="form-control" id="floatingQuantidade" placeholder="QuantidadeDoacao" min="1" required />
                                 <label for="floatingQuantidade">QUANTIDADE*</label>
-                                <span asp-validation-for="Quantidade" class="invalid-feedback"></span>
+                                <span asp-validation-for="QuantidadeDoacao" class="invalid-feedback"></span>
                             </div>
                         </div>
                         
@@ -362,14 +362,14 @@
             <div class="menu-lateral">
                 <!-- Ícone Home -->
                 <div class="menu-header">
-                    <a href="/Home" class="home-icon">
+                    <a href="/Home/HomePage" class="home-icon">
                         <i class="bi bi-house-fill"></i>
                     </a>
                 </div>
                 
                 <!-- Menu Items -->
                 <div class="menu-items">
-                    <a href="/Doacao/Doar" class="menu-item active">
+                    <a href="/Doacoes/doador/doar" class="menu-item active">
                         DOAR
                     </a>
                     <a href="/Doacao/BuscarInstituicoes" class="menu-item">

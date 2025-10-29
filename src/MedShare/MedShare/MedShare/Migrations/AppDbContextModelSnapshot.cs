@@ -15,7 +15,7 @@ namespace MedShare.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
 
             modelBuilder.Entity("MedShare.Models.Doacao", b =>
                 {
@@ -23,41 +23,43 @@ namespace MedShare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CaminhoFoto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CaminhoReceita")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DoadorId")
+                    b.Property<int?>("DoadorID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FormaFarmaceutica")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ImagemPath")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NomeMedicamento")
+                    b.Property<string>("NomeDoacao")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("PrazoAnalise")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Quantidade")
+                    b.Property<int>("QuantidadeDoacao")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Validade")
+                    b.Property<DateTime>("ValidadeDoacao")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoadorId");
+                    b.HasIndex("DoadorID");
 
                     b.ToTable("Doacoes");
                 });
@@ -126,13 +128,22 @@ namespace MedShare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Doador")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Horario")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Lida")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Mensagem")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tipo")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Titulo")
@@ -145,7 +156,7 @@ namespace MedShare.Migrations
 
             modelBuilder.Entity("MedShare.Models.Usuario", b =>
                 {
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("Doador")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -160,7 +171,7 @@ namespace MedShare.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("UsuarioId");
+                    b.HasKey("Doador");
 
                     b.ToTable("Usuarios");
                 });
@@ -168,12 +179,15 @@ namespace MedShare.Migrations
             modelBuilder.Entity("MedShare.Models.Doacao", b =>
                 {
                     b.HasOne("MedShare.Models.Doador", "Doador")
-                        .WithMany()
-                        .HasForeignKey("DoadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Doacoes")
+                        .HasForeignKey("DoadorID");
 
                     b.Navigation("Doador");
+                });
+
+            modelBuilder.Entity("MedShare.Models.Doador", b =>
+                {
+                    b.Navigation("Doacoes");
                 });
 #pragma warning restore 612, 618
         }
