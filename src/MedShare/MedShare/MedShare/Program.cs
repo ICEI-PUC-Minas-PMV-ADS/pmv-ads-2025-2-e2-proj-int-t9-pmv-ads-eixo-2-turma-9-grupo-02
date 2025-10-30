@@ -8,10 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")),
-//    ServiceLifetime.Scoped
-//);
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options
+        .UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
+        .EnableSensitiveDataLogging() 
+        .LogTo(Console.WriteLine, LogLevel.Information);
+});
+
 
 var dbPath = Path.Combine(Directory.GetCurrentDirectory(), "MedShareDatabase.db");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -20,11 +24,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 builder.Services.AddScoped<MedShare.Services.IDoacaoService, MedShare.Services.DoacaoService>();
+builder.Services.AddHttpContextAccessor();
+
 
 
 builder.Services.Configure<CookiePolicyOptions>(options => 
 {
-    //This lambda determines whether user consent for non-essential cookies is needed for a given request.
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
  });

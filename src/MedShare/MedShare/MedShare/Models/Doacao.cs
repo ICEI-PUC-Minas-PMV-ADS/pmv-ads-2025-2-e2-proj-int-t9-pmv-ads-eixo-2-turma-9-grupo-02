@@ -26,11 +26,11 @@ namespace MedShare.Models
 
         [NotMapped]
         [Display(Name = "Foto da Doação")]
-        public IFormFile? FotoDoacao { get; set; } 
+        public IFormFile? FotoDoacao { get; set; }
 
         [NotMapped]
         [Display(Name = "Receita Médica")]
-        public IFormFile? ReceitaDoacao { get; set; } 
+        public IFormFile? ReceitaDoacao { get; set; }
 
         [Display(Name = "Caminho da Foto")]
         public string? CaminhoFoto { get; set; }
@@ -59,4 +59,3 @@ namespace MedShare.Models
         public Doador? Doador { get; set; }
     }
 }
-

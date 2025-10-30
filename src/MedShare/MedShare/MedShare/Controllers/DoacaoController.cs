@@ -1,9 +1,10 @@
-using System.Diagnostics;
 using MedShare.Models;
 using MedShare.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Security.Claims;
 
 namespace MedShare.Controllers
 {
@@ -34,49 +35,69 @@ namespace MedShare.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Doar(Doacao doacao)
         {
-            //if (!ModelState.IsValid)
-            //    return View(doacao);
+            _logger.LogInformation(">>> FotoDoacao: {foto}, ReceitaDoacao: {receita}",
+                doacao.FotoDoacao?.FileName, doacao.ReceitaDoacao?.FileName);
 
-     
 
             try
             {
-                var usuarioId = User.Identity?.Name ?? "anonimo";
+                if (!ModelState.IsValid)
+                {
+                    // Log 
+                    foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                        _logger.LogError("Erro de model binding: {ErrorMessage}", error.ErrorMessage);
+
+                    _logger.LogWarning("ModelState inválido. Reexibindo o formulário.");
+                    return View(doacao);
+                }
+
+                var usuarioEmail = User.Identity?.Name ?? "anonimo";
+                _logger.LogInformation("Usuário autenticado: {usuario}", usuarioEmail);
 
                 doacao.Status = "Disponível";
                 doacao.DataCriacao = DateTime.Now;
+                doacao.PrazoAnalise = DateTime.Now.AddHours(48);
 
-                //if (doacao.ValidadeDoacao == default || doacao.ValidadeDoacao.Year < 2000)
-                //    doacao.ValidadeDoacao = DateTime.Now.AddMonths(6);
+                _logger.LogInformation("Chamando CadastrarAsync...");
+                await _doacaoService.CadastrarAsync(doacao);
 
-                //if (doacao.PrazoAnalise == default)
-                //    doacao.PrazoAnalise = DateTime.Now.AddDays(1);
-
-                await _doacaoService.CadastrarAsync(doacao, usuarioId);
-
+                _logger.LogInformation("Doação salva com sucesso.");
                 TempData["Sucesso"] = "Doação cadastrada com sucesso!";
                 return RedirectToAction(nameof(MinhasDoacoes));
             }
             catch (ArgumentException ex)
             {
+                _logger.LogWarning("Erro de validação: {mensagem}", ex.Message);
                 TempData["Erro"] = ex.Message;
                 return View(doacao);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao cadastrar doação");
-                ModelState.AddModelError(string.Empty, "Erro ao cadastrar doação. Tente novamente.");
+                _logger.LogError(ex, "Erro ao cadastrar doação: {Mensagem}", ex.Message);
+                ModelState.AddModelError(string.Empty, $"Erro interno: {ex.Message}");
                 return View(doacao);
             }
+
         }
 
 
         [HttpGet("doador/minhas")]
         public async Task<IActionResult> MinhasDoacoes()
         {
-            var usuarioId = User.Identity?.Name ?? "anonimo";
-            var doacoes = await _doacaoService.ListarPorUsuarioAsync(usuarioId);
-            return View("MinhasDoacoes", doacoes);
+            var doadorIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(doadorIdClaim))
+                return Unauthorized();
+
+            int doadorId = int.Parse(doadorIdClaim);
+
+            var doacoes = await _context.Doacoes
+                .Include(d => d.Doador)
+                .Where(d => d.DoadorID == doadorId)
+                .OrderByDescending(d => d.DataCriacao)
+                .ToListAsync();
+
+            return View(doacoes);
         }
 
         [HttpGet("doador/details/{id}")]

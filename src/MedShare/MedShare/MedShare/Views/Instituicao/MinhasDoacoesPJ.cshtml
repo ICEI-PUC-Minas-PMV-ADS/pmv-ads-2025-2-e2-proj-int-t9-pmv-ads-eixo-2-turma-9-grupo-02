@@ -110,7 +110,7 @@
     <div class="container-lista">
         <h2 class="titulo">Minhas Doações</h2>
 
-        @if (!Model.Any())
+        @if (Model == null || !Model.Any())
         {
             <div class="alert alert-info text-center">
                 Nenhuma doação foi solicitada ainda.
@@ -135,7 +135,7 @@
             </ul>
         }
 
-        <a href="/Instituicao/HomePagePJ" class="btn-voltar">
+        <a href="/Instituicao/Home" class="btn-voltar">
             <i class="bi bi-arrow-left"></i> Voltar para Home
         </a>
     </div>

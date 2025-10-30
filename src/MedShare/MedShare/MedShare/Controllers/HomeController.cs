@@ -22,7 +22,7 @@ namespace MedShare.Controllers
         {
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Login", "Auth");
-            return View("HomePage");  // Redireciona para a nova HomePage
+            return View("HomePage");
         }
 
         [AllowAnonymous]
