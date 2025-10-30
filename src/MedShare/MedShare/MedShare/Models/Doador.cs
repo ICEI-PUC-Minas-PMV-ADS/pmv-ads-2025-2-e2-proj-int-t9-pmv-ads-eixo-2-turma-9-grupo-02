@@ -24,6 +24,7 @@ namespace MedShare.Models {
         [Required(ErrorMessage = "Obrigatorio Senha!")]
         [Display(Name = "Senha")]
         public string DoadorSenha { get; set; }
+        public ICollection<Doacao>? Doacoes { get; set; }
     }
 
 }

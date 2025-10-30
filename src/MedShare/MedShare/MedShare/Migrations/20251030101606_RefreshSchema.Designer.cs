@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedShare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251026185253_AddPrazoAnalise")]
-    partial class AddPrazoAnalise
+    [Migration("20251030101606_RefreshSchema")]
+    partial class RefreshSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
 
             modelBuilder.Entity("MedShare.Models.Doacao", b =>
                 {
@@ -26,20 +26,22 @@ namespace MedShare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CaminhoFoto")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CaminhoReceita")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DoadorId")
+                    b.Property<int?>("DoadorID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FormaFarmaceutica")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CaminhoFoto")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NomeDoacao")
@@ -60,7 +62,7 @@ namespace MedShare.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoadorId");
+                    b.HasIndex("DoadorID");
 
                     b.ToTable("Doacoes");
                 });
@@ -129,13 +131,22 @@ namespace MedShare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Doador")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Horario")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Lida")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Mensagem")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tipo")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Titulo")
@@ -171,12 +182,15 @@ namespace MedShare.Migrations
             modelBuilder.Entity("MedShare.Models.Doacao", b =>
                 {
                     b.HasOne("MedShare.Models.Doador", "Doador")
-                        .WithMany()
-                        .HasForeignKey("DoadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Doacoes")
+                        .HasForeignKey("DoadorID");
 
                     b.Navigation("Doador");
+                });
+
+            modelBuilder.Entity("MedShare.Models.Doador", b =>
+                {
+                    b.Navigation("Doacoes");
                 });
 #pragma warning restore 612, 618
         }

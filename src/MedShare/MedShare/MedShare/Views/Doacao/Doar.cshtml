@@ -22,7 +22,6 @@
         }
         
         .main-container {
-            display: flex;
             min-height: 100vh;
             position: relative;
         }
@@ -107,19 +106,25 @@
         }
         
         .right-section {
-            width: 350px;
+            position: fixed;
+            right: 30px; 
+            bottom: 30px; 
+            width: 320px;
             background: white;
-            position: relative;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            justify-content: space-between;
+            z-index: 1000; 
         }
         
         .menu-lateral {
-            flex: 1;
-            padding: 40px 30px;
+            padding: 0;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
         
         .menu-header {
@@ -275,29 +280,26 @@
                 </div>
                 
                 <h2 class="page-title">DOAR</h2>
-                
-                <form asp-controller="Doacao" asp-action="Doar" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form asp-action="Doar" asp-controller="Doacao" method="post" enctype="multipart/form-data" class="needs-validation"novalidate>
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
                     
-                    <!-- Nome do medicamento -->
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input asp-for="NomeMedicamento" type="text" class="form-control" id="floatingNomeMedicamento" placeholder="Nome do medicamento" required />
+                            <input asp-for="NomeDoacao" type="text" class="form-control" id="floatingNomeMedicamento" placeholder="Nome do medicamento" required />
                             <label for="floatingNomeMedicamento">NOME DO MEDICAMENTO</label>
-                            <span asp-validation-for="NomeMedicamento" class="invalid-feedback"></span>
+                            <span asp-validation-for="NomeDoacao" class="invalid-feedback"></span>
                         </div>
                     </div>
                     
-                    <!-- Validade -->
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input asp-for="Validade" type="date" class="form-control" id="floatingValidade" required />
+                            <input asp-for="ValidadeDoacao" type="date" class="form-control" id="floatingValidade" required />
                             <label for="floatingValidade">VALIDADE</label>
-                            <span asp-validation-for="Validade" class="invalid-feedback"></span>
+                            <span asp-validation-for="ValidadeDoacao" class="invalid-feedback"></span>
                         </div>
                     </div>
                     
-                    <!-- Forma Farmacêutica -->
                     <div class="mb-3">
                         <div class="form-floating">
                             <select asp-for="FormaFarmaceutica" class="form-select" id="floatingFormaFarmaceutica" required>
@@ -316,30 +318,50 @@
                         </div>
                     </div>
 
-                    <!-- Row com Quantidade e Imagem -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="form-floating">
-                                <input asp-for="Quantidade" type="number" class="form-control" id="floatingQuantidade" placeholder="Quantidade" min="1" required />
+                                <input asp-for="QuantidadeDoacao" type="number" class="form-control" id="floatingQuantidade" placeholder="QuantidadeDoacao" min="1" required />
                                 <label for="floatingQuantidade">QUANTIDADE*</label>
-                                <span asp-validation-for="Quantidade" class="invalid-feedback"></span>
+                                <span asp-validation-for="QuantidadeDoacao" class="invalid-feedback"></span>
                             </div>
                         </div>
-                        
-                        <div class="col-md-8">
-                            <label class="form-label mb-2">IMAGEM*</label>
-                            <div class="file-upload-area" onclick="document.getElementById('imageFile').click()">
-                                <div class="file-upload-icon">
-                                    <i class="bi bi-camera"></i>
-                                </div>
+                       
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label mb-2">FOTO DA DOAÇÃO*</label>
+                            <div class="file-upload-area" onclick="document.getElementById('fotoDoacaoFile').click()">
+                                <div class="file-upload-icon"><i class="bi bi-camera"></i></div>
                                 <div class="file-upload-text">Adicionar Imagem</div>
-                                <input type="file" id="imageFile" name="ImagemFile" accept="image/*" />
+
+                                <input asp-for="FotoDoacao"
+                                       type="file"
+                                       id="fotoDoacaoFile"
+                                       accept="image/*"
+                                       style="display:none;" required />
+
+                                <span id="fotoDoacaoName" class="text-muted small d-block mt-2" style="display:none;"></span>
                             </div>
+                            <span asp-validation-for="FotoDoacao" class="text-danger small"></span>
                         </div>
-                    </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label mb-2">RECEITA MÉDICA*</label>
+                            <div class="file-upload-area" onclick="document.getElementById('receitaDoacaoFile').click()">
+                                <div class="file-upload-icon"><i class="bi bi-file-earmark-medical"></i></div>
+                                <div class="file-upload-text">Anexar Receita</div>
+
+                                <input asp-for="ReceitaDoacao"
+                                       type="file"
+                                       id="receitaDoacaoFile"
+                                       accept="image/*,application/pdf"
+                                       style="display:none;" required />
+
+                                <span id="receitaDoacaoName" class="text-muted small d-block mt-2" style="display:none;"></span>
+                            </div>
+                            <span asp-validation-for="ReceitaDoacao" class="text-danger small"></span>
+                        </div>
                     
-                    <!-- Descrição -->
-                    <div class="mb-4">
+                    <div class="mb-4 mt-3">
                         <div class="form-floating">
                             <textarea asp-for="Descricao" class="form-control" id="floatingDescricao" placeholder="Descrição" style="height: 120px"></textarea>
                             <label for="floatingDescricao">DESCRIÇÃO/COMENTÁRIO</label>
@@ -362,14 +384,14 @@
             <div class="menu-lateral">
                 <!-- Ícone Home -->
                 <div class="menu-header">
-                    <a href="/Home" class="home-icon">
+                    <a href="/Home/HomePage" class="home-icon">
                         <i class="bi bi-house-fill"></i>
                     </a>
                 </div>
-                
+
                 <!-- Menu Items -->
                 <div class="menu-items">
-                    <a href="/Doacao/Doar" class="menu-item active">
+                    <a href="/Doacoe/doador/doar" class="menu-item active">
                         DOAR
                     </a>
                     <a href="/Doacao/BuscarInstituicoes" class="menu-item">
@@ -379,7 +401,7 @@
                         MINHAS DOAÇÕES
                     </a>
                 </div>
-                
+
                 <!-- User Menu -->
                 <div class="user-menu">
                     <div class="user-icon">
@@ -404,12 +426,52 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Elemento circular azul decorativo -->
             <div class="decorative-circle"></div>
         </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Validação do form
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        function setFileName(inputId, labelId) {
+            const input = document.getElementById(inputId);
+            const label = document.getElementById(labelId);
+            if (!input || !label) return;
+
+            input.addEventListener('change', function (e) {
+                const file = e.target.files && e.target.files[0];
+                if (file) {
+                    label.textContent = `Selecionado: ${file.name}`;
+                    label.style.display = 'block';
+                } else {
+                    label.textContent = '';
+                    label.style.display = 'none';
+                }
+            });
+        }
+
+        setFileName('fotoDoacaoFile', 'fotoDoacaoName');
+        setFileName('receitaDoacaoFile', 'receitaDoacaoName');
+    </script>
+
     <!-- Footer -->
     <div class="footer">
         <div class="footer-gradient"></div>
@@ -426,38 +488,5 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Validação do formulário
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                var forms = document.getElementsByClassName('needs-validation');
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-        
-        // Preview da imagem
-        document.getElementById('imageFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const uploadArea = document.querySelector('.file-upload-area');
-                uploadArea.innerHTML = `
-                    <div class="file-upload-icon">
-                        <i class="bi bi-check-circle-fill text-success"></i>
-                    </div>
-                    <div class="file-upload-text">Imagem selecionada: ${file.name}</div>
-                `;
-            }
-        });
-    </script>
 </body>
 </html>

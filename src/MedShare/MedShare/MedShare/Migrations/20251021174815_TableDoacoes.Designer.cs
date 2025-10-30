@@ -120,11 +120,11 @@ namespace MedShare.Migrations
 
             modelBuilder.Entity("MedShare.Models.Usuario", b =>
                 {
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("Doador")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Doador"));
 
                     b.Property<int>("Perfil")
                         .HasColumnType("int");
@@ -137,7 +137,7 @@ namespace MedShare.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UsuarioId");
+                    b.HasKey("Doador");
 
                     b.ToTable("Usuarios");
                 });

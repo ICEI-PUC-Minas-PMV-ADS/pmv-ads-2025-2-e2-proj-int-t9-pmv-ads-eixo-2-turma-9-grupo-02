@@ -3,19 +3,19 @@
 <h2 class="mb-4">Detalhes da Doação</h2>
 
 <div class="card shadow-sm p-4">
-    <h4 class="text-primary mb-3">@Model.NomeMedicamento</h4>
+    <h4 class="text-primary mb-3">@Model.NomeDoacao</h4>
 
     <div class="mb-3">
-        <strong>Quantidade:</strong> @Model.Quantidade
+        <strong>QuantidadeDoacao:</strong> @Model.QuantidadeDoacao
     </div>
     <div class="mb-3">
-        <strong>Validade:</strong> @Model.Validade.ToShortDateString()
+        <strong>ValidadeDoacao:</strong> @Model.ValidadeDoacao.ToShortDateString()
     </div>
     <div class="mb-3">
         <strong>Status:</strong> @Model.Status
     </div>
     <div class="mb-3">
-        <strong>Imagem:</strong> @Model.ImagemPath
+        <strong>Imagem:</strong> @Model.CaminhoFoto
     </div>
 
     <hr />
@@ -26,13 +26,15 @@
     <div class="mb-3">
         <strong>Email:</strong> @Model.Doador?.DoadorEmail
     </div>
-
-    <form asp-action="SolicitarDoacao" asp-controller="Instituicao" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
+    <form asp-action="SolicitarDoacao"
+          asp-controller="Instituicao"
+          asp-route-id="@Model.Id"
+          method="post">
         <button type="submit" class="btn btn-success mt-3">
             <i class="bi bi-hand-index-thumb"></i> Solicitar Medicamento
         </button>
     </form>
+
 
     <a asp-action="Rede" class="btn btn-secondary mt-3">Voltar</a>
 </div>

@@ -1,10 +1,13 @@
 ﻿using MedShare.Models;
 using MedShare.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedShare.Controllers
 {
+    [Authorize]
+    [Route("Instituicao")]
     public class InstituicaoController : Controller
     {
         private readonly AppDbContext _context;
@@ -13,16 +16,13 @@ namespace MedShare.Controllers
         {
             _context = context;
         }
+
+        [HttpGet("home")]
         public IActionResult HomePagePJ()
         {
-            var totalMedicamentosRecebidos = _context.Doacoes
-                .Count(d => d.Status == "Aprovado");
-
-            var doacoesAguardandoAprovacao = _context.Doacoes
-                .Count(d => d.Status == "Aguardando Instituição Aprovar");
-
-            var totalSolicitacoesPendentes = _context.Doacoes
-                .Count(d => d.Status == "Aguardando Doador Aprovar");
+            var totalMedicamentosRecebidos = _context.Doacoes.Count(d => d.Status == "Aprovado");
+            var doacoesAguardandoAprovacao = _context.Doacoes.Count(d => d.Status == "Aguardando Instituição Aprovar");
+            var totalSolicitacoesPendentes = _context.Doacoes.Count(d => d.Status == "Aguardando Doador Aprovar");
 
             var viewModel = new HomePagePJViewModel
             {
@@ -34,7 +34,7 @@ namespace MedShare.Controllers
             return View(viewModel);
         }
 
-        // GET: Rede de Doações
+        [HttpGet("rede")]
         public IActionResult Rede()
         {
             var doacoes = _context.Doacoes
@@ -42,10 +42,12 @@ namespace MedShare.Controllers
                 .Where(d => d.Status == "Disponível")
                 .OrderByDescending(d => d.DataCriacao)
                 .ToList();
+
             Console.WriteLine(doacoes.Count);
             return View(doacoes);
         }
-        // GET: Detalhes da Doação
+
+        [HttpGet("detalhes/{id}")]
         public IActionResult DetalhesDoacao(int id)
         {
             var doacao = _context.Doacoes
@@ -58,8 +60,7 @@ namespace MedShare.Controllers
             return View(doacao);
         }
 
-        // 🔹Detalhar doação
-        [HttpPost]
+        [HttpPost("solicitar/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SolicitarDoacao(int id)
         {
@@ -68,27 +69,22 @@ namespace MedShare.Controllers
                 return NotFound();
 
             doacao.Status = "Aguardando Doador Aprovar";
-
             await _context.SaveChangesAsync();
+
             TempData["Mensagem"] = "Solicitação enviada! Aguarde a resposta do doador.";
-
-
             return RedirectToAction("Rede");
         }
 
-        // Minhas Doações PJ
+        [HttpGet("minhas-doacoes-pj")]
         public IActionResult MinhasDoacoesPJ()
         {
-            // Busca todas as doações que já foram solicitadas ou recebidas pela instituição
             var doacoes = _context.Doacoes
                 .Include(d => d.Doador)
                 .Where(d => d.Status != "Disponível")
-                //.Where(d => d.InstituicaoId == instituicaoLogadaId)
                 .OrderByDescending(d => d.DataCriacao)
                 .ToList();
 
             return View(doacoes);
         }
     }
-
 }

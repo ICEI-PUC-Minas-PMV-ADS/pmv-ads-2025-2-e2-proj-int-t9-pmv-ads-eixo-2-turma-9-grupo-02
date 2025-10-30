@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MedShare.Models.Data;
 
-namespace MedShare.Models {
-    public class AppDbContext : DbContext 
+namespace MedShare.Models
+{
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -10,5 +12,11 @@ namespace MedShare.Models {
         public DbSet<Instituicao> Instituicoes { get; set; }
         public DbSet<Doacao> Doacoes { get; set; }
         public DbSet<Notificacao> Notificacoes { get; set; }
+        protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            builder.Properties<DateOnly>()
+                .HaveConversion<DateOnlyConverter>()
+                .HaveColumnType("TEXT");
+        }
     }
 }

@@ -39,17 +39,17 @@ namespace MedShare.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ImagemPath")
+                    b.Property<string>("CaminhoFoto")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("NomeMedicamento")
+                    b.Property<string>("NomeDoacao")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Quantidade")
+                    b.Property<int>("QuantidadeDoacao")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Validade")
+                    b.Property<DateTime>("ValidadeDoacao")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -119,7 +119,7 @@ namespace MedShare.Migrations
 
             modelBuilder.Entity("MedShare.Models.Usuario", b =>
                 {
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("Doador")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -134,7 +134,7 @@ namespace MedShare.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("UsuarioId");
+                    b.HasKey("Doador");
 
                     b.ToTable("Usuarios");
                 });

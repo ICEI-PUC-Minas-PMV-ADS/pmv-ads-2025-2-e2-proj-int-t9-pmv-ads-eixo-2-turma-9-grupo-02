@@ -31,7 +31,7 @@ namespace MedShare.Controllers
             var totalDoacoes = await _context.Doacoes.CountAsync();
             var totalDoadores = await _context.Doadores.CountAsync();
             var totalInstituicoes = await _context.Instituicoes.CountAsync();
-            var doacoesAtivas = await _context.Doacoes.Where(d => d.Validade > DateTime.Now).CountAsync();
+            var doacoesAtivas = await _context.Doacoes.Where(d => d.ValidadeDoacao > DateOnly.FromDateTime(DateTime.Now)).CountAsync();
 
             ViewBag.TotalUsuarios = totalUsuarios;
             ViewBag.TotalDoacoes = totalDoacoes;
