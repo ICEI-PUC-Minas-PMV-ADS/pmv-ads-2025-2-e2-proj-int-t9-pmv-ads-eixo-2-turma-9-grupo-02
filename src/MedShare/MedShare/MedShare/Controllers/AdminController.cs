@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedShare.Controllers
 {
+    // Controller responsável pelas ações administrativas do sistema.
     [Authorize]
     public class AdminController : Controller
     {

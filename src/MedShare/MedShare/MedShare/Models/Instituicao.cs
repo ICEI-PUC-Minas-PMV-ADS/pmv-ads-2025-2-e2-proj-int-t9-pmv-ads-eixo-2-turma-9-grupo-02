@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedShare.Models {
 
+    // Modelo que representa uma instituição no sistema.
+
     [Table("Instituicoes")]
     public class Instituicao {
 

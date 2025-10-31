@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedShare.Controllers
 {
+    // Controller responsável pelo cadastro e edição de doadores e instituições.
     [Authorize]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class CadastroController : Controller

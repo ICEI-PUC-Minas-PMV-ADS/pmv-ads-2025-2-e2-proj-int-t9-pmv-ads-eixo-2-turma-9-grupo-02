@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedShare.Controllers
 {
+    // Controller responsável pela autenticação e login dos usuários.
     public class AuthController : Controller
     {
         private readonly AppDbContext _context;

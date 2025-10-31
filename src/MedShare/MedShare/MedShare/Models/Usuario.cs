@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedShare.Models {
 
+    // Modelo que representa um usuário e seus perfis de acesso.
+
     [Table("Usuarios")]
     public class Usuario 
     {

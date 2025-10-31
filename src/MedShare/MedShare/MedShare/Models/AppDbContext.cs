@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// DbContext principal para acesso ao banco de dados.
+
+using Microsoft.EntityFrameworkCore;
 
 namespace MedShare.Models {
     public class AppDbContext : DbContext 

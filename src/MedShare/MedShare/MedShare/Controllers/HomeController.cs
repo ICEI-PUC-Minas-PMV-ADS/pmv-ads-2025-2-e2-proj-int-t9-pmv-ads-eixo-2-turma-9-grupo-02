@@ -45,22 +45,6 @@ namespace MedShare.Controllers
             return View();
         }
 
-        /*
-         * [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Doar(Doacao doacao)
-        {
-            if (ModelState.IsValid)
-            {
-                // TODO: Salvar no banco de dados
-                // Por enquanto, apenas redireciona para a página inicial
-                TempData["Sucesso"] = "Doação cadastrada com sucesso!";
-                return RedirectToAction("Index");
-            }
-            return View(doacao);
-        }
-         */
-
         [AllowAnonymous]
         public IActionResult HomePageDoador()
         {
@@ -88,3 +72,5 @@ namespace MedShare.Controllers
         }
     }
 }
+
+// Controller responsável pelas páginas principais e navegação do sistema.

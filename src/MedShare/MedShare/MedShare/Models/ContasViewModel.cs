@@ -1,3 +1,5 @@
+// ViewModel para agrupar listas de contas do sistema.
+
 using MedShare.Models;
 using System.Collections.Generic;
 

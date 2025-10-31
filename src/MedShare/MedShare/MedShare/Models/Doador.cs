@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedShare.Models {
 
+    // Modelo que representa um doador no sistema.
+
     [Table("Doadores")]
     public class Doador {
 
