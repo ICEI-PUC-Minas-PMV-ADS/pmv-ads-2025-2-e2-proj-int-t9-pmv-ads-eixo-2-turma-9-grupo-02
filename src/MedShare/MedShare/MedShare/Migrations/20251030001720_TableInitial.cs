@@ -1,0 +1,75 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MedShare.Migrations
+{
+    /// <inheritdoc />
+    public partial class TableInitial : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Doadores",
+                columns: table => new
+                {
+                    DoadorId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DoadorNome = table.Column<string>(type: "TEXT", nullable: false),
+                    DoadorEmail = table.Column<string>(type: "TEXT", nullable: false),
+                    DoadorCPF = table.Column<string>(type: "TEXT", nullable: false),
+                    DoadorSenha = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Doadores", x => x.DoadorId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Instituicoes",
+                columns: table => new
+                {
+                    InstituicaoId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    InstituicaoNome = table.Column<string>(type: "TEXT", nullable: false),
+                    InstituicaoEmail = table.Column<string>(type: "TEXT", nullable: false),
+                    InstituicaoCNPJ = table.Column<string>(type: "TEXT", nullable: false),
+                    InstituicaoEndereco = table.Column<string>(type: "TEXT", nullable: false),
+                    InstituicaoSenha = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Instituicoes", x => x.InstituicaoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UsuarioEmail = table.Column<string>(type: "TEXT", nullable: false),
+                    UsuarioSenha = table.Column<string>(type: "TEXT", nullable: false),
+                    Perfil = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
+                });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Doadores");
+
+            migrationBuilder.DropTable(
+                name: "Instituicoes");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
+        }
+    }
+}

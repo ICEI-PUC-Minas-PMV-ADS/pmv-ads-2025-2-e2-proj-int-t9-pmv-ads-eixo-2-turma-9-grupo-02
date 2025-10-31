@@ -1,0 +1,292 @@
+﻿@model MedShare.Models.ContasViewModel
+
+@{
+    ViewData["Title"] = "Gerenciar Usuários - MedShare";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            padding: 40px 20px;
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .app-title {
+            color: #0d6efd;
+            font-weight: 700;
+            font-size: 2rem;
+            margin: 0;
+        }
+        
+        .page-title {
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #0d6efd;
+            padding-bottom: 10px;
+        }
+        
+        .stats-row {
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(45deg, #0d6efd, #6610f2);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .table-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .table-title {
+            color: #495057;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .table-title i {
+            margin-right: 10px;
+            color: #0d6efd;
+        }
+        
+        .table th {
+            background: #f8f9fa;
+            border: none;
+            font-weight: 600;
+            color: #495057;
+            padding: 15px;
+        }
+        
+        .table td {
+            padding: 15px;
+            vertical-align: middle;
+            border-color: #e9ecef;
+        }
+        
+        .table tbody tr:hover {
+            background: #f8f9ff;
+        }
+        
+        .btn-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            border: 2px solid #0d6efd;
+            color: #0d6efd;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            background: #0d6efd;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .footer-gradient {
+            height: 4px;
+            background: linear-gradient(90deg, #ff9800 0%, #ff5722 50%, #e91e63 100%);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão Voltar -->
+    <a href="/Admin/Dashboard" class="btn-back" title="Voltar ao Dashboard">
+        <i class="bi bi-arrow-left fs-5"></i>
+    </a>
+
+    <div class="container-fluid main-container">
+        <div class="admin-card">
+            <!-- Header -->
+            <div class="logo-section">
+                <img src="~/images/logo.png" alt="MedShare Logo" class="logo-image" />
+                <h1 class="app-title">MedShare Admin</h1>
+                <p class="text-muted">Painel de Gerenciamento de Usuários</p>
+            </div>
+            
+            <!-- Estatísticas -->
+            <div class="row stats-row">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <span class="stat-number">@Model.Usuarios.Count()</span>
+                        <span class="stat-label">Administradores</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <span class="stat-number">@Model.Doadores.Count()</span>
+                        <span class="stat-label">Doadores</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <span class="stat-number">@Model.Instituicoes.Count()</span>
+                        <span class="stat-label">Instituições</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela de Administradores -->
+        <div class="table-card">
+            <h3 class="table-title">
+                <i class="bi bi-shield-check"></i>
+                Administradores
+            </h3>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="bi bi-envelope me-2"></i>Email</th>
+                            <th><i class="bi bi-person-badge me-2"></i>Perfil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var usuario in Model.Usuarios)
+                        {
+                            <tr>
+                                <td>@usuario.UsuarioEmail</td>
+                                <td><span class="badge bg-danger">@usuario.Perfil</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tabela de Doadores -->
+        <div class="table-card">
+            <h3 class="table-title">
+                <i class="bi bi-heart"></i>
+                Doadores
+            </h3>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="bi bi-person me-2"></i>Nome</th>
+                            <th><i class="bi bi-envelope me-2"></i>Email</th>
+                            <th><i class="bi bi-card-text me-2"></i>CPF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var doador in Model.Doadores)
+                        {
+                            <tr>
+                                <td>@doador.DoadorNome</td>
+                                <td>@doador.DoadorEmail</td>
+                                <td>@doador.DoadorCPF</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tabela de Instituições -->
+        <div class="table-card">
+            <h3 class="table-title">
+                <i class="bi bi-building"></i>
+                Instituições
+            </h3>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="bi bi-building me-2"></i>Nome</th>
+                            <th><i class="bi bi-envelope me-2"></i>Email</th>
+                            <th><i class="bi bi-card-text me-2"></i>CNPJ</th>
+                            <th><i class="bi bi-geo-alt me-2"></i>Endereço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var inst in Model.Instituicoes)
+                        {
+                            <tr>
+                                <td>@inst.InstituicaoNome</td>
+                                <td>@inst.InstituicaoEmail</td>
+                                <td>@inst.InstituicaoCNPJ</td>
+                                <td>@inst.InstituicaoEndereco</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-gradient"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
