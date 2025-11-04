@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MedShare.Models.Doacao>
+
+@{
+    ViewData["Title"] = "Doações";
+}
+
+<h1>Minhas Doações</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Doar</a>
+</p>
+
+<table class="table table-striped align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.NomeDoacao)</th>
+            <th>@Html.DisplayNameFor(model => model.ValidadeDoacao)</th>
+            <th>@Html.DisplayNameFor(model => model.QuantidadeDoacao)</th>
+            <th>Foto do Medicamento</th>
+            <th>Receita</th>
+            <th>Instituição</th>
+            <th>Endereço</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NomeDoacao</td>
+                <td>
+                    @(item.ValidadeDoacao.HasValue
+                                    ? item.ValidadeDoacao.Value.ToString("dd/MM/yyyy")
+                                    : "-")
+            </td>
+                <td>@item.QuantidadeDoacao</td>
+
+                <!-- Mostra a foto -->
+                <td>
+                    @if (!string.IsNullOrEmpty(item.CaminhoFoto))
+                    {
+                        <img src="@item.CaminhoFoto" alt="Foto do Medicamento"
+                             style="max-width:100px; border-radius:8px; box-shadow:0 0 4px rgba(0,0,0,0.2);" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sem imagem</span>
+                    }
+                </td>
+
+                <!-- Mostra a receita (imagem ou PDF) -->
+                <td>
+                    @if (!string.IsNullOrEmpty(item.CaminhoReceita))
+                    {
+                        var extensao = System.IO.Path.GetExtension(item.CaminhoReceita).ToLower();
+
+                        if (extensao == ".pdf")
+                        {
+                            <!-- Link de visualização de PDF -->
+                            <a href="@item.CaminhoReceita" target="_blank" class="btn btn-outline-primary btn-sm">
+                                Visualizar PDF
+                            </a>
+                        }
+                        else
+                        {
+                            <!-- Prévia da imagem -->
+                            <a href="@item.CaminhoReceita" target="_blank" title="Ampliar imagem">
+                                <img src="@item.CaminhoReceita" alt="Receita Médica"
+                                     style="max-width:100px; border-radius:8px; box-shadow:0 0 4px rgba(0,0,0,0.2);" />
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sem arquivo</span>
+                    }
+                </td>
+
+                <!-- Dados da instituição -->
+                <td>@item.Instituicao?.InstituicaoNome</td>
+                <td>@item.Instituicao?.InstituicaoEndereco</td>
+                <td>@item.Status</td>
+
+                <!-- Botões de ação -->
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">Ver detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Cancelar doação</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

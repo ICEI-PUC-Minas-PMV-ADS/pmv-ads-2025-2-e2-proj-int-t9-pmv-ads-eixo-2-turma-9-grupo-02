@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MedShare.styles.css" asp-append-version="true" />
+    <!-- Meta tags para impedir cache -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 </head>
 <body>
     <header>
@@ -55,7 +59,7 @@
                                     <li><a class="dropdown-item" asp-controller="Cadastro" asp-action="EditarInstituicao">Editar Cadastro</a></li>
                                 }
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" asp-controller="Usuarios" asp-action="Logout">Sair</a></li>
+                                <li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Sair</a></li>
                             </ul>
                         </li>
                         }

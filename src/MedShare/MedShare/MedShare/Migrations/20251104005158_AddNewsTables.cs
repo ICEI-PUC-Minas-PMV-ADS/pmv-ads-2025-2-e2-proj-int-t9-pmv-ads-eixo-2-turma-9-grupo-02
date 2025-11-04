@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace MedShare.Migrations
 {
     /// <inheritdoc />
-    public partial class TableInitial : Migration
+    public partial class AddNewsTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,19 +58,52 @@ namespace MedShare.Migrations
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Doacoes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NomeDoacao = table.Column<string>(type: "TEXT", nullable: false),
+                    ValidadeDoacao = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    QuantidadeDoacao = table.Column<int>(type: "INTEGER", nullable: false),
+                    CaminhoFoto = table.Column<string>(type: "TEXT", nullable: true),
+                    CaminhoReceita = table.Column<string>(type: "TEXT", nullable: true),
+                    InstituicaoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Doacoes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Doacoes_Instituicoes_InstituicaoId",
+                        column: x => x.InstituicaoId,
+                        principalTable: "Instituicoes",
+                        principalColumn: "InstituicaoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Doacoes_InstituicaoId",
+                table: "Doacoes",
+                column: "InstituicaoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Doacoes");
+
+            migrationBuilder.DropTable(
                 name: "Doadores");
 
             migrationBuilder.DropTable(
-                name: "Instituicoes");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Instituicoes");
         }
     }
 }
