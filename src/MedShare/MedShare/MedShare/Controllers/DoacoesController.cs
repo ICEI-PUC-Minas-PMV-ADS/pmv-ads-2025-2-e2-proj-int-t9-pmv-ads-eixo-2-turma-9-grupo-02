@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MedShare.Models;
+using System.Security.Claims;
 
 namespace MedShare.Controllers
 {
@@ -20,7 +21,18 @@ namespace MedShare.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var dados = await _context.Doacoes.Include(d => d.Instituicao).ToListAsync();
+            // Pega o ID do doador logado
+            var doadorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!int.TryParse(doadorId, out int id))
+                return Unauthorized();
+
+            // Filtra as doações apenas do doador logado
+            var dados = await _context.Doacoes
+                .Include(d => d.Instituicao)
+                .Where(d => d.DoadorId == id)
+                .ToListAsync();
+
             return View(dados);
         }
 
@@ -63,6 +75,12 @@ namespace MedShare.Controllers
                         await doacao.ReceitaDoacao.CopyToAsync(stream);
                     }
                     doacao.CaminhoReceita = "/images/" + doacao.ReceitaDoacao.FileName;
+                }
+
+                var doadorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (int.TryParse(doadorId, out int id))
+                {
+                    doacao.DoadorId = id;
                 }
 
                 _context.Add(doacao);

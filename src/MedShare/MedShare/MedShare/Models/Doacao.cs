@@ -47,7 +47,14 @@ namespace MedShare.Models
         public Instituicao Instituicao { get; set; }
 
         [Display(Name = "Status")]
-        public StatusDoacao Status { get; set; } = StatusDoacao.PendenteAceite;
+        public StatusDoacao Status { get; set; } = StatusDoacao.Pendente;
 
+        // Relacionamento da doação com o doador
+
+        [Display(Name = "Doador")]
+        public int? DoadorId { get; set; }
+
+        [ForeignKey("DoadorId")]
+        public Doador? Doador { get; set; }
     }
 }

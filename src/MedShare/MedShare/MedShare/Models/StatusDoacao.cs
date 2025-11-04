@@ -2,7 +2,9 @@ namespace MedShare.Models
 {
     public enum StatusDoacao
     {
-        PendenteAceite = 0,
-        Aceito = 1
+        Pendente = 0,
+        Aprovado = 1,
+        Rejeitado = 2,
+        Finalizado = 3
     }
 }
