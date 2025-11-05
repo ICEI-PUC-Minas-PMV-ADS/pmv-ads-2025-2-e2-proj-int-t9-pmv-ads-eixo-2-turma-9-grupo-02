@@ -1,0 +1,145 @@
+﻿@model MedShare.Models.Doacao
+
+@{
+    ViewData["Title"] = "Cadastrar Doação";
+}
+
+<h1>Cadastrar Doação</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- enctype necessário para upload -->
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="NomeDoacao" class="control-label"></label>
+                <input asp-for="NomeDoacao" class="form-control" />
+                <span asp-validation-for="NomeDoacao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ValidadeDoacao" class="control-label"></label>
+                <input asp-for="ValidadeDoacao" type="date" class="form-control" />
+                <span asp-validation-for="ValidadeDoacao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="QuantidadeDoacao" class="control-label"></label>
+                <input asp-for="QuantidadeDoacao" class="form-control" />
+                <span asp-validation-for="QuantidadeDoacao" class="text-danger"></span>
+            </div>
+
+            <!-- Upload da Foto -->
+            <div class="form-group">
+                <label asp-for="FotoDoacao" class="control-label"></label>
+                <input asp-for="FotoDoacao" type="file" class="form-control" accept="image/*" onchange="previewImage(event, 'previewFoto')" />
+                <span asp-validation-for="FotoDoacao" class="text-danger"></span>
+                <img id="previewFoto" src="#" alt="Prévia da imagem" style="display:none; max-width:200px; margin-top:10px;" />
+            </div>
+
+            <!-- Upload da Receita (pode ser imagem ou PDF) -->
+            <div class="form-group">
+                <label asp-for="ReceitaDoacao" class="control-label"></label>
+                <input asp-for="ReceitaDoacao" type="file" class="form-control" accept="image/*,.pdf" onchange="previewFile(event, 'previewReceita', 'linkReceita')" />
+                <span asp-validation-for="ReceitaDoacao" class="text-danger"></span>
+
+                <!-- Prévia da imagem -->
+                <img id="previewReceita" src="#" alt="Prévia da receita" style="display:none; max-width:200px; margin-top:10px;" />
+
+                <!-- Link para PDF -->
+                <a id="linkReceita" href="#" target="_blank" class="btn btn-outline-primary btn-sm" style="display:none; margin-top:10px;">Visualizar PDF</a>
+            </div>
+
+            <div class="form-group">
+                <label for="InstituicaoId">Instituição</label>
+                <select asp-for="InstituicaoId" class="form-control">
+                    <option value="">Selecione uma instituição</option>
+                    @foreach (var inst in ViewBag.Instituicoes)
+                    {
+                        <option value="@inst.InstituicaoId">@inst.InstituicaoNome - @inst.InstituicaoEndereco</option>
+                    }
+                </select>
+                <span asp-validation-for="InstituicaoId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input class="form-control" value="@Model.Status.ToString()" readonly disabled />
+            </div>
+
+            <div class="form-group mt-3">
+                <a asp-action="Index" class="btn btn-outline-primary"> Voltar</a>
+                <input type="submit" value="Cadastrar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Pré-visualização de imagem (foto do medicamento)
+        function previewImage(event, previewId) {
+            const input = event.target;
+            const preview = document.getElementById(previewId);
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Pré-visualização para imagem OU PDF (receita)
+        function previewFile(event, imgId, linkId) {
+            const file = event.target.files[0];
+            const imgPreview = document.getElementById(imgId);
+            const linkPreview = document.getElementById(linkId);
+
+            if (!file) {
+                imgPreview.style.display = 'none';
+                linkPreview.style.display = 'none';
+                return;
+            }
+
+            const fileType = file.type;
+
+            if (fileType === "application/pdf") {
+                // Esconde imagem (jpg) e mostra link (pdf)
+                imgPreview.style.display = 'none';
+                linkPreview.style.display = 'block';
+
+                const url = URL.createObjectURL(file);
+                linkPreview.href = url;
+            } else if (fileType.startsWith("image/")) {
+                // Esconde link (pdf) e mostra imagem (jpg)
+                linkPreview.style.display = 'none';
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                imgPreview.style.display = 'none';
+                linkPreview.style.display = 'none';
+                alert("Tipo de arquivo não suportado. Envie uma imagem ou PDF.");
+            }
+        }
+    </script>
+}
+
+
+

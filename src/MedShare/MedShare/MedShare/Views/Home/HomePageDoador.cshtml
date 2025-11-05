@@ -1,0 +1,523 @@
+@* Página inicial do doador, exibe estatísticas e opções de navegação. *@
+@{
+    ViewData["Title"] = "MedShare - Home Doador";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-container {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .content-area {
+            padding: 2rem 3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 70%;
+        }
+        
+        .logo-section {
+            margin-bottom: 3rem;
+        }
+        
+        .logo-section img {
+            max-width: 350px;
+            height: auto;
+        }
+        
+        .tagline {
+            color: #6c757d;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .stats-container {
+            display: flex;
+            gap: 2rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            min-width: 200px;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .stat-card.primary {
+            background: linear-gradient(135deg, #7CB342 0%, #689F38 100%);
+            color: white;
+        }
+        
+        .stat-card.blue {
+            background: linear-gradient(135deg, #42A5F5 0%, #1976D2 100%);
+            color: white;
+        }
+        
+        .stat-card.yellow {
+            background: linear-gradient(135deg, #FFEE58 0%, #FBC02D 100%);
+            color: #333;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .circular-menu {
+            position: fixed;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        
+        .menu-circle {
+            width: 350px;
+            height: 350px;
+            border: 3px solid #42A5F5;
+            border-radius: 50%;
+            position: relative;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .menu-item {
+            position: absolute;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+        
+        .menu-item:hover {
+            background: #42A5F5;
+            color: white;
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        
+        .menu-item.doar {
+            top: -15px;
+            right: 80px;
+        }
+        
+        .menu-item.buscar {
+            top: 70px;
+            right: -30px;
+        }
+        
+        .menu-item.doacoes {
+            bottom: 70px;
+            right: -30px;
+        }
+        
+        .profile-icon {
+            position: absolute;
+            bottom: -20px;
+            right: 80px;
+            width: 50px;
+            height: 50px;
+            background: #666;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-icon:hover {
+            background: #42A5F5;
+        }
+        
+        .footer-info {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            color: #666;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .about-link {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .about-link:hover {
+            color: #42A5F5;
+        }
+        
+        .footer-gradient {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff9800 0%, #ff5722 50%, #e91e63 100%);
+            z-index: 20;
+        }
+        
+        @@media (max-width: 1200px) {
+            .circular-menu {
+                right: 1rem;
+            }
+            
+            .menu-circle {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .content-area {
+                max-width: 60%;
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .content-area {
+                padding: 1rem;
+                max-width: 100%;
+            }
+            
+            .circular-menu {
+                display: none;
+            }
+            
+            .stats-container {
+                gap: 1rem;
+                flex-direction: column;
+            }
+            
+            .stat-card {
+                min-width: 100%;
+                padding: 1.5rem 1rem;
+            }
+            
+            .stat-number {
+                font-size: 3rem;
+            }
+            
+            .logo-section img {
+                max-width: 280px;
+            }
+            
+            .footer-info {
+                position: static;
+                margin-top: 3rem;
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .about-link {
+                position: static;
+                display: block;
+                text-align: center;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Main Content Area -->
+        <div class="content-area">
+            <!-- Logo Section -->
+            <div class="logo-section text-start">
+                <img src="~/images/logo.png" alt="MedShare Logo" />
+                <p class="tagline">O compartilhamento é indicado em casos de escassez de sobras</p>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="stats-container">
+                <!-- Card Verde - Total de Medicamentos -->
+                <div class="stat-card primary">
+                    <h1 class="stat-number">13</h1>
+                    <div class="stat-label">
+                        TOTAL<br>
+                        DE MEDICAMENTOS DOADOS
+                    </div>
+                </div>
+
+                <!-- Card Azul - Medicamentos Disponíveis -->
+                <div class="stat-card blue">
+                    <h1 class="stat-number">3</h1>
+                    <div class="stat-label">
+                        MEDICAMENTOS DISPONÍVEIS<br>
+                        PARA DOAÇÃO
+                    </div>
+                </div>
+
+                <!-- Card Amarelo - Medicamentos Pendentes -->
+                <div class="stat-card yellow">
+                    <h1 class="stat-number">1</h1>
+                    <div class="stat-label">
+                        MEDICAMENTOS PENDENTES
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (visível apenas no mobile) -->
+            <!--
+                <div class="d-md-none">
+                <div class="row g-2 mt-4">
+                    <div class="col-12">
+                        <a href="/Doacao/Doar" class="btn btn-primary w-100 py-3">
+                            <i class="bi bi-plus-circle me-2"></i>DOAR
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a href="/Busca/Instituicoes" class="btn btn-info w-100 py-3 text-white">
+                            <i class="bi bi-search me-2"></i>BUSCAR INSTITUIÇÕES
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a href="/Doacao/MinhasDoacoes" class="btn btn-warning w-100 py-3">
+                            <i class="bi bi-clipboard-data me-2"></i>MINHAS DOAÇÕES
+                        </a>
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+
+        <!-- Circular Menu (desktop) -->
+        <div class="circular-menu d-none d-md-block">
+            <div class="menu-circle">
+                <a href="/Busca/Instituicoes" class="menu-item buscar">BUSCAR INSTITUIÇÕES</a>
+                <a href="/Doacoes/Index" class="menu-item doacoes">MINHAS DOAÇÕES</a>
+                <div class="profile-icon" onclick="toggleProfileMenu()">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Information -->
+        <div class="footer-info d-none d-md-block">
+            <i class="bi bi-geo-alt-fill text-primary"></i> Av. Dom José Gaspar, 500 Coração Eucarístico - Belo Horizonte - MG 30535-901, Brasil<br>
+            <i class="bi bi-telephone-fill text-primary"></i> Telefone: (31) 3319-4444<br>
+            <i class="bi bi-envelope-fill text-primary"></i> E-mail: contato@medshare.com
+        </div>
+
+        <!-- About Link -->
+        <a href="#" class="about-link d-none d-md-block">
+            <i class="bi bi-info-circle"></i> SOBRE NÓS
+        </a>
+
+        <!-- Mobile Footer -->
+        <div class="d-md-none text-center mt-4 p-3">
+            <div class="small text-muted lh-sm">
+                <div><i class="bi bi-geo-alt-fill text-primary me-1"></i>Av. Dom José Gaspar, 500 Coração Eucarístico – Belo Horizonte – MG 30535-901</div>
+                <div class="mt-2"><i class="bi bi-telephone-fill text-primary me-1"></i>(31) 3319-4444</div>
+                <div class="mt-2"><i class="bi bi-envelope-fill text-primary me-1"></i>contato@medshare.com</div>
+                <div class="mt-3">
+                    <a href="#" class="text-muted text-decoration-none">
+                        <i class="bi bi-info-circle"></i> SOBRE NÓS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer gradient -->
+    <div class="footer-gradient"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animação dos números nos cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const numbers = document.querySelectorAll('.stat-number');
+            
+            numbers.forEach(number => {
+                const finalValue = parseInt(number.textContent);
+                let currentValue = 0;
+                const increment = Math.ceil(finalValue / 20);
+                
+                const counter = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        number.textContent = finalValue;
+                        clearInterval(counter);
+                    } else {
+                        number.textContent = currentValue;
+                    }
+                }, 50);
+            });
+        });
+
+        // Toggle profile menu
+        function toggleProfileMenu() {
+            // Verifica autenticação e perfil via backend (Razor)
+            var menuHtml = `<div id="profileDropdownMenu" class="dropdown-menu show" style="position: absolute; left: -120px; bottom: 60px; min-width: 180px;">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Doador"))
+                    {
+                        <a class="dropdown-item" href='/Cadastro/EditarDoador'>Editar Cadastro</a>
+                    }
+                    else if (User.IsInRole("Instituicao"))
+                    {
+                        <a class="dropdown-item" href='/Cadastro/EditarInstituicao'>Editar Cadastro</a>
+                    }
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href='/Auth/Logout'>Sair</a>
+                }
+                else
+                {
+                    <a class="dropdown-item" href='/Auth/Login'>Entrar</a>
+                }
+            </div>`;
+            // Remove menu anterior se existir
+            var oldMenu = document.getElementById('profileDropdownMenu');
+            if (oldMenu) oldMenu.remove();
+            // Adiciona menu ao profile-icon
+            var icon = document.querySelector('.profile-icon');
+            icon.insertAdjacentHTML('afterend', menuHtml);
+            // Fecha ao clicar fora
+            document.addEventListener('click', function handler(e) {
+                if (!icon.contains(e.target)) {
+                    var menu = document.getElementById('profileDropdownMenu');
+                    if (menu) menu.remove();
+                    document.removeEventListener('click', handler);
+                }
+            });
+        }
+
+        // Intercepta o botão voltar do navegador para popup de logout
+        (function() {
+            let isPushingState = false;
+            function pushStateIfNeeded() {
+                if (!isPushingState) {
+                    isPushingState = true;
+                    window.history.pushState('stay', '', window.location.href);
+                    setTimeout(() => { isPushingState = false; }, 100);
+                }
+            }
+            if (window.history && window.history.pushState) {
+                pushStateIfNeeded();
+                window.addEventListener('popstate', function (event) {
+                    // Só mostra o popup se estiver autenticado
+                    if (@(User.Identity.IsAuthenticated.ToString().ToLower())) {
+                        showLogoutConfirm();
+                    }
+                });
+            }
+            // Garante que sempre que navegar, o estado seja atualizado
+            window.addEventListener('load', pushStateIfNeeded);
+        })();
+
+        function showLogoutConfirm() {
+            // Cria o popup de confirmação
+            let modal = document.getElementById('logoutConfirmModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'logoutConfirmModal';
+                modal.innerHTML = `
+                <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;display:flex;align-items:center;justify-content:center;">
+                    <div style="background:#fff;padding:32px 24px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);min-width:320px;text-align:center;">
+                        <h5 class='mb-3'>Deseja realmente sair do sistema?</h5>
+                        <div class='d-flex justify-content-center gap-3'>
+                            <button id='logoutYes' class='btn btn-danger'>Sim, sair</button>
+                            <button id='logoutNo' class='btn btn-secondary'>Não</button>
+                        </div>
+                    </div>
+                </div>`;
+                document.body.appendChild(modal);
+                document.getElementById('logoutYes').onclick = function() {
+                    window.location.href = '/Auth/Logout';
+                };
+                document.getElementById('logoutNo').onclick = function() {
+                    modal.remove();
+                    // Reempilha o estado para evitar navegação
+                    window.history.pushState('stay', '', window.location.href);
+                };
+            }
+        }
+
+        // Bloqueia o botão voltar do navegador após login e exibe aviso de confirmação
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            showLogoutConfirm();
+        };
+        function showLogoutConfirm() {
+            let modal = document.getElementById('logoutConfirmModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'logoutConfirmModal';
+                modal.innerHTML = `
+                <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;display:flex;align-items:center;justify-content:center;">
+                    <div style="background:#fff;padding:32px 24px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);min-width:320px;text-align:center;">
+                        <h5 class='mb-3'>Deseja realmente sair do sistema?</h5>
+                        <div class='d-flex justify-content-center gap-3'>
+                            <button id='logoutYes' class='btn btn-danger'>Sim, sair</button>
+                            <button id='logoutNo' class='btn btn-secondary'>Não</button>
+                        </div>
+                    </div>
+                </div>`;
+                document.body.appendChild(modal);
+                document.getElementById('logoutYes').onclick = function() {
+                    window.location.href = '/Auth/Logout';
+                };
+                document.getElementById('logoutNo').onclick = function() {
+                    modal.remove();
+                    history.pushState(null, null, location.href);
+                };
+            }
+        }
+    </script>
+</body>
+</html>

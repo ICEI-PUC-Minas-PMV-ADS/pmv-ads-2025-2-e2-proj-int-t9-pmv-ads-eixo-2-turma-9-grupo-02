@@ -1,0 +1,474 @@
+@* Página do painel administrativo do sistema. Será desenvolvido futuramente *@
+@{
+    ViewData["Title"] = "Painel Administrativo - MedShare";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        .sidebar {
+            background: linear-gradient(180deg, #198754 0%, #146c43 100%);
+            min-height: 100vh;
+        }
+        .nav-link-custom {
+            color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            margin: 2px 8px;
+            padding: 12px 16px;
+            transition: all 0.3s;
+        }
+        .nav-link-custom:hover, .nav-link-custom.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        .card-stats {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .card-stats:hover {
+            transform: translateY(-2px);
+        }
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .stat-icon.success { background: rgba(25, 135, 84, 0.1); color: #198754; }
+        .stat-icon.warning { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+        .stat-icon.danger { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
+        .stat-icon.info { background: rgba(13, 202, 240, 0.1); color: #0dcaf0; }
+        .stat-icon.primary { background: rgba(13, 110, 253, 0.1); color: #0d6efd; }
+        
+        .table-custom {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .badge-status {
+            font-size: 0.75em;
+            padding: 6px 12px;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .activity-item {
+            padding: 1rem;
+            border-left: 3px solid #198754;
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @@keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @@media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 px-0 sidebar">
+                <div class="p-3">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="~/images/logo.png" alt="MedShare" width="40" height="40" class="me-2">
+                        <div>
+                            <h5 class="mb-0 text-white">MedShare</h5>
+                            <small class="text-white-50">Admin Panel</small>
+                        </div>
+                    </div>
+                    
+                    <nav class="nav flex-column">
+                        <a class="nav-link nav-link-custom active" href="#dashboard">
+                            <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#users">
+                            <i class="bi bi-people me-2"></i>Usuários
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#donations">
+                            <i class="bi bi-heart me-2"></i>Doações
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#institutions">
+                            <i class="bi bi-building me-2"></i>Instituições
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#medicines">
+                            <i class="bi bi-capsule me-2"></i>Medicamentos
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#reports">
+                            <i class="bi bi-graph-up me-2"></i>Relatórios
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#settings">
+                            <i class="bi bi-gear me-2"></i>Configurações
+                        </a>
+                        
+                        <hr class="text-white-50 my-3">
+                        
+                        <a class="nav-link nav-link-custom" href="/">
+                            <i class="bi bi-house me-2"></i>Voltar ao Site
+                        </a>
+                        <a class="nav-link nav-link-custom text-danger" href="/auth/login">
+                            <i class="bi bi-box-arrow-right me-2"></i>Sair
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content" style="margin-left: auto;">
+                <!-- Header -->
+                <div class="admin-header">
+                    <div class="container-fluid px-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="mb-0">
+                                    <i class="bi bi-shield-check me-2"></i>
+                                    Painel Administrativo
+                                </h2>
+                                <p class="mb-0 opacity-75">Bem-vindo ao sistema de gerenciamento MedShare</p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="d-flex align-items-center justify-content-md-end">
+                                    <div class="me-3">
+                                        <small class="d-block opacity-75">Último acesso</small>
+                                        <span class="fw-medium">18/10/2025 - 14:30</span>
+                                    </div>
+                                    <div class="bg-white bg-opacity-10 rounded-circle p-2">
+                                        <i class="bi bi-person-circle fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid px-4">
+                    <!-- Statistics Cards -->
+                    <div class="row mb-4">
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                            <div class="card card-stats fade-in-up">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon success me-3">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div>
+                                            <p class="card-text mb-0 text-muted">Total de Usuários</p>
+                                            <h3 class="card-title mb-0">@ViewBag.TotalUsuarios</h3>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="badge bg-success">+12% este mês</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                            <div class="card card-stats fade-in-up" style="animation-delay: 0.1s">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon primary me-3">
+                                            <i class="bi bi-heart"></i>
+                                        </div>
+                                        <div>
+                                            <p class="card-text mb-0 text-muted">Doações Ativas</p>
+                                            <h3 class="card-title mb-0">@ViewBag.DoacoesAtivas</h3>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="badge bg-primary">+5 hoje</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                            <div class="card card-stats fade-in-up" style="animation-delay: 0.2s">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon warning me-3">
+                                            <i class="bi bi-building"></i>
+                                        </div>
+                                        <div>
+                                            <p class="card-text mb-0 text-muted">Instituições</p>
+                                            <h3 class="card-title mb-0">@ViewBag.TotalInstituicoes</h3>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="badge bg-warning">3 pendentes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                            <div class="card card-stats fade-in-up" style="animation-delay: 0.3s">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon info me-3">
+                                            <i class="bi bi-capsule"></i>
+                                        </div>
+                                        <div>
+                                            <p class="card-text mb-0 text-muted">Total de Doações</p>
+                                            <h3 class="card-title mb-0">@ViewBag.TotalDoacoes</h3>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="badge bg-info">+28 esta semana</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Recent Users Table -->
+                        <div class="col-lg-8 mb-4">
+                            <div class="card table-custom fade-in-up" style="animation-delay: 0.4s">
+                                <div class="card-header bg-white border-0 py-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">
+                                            <i class="bi bi-people text-success me-2"></i>
+                                            Usuários Recentes
+                                        </h5>
+                                        <button class="btn btn-outline-success btn-sm">
+                                            <i class="bi bi-plus-circle me-1"></i>Novo Usuário
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>Email</th>
+                                                    <th>Tipo</th>
+                                                    <th>Status</th>
+                                                    <th>Ações</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="bg-success bg-opacity-10 rounded-circle p-2 me-2">
+                                                                <i class="bi bi-person text-success"></i>
+                                                            </div>
+                                                            Ana Silva
+                                                        </div>
+                                                    </td>
+                                                    <td>ana.silva@email.com</td>
+                                                    <td><span class="badge bg-primary badge-status">Doador</span></td>
+                                                    <td><span class="badge bg-success badge-status">Ativo</span></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-secondary">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="bg-warning bg-opacity-10 rounded-circle p-2 me-2">
+                                                                <i class="bi bi-building text-warning"></i>
+                                                            </div>
+                                                            Hospital São Lucas
+                                                        </div>
+                                                    </td>
+                                                    <td>contato@saolucas.org</td>
+                                                    <td><span class="badge bg-warning badge-status">Instituição</span></td>
+                                                    <td><span class="badge bg-warning badge-status">Pendente</span></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-success">
+                                                            <i class="bi bi-check-circle"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="bg-success bg-opacity-10 rounded-circle p-2 me-2">
+                                                                <i class="bi bi-person text-success"></i>
+                                                            </div>
+                                                            Carlos Santos
+                                                        </div>
+                                                    </td>
+                                                    <td>carlos.santos@email.com</td>
+                                                    <td><span class="badge bg-primary badge-status">Doador</span></td>
+                                                    <td><span class="badge bg-success badge-status">Ativo</span></td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-primary me-1">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-secondary">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card fade-in-up" style="animation-delay: 0.5s">
+                                <div class="card-header bg-white border-0 py-3">
+                                    <h5 class="card-title mb-0">
+                                        <i class="bi bi-activity text-success me-2"></i>
+                                        Atividades Recentes
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="activity-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3 mt-1">
+                                                <i class="bi bi-plus-circle text-success"></i>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-1 fw-medium">Nova doação cadastrada</p>
+                                                <small class="text-muted">Ana Silva cadastrou Paracetamol</small>
+                                                <div class="text-muted mt-1">
+                                                    <i class="bi bi-clock me-1"></i>5 min atrás
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="activity-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="bg-warning bg-opacity-10 rounded-circle p-2 me-3 mt-1">
+                                                <i class="bi bi-building text-warning"></i>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-1 fw-medium">Instituição pendente</p>
+                                                <small class="text-muted">Hospital São Lucas aguarda aprovação</small>
+                                                <div class="text-muted mt-1">
+                                                    <i class="bi bi-clock me-1"></i>15 min atrás
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="activity-item">
+                                        <div class="d-flex align-items-start">
+                                            <div class="bg-info bg-opacity-10 rounded-circle p-2 me-3 mt-1">
+                                                <i class="bi bi-check-circle text-info"></i>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <p class="mb-1 fw-medium">Doação concluída</p>
+                                                <small class="text-muted">Ibuprofeno entregue ao Hospital Central</small>
+                                                <div class="text-muted mt-1">
+                                                    <i class="bi bi-clock me-1"></i>1h atrás
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card fade-in-up" style="animation-delay: 0.6s">
+                                <div class="card-header bg-white border-0 py-3">
+                                    <h5 class="card-title mb-0">
+                                        <i class="bi bi-lightning text-success me-2"></i>
+                                        Ações Rápidas
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 mb-3">
+                                            <button class="btn btn-outline-success w-100 py-3">
+                                                <i class="bi bi-person-plus fs-4 d-block mb-2"></i>
+                                                Adicionar Usuário
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 mb-3">
+                                            <button class="btn btn-outline-primary w-100 py-3">
+                                                <i class="bi bi-building-add fs-4 d-block mb-2"></i>
+                                                Aprovar Instituição
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 mb-3">
+                                            <button class="btn btn-outline-warning w-100 py-3">
+                                                <i class="bi bi-graph-up fs-4 d-block mb-2"></i>
+                                                Gerar Relatório
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 mb-3">
+                                            <button class="btn btn-outline-info w-100 py-3">
+                                                <i class="bi bi-gear fs-4 d-block mb-2"></i>
+                                                Configurações
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

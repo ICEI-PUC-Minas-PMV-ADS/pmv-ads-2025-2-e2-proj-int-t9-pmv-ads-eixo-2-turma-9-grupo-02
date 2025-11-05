@@ -1,0 +1,709 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: calc(100vh - 120px);
+}
+
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: #fff;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 40px;
+}
+
+.logo-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.logo-placeholder {
+    font-size: 50px;
+    margin-bottom: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+h1 {
+    font-size: 54px;
+    color: #2956a3;
+    margin: 0;
+    font-weight: normal;
+}
+
+.subtitle {
+    color: #bdbdbd;
+    font-weight: 400;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.cadastro-form {
+    width: 100%;
+    max-width: 380px;
+}
+
+.tipo-cadastro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.form-title {
+    font-size: 18px;
+    color: #666;
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.form-title.active {
+    color: #2956a3;
+    background: rgba(41, 86, 163, 0.1);
+    font-weight: 600;
+}
+
+.tipo-link {
+    font-size: 16px;
+    color: #999;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.tipo-link:hover {
+    color: #42a5f5;
+    background: rgba(66, 165, 245, 0.1);
+}
+
+.cadastro-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cadastro-form input[type="text"],
+.cadastro-form input[type="email"],
+.cadastro-form input[type="password"] {
+    height: 48px;
+    border-radius: 4px;
+    border: 2px solid #e0e0e0;
+    padding: 0 16px;
+    font-size: 15px;
+    background: #fff;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.cadastro-form input::placeholder {
+    color: #999;
+    text-transform: uppercase;
+}
+
+.cadastro-form input:focus {
+    outline: none;
+    border-color: #42a5f5;
+    box-shadow: 0 0 0 2px rgba(66, 165, 245, 0.2);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #42a5f5;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.salvar-btn {
+    background: #8bc34a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    flex: 1;
+}
+
+.salvar-btn:hover {
+    background: #7cb342;
+}
+
+.entrar-btn {
+    background: #42a5f5;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    display: inline-block;
+    flex: 1;
+    text-align: center;
+}
+
+.entrar-btn:hover {
+    background: #1e88e5;
+    color: #fff;
+}
+
+.meds-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meds-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.med-pills {
+    font-size: 40px;
+    opacity: 0.8;
+    animation: float 3s ease-in-out infinite;
+}
+
+.med-pills:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.med-pills:nth-child(3) {
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Estilos para mensagens de validação */
+.validation-summary {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 16px;
+    color: #721c24;
+    font-size: 14px;
+}
+
+.validation-error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+.alert-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    padding: 12px;
+    margin-top: 16px;
+    color: #155724;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Melhorias para touch devices */
+.salvar-btn,
+.entrar-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Ajustes para acessibilidade */
+.salvar-btn:focus,
+.entrar-btn:focus {
+    outline: 2px solid #42a5f5;
+    outline-offset: 2px;
+}
+
+footer {
+    width: 100%;
+    background: #fff;
+    position: relative;
+    margin-top: auto;
+}
+
+.footer-gradient {
+    height: 8px;
+    background: linear-gradient(90deg, #fbc02d 0%, #ff9800 50%, #e53935 100%);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    background: #fff;
+}
+
+.footer-info {
+    font-size: 12px;
+    color: #757575;
+    line-height: 1.4;
+}
+
+.footer-about {
+    display: flex;
+    align-items: center;
+    color: #757575;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.about-icon {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+/* Responsividade */
+
+/* Extra Large screens (1200px e acima) */
+@media (min-width: 1200px) {
+    .main-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .left-section {
+        padding: 60px;
+    }
+    
+    .right-section {
+        padding: 60px;
+    }
+    
+    h1 {
+        font-size: 64px;
+    }
+    
+    .cadastro-form {
+        max-width: 420px;
+    }
+    
+    .meds-placeholder {
+        padding: 60px;
+        max-width: 600px;
+    }
+}
+
+/* Large screens (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .left-section,
+    .right-section {
+        padding: 40px 30px;
+    }
+    
+    h1 {
+        font-size: 58px;
+    }
+    
+    .cadastro-form {
+        max-width: 380px;
+    }
+    
+    .meds-placeholder {
+        max-width: 500px;
+    }
+}
+
+/* Medium screens (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .main-container {
+        height: auto;
+        min-height: calc(100vh - 120px);
+    }
+    
+    .left-section,
+    .right-section {
+        padding: 30px 25px;
+    }
+    
+    h1 {
+        font-size: 48px;
+    }
+    
+    .cadastro-form {
+        max-width: 340px;
+    }
+    
+    .cadastro-form input[type="text"],
+    .cadastro-form input[type="email"],
+    .cadastro-form input[type="password"] {
+        height: 46px;
+        font-size: 14px;
+    }
+    
+    .salvar-btn,
+    .entrar-btn {
+        font-size: 15px;
+        padding: 10px 20px;
+    }
+    
+    .meds-placeholder {
+        padding: 30px;
+        max-width: 400px;
+    }
+    
+    .med-pills {
+        font-size: 35px;
+    }
+    
+    .footer-content {
+        padding: 12px 30px;
+    }
+    
+    .footer-info {
+        font-size: 11px;
+    }
+}
+
+/* Small screens (576px - 767px) */
+@media (max-width: 767px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .main-container {
+        flex-direction: column;
+        height: auto;
+        min-height: calc(100vh - 100px);
+    }
+    
+    .left-section {
+        order: 1;
+        padding: 30px 20px;
+        min-height: auto;
+    }
+    
+    .right-section {
+        order: 2;
+        padding: 20px;
+        min-height: 250px;
+    }
+    
+    .logo-title {
+        margin-bottom: 25px;
+    }
+    
+    .logo-placeholder {
+        font-size: 40px;
+    }
+    
+    h1 {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .cadastro-form {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .form-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .cadastro-form input[type="text"],
+    .cadastro-form input[type="email"],
+    .cadastro-form input[type="password"] {
+        height: 44px;
+        font-size: 13px;
+        padding: 0 14px;
+    }
+    
+    .buttons {
+        gap: 12px;
+        flex-direction: column;
+    }
+    
+    .salvar-btn,
+    .entrar-btn {
+        font-size: 14px;
+        padding: 14px 20px;
+        width: 100%;
+    }
+    
+    .meds-placeholder {
+        padding: 20px;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .med-pills {
+        font-size: 30px;
+        gap: 15px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding: 12px 20px;
+    }
+    
+    .footer-info {
+        font-size: 10px;
+        line-height: 1.3;
+    }
+    
+    .footer-about {
+        font-size: 12px;
+    }
+}
+
+/* Extra Small screens (480px e abaixo) */
+@media (max-width: 480px) {
+    .left-section {
+        padding: 20px 15px;
+    }
+    
+    .right-section {
+        padding: 15px;
+        min-height: 200px;
+    }
+    
+    .logo-placeholder {
+        font-size: 35px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+    
+    .subtitle {
+        font-size: 11px;
+    }
+    
+    .form-title {
+        font-size: 16px;
+    }
+    
+    .cadastro-form input[type="text"],
+    .cadastro-form input[type="email"],
+    .cadastro-form input[type="password"] {
+        height: 42px;
+        font-size: 12px;
+        padding: 0 12px;
+    }
+    
+    .salvar-btn,
+    .entrar-btn {
+        font-size: 13px;
+        padding: 12px 18px;
+    }
+    
+    .checkbox-label {
+        font-size: 12px;
+    }
+    
+    .meds-placeholder {
+        padding: 15px;
+        max-width: 240px;
+    }
+    
+    .med-pills {
+        font-size: 24px;
+        gap: 10px;
+    }
+    
+    .footer-content {
+        padding: 10px 15px;
+    }
+    
+    .footer-info {
+        font-size: 9px;
+    }
+    
+    .footer-about {
+        font-size: 11px;
+    }
+    
+    .validation-summary,
+    .alert-message {
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    .validation-error {
+        font-size: 11px;
+    }
+}
+
+/* Landscape orientation em dispositivos móveis */
+@media (max-height: 600px) and (orientation: landscape) {
+    .main-container {
+        flex-direction: row;
+        height: auto;
+    }
+    
+    .left-section {
+        order: 1;
+        flex: 0.6;
+        padding: 20px 15px;
+    }
+    
+    .right-section {
+        order: 2;
+        flex: 0.4;
+        padding: 15px;
+    }
+    
+    .logo-title {
+        margin-bottom: 15px;
+    }
+    
+    .logo-placeholder {
+        font-size: 25px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .subtitle {
+        font-size: 10px;
+    }
+    
+    .form-title {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .cadastro-form input[type="text"],
+    .cadastro-form input[type="email"],
+    .cadastro-form input[type="password"] {
+        height: 38px;
+        font-size: 11px;
+    }
+    
+    .buttons {
+        gap: 8px;
+        margin-top: 15px;
+        flex-direction: row;
+    }
+    
+    .salvar-btn,
+    .entrar-btn {
+        font-size: 11px;
+        padding: 8px 14px;
+    }
+    
+    .meds-placeholder {
+        padding: 10px;
+        max-width: 180px;
+    }
+    
+    .med-pills {
+        font-size: 18px;
+        gap: 8px;
+    }
+    
+    footer {
+        position: relative;
+    }
+    
+    .footer-content {
+        padding: 8px 15px;
+    }
+}
+
+/* Ajustes para telas muito altas */
+@media (min-height: 900px) {
+    .main-container {
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .left-section {
+        justify-content: center;
+    }
+}
