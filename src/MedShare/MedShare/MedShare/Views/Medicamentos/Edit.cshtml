@@ -1,0 +1,17 @@
+@model MedShare.Models.InstituicaoMedicamento
+@{
+    ViewData["Title"] = "Editar Quantidade";
+}
+<h2>Editar Quantidade</h2>
+<form method="post">
+    <div>
+        <label>Medicamento</label>
+        <span>@Model.Medicamento.Nome</span>
+    </div>
+    <div>
+        <label>Quantidade de Caixas</label>
+        <input type="number" name="quantidadeCaixas" value="@Model.QuantidadeCaixas" min="0" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="/Medicamentos/Index" class="btn btn-secondary">Voltar</a>
+</form>

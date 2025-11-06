@@ -1,0 +1,9 @@
+@model MedShare.Models.InstituicaoMedicamento
+@{
+    ViewData["Title"] = "Detalhes Medicamento";
+}
+<h2>Detalhes</h2>
+<p><strong>Nome:</strong> @Model.Medicamento.Nome</p>
+<p><strong>Quantidade de Caixas:</strong> @Model.QuantidadeCaixas</p>
+<p><strong>Disponível:</strong> @(Model.Disponivel ? "Sim" : "Não")</p>
+<p><a href="/Medicamentos/Edit/@Model.InstituicaoMedicamentoId">Editar</a> | <a href="/Medicamentos/Index">Voltar</a></p>

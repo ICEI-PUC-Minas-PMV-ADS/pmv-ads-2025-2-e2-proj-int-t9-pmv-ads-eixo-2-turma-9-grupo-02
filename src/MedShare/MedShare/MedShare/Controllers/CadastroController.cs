@@ -77,6 +77,18 @@ namespace MedShare.Controllers
                 instituicao.InstituicaoSenha = BCrypt.Net.BCrypt.HashPassword(instituicao.InstituicaoSenha);
                 _context.Instituicoes.Add(instituicao);
                 await _context.SaveChangesAsync();
+                // Para cada medicamento do catálogo global cria um registro de estoque inicial (0 caixas) para a instituição recém cadastrada.
+                var meds = await _context.Medicamentos.ToListAsync();
+                foreach (var med in meds)
+                {
+                    _context.InstituicaoMedicamentos.Add(new InstituicaoMedicamento
+                    {
+                        InstituicaoId = instituicao.InstituicaoId,
+                        MedicamentoId = med.MedicamentoId,
+                        QuantidadeCaixas = 0 // inicia sempre vazio
+                    });
+                }
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Login", "Auth");
             }
             return View(instituicao);

@@ -1,0 +1,14 @@
+@model MedShare.Models.InstituicaoMedicamento
+@{
+    ViewData["Title"] = "Remover";
+}
+<h2>Remover Medicamento da Instituição</h2>
+<p>Esta ação remove apenas o vínculo com a instituição. O medicamento permanece no catálogo global.</p>
+<div>
+    <p><strong>Medicamento:</strong> @Model.Medicamento.Nome</p>
+    <p><strong>Quantidade:</strong> @Model.QuantidadeCaixas</p>
+</div>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Confirmar Remoção</button>
+    <a href="/Medicamentos/Index" class="btn btn-secondary">Cancelar</a>
+</form>

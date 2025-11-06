@@ -1,0 +1,30 @@
+@model IEnumerable<MedShare.Models.InstituicaoMedicamento>
+@{
+    ViewData["Title"] = "Medicamentos da Instituição";
+}
+<h2>Medicamentos</h2>
+<p><a href="/Medicamentos/Escassez">Ver Escassez Crítica</a></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade (Caixas)</th>
+            <th>Disponível</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Medicamento.Nome</td>
+        <td>@item.QuantidadeCaixas</td>
+        <td>@(item.Disponivel ? "Sim" : "Não")</td>
+        <td>
+            <a href="/Medicamentos/Details/@item.InstituicaoMedicamentoId">Detalhes</a> |
+            <a href="/Medicamentos/Edit/@item.InstituicaoMedicamentoId">Editar</a> |
+            <a href="/Medicamentos/Delete/@item.InstituicaoMedicamentoId">Remover</a>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
