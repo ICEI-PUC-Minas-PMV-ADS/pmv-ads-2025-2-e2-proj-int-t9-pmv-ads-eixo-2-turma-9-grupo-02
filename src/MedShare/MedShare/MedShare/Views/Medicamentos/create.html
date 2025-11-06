@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Medicamento - MedShare</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="medicamentos.css">
+</head>
+<body>
+    <div class="container py-4">
+        <!-- Header da Página -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm header-card">
+                    <div class="card-body text-white p-4">
+                        <h1 class="mb-2">
+                            <i class="fas fa-plus-circle me-2"></i>
+                            Cadastrar Novo Medicamento
+                        </h1>
+                        <p class="mb-0 opacity-75">Adicione um novo medicamento à lista de necessidades da sua instituição</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Cadastro -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <form id="formCadastro" novalidate>
+                            <!-- Linha 1: Nome e Categoria -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="nome" class="form-label">
+                                        <i class="fas fa-pills text-primary me-1"></i>
+                                        Nome do Medicamento <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="nome" name="nome" required 
+                                           placeholder="Ex: Paracetamol, Ibuprofeno...">
+                                    <div class="invalid-feedback">
+                                        Por favor, informe o nome do medicamento.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="categoria" class="form-label">
+                                        <i class="fas fa-tags text-primary me-1"></i>
+                                        Categoria <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-select" id="categoria" name="categoria" required>
+                                        <option value="">Selecione uma categoria</option>
+                                        <option value="Antibióticos">Antibióticos</option>
+                                        <option value="Analgésicos">Analgésicos</option>
+                                        <option value="Anti-inflamatórios">Anti-inflamatórios</option>
+                                        <option value="Cardiovasculares">Cardiovasculares</option>
+                                        <option value="Diabetes">Diabetes</option>
+                                        <option value="Respiratórios">Respiratórios</option>
+                                        <option value="Neurológicos">Neurológicos</option>
+                                        <option value="Gastrointestinais">Gastrointestinais</option>
+                                        <option value="Vitaminas e Minerais">Vitaminas e Minerais</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecione uma categoria.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Linha 2: Dosagem e Forma Farmacêutica -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="dosagem" class="form-label">
+                                        <i class="fas fa-prescription-bottle-alt text-primary me-1"></i>
+                                        Dosagem <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="dosagem" name="dosagem" required 
+                                           placeholder="Ex: 500mg, 10ml, 1 comprimido...">
+                                    <div class="invalid-feedback">
+                                        Por favor, informe a dosagem.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="formaFarmaceutica" class="form-label">
+                                        <i class="fas fa-capsules text-primary me-1"></i>
+                                        Forma Farmacêutica
+                                    </label>
+                                    <select class="form-select" id="formaFarmaceutica" name="formaFarmaceutica">
+                                        <option value="">Selecione a forma</option>
+                                        <option value="Comprimido">Comprimido</option>
+                                        <option value="Cápsula">Cápsula</option>
+                                        <option value="Xarope">Xarope</option>
+                                        <option value="Solução">Solução</option>
+                                        <option value="Suspensão">Suspensão</option>
+                                        <option value="Injeção">Injeção</option>
+                                        <option value="Pomada">Pomada</option>
+                                        <option value="Gel">Gel</option>
+                                        <option value="Creme">Creme</option>
+                                        <option value="Gotas">Gotas</option>
+                                        <option value="Spray">Spray</option>
+                                        <option value="Adesivo">Adesivo</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Linha 3: Prioridade e Quantidades -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="prioridade" class="form-label">
+                                        <i class="fas fa-star text-primary me-1"></i>
+                                        Nível de Prioridade <span class="text-danger">*</span>
+                                    </label>
+                                    <select class="form-select" id="prioridade" name="prioridade" required>
+                                        <option value="">Selecione a prioridade</option>
+                                        <option value="5">5 - Muito Alta (Medicamento essencial/vida)</option>
+                                        <option value="4">4 - Alta (Importante para tratamento)</option>
+                                        <option value="3">3 - Média (Necessário regularmente)</option>
+                                        <option value="2">2 - Baixa (Uso eventual)</option>
+                                        <option value="1">1 - Muito Baixa (Reserva/opcional)</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecione o nível de prioridade.
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle text-primary"></i>
+                                        A prioridade ajuda a identificar medicamentos críticos
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="quantidadeNecessaria" class="form-label">
+                                        <i class="fas fa-boxes text-primary me-1"></i>
+                                        Quantidade Necessária <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="number" class="form-control" id="quantidadeNecessaria" 
+                                           name="quantidadeNecessaria" min="1" required placeholder="Ex: 100">
+                                    <div class="invalid-feedback">
+                                        Por favor, informe uma quantidade válida (maior que 0).
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle text-primary"></i>
+                                        Quantidade ideal para suprir a demanda
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Linha 4: Estoque Atual e Preview -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="quantidadeAtual" class="form-label">
+                                        <i class="fas fa-warehouse text-primary me-1"></i>
+                                        Quantidade Atual em Estoque
+                                    </label>
+                                    <input type="number" class="form-control" id="quantidadeAtual" 
+                                           name="quantidadeAtual" min="0" value="0" placeholder="Ex: 25">
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle text-primary"></i>
+                                        Quantidade atualmente disponível
+                                    </div>
+                                </div>
+                                
+                                <!-- Preview do Status -->
+                                <div class="col-md-6">
+                                    <label class="form-label">
+                                        <i class="fas fa-chart-line text-primary me-1"></i>
+                                        Preview do Status
+                                    </label>
+                                    <div class="card bg-light border-0">
+                                        <div class="card-body p-3">
+                                            <span id="statusBadge" class="badge bg-secondary">
+                                                ⏳ Aguardando dados
+                                            </span>
+                                            <div class="mt-2">
+                                                <div class="progress" style="height: 8px;">
+                                                    <div id="statusProgress" class="progress-bar" 
+                                                         role="progressbar" style="width: 0%"></div>
+                                                </div>
+                                                <small class="text-muted" id="statusPercentual">0%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Descrição -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="descricao" class="form-label">
+                                        <i class="fas fa-align-left text-primary me-1"></i>
+                                        Descrição
+                                    </label>
+                                    <textarea class="form-control" id="descricao" name="descricao" rows="3" 
+                                              placeholder="Informações adicionais sobre o medicamento, indicações, restrições, etc."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Observações -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <label for="observacoes" class="form-label">
+                                        <i class="fas fa-sticky-note text-primary me-1"></i>
+                                        Observações
+                                    </label>
+                                    <textarea class="form-control" id="observacoes" name="observacoes" rows="2" 
+                                              placeholder="Observações internas, notas sobre fornecedores, etc."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Botões de Ação -->
+                            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-save me-2"></i>
+                                    Cadastrar Medicamento
+                                </button>
+                                
+                                <a href="index.html" class="btn btn-outline-secondary btn-lg">
+                                    <i class="fas fa-arrow-left me-2"></i>
+                                    Voltar à Lista
+                                </a>
+                                
+                                <button type="reset" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-eraser me-2"></i>
+                                    Limpar Formulário
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts Personalizados -->
+    <script src="create.js"></script>
+</body>
+</html>

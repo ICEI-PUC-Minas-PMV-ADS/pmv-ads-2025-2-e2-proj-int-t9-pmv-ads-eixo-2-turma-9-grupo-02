@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Medicamentos - MedShare</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="medicamentos.css">
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <!-- Header da Página -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm header-card">
+                    <div class="card-body text-white p-4">
+                        <h1 class="mb-2">
+                            <i class="fas fa-pills me-2"></i>
+                            Gestão de Medicamentos
+                        </h1>
+                        <p class="mb-0 opacity-75">Gerencie os medicamentos da sua instituição e monitore níveis de estoque</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards de Estatísticas -->
+        <div class="row mb-4">
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-pills fa-2x text-primary mb-3"></i>
+                        <h2 class="display-6 fw-bold text-primary mb-1" id="totalMedicamentos">24</h2>
+                        <p class="text-muted mb-0">Total de Medicamentos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-exclamation-triangle fa-2x text-danger mb-3"></i>
+                        <h2 class="display-6 fw-bold text-danger mb-1" id="medicamentosEscassez">3</h2>
+                        <p class="text-muted mb-0">Em Escassez</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-clock fa-2x text-warning mb-3"></i>
+                        <h2 class="display-6 fw-bold text-warning mb-1" id="medicamentosEstoqueBaixo">5</h2>
+                        <p class="text-muted mb-0">Estoque Baixo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
+                        <h2 class="display-6 fw-bold text-success mb-1" id="medicamentosNormais">16</h2>
+                        <p class="text-muted mb-0">Estoque Normal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertas de Escassez -->
+        <div class="row mb-4" id="alertasEscassez">
+            <div class="col-12">
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <i class="fas fa-exclamation-triangle me-3"></i>
+                    <div class="flex-grow-1">
+                        <strong>Atenção!</strong> Você possui <span id="numeroEscassez">3</span> medicamento(s) em escassez crítica.
+                        <a href="#" onclick="filtrarEscassez()" class="alert-link ms-2">Ver medicamentos em escassez</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles e Filtros -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-3">
+                                <label for="filtroNome" class="form-label">
+                                    <i class="fas fa-search me-1"></i>Buscar por Nome
+                                </label>
+                                <input type="text" class="form-control" id="filtroNome" placeholder="Digite o nome do medicamento...">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="filtroCategoria" class="form-label">
+                                    <i class="fas fa-tags me-1"></i>Categoria
+                                </label>
+                                <select id="filtroCategoria" class="form-select">
+                                    <option value="">Todas as categorias</option>
+                                    <option value="Antibióticos">Antibióticos</option>
+                                    <option value="Analgésicos">Analgésicos</option>
+                                    <option value="Anti-inflamatórios">Anti-inflamatórios</option>
+                                    <option value="Cardiovasculares">Cardiovasculares</option>
+                                    <option value="Diabetes">Diabetes</option>
+                                    <option value="Respiratórios">Respiratórios</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="filtroStatus" class="form-label">
+                                    <i class="fas fa-chart-line me-1"></i>Status do Estoque
+                                </label>
+                                <select id="filtroStatus" class="form-select">
+                                    <option value="">Todos os status</option>
+                                    <option value="escassez">Em Escassez</option>
+                                    <option value="baixo">Estoque Baixo</option>
+                                    <option value="normal">Estoque Normal</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="filtroPrioridade" class="form-label">
+                                    <i class="fas fa-star me-1"></i>Prioridade
+                                </label>
+                                <select id="filtroPrioridade" class="form-select">
+                                    <option value="">Todas as prioridades</option>
+                                    <option value="5">Muito Alta (5)</option>
+                                    <option value="4">Alta (4)</option>
+                                    <option value="3">Média (3)</option>
+                                    <option value="2">Baixa (2)</option>
+                                    <option value="1">Muito Baixa (1)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-outline-secondary me-2" onclick="limparFiltros()">
+                                    <i class="fas fa-eraser me-1"></i>Limpar Filtros
+                                </button>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <a href="create.html" class="btn btn-success me-2">
+                                    <i class="fas fa-plus me-1"></i>Cadastrar Medicamento
+                                </a>
+                                <button type="button" class="btn btn-primary" onclick="exportarRelatorio()">
+                                    <i class="fas fa-download me-1"></i>Exportar Relatório
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela de Medicamentos -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0" id="tabelaMedicamentos">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="px-4 py-3">Nome</th>
+                                        <th class="px-3 py-3">Categoria</th>
+                                        <th class="px-3 py-3">Dosagem</th>
+                                        <th class="px-3 py-3">Prioridade</th>
+                                        <th class="px-3 py-3">Estoque</th>
+                                        <th class="px-3 py-3">Status</th>
+                                        <th class="px-3 py-3">Progresso</th>
+                                        <th class="px-3 py-3">Atualização</th>
+                                        <th class="px-3 py-3">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Medicamento 1 - Em Escassez -->
+                                    <tr data-categoria="Analgésicos" data-status="escassez" data-prioridade="5" data-nome="paracetamol 500mg">
+                                        <td class="px-4 py-3">
+                                            <div>
+                                                <strong>Paracetamol 500mg</strong>
+                                                <br><small class="text-muted">Para dor e febre</small>
+                                            </div>
+                                        </td>
+                                        <td class="px-3 py-3">Analgésicos</td>
+                                        <td class="px-3 py-3">
+                                            500mg
+                                            <br><small class="text-muted">Comprimido</small>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <span class="badge bg-danger">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                (5)
+                                            </span>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <strong>15</strong> / 100
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <span class="badge bg-danger">
+                                                🚨 Escassez
+                                            </span>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <div class="progress" style="height: 8px; width: 80px;">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 15%"></div>
+                                            </div>
+                                            <small class="text-muted">15%</small>
+                                        </td>
+                                        <td class="px-3 py-3">05/11/2024</td>
+                                        <td class="px-3 py-3">
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="details.html" class="btn btn-outline-secondary" title="Ver detalhes">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit.html" class="btn btn-outline-warning" title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="delete.html" class="btn btn-outline-danger" title="Excluir">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Medicamento 2 - Estoque Baixo -->
+                                    <tr data-categoria="Antibióticos" data-status="baixo" data-prioridade="4" data-nome="amoxicilina 500mg">
+                                        <td class="px-4 py-3">
+                                            <div>
+                                                <strong>Amoxicilina 500mg</strong>
+                                                <br><small class="text-muted">Antibiótico de amplo espectro</small>
+                                            </div>
+                                        </td>
+                                        <td class="px-3 py-3">Antibióticos</td>
+                                        <td class="px-3 py-3">
+                                            500mg
+                                            <br><small class="text-muted">Cápsula</small>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <span class="badge bg-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                (4)
+                                            </span>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <strong>35</strong> / 80
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <span class="badge bg-warning">
+                                                ⚠️ Baixo
+                                            </span>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <div class="progress" style="height: 8px; width: 80px;">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 44%"></div>
+                                            </div>
+                                            <small class="text-muted">44%</small>
+                                        </td>
+                                        <td class="px-3 py-3">04/11/2024</td>
+                                        <td class="px-3 py-3">
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="details.html" class="btn btn-outline-secondary" title="Ver detalhes">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit.html" class="btn btn-outline-warning" title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="delete.html" class="btn btn-outline-danger" title="Excluir">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Medicamento 3 - Estoque Normal -->
+                                    <tr data-categoria="Anti-inflamatórios" data-status="normal" data-prioridade="3" data-nome="ibuprofeno 400mg">
+                                        <td class="px-4 py-3">
+                                            <div>
+                                                <strong>Ibuprofeno 400mg</strong>
+                                                <br><small class="text-muted">Anti-inflamatório não esteroidal</small>
+                                            </div>
+                                        </td>
+                                        <td class="px-3 py-3">Anti-inflamatórios</td>
+                                        <td class="px-3 py-3">
+                                            400mg
+                                            <br><small class="text-muted">Comprimido</small>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <span class="badge bg-info">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                (3)
+                                            </span>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <strong>90</strong> / 120
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <span class="badge bg-success">
+                                                ✅ Normal
+                                            </span>
+                                        </td>
+                                        <td class="px-3 py-3">
+                                            <div class="progress" style="height: 8px; width: 80px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
+                                            </div>
+                                            <small class="text-muted">75%</small>
+                                        </td>
+                                        <td class="px-3 py-3">03/11/2024</td>
+                                        <td class="px-3 py-3">
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="details.html" class="btn btn-outline-secondary" title="Ver detalhes">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit.html" class="btn btn-outline-warning" title="Editar">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="delete.html" class="btn btn-outline-danger" title="Excluir">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts Personalizados -->
+    <script src="medicamentos.js"></script>
+</body>
+</html>

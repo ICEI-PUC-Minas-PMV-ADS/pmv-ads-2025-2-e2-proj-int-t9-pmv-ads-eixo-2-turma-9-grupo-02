@@ -1,0 +1,207 @@
+/* ================================================
+   CSS PERSONALIZADO PARA MEDICAMENTOS - BOOTSTRAP
+   ================================================ */
+
+/* Header personalizado */
+.header-card {
+    background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%) !important;
+}
+
+/* Cards de estatísticas */
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Badges de prioridade personalizados */
+.badge {
+    font-size: 0.75em;
+    padding: 0.4em 0.6em;
+}
+
+.badge i {
+    font-size: 0.8em;
+}
+
+/* Progress bars personalizadas */
+.progress {
+    border-radius: 10px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+
+/* Tabela personalizada */
+.table-hover tbody tr:hover {
+    background-color: rgba(44, 90, 160, 0.05);
+}
+
+.table thead th {
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 0.9rem;
+}
+
+.table td {
+    vertical-align: middle;
+    font-size: 0.9rem;
+}
+
+/* Botões personalizados */
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-group-sm .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.775rem;
+}
+
+/* Alertas */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Formulários */
+.form-control, .form-select {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #2c5aa0;
+    box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+    .display-6 {
+        font-size: 1.75rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.375rem !important;
+        margin-bottom: 0.25rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.85rem;
+    }
+}
+
+/* Estados específicos para medicamentos */
+.status-escassez {
+    background-color: #f8d7da !important;
+    color: #721c24 !important;
+}
+
+.status-baixo {
+    background-color: #fff3cd !important;
+    color: #856404 !important;
+}
+
+.status-normal {
+    background-color: #d1e7dd !important;
+    color: #0f5132 !important;
+}
+
+/* Animações suaves */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card, .alert, .table-responsive {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Melhorias para acessibilidade */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #2c5aa0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Melhorias específicas para a tabela */
+.table th:first-child,
+.table td:first-child {
+    padding-left: 1.5rem;
+}
+
+.table th:last-child,
+.table td:last-child {
+    padding-right: 1.5rem;
+}
+
+/* Cores personalizadas para prioridades */
+.prioridade-5 { color: #dc3545; }
+.prioridade-4 { color: #fd7e14; }
+.prioridade-3 { color: #198754; }
+.prioridade-2 { color: #0dcaf0; }
+.prioridade-1 { color: #6c757d; }
+
+/* Tooltips personalizados */
+[data-bs-toggle="tooltip"] {
+    cursor: help;
+}
+
+/* Espaçamento melhorado */
+.py-4 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}

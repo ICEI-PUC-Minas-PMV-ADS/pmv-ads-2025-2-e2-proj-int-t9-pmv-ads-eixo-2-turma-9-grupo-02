@@ -11,6 +11,7 @@ namespace MedShare.Models {
         public DbSet<Doador> Doadores { get; set; }
         public DbSet<Instituicao> Instituicoes { get; set; }
         public DbSet<Doacao> Doacoes { get; set; }
+<<<<<<< Updated upstream
         // DbSet dos medicamentos disponíveis globalmente (catálogo base)
         public DbSet<Medicamento> Medicamentos { get; set; }
         // DbSet do relacionamento entre instituição e seus medicamentos (estoque individual)
@@ -32,5 +33,8 @@ namespace MedShare.Models {
                 .HasIndex(im => new { im.InstituicaoId, im.MedicamentoId })
                 .IsUnique();
         }
+=======
+        public DbSet<Medicamento> Medicamentos { get; set; }
+>>>>>>> Stashed changes
     }
 }

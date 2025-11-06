@@ -1,0 +1,419 @@
+@model IEnumerable<MedShare.Models.Medicamento>
+
+@{
+    ViewData["Title"] = "Gestão de Medicamentos";
+}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- CSS Personalizado -->
+<link rel="stylesheet" href="~/css/medicamentos/medicamentos.css">
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i>
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="container-fluid py-4">
+    <!-- Header da Página -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm header-card">
+                <div class="card-body text-white p-4">
+                    <h1 class="mb-2">
+                        <i class="fas fa-pills me-2"></i>
+                        Gestão de Medicamentos
+                    </h1>
+                    <p class="mb-0 opacity-75">Gerencie os medicamentos da sua instituição e monitore níveis de estoque</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards de Estatísticas -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-pills fa-2x text-primary mb-3"></i>
+                    <h2 class="display-6 fw-bold text-primary mb-1" id="totalMedicamentos">@ViewBag.TotalMedicamentos</h2>
+                    <p class="text-muted mb-0">Total de Medicamentos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-exclamation-triangle fa-2x text-danger mb-3"></i>
+                    <h2 class="display-6 fw-bold text-danger mb-1" id="medicamentosEscassez">@ViewBag.MedicamentosEscassez</h2>
+                    <p class="text-muted mb-0">Em Escassez</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-clock fa-2x text-warning mb-3"></i>
+                    <h2 class="display-6 fw-bold text-warning mb-1" id="medicamentosEstoqueBaixo">@ViewBag.MedicamentosEstoqueBaixo</h2>
+                    <p class="text-muted mb-0">Estoque Baixo</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
+                    <h2 class="display-6 fw-bold text-success mb-1" id="medicamentosNormais">@ViewBag.MedicamentosNormais</h2>
+                    <p class="text-muted mb-0">Estoque Normal</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alertas de Escassez -->
+    @if (ViewBag.MedicamentosEscassez > 0)
+    {
+        <div class="row mb-4" id="alertasEscassez">
+            <div class="col-12">
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <i class="fas fa-exclamation-triangle me-3"></i>
+                    <div class="flex-grow-1">
+                        <strong>Atenção!</strong> Você possui <span id="numeroEscassez">@ViewBag.MedicamentosEscassez</span> medicamento(s) em escassez crítica.
+                        <a href="#" onclick="filtrarEscassez()" class="alert-link ms-2">Ver medicamentos em escassez</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Controles e Filtros -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-3">
+                            <label for="filtroNome" class="form-label">
+                                <i class="fas fa-search me-1"></i>Buscar por Nome
+                            </label>
+                            <input type="text" class="form-control" id="filtroNome" placeholder="Digite o nome do medicamento...">
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <label for="filtroCategoria" class="form-label">
+                                <i class="fas fa-tags me-1"></i>Categoria
+                            </label>
+                            <select id="filtroCategoria" class="form-select">
+                                <option value="">Todas as categorias</option>
+                                <option value="Antibióticos">Antibióticos</option>
+                                <option value="Analgésicos">Analgésicos</option>
+                                <option value="Anti-inflamatórios">Anti-inflamatórios</option>
+                                <option value="Cardiovasculares">Cardiovasculares</option>
+                                <option value="Diabetes">Diabetes</option>
+                                <option value="Respiratórios">Respiratórios</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="filtroStatus" class="form-label">
+                                <i class="fas fa-chart-line me-1"></i>Status do Estoque
+                            </label>
+                            <select id="filtroStatus" class="form-select">
+                                <option value="">Todos os status</option>
+                                <option value="escassez">Em Escassez</option>
+                                <option value="baixo">Estoque Baixo</option>
+                                <option value="normal">Estoque Normal</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="filtroPrioridade" class="form-label">
+                                <i class="fas fa-star me-1"></i>Prioridade
+                            </label>
+                            <select id="filtroPrioridade" class="form-select">
+                                <option value="">Todas as prioridades</option>
+                                <option value="5">Muito Alta (5)</option>
+                                <option value="4">Alta (4)</option>
+                                <option value="3">Média (3)</option>
+                                <option value="2">Baixa (2)</option>
+                                <option value="1">Muito Baixa (1)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-outline-secondary me-2" onclick="limparFiltros()">
+                                <i class="fas fa-eraser me-1"></i>Limpar Filtros
+                            </button>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <a asp-action="Create" class="btn btn-success me-2">
+                                <i class="fas fa-plus me-1"></i>Cadastrar Medicamento
+                            </a>
+                            <button type="button" class="btn btn-primary" onclick="exportarRelatorio()">
+                                <i class="fas fa-download me-1"></i>Exportar Relatório
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabela de Medicamentos -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="tabelaMedicamentos">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="px-4 py-3">Nome</th>
+                                    <th class="px-3 py-3">Categoria</th>
+                                    <th class="px-3 py-3">Dosagem</th>
+                                    <th class="px-3 py-3">Prioridade</th>
+                                    <th class="px-3 py-3">Estoque</th>
+                                    <th class="px-3 py-3">Status</th>
+                                    <th class="px-3 py-3">Progresso</th>
+                                    <th class="px-3 py-3">Atualização</th>
+                                    <th class="px-3 py-3">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    @foreach (var medicamento in Model)
+                                    {
+                                        var porcentagemEstoque = medicamento.QuantidadeNecessaria > 0 
+                                            ? (double)medicamento.QuantidadeAtual / medicamento.QuantidadeNecessaria * 100 
+                                            : 0;
+                                        
+                                        var statusEstoque = medicamento.EmEscassez ? "escassez" 
+                                            : porcentagemEstoque < 50 ? "baixo" 
+                                            : "normal";
+
+                                        <tr data-categoria="@medicamento.Categoria" 
+                                            data-status="@statusEstoque" 
+                                            data-prioridade="@medicamento.NivelPrioridade"
+                                            data-nome="@medicamento.Nome.ToLower()">
+                                            
+                                            <td class="px-4 py-3">
+                                                <div>
+                                                    <strong>@medicamento.Nome</strong>
+                                                    @if (!string.IsNullOrEmpty(medicamento.Descricao))
+                                                    {
+                                                        <br><small class="text-muted">@medicamento.Descricao</small>
+                                                    }
+                                                </div>
+                                            </td>
+                                            
+                                            <td class="px-3 py-3">@medicamento.Categoria</td>
+                                            
+                                            <td class="px-3 py-3">
+                                                @medicamento.Dosagem
+                                                @if (!string.IsNullOrEmpty(medicamento.FormaFarmaceutica))
+                                                {
+                                                    <br><small class="text-muted">@medicamento.FormaFarmaceutica</small>
+                                                }
+                                            </td>
+                                            
+                                            <td class="px-3 py-3">
+                                                @{
+                                                    var corPrioridade = medicamento.NivelPrioridade switch
+                                                    {
+                                                        5 => "bg-danger",
+                                                        4 => "bg-warning",
+                                                        3 => "bg-info",
+                                                        2 => "bg-secondary",
+                                                        1 => "bg-light text-dark",
+                                                        _ => "bg-secondary"
+                                                    };
+                                                }
+                                                <span class="badge @corPrioridade">
+                                                    @for (int i = 1; i <= medicamento.NivelPrioridade; i++)
+                                                    {
+                                                        <i class="fas fa-star"></i>
+                                                    }
+                                                    (@medicamento.NivelPrioridade)
+                                                </span>
+                                            </td>
+                                            
+                                            <td class="px-3 py-3">
+                                                <strong>@medicamento.QuantidadeAtual</strong> / @medicamento.QuantidadeNecessaria
+                                            </td>
+                                            
+                                            <td class="px-3 py-3">
+                                                @{
+                                                    var statusBadge = statusEstoque switch
+                                                    {
+                                                        "escassez" => "bg-danger",
+                                                        "baixo" => "bg-warning",
+                                                        "normal" => "bg-success",
+                                                        _ => "bg-secondary"
+                                                    };
+                                                    
+                                                    var statusTexto = statusEstoque switch
+                                                    {
+                                                        "escassez" => "🚨 Escassez",
+                                                        "baixo" => "⚠️ Baixo",
+                                                        "normal" => "✅ Normal",
+                                                        _ => "❓ Indefinido"
+                                                    };
+                                                }
+                                                <span class="badge @statusBadge">
+                                                    @statusTexto
+                                                </span>
+                                            </td>
+                                            
+                                            <td class="px-3 py-3">
+                                                @{
+                                                    var corProgress = statusEstoque switch
+                                                    {
+                                                        "escassez" => "bg-danger",
+                                                        "baixo" => "bg-warning", 
+                                                        "normal" => "bg-success",
+                                                        _ => "bg-secondary"
+                                                    };
+                                                }
+                                                <div class="progress" style="height: 8px; width: 80px;">
+                                                    <div class="progress-bar @corProgress" role="progressbar" 
+                                                         style="width: @Math.Min(porcentagemEstoque, 100)%"></div>
+                                                </div>
+                                                <small class="text-muted">@porcentagemEstoque.ToString("F1")%</small>
+                                            </td>
+                                            
+                                            <td class="px-3 py-3">@medicamento.UltimaAtualizacao.ToString("dd/MM/yyyy")</td>
+                                            
+                                            <td class="px-3 py-3">
+                                                <div class="btn-group btn-group-sm">
+                                                    <a asp-action="Details" asp-route-id="@medicamento.Id" 
+                                                       class="btn btn-outline-secondary" title="Ver detalhes">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a asp-action="Edit" asp-route-id="@medicamento.Id" 
+                                                       class="btn btn-outline-warning" title="Editar">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a asp-action="Delete" asp-route-id="@medicamento.Id" 
+                                                       class="btn btn-outline-danger" title="Excluir">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="9" class="text-center py-5">
+                                            <i class="fas fa-pills fa-3x text-muted mb-3"></i>
+                                            <h5 class="text-muted">Nenhum medicamento cadastrado</h5>
+                                            <p class="text-muted">Comece adicionando medicamentos à sua lista de necessidades</p>
+                                            <a asp-action="Create" class="btn btn-success">
+                                                <i class="fas fa-plus me-1"></i>Cadastrar primeiro medicamento
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts Personalizados -->
+<script src="~/js/medicamentos/medicamentos.js"></script>
+
+<script>
+// Função para filtrar medicamentos
+function filtrarMedicamentos() {
+    const nome = document.getElementById('filtroNome').value.toLowerCase();
+    const categoria = document.getElementById('filtroCategoria').value;
+    const status = document.getElementById('filtroStatus').value;
+    const prioridade = document.getElementById('filtroPrioridade').value;
+    
+    const linhas = document.querySelectorAll('#tabelaMedicamentos tbody tr');
+    let visiveisCount = 0;
+    let escassezCount = 0;
+    let baixoCount = 0;
+    let normalCount = 0;
+    
+    linhas.forEach(linha => {
+        if (linha.cells.length === 1) return; // Pular linha de "nenhum medicamento"
+        
+        const nomeMatch = linha.dataset.nome?.includes(nome) ?? false;
+        const categoriaMatch = !categoria || linha.dataset.categoria === categoria;
+        const statusMatch = !status || linha.dataset.status === status;
+        const prioridadeMatch = !prioridade || linha.dataset.prioridade === prioridade;
+        
+        const mostrar = nomeMatch && categoriaMatch && statusMatch && prioridadeMatch;
+        
+        if (mostrar) {
+            linha.style.display = '';
+            visiveisCount++;
+            
+            const statusLinha = linha.dataset.status;
+            if (statusLinha === 'escassez') escassezCount++;
+            else if (statusLinha === 'baixo') baixoCount++;
+            else if (statusLinha === 'normal') normalCount++;
+        } else {
+            linha.style.display = 'none';
+        }
+    });
+    
+    // Atualizar contadores
+    document.getElementById('totalMedicamentos').textContent = visiveisCount;
+    document.getElementById('medicamentosEscassez').textContent = escassezCount;
+    document.getElementById('medicamentosEstoqueBaixo').textContent = baixoCount;
+    document.getElementById('medicamentosNormais').textContent = normalCount;
+}
+
+// Função para limpar filtros
+function limparFiltros() {
+    document.getElementById('filtroNome').value = '';
+    document.getElementById('filtroCategoria').value = '';
+    document.getElementById('filtroStatus').value = '';
+    document.getElementById('filtroPrioridade').value = '';
+    
+    // Restaurar contadores originais
+    document.getElementById('totalMedicamentos').textContent = '@ViewBag.TotalMedicamentos';
+    document.getElementById('medicamentosEscassez').textContent = '@ViewBag.MedicamentosEscassez';
+    document.getElementById('medicamentosEstoqueBaixo').textContent = '@ViewBag.MedicamentosEstoqueBaixo';
+    document.getElementById('medicamentosNormais').textContent = '@ViewBag.MedicamentosNormais';
+    
+    // Mostrar todas as linhas
+    document.querySelectorAll('#tabelaMedicamentos tbody tr').forEach(linha => {
+        linha.style.display = '';
+    });
+}
+
+// Função para filtrar apenas medicamentos em escassez
+function filtrarEscassez() {
+    document.getElementById('filtroStatus').value = 'escassez';
+    filtrarMedicamentos();
+}
+
+// Função para exportar relatório
+function exportarRelatorio() {
+    alert('Funcionalidade de exportação será implementada em breve!');
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('filtroNome').addEventListener('input', filtrarMedicamentos);
+    document.getElementById('filtroCategoria').addEventListener('change', filtrarMedicamentos);
+    document.getElementById('filtroStatus').addEventListener('change', filtrarMedicamentos);
+    document.getElementById('filtroPrioridade').addEventListener('change', filtrarMedicamentos);
+});
+</script>

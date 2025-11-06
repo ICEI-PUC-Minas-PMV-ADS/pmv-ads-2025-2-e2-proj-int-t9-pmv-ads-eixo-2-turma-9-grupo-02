@@ -1,26 +1,7 @@
-<<<<<<< Updated upstream
-@model MedShare.Models.InstituicaoMedicamento
-@{
-    ViewData["Title"] = "Editar Quantidade";
-}
-<h2>Editar Quantidade</h2>
-<form method="post">
-    <div>
-        <label>Medicamento</label>
-        <span>@Model.Medicamento.Nome</span>
-    </div>
-    <div>
-        <label>Quantidade de Caixas</label>
-        <input type="number" name="quantidadeCaixas" value="@Model.QuantidadeCaixas" min="0" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Salvar</button>
-    <a href="/Medicamentos/Index" class="btn btn-secondary">Voltar</a>
-</form>
-=======
 @model MedShare.Models.Medicamento
 
 @{
-    ViewData["Title"] = "Editar Medicamento";
+    ViewData["Title"] = "Cadastrar Medicamento";
 }
 
 <link rel="stylesheet" href="~/css/medicamentos/medicamentos.css" />
@@ -29,31 +10,16 @@
     <!-- Header da Página -->
     <div class="page-header">
         <h1>
-            <i class="fas fa-edit"></i>
-            Editar Medicamento
+            <i class="fas fa-plus-circle"></i>
+            Cadastrar Novo Medicamento
         </h1>
-        <p>Atualize as informações do medicamento: <strong>@Model.Nome</strong></p>
+        <p>Adicione um novo medicamento à lista de necessidades da sua instituição</p>
     </div>
 
-    <!-- Formulário de Edição -->
+    <!-- Formulário de Cadastro -->
     <div class="form-container">
-        <form asp-action="Edit" method="post">
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="InstituicaoId" />
-            <input type="hidden" asp-for="DataCadastro" />
-            
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <!-- Info Card -->
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
-                <div style="display: flex; align-items: center; gap: 10px; color: #166534;">
-                    <i class="fas fa-info-circle"></i>
-                    <strong>Cadastrado em:</strong> @Model.DataCadastro.ToString("dd/MM/yyyy HH:mm")
-                    <span style="margin-left: 20px;">
-                        <strong>Última atualização:</strong> @Model.UltimaAtualizacao.ToString("dd/MM/yyyy HH:mm")
-                    </span>
-                </div>
-            </div>
             
             <!-- Linha 1: Nome e Categoria -->
             <div class="form-row">
@@ -62,7 +28,7 @@
                         <i class="fas fa-pills"></i>
                         Nome do Medicamento *
                     </label>
-                    <input asp-for="Nome" class="form-control" />
+                    <input asp-for="Nome" class="form-control" placeholder="Ex: Paracetamol, Ibuprofeno..." />
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
                 
@@ -95,7 +61,7 @@
                         <i class="fas fa-prescription-bottle-alt"></i>
                         Dosagem *
                     </label>
-                    <input asp-for="Dosagem" class="form-control" />
+                    <input asp-for="Dosagem" class="form-control" placeholder="Ex: 500mg, 10ml, 1 comprimido..." />
                     <span asp-validation-for="Dosagem" class="text-danger"></span>
                 </div>
                 
@@ -124,14 +90,14 @@
                 </div>
             </div>
 
-            <!-- Linha 3: Prioridade e Status Ativo -->
+            <!-- Linha 3: Prioridade e Quantidades -->
             <div class="form-row">
                 <div class="form-group">
                     <label asp-for="NivelPrioridade" class="control-label">
                         <i class="fas fa-star"></i>
                         Nível de Prioridade *
                     </label>
-                    <select asp-for="NivelPrioridade" class="form-control">
+                    <select asp-for="NivelPrioridade" class="form-control" id="prioridadeSelect">
                         <option value="">Selecione a prioridade</option>
                         <option value="5">5 - Muito Alta (Medicamento essencial/vida)</option>
                         <option value="4">4 - Alta (Importante para tratamento)</option>
@@ -140,104 +106,56 @@
                         <option value="1">1 - Muito Baixa (Reserva/opcional)</option>
                     </select>
                     <span asp-validation-for="NivelPrioridade" class="text-danger"></span>
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle"></i>
+                        A prioridade ajuda a identificar medicamentos críticos em situações de escassez
+                    </small>
                 </div>
                 
                 <div class="form-group">
-                    <label asp-for="Ativo" class="control-label">
-                        <i class="fas fa-toggle-on"></i>
-                        Status
+                    <label asp-for="QuantidadeNecessaria" class="control-label">
+                        <i class="fas fa-boxes"></i>
+                        Quantidade Necessária *
                     </label>
-                    <select asp-for="Ativo" class="form-control">
-                        <option value="true">✅ Ativo - Medicamento em uso</option>
-                        <option value="false">❌ Inativo - Medicamento descontinuado</option>
-                    </select>
-                    <span asp-validation-for="Ativo" class="text-danger"></span>
+                    <input asp-for="QuantidadeNecessaria" class="form-control" type="number" min="1" placeholder="Ex: 100" />
+                    <span asp-validation-for="QuantidadeNecessaria" class="text-danger"></span>
                     <small class="text-muted">
                         <i class="fas fa-info-circle"></i>
-                        Medicamentos inativos não aparecem nas buscas de doadores
+                        Quantidade ideal em estoque para suprir a demanda
                     </small>
                 </div>
             </div>
 
-            <!-- Linha 4: Quantidades com Comparação -->
+            <!-- Linha 4: Estoque Atual -->
             <div class="form-row">
-                <div class="form-group">
-                    <label asp-for="QuantidadeNecessaria" class="control-label">
-                        <i class="fas fa-bullseye"></i>
-                        Quantidade Necessária *
-                    </label>
-                    <input asp-for="QuantidadeNecessaria" class="form-control" type="number" min="1" />
-                    <span asp-validation-for="QuantidadeNecessaria" class="text-danger"></span>
-                </div>
-                
                 <div class="form-group">
                     <label asp-for="QuantidadeAtual" class="control-label">
                         <i class="fas fa-warehouse"></i>
-                        Quantidade Atual em Estoque *
+                        Quantidade Atual em Estoque
                     </label>
-                    <input asp-for="QuantidadeAtual" class="form-control" type="number" min="0" />
+                    <input asp-for="QuantidadeAtual" class="form-control" type="number" min="0" placeholder="Ex: 25" value="0" />
                     <span asp-validation-for="QuantidadeAtual" class="text-danger"></span>
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle"></i>
+                        Quantidade atualmente disponível em estoque
+                    </small>
                 </div>
-            </div>
-
-            <!-- Status Atual e Preview -->
-            <div class="form-row">
+                
+                <!-- Preview do Status -->
                 <div class="form-group">
                     <label class="control-label">
                         <i class="fas fa-chart-line"></i>
-                        Status Atual do Estoque
+                        Preview do Status
                     </label>
-                    <div style="padding: 15px; border-radius: 8px; background: #f3f4f6;">
-                        @{
-                            var porcentagemAtual = Model.QuantidadeNecessaria > 0 
-                                ? (double)Model.QuantidadeAtual / Model.QuantidadeNecessaria * 100 
-                                : 0;
-                            
-                            var statusAtual = Model.EmEscassez ? "escassez" 
-                                : porcentagemAtual < 50 ? "baixo" 
-                                : "normal";
-                        }
-                        
-                        <span class="status-badge status-@statusAtual">
-                            @if (Model.EmEscassez)
-                            {
-                                <text>🚨 Escassez Crítica</text>
-                            }
-                            else if (porcentagemAtual < 50)
-                            {
-                                <text>⚠️ Estoque Baixo</text>
-                            }
-                            else
-                            {
-                                <text>✅ Estoque Normal</text>
-                            }
-                        </span>
-                        
-                        <div style="margin-top: 10px;">
-                            <div class="estoque-progress">
-                                <div class="estoque-fill estoque-@statusAtual" 
-                                     style="width: @Math.Min(porcentagemAtual, 100)%"></div>
-                            </div>
-                            <small>@porcentagemAtual.ToString("F1")% da quantidade necessária</small>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Preview com novos valores -->
-                <div class="form-group">
-                    <label class="control-label">
-                        <i class="fas fa-eye"></i>
-                        Preview (Novos Valores)
-                    </label>
-                    <div id="statusPreview" style="padding: 15px; border-radius: 8px; background: #f0f9ff; border: 1px solid #bae6fd;">
+                    <div id="statusPreview" style="padding: 12px; border-radius: 8px; background: #f3f4f6;">
                         <span id="statusBadge" class="status-badge status-normal">
-                            ✅ Aguardando alterações
+                            ✅ Aguardando dados
                         </span>
                         <div style="margin-top: 10px;">
                             <div class="estoque-progress">
-                                <div id="statusProgress" class="estoque-fill estoque-normal" style="width: @Math.Min(porcentagemAtual, 100)%"></div>
+                                <div id="statusProgress" class="estoque-fill estoque-normal" style="width: 0%"></div>
                             </div>
-                            <small id="statusPercentual">@porcentagemAtual.ToString("F1")%</small>
+                            <small id="statusPercentual">0%</small>
                         </div>
                     </div>
                 </div>
@@ -250,7 +168,8 @@
                         <i class="fas fa-align-left"></i>
                         Descrição
                     </label>
-                    <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                    <textarea asp-for="Descricao" class="form-control" rows="3" 
+                              placeholder="Informações adicionais sobre o medicamento, indicações, restrições, etc."></textarea>
                     <span asp-validation-for="Descricao" class="text-danger"></span>
                 </div>
             </div>
@@ -262,27 +181,28 @@
                         <i class="fas fa-sticky-note"></i>
                         Observações
                     </label>
-                    <textarea asp-for="Observacoes" class="form-control" rows="2"></textarea>
+                    <textarea asp-for="Observacoes" class="form-control" rows="2" 
+                              placeholder="Observações internas, notas sobre fornecedores, etc."></textarea>
                     <span asp-validation-for="Observacoes" class="text-danger"></span>
                 </div>
             </div>
 
             <!-- Botões de Ação -->
             <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-success">
                     <i class="fas fa-save"></i>
-                    Salvar Alterações
+                    Cadastrar Medicamento
                 </button>
                 
-                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline">
-                    <i class="fas fa-eye"></i>
-                    Ver Detalhes
-                </a>
-                
-                <a asp-action="Index" class="btn" style="background: #6b7280; color: white;">
+                <a asp-action="Index" class="btn btn-outline">
                     <i class="fas fa-arrow-left"></i>
                     Voltar à Lista
                 </a>
+                
+                <button type="reset" class="btn" style="background: #6b7280; color: white;">
+                    <i class="fas fa-eraser"></i>
+                    Limpar Formulário
+                </button>
             </div>
         </form>
     </div>
@@ -302,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const atual = parseInt(quantidadeAtual.value) || 0;
         
         if (necessaria === 0) {
-            statusBadge.textContent = '⚠️ Quantidade necessária deve ser maior que 0';
+            statusBadge.textContent = '⚠️ Defina a quantidade necessária';
             statusBadge.className = 'status-badge status-baixo';
             statusProgress.style.width = '0%';
             statusProgress.className = 'estoque-fill estoque-normal';
@@ -349,4 +269,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Font Awesome para ícones -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
->>>>>>> Stashed changes

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using MedShare.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,27 @@ namespace MedShare.Controllers
     public class MedicamentosController : Controller
     {
         private readonly AppDbContext _context;
+=======
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MedShare.Models;
+using System.Security.Claims;
+
+namespace MedShare.Controllers
+{
+    [Authorize]
+    public class MedicamentosController : Controller
+    {
+        private readonly AppDbContext _context;
+
+>>>>>>> Stashed changes
         public MedicamentosController(AppDbContext context)
         {
             _context = context;
         }
 
+<<<<<<< Updated upstream
         // Lista todos os registros de estoque (InstituicaoMedicamento) da institui��o logada.
         public async Task<IActionResult> Index()
         {
@@ -103,10 +120,183 @@ namespace MedShare.Controllers
         }
 
         // Remove o registro de estoque da institui��o para o medicamento escolhido.
+=======
+        // GET: Medicamentos
+        public async Task<IActionResult> Index()
+        {
+            // Verificar se o usuário logado é uma instituição
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            if (!int.TryParse(usuarioId, out int id))
+                return Unauthorized();
+
+            // Buscar a instituição do usuário logado
+            var instituicao = await _context.Instituicoes.FirstOrDefaultAsync(i => i.InstituicaoId == id);
+            
+            if (instituicao == null)
+                return Unauthorized("Apenas instituições podem gerenciar medicamentos.");
+
+            // Buscar medicamentos da instituição
+            var medicamentos = await _context.Medicamentos
+                .Include(m => m.Instituicao)
+                .Where(m => m.InstituicaoId == instituicao.InstituicaoId)
+                .OrderByDescending(m => m.DataCadastro)
+                .ToListAsync();
+
+            // Calcular estatísticas
+            var total = medicamentos.Count;
+            var escassez = medicamentos.Count(m => m.EmEscassez);
+            var baixo = medicamentos.Count(m => !m.EmEscassez && (double)m.QuantidadeAtual / m.QuantidadeNecessaria < 0.5);
+            var normal = medicamentos.Count(m => !m.EmEscassez && (double)m.QuantidadeAtual / m.QuantidadeNecessaria >= 0.5);
+
+            ViewBag.TotalMedicamentos = total;
+            ViewBag.MedicamentosEscassez = escassez;
+            ViewBag.MedicamentosEstoqueBaixo = baixo;
+            ViewBag.MedicamentosNormais = normal;
+
+            return View(medicamentos);
+        }
+
+        // GET: Medicamentos/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var medicamento = await _context.Medicamentos
+                .Include(m => m.Instituicao)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (medicamento == null)
+                return NotFound();
+
+            // Verificar se o medicamento pertence à instituição do usuário logado
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(usuarioId, out int userId) && medicamento.InstituicaoId != userId)
+                return Forbid();
+
+            return View(medicamento);
+        }
+
+        // GET: Medicamentos/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Medicamentos/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Nome,Descricao,Categoria,Dosagem,FormaFarmaceutica,NivelPrioridade,QuantidadeNecessaria,QuantidadeAtual,Observacoes")] Medicamento medicamento)
+        {
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            if (!int.TryParse(usuarioId, out int id))
+                return Unauthorized();
+
+            // Verificar se é uma instituição
+            var instituicao = await _context.Instituicoes.FindAsync(id);
+            if (instituicao == null)
+                return Unauthorized("Apenas instituições podem cadastrar medicamentos.");
+
+            if (ModelState.IsValid)
+            {
+                medicamento.InstituicaoId = id;
+                medicamento.DataCadastro = DateTime.Now;
+                medicamento.UltimaAtualizacao = DateTime.Now;
+                medicamento.Ativo = true;
+
+                _context.Add(medicamento);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = $"Medicamento '{medicamento.Nome}' cadastrado com sucesso!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(medicamento);
+        }
+
+        // GET: Medicamentos/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var medicamento = await _context.Medicamentos.FindAsync(id);
+            if (medicamento == null)
+                return NotFound();
+
+            // Verificar se o medicamento pertence à instituição do usuário logado
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(usuarioId, out int userId) && medicamento.InstituicaoId != userId)
+                return Forbid();
+
+            return View(medicamento);
+        }
+
+        // POST: Medicamentos/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Categoria,Dosagem,FormaFarmaceutica,NivelPrioridade,QuantidadeNecessaria,QuantidadeAtual,Observacoes,Ativo,InstituicaoId,DataCadastro")] Medicamento medicamento)
+        {
+            if (id != medicamento.Id)
+                return NotFound();
+
+            // Verificar se o medicamento pertence à instituição do usuário logado
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(usuarioId, out int userId) && medicamento.InstituicaoId != userId)
+                return Forbid();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    medicamento.UltimaAtualizacao = DateTime.Now;
+                    _context.Update(medicamento);
+                    await _context.SaveChangesAsync();
+
+                    TempData["SuccessMessage"] = $"Medicamento '{medicamento.Nome}' atualizado com sucesso!";
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MedicamentoExists(medicamento.Id))
+                        return NotFound();
+                    else
+                        throw;
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(medicamento);
+        }
+
+        // GET: Medicamentos/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var medicamento = await _context.Medicamentos
+                .Include(m => m.Instituicao)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (medicamento == null)
+                return NotFound();
+
+            // Verificar se o medicamento pertence à instituição do usuário logado
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(usuarioId, out int userId) && medicamento.InstituicaoId != userId)
+                return Forbid();
+
+            return View(medicamento);
+        }
+
+        // POST: Medicamentos/Delete/5
+>>>>>>> Stashed changes
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+<<<<<<< Updated upstream
             var item = await _context.InstituicaoMedicamentos.FirstOrDefaultAsync(i => i.InstituicaoMedicamentoId == id);
             if (item == null) return NotFound();
             _context.InstituicaoMedicamentos.Remove(item);
@@ -115,3 +305,60 @@ namespace MedShare.Controllers
         }
     }
 }
+=======
+            var medicamento = await _context.Medicamentos.FindAsync(id);
+            
+            if (medicamento == null)
+                return NotFound();
+
+            // Verificar se o medicamento pertence à instituição do usuário logado
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(usuarioId, out int userId) && medicamento.InstituicaoId != userId)
+                return Forbid();
+
+            _context.Medicamentos.Remove(medicamento);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = $"Medicamento '{medicamento.Nome}' excluído com sucesso!";
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool MedicamentoExists(int id)
+        {
+            return _context.Medicamentos.Any(e => e.Id == id);
+        }
+
+        // API para buscar medicamentos em escassez (AJAX)
+        [HttpGet]
+        public async Task<IActionResult> GetMedicamentosEscassez()
+        {
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            if (!int.TryParse(usuarioId, out int id))
+                return Unauthorized();
+
+            var medicamentosEscassez = await _context.Medicamentos
+                .Where(m => m.InstituicaoId == id && m.Ativo)
+                .ToListAsync();
+
+            var escassez = medicamentosEscassez
+                .Where(m => m.EmEscassez)
+                .Select(m => new
+                {
+                    m.Id,
+                    m.Nome,
+                    m.Categoria,
+                    m.QuantidadeAtual,
+                    m.QuantidadeNecessaria,
+                    m.NivelPrioridade,
+                    Porcentagem = (double)m.QuantidadeAtual / m.QuantidadeNecessaria * 100
+                })
+                .OrderByDescending(m => m.NivelPrioridade)
+                .ThenBy(m => m.Porcentagem)
+                .ToList();
+
+            return Json(escassez);
+        }
+    }
+}
+>>>>>>> Stashed changes

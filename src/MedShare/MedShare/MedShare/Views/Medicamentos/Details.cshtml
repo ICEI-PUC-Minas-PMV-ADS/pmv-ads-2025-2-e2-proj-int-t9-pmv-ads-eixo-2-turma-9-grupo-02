@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 @model MedShare.Models.InstituicaoMedicamento
 @{
     ViewData["Title"] = "Detalhes Medicamento";
@@ -7,3 +8,362 @@
 <p><strong>Quantidade de Caixas:</strong> @Model.QuantidadeCaixas</p>
 <p><strong>Dispon�vel:</strong> @(Model.Disponivel ? "Sim" : "N�o")</p>
 <p><a href="/Medicamentos/Edit/@Model.InstituicaoMedicamentoId">Editar</a> | <a href="/Medicamentos/Index">Voltar</a></p>
+=======
+@model MedShare.Models.Medicamento
+
+@{
+    ViewData["Title"] = "Detalhes do Medicamento";
+    
+    var porcentagemEstoque = Model.QuantidadeNecessaria > 0 
+        ? (double)Model.QuantidadeAtual / Model.QuantidadeNecessaria * 100 
+        : 0;
+    
+    var statusEstoque = Model.EmEscassez ? "escassez" 
+        : porcentagemEstoque < 50 ? "baixo" 
+        : "normal";
+}
+
+<link rel="stylesheet" href="~/css/medicamentos/medicamentos.css" />
+
+<div class="medicamentos-container">
+    <!-- Header da Página -->
+    <div class="page-header">
+        <h1>
+            <i class="fas fa-info-circle"></i>
+            Detalhes do Medicamento
+        </h1>
+        <p>Informações completas sobre: <strong>@Model.Nome</strong></p>
+    </div>
+
+    <!-- Card Principal -->
+    <div class="form-container">
+        <!-- Status Alert -->
+        @if (Model.EmEscassez)
+        {
+            <div class="alert alert-danger" style="margin-bottom: 25px;">
+                <span class="alert-icon">🚨</span>
+                <div>
+                    <strong>Atenção - Escassez Crítica!</strong>
+                    <br>Este medicamento está com estoque muito baixo (@Model.QuantidadeAtual de @Model.QuantidadeNecessaria necessários).
+                    Considere aumentar a prioridade para doações.
+                </div>
+            </div>
+        }
+        else if (porcentagemEstoque < 50)
+        {
+            <div class="alert alert-warning" style="margin-bottom: 25px;">
+                <span class="alert-icon">⚠️</span>
+                <div>
+                    <strong>Estoque Baixo</strong>
+                    <br>Este medicamento está com estoque abaixo do ideal (@porcentagemEstoque.ToString("F1")%).
+                </div>
+            </div>
+        }
+
+        <!-- Grid de Informações -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+            
+            <!-- Informações Básicas -->
+            <div class="info-section">
+                <h3 style="color: #2c5aa0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-pills"></i>
+                    Informações Básicas
+                </h3>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-tag"></i> Nome:</label>
+                    <span>@Model.Nome</span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-tags"></i> Categoria:</label>
+                    <span>@Model.Categoria</span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-prescription-bottle-alt"></i> Dosagem:</label>
+                    <span>@Model.Dosagem</span>
+                </div>
+                
+                @if (!string.IsNullOrEmpty(Model.FormaFarmaceutica))
+                {
+                    <div class="info-item">
+                        <label><i class="fas fa-capsules"></i> Forma Farmacêutica:</label>
+                        <span>@Model.FormaFarmaceutica</span>
+                    </div>
+                }
+                
+                <div class="info-item">
+                    <label><i class="fas fa-star"></i> Prioridade:</label>
+                    <span class="prioridade-badge prioridade-@Model.NivelPrioridade">
+                        @for (int i = 1; i <= Model.NivelPrioridade; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                        Nível @Model.NivelPrioridade
+                        @switch (Model.NivelPrioridade)
+                        {
+                            case 5: <text>(Muito Alta)</text> break;
+                            case 4: <text>(Alta)</text> break;
+                            case 3: <text>(Média)</text> break;
+                            case 2: <text>(Baixa)</text> break;
+                            case 1: <text>(Muito Baixa)</text> break;
+                        }
+                    </span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-toggle-on"></i> Status:</label>
+                    <span style="color: @(Model.Ativo ? "#059669" : "#dc2626"); font-weight: 600;">
+                        @(Model.Ativo ? "✅ Ativo" : "❌ Inativo")
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Controle de Estoque -->
+            <div class="info-section">
+                <h3 style="color: #2c5aa0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-warehouse"></i>
+                    Controle de Estoque
+                </h3>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-bullseye"></i> Quantidade Necessária:</label>
+                    <span style="font-size: 18px; font-weight: 600; color: #2c5aa0;">@Model.QuantidadeNecessaria unidades</span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-boxes"></i> Quantidade Atual:</label>
+                    <span style="font-size: 18px; font-weight: 600; color: @(Model.EmEscassez ? "#dc2626" : porcentagemEstoque < 50 ? "#d97706" : "#059669");">
+                        @Model.QuantidadeAtual unidades
+                    </span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-chart-line"></i> Status do Estoque:</label>
+                    <span class="status-badge status-@statusEstoque">
+                        @if (Model.EmEscassez)
+                        {
+                            <text>🚨 Escassez Crítica</text>
+                        }
+                        else if (porcentagemEstoque < 50)
+                        {
+                            <text>⚠️ Estoque Baixo</text>
+                        }
+                        else
+                        {
+                            <text>✅ Estoque Normal</text>
+                        }
+                    </span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-percentage"></i> Percentual Disponível:</label>
+                    <div>
+                        <div class="estoque-progress" style="margin: 8px 0;">
+                            <div class="estoque-fill estoque-@statusEstoque" 
+                                 style="width: @Math.Min(porcentagemEstoque, 100)%"></div>
+                        </div>
+                        <span style="font-weight: 600;">@porcentagemEstoque.ToString("F1")%</span>
+                        <small class="text-muted">
+                            (@Model.QuantidadeAtual de @Model.QuantidadeNecessaria)
+                        </small>
+                    </div>
+                </div>
+                
+                @{
+                    var deficit = Model.QuantidadeNecessaria - Model.QuantidadeAtual;
+                }
+                
+                @if (deficit > 0)
+                {
+                    <div class="info-item">
+                        <label><i class="fas fa-exclamation-triangle"></i> Déficit:</label>
+                        <span style="color: #dc2626; font-weight: 600;">
+                            @deficit unidades em falta
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Descrições -->
+        @if (!string.IsNullOrEmpty(Model.Descricao) || !string.IsNullOrEmpty(Model.Observacoes))
+        {
+            <div style="margin-top: 30px;">
+                <h3 style="color: #2c5aa0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-align-left"></i>
+                    Informações Adicionais
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px;">
+                    @if (!string.IsNullOrEmpty(Model.Descricao))
+                    {
+                        <div class="info-section">
+                            <h4 style="margin-bottom: 10px; color: #374151;">
+                                <i class="fas fa-file-alt"></i> Descrição
+                            </h4>
+                            <p style="background: #f9fafb; padding: 15px; border-radius: 8px; margin: 0; line-height: 1.6;">
+                                @Model.Descricao
+                            </p>
+                        </div>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(Model.Observacoes))
+                    {
+                        <div class="info-section">
+                            <h4 style="margin-bottom: 10px; color: #374151;">
+                                <i class="fas fa-sticky-note"></i> Observações
+                            </h4>
+                            <p style="background: #fffbeb; padding: 15px; border-radius: 8px; margin: 0; line-height: 1.6; border: 1px solid #fed7aa;">
+                                @Model.Observacoes
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        <!-- Informações do Sistema -->
+        <div style="margin-top: 30px; padding-top: 25px; border-top: 2px solid #e5e7eb;">
+            <h3 style="color: #2c5aa0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-cog"></i>
+                Informações do Sistema
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div class="info-item">
+                    <label><i class="fas fa-calendar-plus"></i> Data de Cadastro:</label>
+                    <span>@Model.DataCadastro.ToString("dd/MM/yyyy HH:mm")</span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-calendar-check"></i> Última Atualização:</label>
+                    <span>@Model.UltimaAtualizacao.ToString("dd/MM/yyyy HH:mm")</span>
+                </div>
+                
+                <div class="info-item">
+                    <label><i class="fas fa-building"></i> Instituição:</label>
+                    <span>@Model.Instituicao?.InstituicaoNome</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div style="margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                <i class="fas fa-edit"></i>
+                Editar Medicamento
+            </a>
+            
+            <a asp-action="Index" class="btn btn-primary">
+                <i class="fas fa-list"></i>
+                Voltar à Lista
+            </a>
+            
+            @if (Model.EmEscassez)
+            {
+                <button type="button" class="btn btn-success" onclick="compartilharEscassez()">
+                    <i class="fas fa-share"></i>
+                    Compartilhar Necessidade
+                </button>
+            }
+            
+            <button type="button" class="btn btn-outline" onclick="imprimirDetalhes()">
+                <i class="fas fa-print"></i>
+                Imprimir
+            </button>
+            
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" 
+               onclick="return confirm('Tem certeza que deseja excluir este medicamento?')">
+                <i class="fas fa-trash"></i>
+                Excluir
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+function compartilharEscassez() {
+    const medicamento = '@Model.Nome';
+    const quantidade = '@Model.QuantidadeNecessaria - @Model.QuantidadeAtual';
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'Medicamento em Escassez - MedShare',
+            text: `Precisamos de ${quantidade} unidades de ${medicamento}. Você pode nos ajudar?`,
+            url: window.location.href
+        });
+    } else {
+        // Fallback para navegadores que não suportam Web Share API
+        const texto = `Precisamos de ${quantidade} unidades de ${medicamento}. Você pode nos ajudar?`;
+        navigator.clipboard.writeText(texto).then(() => {
+            alert('Texto copiado para a área de transferência!');
+        });
+    }
+}
+
+function imprimirDetalhes() {
+    window.print();
+}
+</script>
+
+<!-- Estilos específicos para esta página -->
+<style>
+.info-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.info-item {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-item span {
+    font-size: 15px;
+    color: #1f2937;
+}
+
+/* Estilos para impressão */
+@@media print {
+    .medicamentos-container {
+        max-width: none;
+        padding: 0;
+    }
+    
+    .page-header {
+        background: none !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+    
+    .btn {
+        display: none !important;
+    }
+    
+    .alert {
+        border: 2px solid #000 !important;
+        background: white !important;
+    }
+}
+</style>
+
+<!-- Font Awesome para ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+>>>>>>> Stashed changes

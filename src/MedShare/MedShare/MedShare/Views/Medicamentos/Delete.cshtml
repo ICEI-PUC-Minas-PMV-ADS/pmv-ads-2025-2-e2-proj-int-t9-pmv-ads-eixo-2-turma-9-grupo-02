@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 @model MedShare.Models.InstituicaoMedicamento
 @{
     ViewData["Title"] = "Remover";
@@ -12,3 +13,331 @@
     <button type="submit" class="btn btn-danger">Confirmar Remo��o</button>
     <a href="/Medicamentos/Index" class="btn btn-secondary">Cancelar</a>
 </form>
+=======
+@model MedShare.Models.Medicamento
+
+@{
+    ViewData["Title"] = "Excluir Medicamento";
+    
+    var porcentagemEstoque = Model.QuantidadeNecessaria > 0 
+        ? (double)Model.QuantidadeAtual / Model.QuantidadeNecessaria * 100 
+        : 0;
+    
+    var statusEstoque = Model.EmEscassez ? "escassez" 
+        : porcentagemEstoque < 50 ? "baixo" 
+        : "normal";
+}
+
+<link rel="stylesheet" href="~/css/medicamentos/medicamentos.css" />
+
+<div class="medicamentos-container">
+    <!-- Header da Página -->
+    <div class="page-header" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+        <h1>
+            <i class="fas fa-exclamation-triangle"></i>
+            Confirmar Exclusão
+        </h1>
+        <p>⚠️ Esta ação não pode ser desfeita. Revise cuidadosamente antes de prosseguir.</p>
+    </div>
+
+    <!-- Alert de Confirmação -->
+    <div class="alert alert-danger" style="margin-bottom: 30px;">
+        <span class="alert-icon">🚨</span>
+        <div>
+            <strong>Atenção!</strong> Você está prestes a excluir permanentemente este medicamento.
+            <br><strong>Medicamento:</strong> @Model.Nome (@Model.Categoria - @Model.Dosagem)
+            @if (Model.EmEscassez)
+            {
+                <br><span style="color: #991b1b; font-weight: 600;">⚠️ Este medicamento está em ESCASSEZ CRÍTICA!</span>
+            }
+        </div>
+    </div>
+
+    <!-- Card de Informações -->
+    <div class="form-container">
+        <h3 style="color: #dc2626; margin-bottom: 20px; text-align: center;">
+            <i class="fas fa-trash"></i>
+            Resumo do Medicamento a ser Excluído
+        </h3>
+
+        <!-- Grid de Informações Resumidas -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px;">
+            
+            <!-- Informações Principais -->
+            <div style="background: #fef2f2; padding: 20px; border-radius: 12px; border: 1px solid #fecaca;">
+                <h4 style="color: #991b1b; margin-bottom: 15px;">
+                    <i class="fas fa-info-circle"></i>
+                    Informações Principais
+                </h4>
+                
+                <div class="delete-info-item">
+                    <strong>Nome:</strong> @Model.Nome
+                </div>
+                
+                <div class="delete-info-item">
+                    <strong>Categoria:</strong> @Model.Categoria
+                </div>
+                
+                <div class="delete-info-item">
+                    <strong>Dosagem:</strong> @Model.Dosagem
+                </div>
+                
+                @if (!string.IsNullOrEmpty(Model.FormaFarmaceutica))
+                {
+                    <div class="delete-info-item">
+                        <strong>Forma:</strong> @Model.FormaFarmaceutica
+                    </div>
+                }
+                
+                <div class="delete-info-item">
+                    <strong>Prioridade:</strong> 
+                    <span class="prioridade-badge prioridade-@Model.NivelPrioridade">
+                        @for (int i = 1; i <= Model.NivelPrioridade; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                        Nível @Model.NivelPrioridade
+                    </span>
+                </div>
+                
+                <div class="delete-info-item">
+                    <strong>Status:</strong> 
+                    <span style="color: @(Model.Ativo ? "#059669" : "#dc2626");">
+                        @(Model.Ativo ? "✅ Ativo" : "❌ Inativo")
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Status do Estoque -->
+            <div style="background: #fffbeb; padding: 20px; border-radius: 12px; border: 1px solid #fed7aa;">
+                <h4 style="color: #92400e; margin-bottom: 15px;">
+                    <i class="fas fa-warehouse"></i>
+                    Status do Estoque
+                </h4>
+                
+                <div class="delete-info-item">
+                    <strong>Quantidade Necessária:</strong> @Model.QuantidadeNecessaria unidades
+                </div>
+                
+                <div class="delete-info-item">
+                    <strong>Quantidade Atual:</strong> @Model.QuantidadeAtual unidades
+                </div>
+                
+                <div class="delete-info-item">
+                    <strong>Status:</strong>
+                    <span class="status-badge status-@statusEstoque">
+                        @if (Model.EmEscassez)
+                        {
+                            <text>🚨 Escassez Crítica</text>
+                        }
+                        else if (porcentagemEstoque < 50)
+                        {
+                            <text>⚠️ Estoque Baixo</text>
+                        }
+                        else
+                        {
+                            <text>✅ Estoque Normal</text>
+                        }
+                    </span>
+                </div>
+                
+                <div class="delete-info-item">
+                    <strong>Percentual:</strong>
+                    <div style="margin-top: 5px;">
+                        <div class="estoque-progress">
+                            <div class="estoque-fill estoque-@statusEstoque" 
+                                 style="width: @Math.Min(porcentagemEstoque, 100)%"></div>
+                        </div>
+                        <small>@porcentagemEstoque.ToString("F1")% do necessário</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações Adicionais (se houver) -->
+        @if (!string.IsNullOrEmpty(Model.Descricao) || !string.IsNullOrEmpty(Model.Observacoes))
+        {
+            <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 30px;">
+                <h4 style="color: #475569; margin-bottom: 15px;">
+                    <i class="fas fa-file-alt"></i>
+                    Informações Adicionais
+                </h4>
+                
+                @if (!string.IsNullOrEmpty(Model.Descricao))
+                {
+                    <div class="delete-info-item">
+                        <strong>Descrição:</strong>
+                        <p style="margin: 5px 0 0 0; padding: 10px; background: white; border-radius: 6px;">
+                            @Model.Descricao
+                        </p>
+                    </div>
+                }
+                
+                @if (!string.IsNullOrEmpty(Model.Observacoes))
+                {
+                    <div class="delete-info-item">
+                        <strong>Observações:</strong>
+                        <p style="margin: 5px 0 0 0; padding: 10px; background: white; border-radius: 6px;">
+                            @Model.Observacoes
+                        </p>
+                    </div>
+                }
+            </div>
+        }
+
+        <!-- Informações do Sistema -->
+        <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 30px; font-size: 14px; color: #64748b;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div>
+                    <i class="fas fa-calendar-plus"></i>
+                    <strong>Cadastrado em:</strong> @Model.DataCadastro.ToString("dd/MM/yyyy HH:mm")
+                </div>
+                <div>
+                    <i class="fas fa-calendar-check"></i>
+                    <strong>Atualizado em:</strong> @Model.UltimaAtualizacao.ToString("dd/MM/yyyy HH:mm")
+                </div>
+            </div>
+        </div>
+
+        <!-- Avisos Importantes -->
+        <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+            <h4 style="color: #92400e; margin-bottom: 15px;">
+                <i class="fas fa-exclamation-triangle"></i>
+                Consequências da Exclusão
+            </h4>
+            <ul style="color: #92400e; margin: 0; padding-left: 20px;">
+                <li><strong>Perda permanente de dados:</strong> Todas as informações do medicamento serão perdidas</li>
+                <li><strong>Histórico:</strong> Não será possível recuperar o histórico de atualizações</li>
+                <li><strong>Relatórios:</strong> O medicamento não aparecerá mais em relatórios futuros</li>
+                @if (Model.EmEscassez)
+                {
+                    <li><strong style="color: #dc2626;">Escassez:</strong> Você está excluindo um medicamento em escassez crítica!</li>
+                }
+                @if (Model.NivelPrioridade >= 4)
+                {
+                    <li><strong style="color: #dc2626;">Alta Prioridade:</strong> Este é um medicamento de alta prioridade!</li>
+                }
+            </ul>
+        </div>
+
+        <!-- Formulário de Confirmação -->
+        <form asp-action="Delete" method="post" id="deleteForm">
+            <input type="hidden" asp-for="Id" />
+            
+            <!-- Checkbox de Confirmação -->
+            <div style="background: white; padding: 20px; border: 2px solid #dc2626; border-radius: 8px; margin-bottom: 25px;">
+                <label style="display: flex; align-items: center; gap: 15px; cursor: pointer; font-weight: 600; color: #dc2626;">
+                    <input type="checkbox" id="confirmDelete" required style="transform: scale(1.5);" />
+                    <span>
+                        <i class="fas fa-check-square"></i>
+                        Eu confirmo que li todas as informações acima e entendo que esta ação é irreversível.
+                        Desejo excluir permanentemente o medicamento <strong>"@Model.Nome"</strong>.
+                    </span>
+                </label>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button type="submit" class="btn btn-danger" id="btnConfirmar" disabled>
+                    <i class="fas fa-trash-alt"></i>
+                    Confirmar Exclusão
+                </button>
+                
+                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline">
+                    <i class="fas fa-info-circle"></i>
+                    Ver Detalhes
+                </a>
+                
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                    <i class="fas fa-edit"></i>
+                    Editar ao Invés de Excluir
+                </a>
+                
+                <a asp-action="Index" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i>
+                    Cancelar e Voltar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('confirmDelete');
+    const btnConfirmar = document.getElementById('btnConfirmar');
+    const form = document.getElementById('deleteForm');
+
+    // Habilitar/desabilitar botão baseado no checkbox
+    checkbox.addEventListener('change', function() {
+        btnConfirmar.disabled = !checkbox.checked;
+        
+        if (checkbox.checked) {
+            btnConfirmar.style.opacity = '1';
+            btnConfirmar.style.cursor = 'pointer';
+        } else {
+            btnConfirmar.style.opacity = '0.5';
+            btnConfirmar.style.cursor = 'not-allowed';
+        }
+    });
+
+    // Confirmação adicional no submit
+    form.addEventListener('submit', function(e) {
+        if (!checkbox.checked) {
+            e.preventDefault();
+            alert('Por favor, marque a caixa de confirmação antes de prosseguir.');
+            return;
+        }
+
+        const medicamento = '@Model.Nome';
+        const confirmacao = confirm(`ÚLTIMA CONFIRMAÇÃO:\n\nVocê tem CERTEZA ABSOLUTA que deseja excluir permanentemente o medicamento "${medicamento}"?\n\nEsta ação NÃO pode ser desfeita!`);
+        
+        if (!confirmacao) {
+            e.preventDefault();
+        }
+    });
+
+    // Estilo inicial do botão
+    btnConfirmar.style.opacity = '0.5';
+    btnConfirmar.style.cursor = 'not-allowed';
+});
+</script>
+
+<!-- Estilos específicos -->
+<style>
+.delete-info-item {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.delete-info-item strong {
+    color: #374151;
+    font-size: 14px;
+}
+
+.delete-info-item > *:not(strong) {
+    color: #1f2937;
+    font-size: 15px;
+}
+
+/* Animação de aviso */
+@@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.btn-danger {
+    animation: pulse 2s infinite;
+}
+
+.btn-danger:hover {
+    animation: none;
+}
+</style>
+
+<!-- Font Awesome para ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+>>>>>>> Stashed changes
