@@ -39,55 +39,76 @@ namespace MedShare.Controllers
         public IActionResult Create()
         {
             ViewBag.Instituicoes = _context.Instituicoes.ToList();
-            return View(new Doacao()); // Garante que o Model não será nulo na view
+            return View(new Doacao());
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Doacao doacao)
         {
-            // Validação manual dos arquivos
-            if (doacao.FotoDoacao == null)
+            ViewBag.Instituicoes = await _context.Instituicoes.ToListAsync();
+
+            var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+            if (!Directory.Exists(uploadDir))
+                Directory.CreateDirectory(uploadDir);
+
+            var form = Request.Form;
+            var hiddenCaminhoFoto = form["CaminhoFoto"].FirstOrDefault();
+            var hiddenCaminhoReceita = form["CaminhoReceita"].FirstOrDefault();
+
+            if (doacao.FotoDoacao != null && doacao.FotoDoacao.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(doacao.FotoDoacao.FileName);
+                var filePath = Path.Combine(uploadDir, fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await doacao.FotoDoacao.CopyToAsync(stream);
+                }
+                doacao.CaminhoFoto = "/images/" + fileName;
+            }
+            else if (string.IsNullOrEmpty(doacao.CaminhoFoto) && !string.IsNullOrEmpty(hiddenCaminhoFoto))
+            {
+                doacao.CaminhoFoto = hiddenCaminhoFoto;
+            }
+
+            if (doacao.ReceitaDoacao != null && doacao.ReceitaDoacao.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(doacao.ReceitaDoacao.FileName);
+                var filePath = Path.Combine(uploadDir, fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await doacao.ReceitaDoacao.CopyToAsync(stream);
+                }
+                doacao.CaminhoReceita = "/images/" + fileName;
+            }
+            else if (string.IsNullOrEmpty(doacao.CaminhoReceita) && !string.IsNullOrEmpty(hiddenCaminhoReceita))
+            {
+                doacao.CaminhoReceita = hiddenCaminhoReceita;
+            }
+
+            ModelState.Remove(nameof(doacao.FotoDoacao));
+            ModelState.Remove(nameof(doacao.ReceitaDoacao));
+
+            ModelState.Remove(nameof(doacao.CaminhoFoto));
+            ModelState.Remove(nameof(doacao.CaminhoReceita));
+
+            if (string.IsNullOrEmpty(doacao.CaminhoFoto))
                 ModelState.AddModelError("FotoDoacao", "Obrigatório enviar a foto da caixa do medicamento!");
-            if (doacao.ReceitaDoacao == null)
+
+            if (string.IsNullOrEmpty(doacao.CaminhoReceita))
                 ModelState.AddModelError("ReceitaDoacao", "Obrigatório enviar a receita do medicamento!");
 
             if (ModelState.IsValid)
             {
-                var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
-                if (!Directory.Exists(uploadDir))
-                    Directory.CreateDirectory(uploadDir);
-
-                if (doacao.FotoDoacao != null)
-                {
-                    var fotoPath = Path.Combine(uploadDir, doacao.FotoDoacao.FileName);
-                    using (var stream = new FileStream(fotoPath, FileMode.Create))
-                    {
-                        await doacao.FotoDoacao.CopyToAsync(stream);
-                    }
-                    doacao.CaminhoFoto = "/images/" + doacao.FotoDoacao.FileName;
-                }
-
-                if (doacao.ReceitaDoacao != null)
-                {
-                    var receitaPath = Path.Combine(uploadDir, doacao.ReceitaDoacao.FileName);
-                    using (var stream = new FileStream(receitaPath, FileMode.Create))
-                    {
-                        await doacao.ReceitaDoacao.CopyToAsync(stream);
-                    }
-                    doacao.CaminhoReceita = "/images/" + doacao.ReceitaDoacao.FileName;
-                }
-
                 var doadorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 if (int.TryParse(doadorId, out int id))
-                {
                     doacao.DoadorId = id;
-                }
 
                 _context.Add(doacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.Instituicoes = _context.Instituicoes.ToList();
+
             return View(doacao);
         }
 

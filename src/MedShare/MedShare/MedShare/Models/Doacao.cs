@@ -41,7 +41,7 @@ namespace MedShare.Models
 
         [Required(ErrorMessage = "Obrigatório selecionar a instituição!")]
         [Display(Name = "Instituição")]
-        public int InstituicaoId { get; set; }
+        public int? InstituicaoId { get; set; }
 
         [ForeignKey("InstituicaoId")]
         public Instituicao Instituicao { get; set; }
