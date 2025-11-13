@@ -1,101 +1,232 @@
 ﻿@model MedShare.Models.Doacao
-
 @{
-    ViewData["Title"] = "Cancelar Doação";
+    ViewData["Title"] = "Cancelar Doação - MedShare";
+    Layout = null;
 }
 
-<h1>Cancelar Doação</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
-<h3>Tem certeza que deseja cancelar essa doação?</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeDoacao)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NomeDoacao)
-        </dd>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ValidadeDoacao)
-        </dt>
-        <dd class="col-sm-10">
-            @(Model.ValidadeDoacao.HasValue
-                        ? Model.ValidadeDoacao.Value.ToString("dd/MM/yyyy")
-                        : "-")
-        </dd>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantidadeDoacao)
-        </dt>
-        <dd class="col-sm-10">
-            @Model.QuantidadeDoacao
-        </dd>
+        .cadastro-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-        <dt class="col-sm-2">
-            Foto do Medicamento
-        </dt>
-        <dd class="col-sm-10">
-            @if (!string.IsNullOrEmpty(Model.CaminhoFoto))
-            {
-                <img src="@Model.CaminhoFoto" alt="Foto do Medicamento"
-                     style="max-width:200px; border-radius:8px; box-shadow:0 0 4px rgba(0,0,0,0.2);" />
+        .logo-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .app-title {
+            color: #0d6efd;
+            font-weight: 700;
+        }
+
+        .footer-gradient {
+            height: 6px;
+            background: linear-gradient(90deg, #ff9800 0%, #ff5722 50%, #e91e63 100%);
+        }
+
+        .form-control:disabled {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .btn-success {
+            background-color: #0d6efd;
+            border: none;
+        }
+
+            .btn-success:hover {
+                background-color: #0b5ed7;
             }
-            else
-            {
-                <span class="text-muted">Sem imagem</span>
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
+
+            .btn-danger:hover {
+                background-color: #bb2d3b;
             }
-        </dd>
 
-        <dt class="col-sm-2">
-            Receita
-        </dt>
-        <dd class="col-sm-10">
-            @if (!string.IsNullOrEmpty(Model.CaminhoReceita))
-            {
-                var extensao = System.IO.Path.GetExtension(Model.CaminhoReceita).ToLower();
+        .section-title {
+            color: #6c757d;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
 
-                if (extensao == ".pdf")
-                {
-                    <a href="@Model.CaminhoReceita" target="_blank" class="btn btn-outline-primary btn-sm">
-                        Visualizar PDF
-                    </a>
-                }
-                else
-                {
-                    <a href="@Model.CaminhoReceita" target="_blank" title="Ampliar imagem">
-                        <img src="@Model.CaminhoReceita" alt="Receita Médica"
-                             style="max-width:200px; border-radius:8px; box-shadow:0 0 4px rgba(0,0,0,0.2);" />
-                    </a>
-                }
-            }
-            else
-            {
-                <span class="text-muted">Sem arquivo</span>
-            }
-        </dd>
+        .alert-warning-custom {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
 
-        <dt class="col-sm-2">
-            Instituição
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Instituicao?.InstituicaoNome
-        </dd>
-        <dt class="col-sm-2">
-            Endereço da Instituição
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Instituicao?.InstituicaoEndereco
-        </dd>
+<body>
+    <div class="container-fluid d-flex align-items-center justify-content-center min-vh-100 py-4">
+        <div class="cadastro-card p-5" style="max-width: 800px; width: 100%;">
 
-        <dt class="col-sm-2">Status</dt>
-        <dd class="col-sm-10">@Model.Status</dd>
-    </dl>
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <img src="~/images/logo.png" alt="MedShare Logo" class="logo-image mb-3" />
+                <h1 class="app-title h2 mb-2">MedShare</h1>
+                <p class="text-muted small">O compartilhamento é indicado em casos de escassez de sobras</p>
+                <div class="badge bg-danger fs-6 px-3 py-2 mt-2">
+                    <i class="bi bi-x-circle me-2"></i>CANCELAR DOAÇÃO
+                </div>
+            </div>
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
-        <input type="submit" value="Cancelar doação" class="btn btn-danger" />
-    </form>
-</div>
+            <!-- Mensagem de confirmação -->
+            <div class="alert-warning-custom text-center mb-4">
+                <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                Tem certeza que deseja cancelar esta doação?
+            </div>
+
+            <!-- Informações da Doação -->
+            <div class="mb-4">
+                <h5 class="section-title"><i class="bi bi-capsule me-2"></i>Informações da Doação</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Nome do Medicamento</label>
+                        <input class="form-control" value="@Model.NomeDoacao" disabled />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Validade</label>
+                        <input class="form-control" value="@(Model.ValidadeDoacao.HasValue? Model.ValidadeDoacao.Value.ToString("dd/MM/yyyy") : "-")" disabled />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Quantidade</label>
+                        <input class="form-control" value="@Model.QuantidadeDoacao" disabled />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Imagens -->
+            <div class="mb-4">
+                <h5 class="section-title"><i class="bi bi-image me-2"></i>Fotos e Arquivos</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3 text-center">
+                        <label class="form-label">Foto do Medicamento</label><br />
+                        @if (!string.IsNullOrEmpty(Model.CaminhoFoto))
+                        {
+                            <img src="@Model.CaminhoFoto" alt="Foto do Medicamento" class="rounded mt-2" style="max-width:200px; box-shadow:0 0 6px rgba(0,0,0,0.2);" />
+                        }
+                        else
+                        {
+                            <div class="text-muted small">Sem imagem</div>
+                        }
+                    </div>
+                    <div class="col-md-6 mb-3 text-center">
+                        <label class="form-label">Receita</label><br />
+                        @if (!string.IsNullOrEmpty(Model.CaminhoReceita))
+                        {
+                            var extensao = System.IO.Path.GetExtension(Model.CaminhoReceita).ToLower();
+                            if (extensao == ".pdf")
+                            {
+                                <a href="@Model.CaminhoReceita" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+                                    <i class="bi bi-file-earmark-pdf me-1"></i>Visualizar PDF
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Model.CaminhoReceita" target="_blank" title="Ampliar imagem">
+                                    <img src="@Model.CaminhoReceita" alt="Receita Médica" class="rounded mt-2" style="max-width:200px; box-shadow:0 0 6px rgba(0,0,0,0.2);" />
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-muted small">Sem arquivo</div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instituição -->
+            <div class="mb-4">
+                <h5 class="section-title"><i class="bi bi-hospital me-2"></i>Instituição</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Nome</label>
+                        <input class="form-control" value="@Model.Instituicao?.InstituicaoNome" disabled />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Endereço</label>
+                        <input class="form-control" value="@Model.Instituicao?.InstituicaoEndereco" disabled />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Status</label>
+                        <input class="form-control" value="@Model.Status" disabled />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-2">
+                        <div class="d-grid">
+                            <a asp-action="Index" class="btn btn-outline-primary btn-lg fw-bold">
+                                <i class="bi bi-arrow-left-circle me-2"></i>VOLTAR
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <div class="d-grid">
+                            <input type="submit" value="CANCELAR DOAÇÃO" class="btn btn-danger btn-lg fw-bold" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="mt-auto">
+        <div class="footer-gradient"></div>
+        <div class="container-fluid">
+            <div class="row align-items-center py-3 px-4 bg-white">
+                <div class="col-md-8">
+                    <div class="small text-muted lh-sm">
+                        <div><i class="bi bi-geo-alt-fill text-primary me-1"></i>Av. Dom José Gaspar, 500 - Belo Horizonte - MG</div>
+                        <div><i class="bi bi-telephone-fill text-primary me-1"></i>Telefone: (31) 3319-4444</div>
+                        <div><i class="bi bi-envelope-fill text-primary me-1"></i>E-mail: contato@medshare.com</div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="d-flex align-items-center justify-content-end text-muted small fw-semibold">
+                        <i class="bi bi-info-circle-fill text-primary me-2 fs-6"></i>
+                        SOBRE NÓS
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
