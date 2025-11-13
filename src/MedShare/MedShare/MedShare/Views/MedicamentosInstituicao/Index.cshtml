@@ -1,0 +1,34 @@
+@model IEnumerable<MedShare.Models.MedicamentoInstituicao>
+@{
+    ViewData["Title"] = "Medicamentos";
+}
+<h2>Medicamentos da Instituição</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Novo Medicamento</a>
+    <a asp-action="Escassez" class="btn btn-warning">Ver Escassez Crítica</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Escassez?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr class="@(item.EscassezCritica ? "table-danger" : "")">
+            <td>@item.Nome</td>
+            <td>@item.QuantidadeCaixas</td>
+            <td>@(item.EscassezCritica ? "Crítica" : (item.EmFalta ? "Em falta" : "OK"))</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-secondary">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Excluir</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
