@@ -37,23 +37,13 @@
             font-weight: 700;
         }
 
-        .form-floating .form-control:focus,
-        .form-control:focus {
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-        }
-
         .footer-gradient {
             height: 6px;
             background: linear-gradient(90deg, #ff9800 0%, #ff5722 50%, #e91e63 100%);
         }
 
-        .form-label {
-            font-weight: 500;
-        }
-
         .btn-success {
-            background-color: #28a745; 
+            background-color: #28a745;
             border: none;
         }
 
@@ -61,6 +51,15 @@
                 background-color: #218838;
             }
 
+        /* estilos para manter a sensação nativa do input dentro do box */
+        .file-input-group .btn {
+            min-width: 170px;
+            white-space: nowrap;
+        }
+
+        .file-input-group .form-control[readonly] {
+            background-color: #fff;
+        }
     </style>
 </head>
 
@@ -111,10 +110,23 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         <h5 class="text-muted mb-3"><i class="bi bi-image me-2"></i>Foto da caixa do medicamento</h5>
-                        <input asp-for="FotoDoacao" type="file" class="form-control" accept="image/*" onchange="previewImage(event, 'previewFoto')" />
+
+                        <div class="input-group file-input-group">
+                            <button type="button" id="fotoBtn" class="btn btn-outline-secondary">
+                                Escolher um novo arquivo
+                            </button>
+                            <input type="text" id="fotoFileName" class="form-control" readonly
+                                   value="@(string.IsNullOrEmpty(Model.CaminhoFoto) ? "Nenhum arquivo escolhido" : System.IO.Path.GetFileName(Model.CaminhoFoto))" />
+                        </div>
+
+                        <input asp-for="FotoDoacao" type="file" id="fotoInput" accept="image/*" style="display:none"
+                               onchange="handleFotoChange(event)" />
+
                         <span asp-validation-for="FotoDoacao" class="text-danger"></span>
 
-                        <img id="previewFoto" src="@Url.Content(Model.CaminhoFoto ?? "#")" alt="Prévia da imagem"
+                        <img id="previewFoto"
+                             src="@Url.Content(Model.CaminhoFoto ?? "#")"
+                             alt="Prévia da imagem"
                              class="rounded mt-3"
                              style="display:@(string.IsNullOrEmpty(Model.CaminhoFoto) ? "none" : "block"); max-width:200px;" />
                     </div>
@@ -124,15 +136,28 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         <h5 class="text-muted mb-3"><i class="bi bi-file-earmark-medical me-2"></i>Receita</h5>
-                        <input asp-for="ReceitaDoacao" type="file" class="form-control" accept="image/*,.pdf" onchange="previewFile(event, 'previewReceita', 'linkReceita')" />
+
+                        <div class="input-group file-input-group">
+                            <button type="button" id="receitaBtn" class="btn btn-outline-secondary">
+                                Escolher um novo arquivo
+                            </button>
+                            <input type="text" id="receitaFileName" class="form-control" readonly
+                                   value="@(string.IsNullOrEmpty(Model.CaminhoReceita) ? "Nenhum arquivo escolhido" : System.IO.Path.GetFileName(Model.CaminhoReceita))" />
+                        </div>
+
+                        <input asp-for="ReceitaDoacao" type="file" id="receitaInput" accept="image/*,.pdf" style="display:none"
+                               onchange="handleReceitaChange(event)" />
+
                         <span asp-validation-for="ReceitaDoacao" class="text-danger"></span>
 
-                        <img id="previewReceita" src="@((Model.CaminhoReceita != null && !Model.CaminhoReceita.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)) ? Url.Content(Model.CaminhoReceita) : "#")"
+                        <img id="previewReceita"
+                             src="@((Model.CaminhoReceita != null && !Model.CaminhoReceita.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)) ? Url.Content(Model.CaminhoReceita) : "#")"
                              alt="Prévia da receita"
                              class="rounded mt-3"
                              style='display:@((Model.CaminhoReceita != null && !Model.CaminhoReceita.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)) ? "block" : "none"); max-width:200px;' />
 
-                        <a id="linkReceita" href="@((Model.CaminhoReceita != null && Model.CaminhoReceita.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)) ? Url.Content(Model.CaminhoReceita) : "#")"
+                        <a id="linkReceita"
+                           href="@((Model.CaminhoReceita != null && Model.CaminhoReceita.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)) ? Url.Content(Model.CaminhoReceita) : "#")"
                            target="_blank"
                            class="btn btn-outline-primary btn-sm mt-3"
                            style="display:@((Model.CaminhoReceita != null && Model.CaminhoReceita.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)) ? "block" : "none");">
@@ -151,7 +176,7 @@
                             {
                                 if (Model?.InstituicaoId == inst.InstituicaoId)
                                 {
-                                    <option value="@inst.InstituicaoId" selected>
+                                    <option value="@inst.InstituicaoId" selected="selected">
                                         @inst.InstituicaoNome - @inst.InstituicaoEndereco
                                     </option>
                                 }
@@ -220,8 +245,91 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        // Validação Bootstrap
+        // Conecta botão visual ao input file escondido e atualiza o campo nome dentro do box
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // FOTO
+            const fotoBtn = document.getElementById("fotoBtn");
+            const fotoInput = document.getElementById("fotoInput");
+            const fotoFileName = document.getElementById("fotoFileName");
+            if (fotoBtn && fotoInput && fotoFileName) {
+                fotoBtn.addEventListener("click", () => fotoInput.click());
+            }
+
+            // RECEITA
+            const receitaBtn = document.getElementById("receitaBtn");
+            const receitaInput = document.getElementById("receitaInput");
+            const receitaFileName = document.getElementById("receitaFileName");
+            if (receitaBtn && receitaInput && receitaFileName) {
+                receitaBtn.addEventListener("click", () => receitaInput.click());
+            }
+        });
+
+        // Quando um arquivo de foto é escolhido: atualiza o campo com o nome e mostra preview
+        function handleFotoChange(event) {
+            const input = event.target;
+            const file = input.files && input.files[0];
+            const fileNameField = document.getElementById("fotoFileName");
+            const preview = document.getElementById("previewFoto");
+
+            if (file) {
+                fileNameField.value = file.name;
+
+                // mostra preview da imagem
+                if (file.type.startsWith("image/")) {
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        preview.src = e.target.result;
+                        preview.style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = "none";
+                }
+            } else {
+                // nenhum arquivo selecionado: volta ao valor padrão (caso exista nome salvo no servidor ele permanece)
+                const fallback = "@(string.IsNullOrEmpty(Model.CaminhoFoto) ? "Nenhum arquivo escolhido" : System.IO.Path.GetFileName(Model.CaminhoFoto))";
+                fileNameField.value = fallback;
+            }
+        }
+
+        // Quando um arquivo de receita é escolhido: atualiza o campo com o nome e mostra preview ou link
+        function handleReceitaChange(event) {
+            const input = event.target;
+            const file = input.files && input.files[0];
+            const fileNameField = document.getElementById("receitaFileName");
+            const previewImg = document.getElementById("previewReceita");
+            const linkReceita = document.getElementById("linkReceita");
+
+            if (file) {
+                fileNameField.value = file.name;
+
+                if (file.type === "application/pdf") {
+                    // mostra link de visualização
+                    previewImg.style.display = "none";
+                    linkReceita.style.display = "block";
+                    linkReceita.href = URL.createObjectURL(file);
+                } else if (file.type.startsWith("image/")) {
+                    linkReceita.style.display = "none";
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        previewImg.src = e.target.result;
+                        previewImg.style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImg.style.display = "none";
+                    linkReceita.style.display = "none";
+                }
+            } else {
+                // fallback para o valor salvo no servidor
+                const fallback = "@(string.IsNullOrEmpty(Model.CaminhoReceita) ? "Nenhum arquivo escolhido" : System.IO.Path.GetFileName(Model.CaminhoReceita))";
+                fileNameField.value = fallback;
+            }
+        }
+
         (function () {
             'use strict';
             window.addEventListener('load', function () {
@@ -237,46 +345,6 @@
                 });
             }, false);
         })();
-
-        // Preview da imagem
-        function previewImage(event, previewId) {
-            const input = event.target;
-            const preview = document.getElementById(previewId);
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        // Preview da receita (imagem ou PDF)
-        function previewFile(event, imgId, linkId) {
-            const file = event.target.files[0];
-            const imgPreview = document.getElementById(imgId);
-            const linkPreview = document.getElementById(linkId);
-            if (!file) return;
-
-            if (file.type === "application/pdf") {
-                imgPreview.style.display = 'none';
-                linkPreview.style.display = 'block';
-                linkPreview.href = URL.createObjectURL(file);
-            } else if (file.type.startsWith("image/")) {
-                linkPreview.style.display = 'none';
-                const reader = new FileReader();
-                reader.onload = e => {
-                    imgPreview.src = e.target.result;
-                    imgPreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                imgPreview.style.display = 'none';
-                linkPreview.style.display = 'none';
-                alert("Tipo de arquivo não suportado. Envie uma imagem ou PDF.");
-            }
-        }
     </script>
 </body>
 </html>

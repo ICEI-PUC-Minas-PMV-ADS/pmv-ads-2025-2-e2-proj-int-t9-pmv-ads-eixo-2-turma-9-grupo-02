@@ -165,14 +165,13 @@
             <div class="mb-4">
                 <h5 class="section-title"><i class="bi bi-hospital me-2"></i>Instituição</h5>
                 <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Nome</label>
-                        <input class="form-control" value="@Model.Instituicao?.InstituicaoNome" disabled />
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Instituição</label>
+                        <input class="form-control"
+                               value="@($"{Model.Instituicao?.InstituicaoNome} - {Model.Instituicao?.InstituicaoEndereco}")"
+                               disabled />
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Endereço</label>
-                        <input class="form-control" value="@Model.Instituicao?.InstituicaoEndereco" disabled />
-                    </div>
+
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Status</label>
                         <input class="form-control" value="@Model.Status" disabled />
