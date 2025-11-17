@@ -42,7 +42,7 @@ Os requisitos para realização dos testes de software são:
 |:---:	|:---:	|
 |Requisito Associado | RF-04 - O doador deve selecionar uma instituição específica para doar o medicamento. |
 | Objetivo do Teste 	| Verificar se a aplicação mostra uma lista com as instituições cadastradas. |
-| Passos 	| - Fazer login com dados de um doador;<br> - Realizar o cadastro de um medicamento em "Nova Doação";<br> - Preencher os campos de cadastro;<br> - Clicar em "Selecionar uma instituição"; <br> - Escolher uma instituição na lista disponível. <br> - Clicar em "Cadastrar medicamento".|
+| Passos 	| - Fazer login com dados de um doador;<br> - Realizar o cadastro de um medicamento em "Nova Doação";<br> - Preencher os campos de cadastro;<br> - Clicar em "Selecionar uma instituição"; <br> - Escolher uma instituição na lista disponível. <br> - Clicar em "Cadastrar".|
 |Critério de Êxito | O sistema vincula a instituição escolhida ao medicamento e exibe essa associação na tela “Minhas Doações”, sem mensagens de erro. |
 
 | **Caso de Teste** 	| **CT05 – Acompanhamento de status das doações**	|
