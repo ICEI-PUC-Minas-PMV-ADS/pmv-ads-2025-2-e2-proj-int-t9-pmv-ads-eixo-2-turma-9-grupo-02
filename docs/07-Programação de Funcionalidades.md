@@ -1,43 +1,25 @@
-# Programação de Funcionalidades (INCLUIR A PROGRAMAÇAÕ DE FUNCIONALIDADE EM PROFUNDIDADE)
+# Programação de Funcionalidades
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>, <a href="4-Metodologia.md"> Metodologia</a>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>, <a href="5-Arquitetura da Solução.md"> Arquitetura da Solução</a>
-
-Nesta seção, a implementação do sistema descrita por meio dos requisitos funcionais e/ou não funcionais. Nesta seção, é essencial relacionar os requisitos atendidos com os artefatos criados (código fonte) e com o(s) responsável(is) pelo desenvolvimento de cada artefato a cada etapa. Nesta seção também deverão ser apresentadas, se necessário, as instruções para acesso e verificação da **implementação que deve estar funcional no ambiente de hospedagem, OBRIGATORIAMENTE, a partir da Etapa 03**.
-
-**O que DEVE ser utilizado para o desenvolvimento da aplicação:**
-- Microsoft Visual Studio (IDE de Codificação)
-- HTML e CSS (frontend)
-- Javascript (frontend)
-- C# (backend)
-- MySQL ou SQLServer(Base de Dados)
-- Bootstrap (template responsivo para frontend)
-- Github (documentação e controle de versão)
-
-**O que NÃO PODE ser utilizado:**
-- Template React (e qualquer outro template - exceto o Bootstrap)
-- Qualquer outra liguagem de programação diferente de C#
-
-A tabela a seguir é um exemplo de como ela deverá ser preenchida considerando os artefatos desenvolvidos.
-
-|ID    | Descrição do Requisito  | Artefatos produzidos | Aluno(a) responsável |
-|------|-----------------------------------------|----|----|
-|RF-001| A aplicação deve permitir que o usuário avalie uma agência de intercâmbio com base na sua experiência| |  |
-|RF-002| A aplicação deve permitir que o usuário inclua comentários ao fazer uma avaliação de uma agência de intercâmbio     |  |  |
-|RF-003| A aplicação deve permitir que o usuário consulte todas as agências de intercâmbio cadastradas ordenando-as com base em suas notas |  |  |
+| ID     | Descrição do Requisito | Artefatos Produzidos | Aluno(a) Responsável |
+|--------|-------------------------|-----------------------|------------------------|
+| **RF-01** | A aplicação deve permitir que doadores (pessoa física) e instituições (pessoa jurídica) cadastrem seus perfis. | **Controllers:** CadastroController.cs, AuthController.cs <br> **Models:** Doador.cs, Instituição.cs, Usuario.cs, ContasViewModel.cs, AppDbContext.cs <br> **Views – Cadastro:** CreateDoador.cshtml, CreateDoador.css, CreateInstituicao.cshtml, CreateInstituicao.css, EditarDoador.cshtml, EditarInstituicao.cshtml <br> **Views – Auth:** ChooseType.cshtml, ChooseType.css, ChooseTypeRegister.cshtml <br> **Banco de Dados:** Tabelas Doadores, Instituicoes, Usuarios | Jefferson Torres |
+| **RF-02** | A aplicação deve autenticar doadores e instituições por meio de login e senha. | **Controllers:** AuthController.cs <br> **Models:** Usuario.cs, ContasViewModel.cs, AppDbContext.cs <br> **Views – Auth:** Login.cshtml, Login.css <br> **Views Auxiliares:** _ValidationScriptsPartial.cshtml, _Layout.cshtml <br> **Banco de Dados:** Tabela Usuarios | Jefferson Torres |
+| **RF-03** | O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada. | **Controllers:** DoacoesController.cs <br> **Models:** Doação.cs, StatusDoacao.cs, Doador.cs <br> **Views – Doacoes:** Create.cshtml, Details.cshtml, Edit.cshtml, Delete.cshtml, Index.cshtml <br> **Banco de Dados:** Tabela Doacoes | Maria Luisa Greco |
+| **RF-04** | O doador deve selecionar uma instituição específica para doar o medicamento. | **Controllers:** DoacoesController.cs <br> **Models:** Doação.cs, Instituição.cs, Doador.cs <br> **Views – Doacoes:** Create.cshtml (dropdown de instituições) <br> **Banco de Dados:** Relação Doacoes → Instituicoes | Maria Luisa Greco |
+| **RF-05** | O doador deve acompanhar o status das suas doações em uma tela dedicada (“Minhas Doações”). | **Controllers:** DoacoesController.cs <br> **Models:** Doação.cs, StatusDoacao.cs, Doador.cs <br> **Views – Doacoes:** Index.cshtml, Details.cshtml <br> **Views – Home:** HomePageDoador.cshtml <br> **Banco de Dados:** Tabela Doacoes (campo status) | Maria Luisa Greco |
+| **RF-06** | A instituição deve publicar lista de medicamentos em falta. || Thaís Souto |
+| **RF-07** | A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita. | | Lavínia Santos |
+| **RF-08** | A instituição deve aprovar ou rejeitar doações em até 24 horas. || Lavínia Santos |
+| **RF-09** | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. | | Estevão Dias |
+| **RF-10** | A instituição deve confirmar o recebimento dos medicamentos no painel. || Estevão Dias |
+| **RF-11** | A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. | | Higor Conceição |
+| **RF-12** | A aplicação deve gerar relatórios de impacto com base no histórico de doações. || Higor Conceição |
 
 
 # Instruções de acesso
 
-Não deixe de informar o link onde a aplicação estiver disponível para acesso (por exemplo: https://adota-pet.herokuapp.com/src/index.html).
+**Link da aplicação estiver disponível para acesso:** https://hmgprojectmedshare.azurewebsites.net/
 
 Se houver usuário de teste, o login e a senha também deverão ser informados aqui (por exemplo: usuário - admin / senha - admin).
 
 O link e o usuário/senha descritos acima são apenas exemplos de como tais informações deverão ser apresentadas.
-
-> **Links Úteis**:
->
-> - [Trabalhando com HTML5 Local Storage e JSON](https://www.devmedia.com.br/trabalhando-com-html5-local-storage-e-json/29045)
-> - [JSON Tutorial](https://www.w3resource.com/JSON)
-> - [JSON Data Set Sample](https://opensource.adobe.com/Spry/samples/data_region/JSONDataSetSample.html)
-> - [JSON - Introduction (W3Schools)](https://www.w3schools.com/js/js_json_intro.asp)
-> - [JSON Tutorial (TutorialsPoint)](https://www.tutorialspoint.com/json/index.htm)
