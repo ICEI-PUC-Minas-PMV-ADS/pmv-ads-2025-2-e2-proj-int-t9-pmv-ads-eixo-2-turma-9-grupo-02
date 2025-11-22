@@ -16,6 +16,8 @@ namespace MedShare.Controllers
         }
 
         // Lista todos os medicamentos da instituição logada
+        // Rota padrão /MedicamentosInstituicao
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var instIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -23,6 +25,10 @@ namespace MedShare.Controllers
             var lista = await _context.MedicamentosInstituicao.Where(m => m.InstituicaoId == instId).ToListAsync();
             return View(lista);
         }
+
+        // Atalho amigável /Estoque sem conflito de roteamento
+        [HttpGet("/Estoque")]
+        public Task<IActionResult> Estoque() => Index();
 
         // Lista somente medicamentos em escassez crítica (< 11 caixas)
         public async Task<IActionResult> Escassez()

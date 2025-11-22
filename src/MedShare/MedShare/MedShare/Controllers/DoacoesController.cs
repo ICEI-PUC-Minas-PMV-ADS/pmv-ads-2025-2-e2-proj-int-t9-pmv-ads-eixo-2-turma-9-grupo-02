@@ -46,7 +46,7 @@ namespace MedShare.Controllers
             return View(new Doacao()); // Retorna a view com um modelo vazio
         }
 
-        // NOVA AÇÃO (JSON): Retorna instituições que possuem ESCASSEZ CRÍTICA (< 11 caixas) de um medicamento específico
+        // Retorna instituições com escassez (<11) para um medicamento (busca parcial case-insensitive)
         // Isso permite, no front-end, filtrar dinamicamente as instituições quando o doador digita o nome do medicamento
         [HttpGet]
         public IActionResult InstituicoesPorMedicamento(string nome)
@@ -55,13 +55,12 @@ namespace MedShare.Controllers
             if (string.IsNullOrWhiteSpace(nome))
                 return Json(new { ok = false, itens = new object[0] });
 
-            // Normaliza o termo para comparação case-insensitive
-            var termo = nome.Trim().ToLower();
-
-            // Consulta MedicamentosInstituicao onde há escassez (<11 caixas) e o nome coincide
+            var termo = nome.Trim();
+            // Usa LIKE para permitir busca parcial e ignora case usando ToLower na comparação
+            var termoLower = termo.ToLower();
             var itens = _context.MedicamentosInstituicao
                 .Include(m => m.Instituicao) // Inclui dados da instituição para montar retorno
-                .Where(m => m.QuantidadeCaixas < 11 && m.Nome.ToLower() == termo)
+                .Where(m => m.QuantidadeCaixas < 11 && m.Nome.ToLower().Contains(termoLower))
                 .Select(m => new
                 {
                     id = m.Instituicao.InstituicaoId,
