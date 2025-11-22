@@ -2,18 +2,28 @@
 @{
     ViewData["Title"] = "Detalhes Medicamento";
 }
-<h2>Detalhes do Medicamento</h2>
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">Nome</dt>
-        <dd class="col-sm-10">@Model.Nome</dd>
-        <dt class="col-sm-2">Quantidade</dt>
-        <dd class="col-sm-10">@Model.QuantidadeCaixas</dd>
-        <dt class="col-sm-2">Observação</dt>
-        <dd class="col-sm-10">@Model.Observacao</dd>
-        <dt class="col-sm-2">Escassez?</dt>
-        <dd class="col-sm-10">@(Model.EscassezCritica ? "Crítica" : (Model.EmFalta ? "Em falta" : "OK"))</dd>
-    </dl>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
-    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-info-circle"></i> Detalhes do Medicamento</h5>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Nome</dt>
+            <dd class="col-sm-9">@Model.Nome</dd>
+            <dt class="col-sm-3">Quantidade</dt>
+            <dd class="col-sm-9">@Model.QuantidadeCaixas</dd>
+            <dt class="col-sm-3">Observação</dt>
+            <dd class="col-sm-9">@Model.Observacao</dd>
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9">
+                <span class="badge @(Model.EscassezCritica ? "bg-danger" : (Model.EmFalta ? "bg-secondary" : "bg-success"))">
+                    @(Model.EscassezCritica ? "Crítica" : (Model.EmFalta ? "Em falta" : "OK"))
+                </span>
+            </dd>
+        </dl>
+        <div class="mt-3 d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Voltar</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="bi bi-pencil"></i> Editar</a>
+        </div>
+    </div>
 </div>

@@ -2,18 +2,22 @@
 @{
     ViewData["Title"] = "Excluir Medicamento";
 }
-<h2>Excluir Medicamento</h2>
-<div>
-    <h4>Tem certeza que deseja excluir?</h4>
-    <dl class="row">
-        <dt class="col-sm-2">Nome</dt>
-        <dd class="col-sm-10">@Model.Nome</dd>
-        <dt class="col-sm-2">Quantidade</dt>
-        <dd class="col-sm-10">@Model.QuantidadeCaixas</dd>
-    </dl>
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <button type="submit" class="btn btn-danger">Excluir</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-    </form>
+<div class="card shadow-sm">
+    <div class="card-header bg-danger text-white">
+        <h5 class="mb-0"><i class="bi bi-trash"></i> Excluir Medicamento</h5>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning"><i class="bi bi-exclamation-triangle"></i> Tem certeza que deseja excluir este medicamento?</div>
+        <dl class="row">
+            <dt class="col-sm-3">Nome</dt>
+            <dd class="col-sm-9">@Model.Nome</dd>
+            <dt class="col-sm-3">Quantidade</dt>
+            <dd class="col-sm-9">@Model.QuantidadeCaixas</dd>
+        </dl>
+        <form asp-action="Delete" class="mt-3 d-flex justify-content-between">
+            <input type="hidden" asp-for="Id" />
+            <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Cancelar</a>
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Excluir</button>
+        </form>
+    </div>
 </div>
