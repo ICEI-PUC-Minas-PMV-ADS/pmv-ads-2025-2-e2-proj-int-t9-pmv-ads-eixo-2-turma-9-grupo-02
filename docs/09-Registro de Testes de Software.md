@@ -3,7 +3,7 @@
 | **Caso de Teste** 	| **CT01.01 – Cadastro de doador**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-01 - A aplicação deve permitir que doadores (pessoa física) e instituições (pessoa jurídica) cadastrem seus perfis. |
-|Registro de evidência | www.teste.com.br/drive/ct-01 |
+|Registro de evidência | https://l1nq.com/CadastroDoador |
 
 | **Caso de Teste** 	| **CT01.02 – Cadastro de instituição** 	|
 |:---:	|:---:	|
