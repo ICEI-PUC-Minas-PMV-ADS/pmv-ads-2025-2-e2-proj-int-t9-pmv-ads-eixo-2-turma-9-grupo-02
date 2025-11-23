@@ -18,31 +18,25 @@
 | **Caso de Teste** 	| **CT03 – Cadastro de medicamentos**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-03 - O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada. |
-|Registro de evidência | www.teste.com.br/drive/ct-02 |
+|Registro de evidência |[CT03](https://l1nq.com/VuiE0) |
 
 | **Caso de Teste** 	| **CT04 – Seleção de instituição para doação do medicamento**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-04 - O doador deve selecionar uma instituição específica para doar o medicamento. |
-|Registro de evidência | www.teste.com.br/drive/ct-02 |
+|Registro de evidência | [CT04](https://sl1nk.com/8NKIt) |
 
 | **Caso de Teste** 	| **CT05 – Acompanhamento de status das doações**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-05 - O doador deve acompanhar o status das suas doações em uma tela dedicada ("Minhas Doações"). |
-|Registro de evidência | www.teste.com.br/drive/ct-02 |
-
-
-
+|Registro de evidência | ![CT05](img/CT05.jpg) |
 
 
 ## Relatório de testes de software
 
-Apresente e discuta detalhadamente os resultados obtidos nos testes realizados, destacando tanto os pontos fortes quanto as fragilidades identificadas na solução. Explique como os aspectos positivos contribuem para o desempenho e a usabilidade do sistema, e como os pontos fracos impactam sua eficácia.
+Durante a fase inicial de testes, algumas falhas foram identificadas, especialmente relacionadas à fluidez e à conectividade entre as funcionalidades. Embora cada parte do sistema funcionasse individualmente, elas não estavam plenamente integradas, o que comprometia o fluxo geral e impedia que determinadas ações ocorressem de maneira contínua e coerente. Além disso, alguns ajustes nas telas foram necessários para garantir que cada elemento acionasse a função correta, conforme previsto no projeto.
 
-Descreva as principais falhas detectadas durante os testes, fornecendo exemplos concretos e evidências que sustentem essas observações. Explicite os impactos dessas falhas na experiência do usuário, na funcionalidade do sistema e nos objetivos do projeto.
+Apesar dessas fragilidades iniciais, os testes também evidenciaram pontos fortes importantes: quando as funcionalidades estavam alinhadas, o sistema demonstrava bom desempenho, navegação intuitiva e potencial para atender plenamente aos objetivos propostos.
 
-Com base nessas análises, detalhe as estratégias que o grupo pretende adotar para corrigir as deficiências e aprimorar a solução nas próximas iterações. Inclua ações específicas, como ajustes no código, modificações na interface, otimizações de desempenho ou melhorias na acessibilidade e usabilidade.
+Após a identificação desses pontos, foram realizados ajustes no código, refinamentos na interface e revisões na lógica de integração entre as telas e funcionalidades. Com essas correções, todo o conjunto passou a rodar corretamente e conforme esperado, proporcionando uma experiência mais estável e consistente.
 
-Por fim, apresente e/ou proponha as melhorias a partir dos testes realizados, destacando os ganhos obtidos e como essas alterações contribuem para a evolução do projeto.
-
-> **Links Úteis**:
-> - [Ferramentas de Test para Java Script](https://geekflare.com/javascript-unit-testing/)
+Com base nesses resultados, o grupo seguirá aprimorando a solução nas próximas iterações, fortalecendo a integração entre módulos, otimizando a usabilidade e garantindo que futuras melhorias contribuam para a evolução contínua do projeto.
