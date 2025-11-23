@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedShare.Models; // Para usar o enum StatusDoacao
 
@@ -56,5 +57,6 @@ namespace MedShare.Models
 
         [ForeignKey("DoadorId")]
         public Doador? Doador { get; set; }
+        public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
     }
 }

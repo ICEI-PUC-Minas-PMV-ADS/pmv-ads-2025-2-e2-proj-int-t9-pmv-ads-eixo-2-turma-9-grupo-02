@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MedShare.Models.Doacao>
 
 @{
-    ViewData["Title"] = "Minhas Doações - MedShare";
+    ViewData["Title"] = "Doações Recebidas - MedShare";
     Layout = null;
 }
 
@@ -13,7 +13,7 @@
     <title>@ViewData["Title"]</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         body {
@@ -29,7 +29,6 @@
         }
 
         .logo-image {
-            width: 100px;
             height: 100px;
             object-fit: contain;
         }
@@ -37,36 +36,21 @@
         .app-title {
             color: #0d6efd;
             font-weight: 700;
-        }
+        } 
 
         .footer-gradient {
             height: 6px;
             background: linear-gradient(90deg, #ff9800 0%, #ff5722 50%, #e91e63 100%);
         }
 
-        /* Tabela */
         .table thead {
             background-color: #0d6efd;
             color: #fff;
         }
 
-        .table-bordered > :not(caption) > * {
-            border-color: #dee2e6;
-            border-radius: 10px
-        }
-
         .table tbody tr:hover {
             background-color: #f8f9fa;
         }
-
-        .btn-success {
-            background-color: #7ab949;
-            border: none;
-        }
-
-            .btn-success:hover {
-                background-color: #7ab949;
-            }
 
         .badge-custom {
             background: #0d6efd;
@@ -79,35 +63,18 @@
             gap: 0.4rem;
         }
 
-        /* Tabela */
-        table.table {
-            font-size: 0.95rem;
-            border: 1px solid #dee2e6;
-        }
-
-            table.table td, table.table th {
-                vertical-align: middle;
-                border: 1px solid #dee2e6;
-            }
-
         .mt-custom {
             margin-top: 2rem !important;
-            margin-bottom: 1rem !important;
+            margin-bottom: 2rem !important;
         }
 
-        .mb-4 {
-            margin-bottom: 10px !important;
-        }
-
-        .btn-nova-doacao {
-            font-size: 0.9rem !important;
+        .btn-outline-primary.rounded-circle {
+            width: 40px;
+            height: 43px;
+            align-items: center;
+            justify-content: center;
             border-radius: 10px !important;
         }
-
-        .btn-nova-doacao i {
-             font-size: 1rem !important;
-             margin-right: 6px !important;
-         }
 
         .btn-home-icon {
             width: 45px;
@@ -123,10 +90,65 @@
                 margin-right: 0 !important;
             }
 
-        /* Ícones nos botões */
         .btn i {
             vertical-align: middle;
         }
+
+        .table thead {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 0.45em 0.8em;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .status-pendente {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .status-aprovado {
+            background: #7ab949;
+            color: #fff;
+        }
+
+        .status-rejeitado {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .status-finalizado {
+            background: #0d6efd;
+            color: #fff;
+        }
+
+        .btn-aprovar {
+            background-color: #75b948 !important;
+            border-color: #75b948 !important;
+            color: #fff !important;
+        }
+
+            .btn-aprovar:hover {
+                background-color: #75b948 !important;
+            }
+
+        .btn-rejeitar {
+            background-color: #f53d40 !important;
+            border-color: #f53d40 !important;
+            color: #fff !important;
+        }
+
+            .btn-rejeitar:hover {
+                background-color: #f53d40 !important;
+            }
+
     </style>
 </head>
 
@@ -134,43 +156,34 @@
     <div class="container-fluid d-flex align-items-center justify-content-center min-vh-100 py-4">
         <div class="cadastro-card p-5" style="max-width: 1100px; width: 100%;">
 
-            <!-- Header -->
             <div class="text-center mb-4">
                 <img src="~/images/logo.png" alt="MedShare Logo" class="logo-image mb-3" />
                 <h1 class="app-title h2 mb-2">MedShare</h1>
-                <p class="text-muted small">Gerencie e acompanhe suas doações de forma prática e segura!</p>
-                
+                <p class="text-muted small">Gerencie e processe doações recebidas de forma segura!</p>
+
                 <div class="d-flex justify-content-center align-items-center gap-3 mt-custom">
                     <div class="badge-custom">
                         <i class="bi bi-box-seam"></i>
-                        MINHAS DOAÇÕES
+                        DOAÇÕES RECEBIDAS
                     </div>
 
-                    <a asp-controller="Home" asp-action="HomePageDoador"
+                    <a asp-controller="Home" asp-action="HomePageInstituicao"
                        class="btn btn-outline-primary btn-sm fw-bold btn-home-icon" title="Página Inicial">
                         <i class="bi bi-house-door-fill"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- Botão de nova doação -->
-            <div class="d-flex justify-content-end mb-4">
-                <a asp-action="Create" class="btn btn-success fw-bold btn-nova-doacao">
-                    <i class="bi bi-plus-circle me-2"></i>NOVA DOAÇÃO
-                </a>
-            </div>
-
-            <!-- Tabela de doações -->
             <div class="table-responsive">
                 <table class="table table-hover table-bordered align-middle text-center">
                     <thead>
                         <tr>
-                            <th>@Html.DisplayNameFor(model => model.NomeDoacao)</th>
-                            <th>@Html.DisplayNameFor(model => model.ValidadeDoacao)</th>
-                            <th>@Html.DisplayNameFor(model => model.QuantidadeDoacao)</th>
+                            <th>Medicamento</th>
+                            <th>Validade</th>
+                            <th>Quantidade</th>
                             <th>Foto</th>
                             <th>Receita</th>
-                            <th>Instituição</th>
+                            <th>Doador</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
@@ -183,38 +196,23 @@
                                 <td>@(item.ValidadeDoacao.HasValue? item.ValidadeDoacao.Value.ToString("dd/MM/yyyy") : "-")</td>
                                 <td>@item.QuantidadeDoacao</td>
 
-                                <!-- Foto -->
                                 <td>
                                     @if (!string.IsNullOrEmpty(item.CaminhoFoto))
                                     {
-                                        <img src="@item.CaminhoFoto" alt="Foto do Medicamento"
-                                             style="max-width:80px; border-radius:8px; box-shadow:0 0 4px rgba(0,0,0,0.2);" />
+                                        <img src="@item.CaminhoFoto" style="max-width: 70px; border-radius: 8px; box-shadow: 0 0 4px rgba(0,0,0,0.2);" />
                                     }
                                     else
                                     {
-                                        <span class="text-muted">Sem imagem</span>
+                                        <span class="text-muted">Sem foto</span>
                                     }
                                 </td>
 
-                                <!-- Receita -->
                                 <td>
                                     @if (!string.IsNullOrEmpty(item.CaminhoReceita))
                                     {
-                                        var extensao = System.IO.Path.GetExtension(item.CaminhoReceita).ToLower();
-
-                                        if (extensao == ".pdf")
-                                        {
-                                            <a href="@item.CaminhoReceita" target="_blank" class="btn btn-outline-primary btn-sm">
-                                                Visualizar PDF
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a href="@item.CaminhoReceita" target="_blank" title="Ampliar imagem">
-                                                <img src="@item.CaminhoReceita" alt="Receita Médica"
-                                                     style="max-width:80px; border-radius:8px; box-shadow:0 0 4px rgba(0,0,0,0.2);" />
-                                            </a>
-                                        }
+                                        <a href="@item.CaminhoReceita" target="_blank" class="btn btn-outline-primary btn-sm">
+                                            Ver Arquivo
+                                        </a>
                                     }
                                     else
                                     {
@@ -222,34 +220,48 @@
                                     }
                                 </td>
 
-                                <!-- Instituição -->
                                 <td>
-                                    <div class="fw-semibold">@item.Instituicao?.InstituicaoNome</div>
-                                    <div class="small text-muted">@item.Instituicao?.InstituicaoEndereco</div>
+                                    <div class="small text-muted">@item.Doador?.DoadorNome</div>
+                                    <div class="small text-muted">@item.Doador?.DoadorEmail</div>
                                 </td>
+
                             <td>
                                 <span class="status-badge
-                                                   @(item.Status == MedShare.Models.StatusDoacao.Pendente ? "status-pendente" :
-                                                   item.Status == MedShare.Models.StatusDoacao.Aprovado ? "status-aprovado" :
-                                                   item.Status == MedShare.Models.StatusDoacao.Rejeitado ? "status-rejeitado" :
-                                                   item.Status == MedShare.Models.StatusDoacao.Finalizado ? "status-finalizado" : "")">
+                                               @(item.Status == MedShare.Models.StatusDoacao.Pendente ? "status-pendente" :
+                                                item.Status == MedShare.Models.StatusDoacao.Aprovado ? "status-aprovado" :
+                                                item.Status == MedShare.Models.StatusDoacao.Rejeitado ? "status-rejeitado" :
+                                                item.Status == MedShare.Models.StatusDoacao.Finalizado ? "status-finalizado" : "")">
                                     @item.Status
                                 </span>
                             </td>
 
-                                <!-- Botões -->
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Editar">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white" title="Ver detalhes">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Cancelar doação">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
+                                    @if (item.Status == MedShare.Models.StatusDoacao.Pendente)
+                                    {
+                                        <form method="post" asp-action="AlterarStatus" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="Aprovado" />
+                                            <button class="btn btn-aprovar btn-sm" title="Aprovar"><i class="bi bi-check-circle"></i></button>
+                                        </form>
+
+                                        <form method="post" asp-action="AlterarStatus" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="Rejeitado" />
+                                            <button class="btn btn-rejeitar btn-sm" title="Rejeitar"><i class="bi bi-x-circle"></i></button>
+                                        </form>
+                                    }
+                                    else if (item.Status == MedShare.Models.StatusDoacao.Aprovado)
+                                    {
+                                        <form method="post" asp-action="AlterarStatus" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="status" value="Finalizado" />
+                                            <button class="btn btn-success btn-sm" title="Finalizar"><i class="bi bi-check-lg"></i></button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sem ações</span>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -260,7 +272,6 @@
         </div>
     </div>
 
-    <!-- Rodapé -->
     <footer class="mt-auto">
         <div class="footer-gradient"></div>
         <div class="container-fluid">
@@ -285,4 +296,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
