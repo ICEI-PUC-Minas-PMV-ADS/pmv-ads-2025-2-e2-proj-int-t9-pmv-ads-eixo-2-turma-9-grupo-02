@@ -3,17 +3,17 @@
 | **Caso de Teste** 	| **CT01.01 – Cadastro de doador**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-01 - A aplicação deve permitir que doadores (pessoa física) e instituições (pessoa jurídica) cadastrem seus perfis. |
-|Registro de evidência | https://l1nq.com/CadastroDoador |
+|Registro de evidência | [CT01](https://l1nq.com/CadastroDoador) |
 
 | **Caso de Teste** 	| **CT01.02 – Cadastro de instituição** 	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-01 - A aplicação deve permitir que doadores (pessoa física) e instituições (pessoa jurídica) cadastrem seus perfis. |
-|Registro de evidência | https://l1nq.com/CadastroInstituicao |
+|Registro de evidência | [CT02](https://l1nq.com/CadastroInstituicao) |
 
 | **Caso de Teste** 	| **CT02 – Login com credenciais válidas**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-02 - A aplicação deve permitir que um usuário previamente cadastrado faça login. |
-|Registro de evidência | www.teste.com.br/drive/ct-02 |
+|Registro de evidência | [CT02](https://sl1nk.com/ValidacaoLogin) |
 
 | **Caso de Teste** 	| **CT03 – Cadastro de medicamentos**	|
 |:---:	|:---:	|
