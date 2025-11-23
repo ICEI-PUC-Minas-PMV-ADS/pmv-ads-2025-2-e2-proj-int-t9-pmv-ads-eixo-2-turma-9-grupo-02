@@ -1,16 +1,16 @@
-@model IEnumerable<MedShare.Models.MedicamentoInstituicao>
+ï»¿@model IEnumerable<MedShare.Models.MedicamentoInstituicao>
 @{
-    ViewData["Title"] = "Escassez Crítica";
+    ViewData["Title"] = "Escassez CrÃ­tica";
 }
 <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0"><i class="bi bi-exclamation-triangle-fill text-danger"></i> Escassez Crítica (menos de 11 caixas)</h5>
+        <h5 class="mb-0"><i class="bi bi-exclamation-triangle-fill text-danger"></i> Escassez CrÃ­tica (menos de 11 caixas)</h5>
         <a asp-action="Index" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left"></i> Voltar</a>
     </div>
     <div class="card-body">
         @if (Model == null || !Model.Any())
         {
-            <div class="alert alert-success mb-0">Nenhum medicamento em escassez crítica.</div>
+            <div class="alert alert-success mb-0">Nenhum medicamento em escassez crÃ­tica.</div>
         }
         else
         {
@@ -20,7 +20,7 @@
                         <tr>
                             <th>Nome</th>
                             <th class="text-center">Qtd.</th>
-                            <th>Observação</th>
+                            <th>ObservaÃ§Ã£o</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -1,7 +1,8 @@
-@model IEnumerable<MedShare.Models.MedicamentoInstituicao>
+ï»¿@model IEnumerable<MedShare.Models.MedicamentoInstituicao>
 @{
     ViewData["Title"] = "Estoque de Medicamentos";
-    Layout = "~/Views/Shared/_Layout.blank.tmp"; // sem header/footer global
+    <meta charset="utf-8" />
+    Layout = "~/Views/Shared/_Layout.cshtml"; // sem header/footer global
 }
 <link rel="stylesheet" href="~/css/medicamentos-estoque.css" />
 <div class="estoque-bg">
@@ -14,12 +15,12 @@
                 </div>
                 <div class="d-flex gap-2">
                     <a asp-controller="Home" asp-action="HomePageInstituicao" class="btn btn-outline-secondary btn-sm" title="Voltar"><i class="bi bi-arrow-left"></i> Voltar</a>
-                    <a asp-controller="Home" asp-action="HomePageInstituicao" class="btn btn-primary btn-sm" title="Início"><i class="bi bi-house-door"></i> Início</a>
+                    <a asp-controller="Home" asp-action="HomePageInstituicao" class="btn btn-primary btn-sm" title="InÃ­cio"><i class="bi bi-house-door"></i> InÃ­cio</a>
                 </div>
             </div>
             <div class="d-flex justify-content-end gap-2 mb-3">
                 <a asp-action="Create" class="btn btn-success btn-sm" title="Novo"><i class="bi bi-plus-lg"></i> Novo</a>
-                <a asp-action="Escassez" class="btn btn-warning btn-sm" title="Escassez Crítica"><i class="bi bi-exclamation-triangle"></i> Escassez</a>
+                <a asp-action="Escassez" class="btn btn-warning btn-sm" title="Escassez CrÃ­tica"><i class="bi bi-exclamation-triangle"></i> Escassez</a>
             </div>
             @if (Model == null || !Model.Any())
             {
@@ -32,7 +33,7 @@
                 var faltando = Model.Count(m => m.EmFalta);
                 <div class="row g-3 mb-3">
                     <div class="col-auto"><span class="badge bg-primary px-3 py-2">Total: @total</span></div>
-                    <div class="col-auto"><span class="badge bg-danger px-3 py-2">Críticos: @criticos</span></div>
+                    <div class="col-auto"><span class="badge bg-danger px-3 py-2">CrÃ­ticos: @criticos</span></div>
                     <div class="col-auto"><span class="badge bg-dark px-3 py-2">Em falta: @faltando</span></div>
                 </div>
                 <div class="table-responsive">
@@ -42,14 +43,14 @@
                                 <th>Nome</th>
                                 <th class="text-center">Quantidade</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-end">Ações</th>
+                                <th class="text-end">AÃ§Ãµes</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach (var item in Model)
                         {
                             string statusClass = item.EscassezCritica ? "bg-danger" : (item.EmFalta ? "bg-secondary" : "bg-success");
-                            string statusText = item.EscassezCritica ? "Crítica" : (item.EmFalta ? "Em falta" : "OK");
+                            string statusText = item.EscassezCritica ? "CrÃ­tica" : (item.EmFalta ? "Em falta" : "OK");
                             <tr class="@(item.EscassezCritica ? "table-danger" : (item.EmFalta ? "table-secondary" : ""))">
                                 <td>@item.Nome</td>
                                 <td class="text-center fw-semibold">@item.QuantidadeCaixas</td>
@@ -73,12 +74,12 @@
         <footer class="small bg-white rounded-4 shadow-sm p-4">
             <div class="row g-4 align-items-start">
                 <div class="col-md-8 text-muted">
-                    <div class="mb-1"><i class="bi bi-geo-alt-fill text-primary me-1"></i>Av. Dom José Gaspar, 500 Coração Eucarístico – Belo Horizonte – MG 30535-901, Brasil</div>
+                    <div class="mb-1"><i class="bi bi-geo-alt-fill text-primary me-1"></i>Av. Dom JosÃ© Gaspar, 500 CoraÃ§Ã£o EucarÃ­stico â€“ Belo Horizonte â€“ MG 30535-901, Brasil</div>
                     <div class="mb-1"><i class="bi bi-telephone-fill text-primary me-1"></i>Telefone: (31) 3319-4444</div>
                     <div class="mb-1"><i class="bi bi-envelope-fill text-primary me-1"></i>E-mail: contato@medshare.com</div>
                 </div>
                 <div class="col-md-4 text-md-end text-muted fw-semibold">
-                    <i class="bi bi-info-circle-fill text-primary me-1"></i>SOBRE NÓS
+                    <i class="bi bi-info-circle-fill text-primary me-1"></i>SOBRE NÃ“S
                 </div>
             </div>
             <hr />

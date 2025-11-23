@@ -1,4 +1,4 @@
-@model MedShare.Models.MedicamentoInstituicao
+ï»¿@model MedShare.Models.MedicamentoInstituicao
 @{
     ViewData["Title"] = "Detalhes Medicamento";
 }
@@ -12,12 +12,12 @@
             <dd class="col-sm-9">@Model.Nome</dd>
             <dt class="col-sm-3">Quantidade</dt>
             <dd class="col-sm-9">@Model.QuantidadeCaixas</dd>
-            <dt class="col-sm-3">Observação</dt>
+            <dt class="col-sm-3">ObservaÃ§Ã£o</dt>
             <dd class="col-sm-9">@Model.Observacao</dd>
             <dt class="col-sm-3">Status</dt>
             <dd class="col-sm-9">
                 <span class="badge @(Model.EscassezCritica ? "bg-danger" : (Model.EmFalta ? "bg-secondary" : "bg-success"))">
-                    @(Model.EscassezCritica ? "Crítica" : (Model.EmFalta ? "Em falta" : "OK"))
+                    @(Model.EscassezCritica ? "CrÃ­tica" : (Model.EmFalta ? "Em falta" : "OK"))
                 </span>
             </dd>
         </dl>
