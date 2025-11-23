@@ -8,7 +8,7 @@
 | **Caso de Teste** 	| **CT01.02 – Cadastro de instituição** 	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-01 - A aplicação deve permitir que doadores (pessoa física) e instituições (pessoa jurídica) cadastrem seus perfis. |
-|Registro de evidência | [CT02](https://l1nq.com/CadastroInstituicao) |
+|Registro de evidência | [CT01](https://l1nq.com/CadastroInstituicao) |
 
 | **Caso de Teste** 	| **CT02 – Login com credenciais válidas**	|
 |:---:	|:---:	|
