@@ -11,9 +11,7 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 
 ## Tabela de registro dos testes de usabilidade  
 
-**Cenário 1 Doador**: O usuário deseja realizar cadastro do perfil doador no sistema MedShare. Para isso, ele deverá acessar a pagina geral do site, e clicar em "Acessar". O usuario é redirecionado a tela de Login, onde 
-deverá clicar em "cadastra-se" para ser direcionado a tela de escolha de perfil. Assim que o usuario escolher o perfil doador, será redirecionado a tela de cadastro, onde vai precisar preencher todos os campos. Logo após 
-preencher todos os campos e clicar em "Aceito os termos de uso" é só clicar "Finalizar cadastro". Após isso será redirecionado novamente a tela de "Login", para poder realizar a entrada no site. 
+**Cenário 1 Doador**: O usuário deseja realizar cadastro do perfil doador no sistema MedShare. Para isso, ele deverá acessar a página geral do site e clicar em "Acessar". O usuário é redirecionado à tela de login, onde deverá clicar em "cadastra-se" para ser direcionado à tela de escolha de perfil. Assim que o usuário escolher o perfil doador, será redirecionado à tela de cadastro, na qual vai precisar preencher todos os campos. Logo após preencher todos os campos e clicar em "Aceito os termos de uso". É só clicar em "Finalizar cadastro". Após isso, será redirecionado novamente à tela de "Login", para poder realizar a entrada no site. 
 | **Usuário**   | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |------------- |--------------------|---------------------------------|-----------------|------------------------|------------------------------|
 | Usuário 1    |       120          |              11                 |     Sim         | 1: Clicou em finalizar cadastro sem marcar a caixa dos termos | Achou o site intuitivo |                  |    
@@ -22,7 +20,7 @@ preencher todos os campos e clicar em "Aceito os termos de uso" é só clicar "F
 | Usuário 4    |       120          |              11                 |     Sim         |       0                |  Reforçou que o site poderia ser mais explicativo  |                              | 
 | Usuário 5    |       120          |              11                 |     Sim         |       0                |  Não retornou nenhum feedback |                    | 
 
-**Cenário 1.1 Instituição**: O usuário deseja realizar cadastro do perfil instituição no sistema MedShare. Para isso, ele deverá acessar a pagina geral do site, e clicar em "Acessar". O usuario é redirecionado a tela de Login, onde deverá clicar em "cadastra-se" para ser direcionado a tela de escolha de perfil. Assim que o usuario escolher o perfil instituição, será redirecionado a tela de cadastro, onde vai precisar preencher todos os campos. Logo após preencher todos os campos e clicar em "Aceito os termos de uso" é só clicar "Finalizar cadastro". Após isso será redirecionado novamente a tela de "Login", para poder realizar a entrada no site. 
+**Cenário 1.1 Instituição**: O usuário deseja realizar cadastro do perfil instituição no sistema MedShare. Para isso, ele deverá acessar a página geral do site e clicar em "Acessar". O usuário é redirecionado à tela de login, onde deverá clicar em "cadastra-se" para ser direcionado à tela de escolha de perfil. Assim que o usuário escolher o perfil instituição, será redirecionado à tela de cadastro, na qual vai precisar preencher todos os campos. Logo após preencher todos os campos e clicar em "Aceito os termos de uso", é só clicar em "Finalizar cadastro". Após isso, será redirecionado novamente à tela de "Login", para poder realizar a entrada no site. 
 | **Usuário**   | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |------------- |--------------------|---------------------------------|-----------------|------------------------|------------------------------|
 | Usuário 1    |       120          |              11                 |     Sim         | 1: Clicou em finalizar cadastro sem marcar a caixa dos termos | Achou o site direto ao ponto |                  |    
@@ -31,15 +29,14 @@ preencher todos os campos e clicar em "Aceito os termos de uso" é só clicar "F
 | Usuário 4    |       120          |              11                 |     Sim         |       0                |  Não retornou nenhum feedback |                     | 
 | Usuário 5    |       120          |              11                 |     Sim         |       0                |  Não retornou nenhum feedback |                     | 
 
-**Cenário 2**: O usuário deseja realizar Login no sistema MedShare. Para isso, ele deverá acessar a pagina geral do site, e clicar em "Acessar". O usuario é redirecionado a tela de Login, onde deve informar os dados de
-email e senha, além de escolher qual o perfil deseja fazer Login.
+**Cenário 2**: O usuário deseja realizar login no sistema MedShare. Para isso, ele deverá acessar a página geral do site e clicar em "Acessar". O usuário é redirecionado à tela de login, na qual deve informar os dados de email e senha, além de escolher qual perfil deseja fazer login.
 | **Usuário**   | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |------------- |--------------------|---------------------------------|-----------------|------------------------|------------------------------|
 | Usuário 1    |       30          |              6                 |     Sim         |       0                |  Não retornou nenhum feedback |                           |    
 | Usuário 2    |       35          |              10                |     Sim         |       0                |  Não retornou nenhum feedback |                           |      
-| Usuário 3    |       30          |              6                 |     Sim         |       1: Errou email   |  Elogiou os avisos e validações de acesso                 |                     |  
-| Usuário 4    |       25          |              7                 |     Sim         |       1: Errou senha   |  Não retornou nenhum feedback |                           | 
-| Usuário 5    |       30          |              6                 |     Sim         |       0: Errou perfil  |  Achou que poderia ser mais intuitivo a escolha do perfil |                     | 
+| Usuário 3    |       30          |              6                 |     Sim         |       1: Errou o email |  Elogiou os avisos e validações de acesso                 |                     |  
+| Usuário 4    |       25          |              7                 |     Sim         |       1: Errou a senha |  Não retornou nenhum feedback |                           | 
+| Usuário 5    |       30          |              6                 |     Sim         |       0: Errou na escolha do perfil  |  Achou que poderia ser mais intuitivo a escolha do perfil |                     | 
 
 
 **Cenário 3**: O usuário deseja cadastrar um medicamento para doação no sistema MedShare. Para isso, ele deverá acessar a área de “Minhas Doações”, clicar em "Nova Doação", preencher as informações do medicamento (nome, validade, quantidade, foto e receita), selecionar uma instituição disponível para recebê-lo e finalizar o cadastro, confirmando a doação.        
