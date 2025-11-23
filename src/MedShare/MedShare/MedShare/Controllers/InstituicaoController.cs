@@ -31,6 +31,8 @@ namespace MedShare.Controllers
                 .Where(d => d.InstituicaoId == instId)
                 .ToListAsync();
 
+            bool alterou = false;
+
             foreach (var d in dados)
             {
                 if (d.Status == StatusDoacao.Pendente)
@@ -39,11 +41,13 @@ namespace MedShare.Controllers
                     if (expirou)
                     {
                         d.Status = StatusDoacao.Rejeitado;
+                        alterou = true;
                     }
                 }
             }
 
-            await _context.SaveChangesAsync();
+            if (alterou)
+                await _context.SaveChangesAsync();
 
             var doacoesTela = dados
                 .Where(d => d.Status != StatusDoacao.Rejeitado &&
@@ -52,6 +56,7 @@ namespace MedShare.Controllers
 
             return View(doacoesTela);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AlterarStatus(int id, StatusDoacao status)

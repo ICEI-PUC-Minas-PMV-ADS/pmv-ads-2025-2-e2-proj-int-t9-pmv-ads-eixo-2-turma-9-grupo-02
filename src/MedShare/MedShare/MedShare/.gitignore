@@ -1,0 +1,11 @@
+# Ignorar banco de dados
+*.db
+*.db-shm
+*.db-wal
+
+# Ignorar imagens salvas no wwwwroot
+wwwroot/images/
+
+# Ignorar arquivos temporários
+bin/
+obj/

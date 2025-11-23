@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MedShare.Models.MedicamentoInstituicao>
+@{
+    ViewData["Title"] = "Estoque de Medicamentos";
+    <meta charset="utf-8" />
+    Layout = "~/Views/Shared/_Layout.cshtml"; // sem header/footer global
+}
+<link rel="stylesheet" href="~/css/medicamentos-estoque.css" />
+<div class="estoque-bg">
+    <div class="container">
+        <div class="estoque-card p-4 mb-4">
+            <div class="card-header bg-white border-0 px-0 pt-0 mb-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="~/images/logo.png" alt="MedShare Logo" class="logo-image" />
+                    <h1 class="h4 m-0 text-primary fw-bold">MedShare</h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <a asp-controller="Home" asp-action="HomePageInstituicao" class="btn btn-outline-secondary btn-sm" title="Voltar"><i class="bi bi-arrow-left"></i> Voltar</a>
+                    <a asp-controller="Home" asp-action="HomePageInstituicao" class="btn btn-primary btn-sm" title="Início"><i class="bi bi-house-door"></i> Início</a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end gap-2 mb-3">
+                <a asp-action="Create" class="btn btn-success btn-sm" title="Novo"><i class="bi bi-plus-lg"></i> Novo</a>
+                <a asp-action="Escassez" class="btn btn-warning btn-sm" title="Escassez Crítica"><i class="bi bi-exclamation-triangle"></i> Escassez</a>
+            </div>
+            @if (Model == null || !Model.Any())
+            {
+                <div class="alert alert-info mb-0"><i class="bi bi-info-circle me-2"></i>Nenhum medicamento cadastrado ainda.</div>
+            }
+            else
+            {
+                var total = Model.Count();
+                var criticos = Model.Count(m => m.EscassezCritica);
+                var faltando = Model.Count(m => m.EmFalta);
+                <div class="row g-3 mb-3">
+                    <div class="col-auto"><span class="badge bg-primary px-3 py-2">Total: @total</span></div>
+                    <div class="col-auto"><span class="badge bg-danger px-3 py-2">Críticos: @criticos</span></div>
+                    <div class="col-auto"><span class="badge bg-dark px-3 py-2">Em falta: @faltando</span></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Nome</th>
+                                <th class="text-center">Quantidade</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            string statusClass = item.EscassezCritica ? "bg-danger" : (item.EmFalta ? "bg-secondary" : "bg-success");
+                            string statusText = item.EscassezCritica ? "Crítica" : (item.EmFalta ? "Em falta" : "OK");
+                            <tr class="@(item.EscassezCritica ? "table-danger" : (item.EmFalta ? "table-secondary" : ""))">
+                                <td>@item.Nome</td>
+                                <td class="text-center fw-semibold">@item.QuantidadeCaixas</td>
+                                <td class="text-center status-badge"><span class="badge @statusClass">@statusText</span></td>
+                                <td class="text-end">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info" title="Detalhes"><i class="bi bi-eye"></i></a>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary" title="Editar"><i class="bi bi-pencil"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger" title="Excluir"><i class="bi bi-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        <!-- Footer fora do card -->
+        <div class="footer-gradient-bar mb-3"></div>
+        <footer class="small bg-white rounded-4 shadow-sm p-4">
+            <div class="row g-4 align-items-start">
+                <div class="col-md-8 text-muted">
+                    <div class="mb-1"><i class="bi bi-geo-alt-fill text-primary me-1"></i>Av. Dom José Gaspar, 500 Coração Eucarístico – Belo Horizonte – MG 30535-901, Brasil</div>
+                    <div class="mb-1"><i class="bi bi-telephone-fill text-primary me-1"></i>Telefone: (31) 3319-4444</div>
+                    <div class="mb-1"><i class="bi bi-envelope-fill text-primary me-1"></i>E-mail: contato@medshare.com</div>
+                </div>
+                <div class="col-md-4 text-md-end text-muted fw-semibold">
+                    <i class="bi bi-info-circle-fill text-primary me-1"></i>SOBRE NÓS
+                </div>
+            </div>
+            <hr />
+            <div class="text-center text-muted">&copy; 2025 - MedShare</div>
+        </footer>
+    </div>
+</div>
+@section Scripts { }
