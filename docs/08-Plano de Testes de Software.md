@@ -63,15 +63,15 @@ Os requisitos para realização dos testes de software são:
 |:---:	|:---:	|
 |Requisito Associado | RF-07 - 	A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita. |
 | Objetivo do Teste 	| Verificar se instituições visualizam doações pendentes. |
-| Passos 	| - Fazer login com dados de uma instituição;<br> - Clicar em "Todas as solicitações";<br> - Clicar em "Ver todas as solicitações".<br> |
-|Critério de Êxito | As doações pendentes aparecem listadas corretamente na tela “Doações” da instituição, com todas as informações necessárias. |
+| Passos 	| - Fazer login com dados de uma instituição;<br> - Clicar em "visualizar Doações";<br> |
+|Critério de Êxito | As doações pendentes aparecem listadas corretamente na tela “Visualizar Doações” da instituição, com todas as informações necessárias. |
 
 | **Caso de Teste** 	| **CT08 – Aprovação/Rejeição de doações**	|
 |:---:	|:---:	|
-|Requisito Associado | RF-08 - 	A instituição deve aprovar ou rejeitar doações em até 24 horas. |
+|Requisito Associado | RF-08 - 	A instituição deve aprovar ou rejeitar doações em até 48 horas. |
 | Objetivo do Teste 	| Verificar se a instituição consegue aprovar ou rejeitar doações de medicamentos. |
-| Passos 	| - Fazer login com dados de uma instituição;<br> - Clicar em "Todas as solicitações"; <br> - Clicar em "Ver todas as solicitações";<br> - Clicar em "Aprovar doação" ou "Rejeitar doação" ; <br> - Confirmar sua escolha. |
-|Critério de Êxito | O status da doação é atualizado automaticamente para Aprovado ou Rejeitado e aparece atualizado na lista de solicitações e na tela "Minhas Doações" (para o doador). |
+| Passos 	| - Fazer login com dados de uma instituição;<br> - Clicar em "Visualicar Doações"; <br> - Clicar no ícone presente no campo Ações. V para "Aprovar doação" ou X para "Rejeitar doação" |
+|Critério de Êxito | O status da doação é atualizado automaticamente para Aprovado ou Rejeitado e aparece atualizado na lista no 'Histórico de doações' da instituição e na tela "Minhas Doações" (para o doador). |
 
 | **Caso de Teste** 	| **CT09.01 – Notificações do processo de doação**	|
 |:---:	|:---:	|
@@ -97,7 +97,7 @@ Os requisitos para realização dos testes de software são:
 |Requisito Associado | RF-11 - 	A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. |
 | Objetivo do Teste 	| Verificar se é possível visualizar o histórico de doações feitas/recebidas. |
 | Passos 	| Realização de doações entre doador e instituição; <br> - Fazer login com dados de uma instituição ou de um doador;<br> - Clicar em "Histórico de doações". |
-|Critério de Êxito | O histórico aparece corretamente na tela “Minhas Doações” (para o doador) ou na tela “Doações” (para a instituição). |
+|Critério de Êxito | O histórico aparece corretamente na tela “Minhas Doações” (para o doador) ou na tela “Histórico de Doações” (para a instituição). |
 
 | **Caso de Teste** 	| **CT12 – Relatório de impacto**	|
 |:---:	|:---:	|
