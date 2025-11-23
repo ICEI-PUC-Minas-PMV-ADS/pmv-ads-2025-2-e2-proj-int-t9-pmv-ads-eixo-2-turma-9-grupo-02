@@ -128,6 +128,7 @@
                             <th>Validade</th>
                             <th>Quantidade</th>
                             <th>Doador</th>
+                            <th>Data da Solicitação</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -139,6 +140,8 @@
                                 <td>@(item.ValidadeDoacao.HasValue? item.ValidadeDoacao.Value.ToString("dd/MM/yyyy") : "-")</td>
                                 <td>@item.QuantidadeDoacao</td>
                                 <td>@item.Doador?.DoadorNome</td>
+                                <td>@item.DataCriacao.ToString("dd/MM/yyyy HH:mm")</td>
+
 
                                 <td>
                                     @if (item.Status == MedShare.Models.StatusDoacao.Rejeitado)

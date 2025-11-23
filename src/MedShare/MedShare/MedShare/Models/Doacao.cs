@@ -9,9 +9,12 @@ namespace MedShare.Models
     public class Doacao
     {
         [Key]
-        public  int Id { get; set; }
+        public int Id { get; set; }
 
-        [Required(ErrorMessage ="Obrigatório informar o nome do medicamento!")]
+        [Display(Name = "Data de Criação")]
+        public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
+
+        [Required(ErrorMessage = "Obrigatório informar o nome do medicamento!")]
         [Display(Name = "Nome do Medicamento")]
         public string NomeDoacao { get; set; }
 
@@ -57,6 +60,5 @@ namespace MedShare.Models
 
         [ForeignKey("DoadorId")]
         public Doador? Doador { get; set; }
-        public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
     }
 }
