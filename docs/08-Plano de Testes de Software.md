@@ -33,7 +33,7 @@ Os requisitos para realização dos testes de software são:
 
 | **Caso de Teste** 	| **CT03 – Cadastro de medicamentos**	|
 |:---:	|:---:	|
-|Requisito Associado | RF-03 - O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada (quando aplicável). |
+|Requisito Associado | RF-03 - O doador deve cadastrar medicamentos informando nome, validade, quantidade, foto e receita digitalizada. |
 | Objetivo do Teste 	| Verificar se doadores conseguem cadastrar medicamentos no sistema. |
 | Passos 	| - Fazer login com dados de um doador;<br> - Clicar em "Cadastrar medicamento";<br> - Preencher todos os campos obrigatórios com dados válidos (nome, validade, quantidade, receita); <br> - Clicar em "Cadastrar medicamento". |
 |Critério de Êxito | O sistema salva o medicamento e redireciona automaticamente para a tela “Minhas Doações”, onde o novo medicamento aparece listado. |
