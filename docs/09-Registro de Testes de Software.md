@@ -32,17 +32,18 @@
 
 | **Caso de Teste** 	| **CT07 – Visualização de doações disponíveis**	|
 |:---:	|:---:	|
-|	Requisito Associado 	| RF-07 - A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita. | ![CT07](https://drive.google.com/uc?export=download&id=1xdFV2W1t23W8z2cXgJeNAt2mVNrW4MP) |
+|	Requisito Associado 	| RF-07 - A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita. | 
+|Registro de evidência | https://drive.google.com/file/d/1xdF2W1t23N8t2c2xJq9eNAt2mVNrW4MP/view?usp=sharing |
 
 | **Caso de Teste** 	| **CT08 – Aprovação/Rejeição de doações**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-08 - 	A instituição deve aprovar ou rejeitar doações em até 48 horas. |
-|Registro de evidência | ![CT08](h[ttps://drive.google.com/file/d/1hQS-VOz18ljr5jXUl0IuZ4FRBXRbzWhH/view?usp=sharing](https://drive.google.com/uc?export=download&id=1hQS-VOz18ljr5jXU10Uz4FRBRXb2Whh)) |
+|Registro de evidência | https://drive.google.com/file/d/1hQS-VOz18Ijr5jX1U0IuZ4FRBRXbzWhH/view?usp=sharing |
 
 | **Caso de Teste** 	| **CT11 – Histórico de doações**	|
 |:---:	|:---:	|
-|	Requisito Associado 	| RF-11 - 	A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. | !CT011](https://drive.google.com/uc?export=download&id=1V2FeOzlK63FpSmkv8YzXhG8B9LN2M9)](https://drive.google.com/uc?export=download&id=1V2FeOzlK63FpSmkv8YzXhG8B9LN2M9) |
-
+|	Requisito Associado 	| RF-11 - 	A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. | 
+|Registro de evidência | https://drive.google.com/file/d/1V2Fe0ZIK63FpSmkv8YzXhG8B9LN2M9/view?usp=sharing |
 
 ## Relatório de testes de software
 
