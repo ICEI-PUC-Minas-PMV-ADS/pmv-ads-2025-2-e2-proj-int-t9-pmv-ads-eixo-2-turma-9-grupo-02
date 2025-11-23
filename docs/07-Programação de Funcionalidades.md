@@ -19,6 +19,7 @@
 # Instruções de acesso
 
 **Link da aplicação disponível para acesso:** https://hmgmedshare.azurewebsites.net
+
 Obs: Se houver algum erro ao acesso o link, copie e cole a url em outra aba.
 
 Se houver usuário de teste, o login e a senha também deverão ser informados aqui (por exemplo: usuário - admin / senha - admin).
