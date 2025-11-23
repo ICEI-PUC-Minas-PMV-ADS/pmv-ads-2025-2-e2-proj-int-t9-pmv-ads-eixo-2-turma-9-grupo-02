@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedShare.Models; // Para usar o enum StatusDoacao
 
@@ -8,9 +9,12 @@ namespace MedShare.Models
     public class Doacao
     {
         [Key]
-        public  int Id { get; set; }
+        public int Id { get; set; }
 
-        [Required(ErrorMessage ="Obrigatório informar o nome do medicamento!")]
+        [Display(Name = "Data de Criação")]
+        public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
+
+        [Required(ErrorMessage = "Obrigatório informar o nome do medicamento!")]
         [Display(Name = "Nome do Medicamento")]
         public string NomeDoacao { get; set; }
 

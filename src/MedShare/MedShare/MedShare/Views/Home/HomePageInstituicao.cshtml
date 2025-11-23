@@ -1,5 +1,5 @@
-@{
-    ViewData["Title"] = "MedShare - Home InstituiÁ„o";
+Ôªø@{
+    ViewData["Title"] = "MedShare - Home Institui√ß√£o";
     Layout = null;
 }
 
@@ -278,7 +278,7 @@
             <!-- Logo Section -->
             <div class="logo-section text-start">
                 <img src="~/images/logo.png" alt="MedShare Logo" />
-                <p class="tagline">O compartilhamento È indicado em casos de escassez de sobras</p>
+                <p class="tagline">O compartilhamento √© indicado em casos de escassez de sobras</p>
             </div>
 
             <!-- Statistics Cards -->
@@ -292,12 +292,12 @@
                     </div>
                 </div>
 
-                <!-- Card Azul - Medicamentos DisponÌveis -->
+                <!-- Card Azul - Medicamentos Dispon√≠veis -->
                 <div class="stat-card blue">
                     <h1 class="stat-number">3</h1>
                     <div class="stat-label">
-                        MEDICAMENTOS DISPONÕVEIS<br>
-                        PARA DOA«√O
+                        MEDICAMENTOS DISPON√çVEIS<br>
+                        PARA DOA√á√ÉO
                     </div>
                 </div>
 
@@ -310,7 +310,7 @@
                 </div>
             </div>
 
-            <!-- Mobile Menu (visÌvel apenas no mobile) -->
+            <!-- Mobile Menu (vis√≠vel apenas no mobile) -->
             <!--
                 <div class="d-md-none">
                 <div class="row g-2 mt-4">
@@ -321,12 +321,12 @@
                     </div>
                     <div class="col-12">
                         <a href="/Busca/Instituicoes" class="btn btn-info w-100 py-3 text-white">
-                            <i class="bi bi-search me-2"></i>BUSCAR INSTITUI«’ES
+                            <i class="bi bi-search me-2"></i>BUSCAR INSTITUI√á√ïES
                         </a>
                     </div>
                     <div class="col-12">
                         <a href="/Doacao/MinhasDoacoes" class="btn btn-warning w-100 py-3">
-                            <i class="bi bi-clipboard-data me-2"></i>MINHAS DOA«’ES
+                            <i class="bi bi-clipboard-data me-2"></i>MINHAS DOA√á√ïES
                         </a>
                     </div>
                 </div>
@@ -339,7 +339,8 @@
             <div class="menu-circle">
                 <a href="/Estoque" class="menu-item buscar">ESTOQUE DE MEDICAMENTOS</a>
                 <a href="/MedicamentosInstituicao" class="menu-item buscar">ESTOQUE DE MEDICAMENTOS</a>
-                <a href="/Doacoes" class="menu-item doacoes">VISUALIZAR DOA«’ES</a>
+                <a href="/Instituicao/HistoricoDoacoesInstituicao" class="menu-item doar">HISTORICO DE DOA√á√ïES</a>
+                <a href="/Instituicao/DoacoesRecebidas" class="menu-item doacoes">VISUALIZAR DOA√á√ïES</a>
                 <div class="profile-icon" onclick="toggleProfileMenu()">
                     <i class="bi bi-person-fill"></i>
                 </div>
@@ -348,25 +349,25 @@
 
         <!-- Footer Information -->
         <div class="footer-info d-none d-md-block">
-            <i class="bi bi-geo-alt-fill text-primary"></i> Av. Dom JosÈ Gaspar, 500 CoraÁ„o EucarÌstico - Belo Horizonte - MG 30535-901, Brasil<br>
+            <i class="bi bi-geo-alt-fill text-primary"></i> Av. Dom Jos√© Gaspar, 500 Cora√ß√£o Eucar√≠stico - Belo Horizonte - MG 30535-901, Brasil<br>
             <i class="bi bi-telephone-fill text-primary"></i> Telefone: (31) 3319-4444<br>
             <i class="bi bi-envelope-fill text-primary"></i> E-mail: contato@medshare.com
         </div>
 
         <!-- About Link -->
         <a href="#" class="about-link d-none d-md-block">
-            <i class="bi bi-info-circle"></i> SOBRE N”S
+            <i class="bi bi-info-circle"></i> SOBRE N√ìS
         </a>
 
         <!-- Mobile Footer -->
         <div class="d-md-none text-center mt-4 p-3">
             <div class="small text-muted lh-sm">
-                <div><i class="bi bi-geo-alt-fill text-primary me-1"></i>Av. Dom JosÈ Gaspar, 500 CoraÁ„o EucarÌstico ñ Belo Horizonte ñ MG 30535-901</div>
+                <div><i class="bi bi-geo-alt-fill text-primary me-1"></i>Av. Dom Jos√© Gaspar, 500 Cora√ß√£o Eucar√≠stico ‚Äì Belo Horizonte ‚Äì MG 30535-901</div>
                 <div class="mt-2"><i class="bi bi-telephone-fill text-primary me-1"></i>(31) 3319-4444</div>
                 <div class="mt-2"><i class="bi bi-envelope-fill text-primary me-1"></i>contato@medshare.com</div>
                 <div class="mt-3">
                     <a href="#" class="text-muted text-decoration-none">
-                        <i class="bi bi-info-circle"></i> SOBRE N”S
+                        <i class="bi bi-info-circle"></i> SOBRE N√ìS
                     </a>
                 </div>
             </div>
@@ -378,7 +379,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // AnimaÁ„o dos n˙meros nos cards
+        // Anima√ß√£o dos n√∫meros nos cards
         document.addEventListener('DOMContentLoaded', function() {
             const numbers = document.querySelectorAll('.stat-number');
             
@@ -401,7 +402,7 @@
 
         // Toggle profile menu
         function toggleProfileMenu() {
-            // Verifica autenticaÁ„o e perfil via backend (Razor)
+            // Verifica autentica√ß√£o e perfil via backend (Razor)
             var menuHtml = `<div id="profileDropdownMenu" class="dropdown-menu show" style="position: absolute; left: -120px; bottom: 60px; min-width: 180px;">
                 @if (User.Identity.IsAuthenticated)
                 {
@@ -437,7 +438,7 @@
             });
         }
 
-        // Intercepta o bot„o voltar do navegador para popup de logout
+        // Intercepta o bot√£o voltar do navegador para popup de logout
         (function() {
             let isPushingState = false;
             function pushStateIfNeeded() {
@@ -450,7 +451,7 @@
             if (window.history && window.history.pushState) {
                 pushStateIfNeeded();
                 window.addEventListener('popstate', function (event) {
-                    // SÛ mostra o popup se estiver autenticado
+                    // S√≥ mostra o popup se estiver autenticado
                     if (@(User.Identity.IsAuthenticated.ToString().ToLower())) {
                         showLogoutConfirm();
                     }
@@ -461,7 +462,7 @@
         })();
 
         function showLogoutConfirm() {
-            // Cria o popup de confirmaÁ„o
+            // Cria o popup de confirma√ß√£o
             let modal = document.getElementById('logoutConfirmModal');
             if (!modal) {
                 modal = document.createElement('div');
@@ -472,7 +473,7 @@
                         <h5 class='mb-3'>Deseja realmente sair do sistema?</h5>
                         <div class='d-flex justify-content-center gap-3'>
                             <button id='logoutYes' class='btn btn-danger'>Sim, sair</button>
-                            <button id='logoutNo' class='btn btn-secondary'>N„o</button>
+                            <button id='logoutNo' class='btn btn-secondary'>N√£o</button>
                         </div>
                     </div>
                 </div>`;
@@ -482,13 +483,13 @@
                 };
                 document.getElementById('logoutNo').onclick = function() {
                     modal.remove();
-                    // Reempilha o estado para evitar navegaÁ„o
+                    // Reempilha o estado para evitar navega√ß√£o
                     window.history.pushState('stay', '', window.location.href);
                 };
             }
         }
 
-        // Bloqueia o bot„o voltar do navegador apÛs login e exibe aviso de confirmaÁ„o
+        // Bloqueia o bot√£o voltar do navegador ap√≥s login e exibe aviso de confirma√ß√£o
         history.pushState(null, null, location.href);
         window.onpopstate = function () {
             showLogoutConfirm();
@@ -504,7 +505,7 @@
                         <h5 class='mb-3'>Deseja realmente sair do sistema?</h5>
                         <div class='d-flex justify-content-center gap-3'>
                             <button id='logoutYes' class='btn btn-danger'>Sim, sair</button>
-                            <button id='logoutNo' class='btn btn-secondary'>N„o</button>
+                            <button id='logoutNo' class='btn btn-secondary'>N√£o</button>
                         </div>
                     </div>
                 </div>`;

@@ -29,6 +29,9 @@ namespace MedShare.Migrations
                     b.Property<string>("CaminhoReceita")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("DoadorId")
                         .HasColumnType("INTEGER");
 

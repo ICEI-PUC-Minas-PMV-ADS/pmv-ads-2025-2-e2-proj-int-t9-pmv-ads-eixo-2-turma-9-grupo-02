@@ -59,11 +59,9 @@ O gerenciamento é realizado com Jira (**Kanban e Scrum**), organizado nas colun
 
 As ferramentas empregadas no projeto são:
 
-Editor de Código: Visual Studio Code — escolhido pela integração com GitHub e suporte a extensões.
+Editor de Código: Visual Studio — escolhido pela integração com GitHub e suporte a extensões.
 
 - `Visual Studio (VS)`: utilizado principalmente para desenvolvimento da aplicação back-end em .NET, aproveitando o suporte completo a C# e integração com depuração e testes.
-
-- `Visual Studio Code (VS Code)`: utilizado para desenvolvimento de front-end (HTML, CSS, JavaScript/React) e edição de arquivos de configuração, com suporte a extensões e integração com GitHub.
 
 - `Versionamento`: GitHub — central para controle de código e revisão por **pull requests**.
 
