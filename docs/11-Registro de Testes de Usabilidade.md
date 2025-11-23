@@ -4,7 +4,7 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 
 ## Perfil dos usuários que participaram do teste
 - Usuário 1: 54 anos, ensino superior completo, nenhuma experiência com sistemas similares.
-- Usuário 2: 19 anos, ensino fundamental completo, muita experiência com sistemas similares.
+- Usuário 2: 19 anos, ensino médio completo, muita experiência com sistemas similares.
 - Usuário 3: 60 anos, ensino superior completo, nenhuma experiência com sistemas similares.
 - Usuário 4: 25 anos, ensino superior completo, média experiência com sistemas similares.
 - Usuário 5: 27 anos, ensino superior completo, muita experiência com sistemas similares.
