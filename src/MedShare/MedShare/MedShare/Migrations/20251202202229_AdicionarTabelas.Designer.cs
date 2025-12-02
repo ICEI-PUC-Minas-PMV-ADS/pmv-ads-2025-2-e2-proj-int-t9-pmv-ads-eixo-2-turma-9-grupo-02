@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedShare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251104221647_AddInicialTables")]
-    partial class AddInicialTables
+    [Migration("20251202202229_AdicionarTabelas")]
+    partial class AdicionarTabelas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

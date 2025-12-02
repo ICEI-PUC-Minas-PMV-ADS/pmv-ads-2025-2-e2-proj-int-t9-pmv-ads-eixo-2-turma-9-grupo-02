@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MedShare.Migrations
 {
     /// <inheritdoc />
-    public partial class AddNewsTables : Migration
+    public partial class AdicionarTabelas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,11 +71,17 @@ namespace MedShare.Migrations
                     CaminhoFoto = table.Column<string>(type: "TEXT", nullable: true),
                     CaminhoReceita = table.Column<string>(type: "TEXT", nullable: true),
                     InstituicaoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Status = table.Column<int>(type: "INTEGER", nullable: false)
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    DoadorId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Doacoes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Doacoes_Doadores_DoadorId",
+                        column: x => x.DoadorId,
+                        principalTable: "Doadores",
+                        principalColumn: "DoadorId");
                     table.ForeignKey(
                         name: "FK_Doacoes_Instituicoes_InstituicaoId",
                         column: x => x.InstituicaoId,
@@ -83,6 +89,11 @@ namespace MedShare.Migrations
                         principalColumn: "InstituicaoId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Doacoes_DoadorId",
+                table: "Doacoes",
+                column: "DoadorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doacoes_InstituicaoId",
@@ -97,10 +108,10 @@ namespace MedShare.Migrations
                 name: "Doacoes");
 
             migrationBuilder.DropTable(
-                name: "Doadores");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Doadores");
 
             migrationBuilder.DropTable(
                 name: "Instituicoes");

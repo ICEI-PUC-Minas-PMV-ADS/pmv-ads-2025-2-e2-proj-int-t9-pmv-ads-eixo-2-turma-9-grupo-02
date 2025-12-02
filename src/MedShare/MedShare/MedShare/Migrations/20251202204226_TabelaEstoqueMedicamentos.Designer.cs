@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedShare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251104005158_AddNewsTables")]
-    partial class AddNewsTables
+    [Migration("20251202204226_TabelaEstoqueMedicamentos")]
+    partial class TabelaEstoqueMedicamentos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace MedShare.Migrations
                     b.Property<string>("CaminhoReceita")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("DoadorId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("InstituicaoId")
                         .HasColumnType("INTEGER");
 
@@ -49,6 +52,8 @@ namespace MedShare.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DoadorId");
 
                     b.HasIndex("InstituicaoId");
 
@@ -80,6 +85,27 @@ namespace MedShare.Migrations
                     b.HasKey("DoadorId");
 
                     b.ToTable("Doadores");
+                });
+
+            modelBuilder.Entity("MedShare.Models.EstoqueMedicamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("NomeMedicamento")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateOnly>("Validade")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EstoqueMedicamentos");
                 });
 
             modelBuilder.Entity("MedShare.Models.Instituicao", b =>
@@ -137,11 +163,17 @@ namespace MedShare.Migrations
 
             modelBuilder.Entity("MedShare.Models.Doacao", b =>
                 {
+                    b.HasOne("MedShare.Models.Doador", "Doador")
+                        .WithMany()
+                        .HasForeignKey("DoadorId");
+
                     b.HasOne("MedShare.Models.Instituicao", "Instituicao")
                         .WithMany()
                         .HasForeignKey("InstituicaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Doador");
 
                     b.Navigation("Instituicao");
                 });
