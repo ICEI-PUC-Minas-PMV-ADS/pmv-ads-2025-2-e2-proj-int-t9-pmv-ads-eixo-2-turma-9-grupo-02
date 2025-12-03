@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MedShare.Models.Doacao>
 
 @{
-    ViewData["Title"] = "Minhas Doações - MedShare";
+    ViewData["Title"] = "Visualizar Doações - MedShare";
     Layout = null;
 }
 
@@ -50,23 +50,62 @@
             color: #fff;
         }
 
-        .table-bordered > :not(caption) > * {
-            border-color: #dee2e6;
-            border-radius: 10px
-        }
-
         .table tbody tr:hover {
             background-color: #f8f9fa;
         }
 
-        /* Botão verde */
-        .btn-success {
-            background-color: #198754;
+        /* BOTÕES - ÍCONES BRANCOS COM CÍRCULO DE BORDA BRANCA */
+        .btn-action {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: none;
+            padding: 0;
+            margin: 0 3px;
+            background: transparent !important;
+            border-radius: 8px;
         }
 
-            .btn-success:hover {
-                background-color: #157347;
+        .icon-circle {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #fff; /* borda branca */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .icon-circle i {
+                color: #fff !important;
+                font-size: 0.9rem;
+            }
+
+        /* Cores de fundo dos botões */
+        .btn-accept {
+            background-color: #28a745 !important;
+        }
+
+            .btn-accept:hover {
+                background-color: #218838 !important;
+            }
+
+        .btn-reject {
+            background-color: #dc3545 !important;
+        }
+
+            .btn-reject:hover {
+                background-color: #c82333 !important;
+            }
+
+        .btn-finish {
+            background-color: #0d6efd !important;
+        }
+
+            .btn-finish:hover {
+                background-color: #0b5ed7 !important;
             }
 
         .badge-custom {
@@ -79,28 +118,12 @@
             align-items: center;
             gap: 0.4rem;
         }
-
-        /* Tabela */
-        table.table {
-            font-size: 0.95rem;
-            border: 1px solid #dee2e6;
-        }
-
-            table.table td, table.table th {
-                vertical-align: middle;
-                border: 1px solid #dee2e6;
-            }
-
-        /* Ícones nos botões */
-        .btn i {
-            vertical-align: middle;
-        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid d-flex align-items-center justify-content-center min-vh-100 py-4">
-        <div class="cadastro-card p-5" style="max-width: 1100px; width: 100%;">
+        <div class="cadastro-card p-5" style="max-width: 1200px; width: 100%;">
 
             <!-- Header -->
             <div class="text-center mb-4">
@@ -109,24 +132,18 @@
                 <p class="text-muted small">Gerencie e acompanhe suas doações de forma prática e segura!</p>
                 <div class="badge-custom">
                     <i class="bi bi-box-seam"></i>
-                    MINHAS DOAÇÕES
+                    DOAÇÕES RECEBIDAS
                 </div>
             </div>
-            <!-- Linha com botão Voltar (esquerda) e Nova Doação (direita) -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
 
-                <!-- Botão de voltar -->
-                <a asp-controller="Home" asp-action="HomePageDoador" class="btn btn-outline-primary">
+            <!-- Botão Voltar -->
+            <div class="mb-3">
+                <a asp-controller="Home" asp-action="HomePageInstituicao" class="btn btn-outline-primary">
                     <i class="bi bi-arrow-left-circle me-1"></i> Voltar
                 </a>
-
-                <!-- Botão de nova doação -->
-                <a asp-action="Create" class="btn btn-success btn-lg fw-bold">
-                    <i class="bi bi-plus-circle me-2"></i>NOVA DOAÇÃO
-                </a>
-
             </div>
-            <!-- Tabela de doações -->
+
+            <!-- Tabela -->
             <div class="table-responsive">
                 <table class="table table-hover table-bordered align-middle text-center">
                     <thead>
@@ -136,7 +153,7 @@
                             <th>@Html.DisplayNameFor(model => model.QuantidadeDoacao)</th>
                             <th>Foto</th>
                             <th>Receita</th>
-                            <th>Instituição</th>
+                            <th>Doador</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
@@ -146,7 +163,7 @@
                         {
                             <tr>
                                 <td>@item.NomeDoacao</td>
-                                <td>@(item.ValidadeDoacao.HasValue? item.ValidadeDoacao.Value.ToString("dd/MM/yyyy") : "-")</td>
+                                <td>@(item.ValidadeDoacao?.ToString("dd/MM/yyyy") ?? "-")</td>
                                 <td>@item.QuantidadeDoacao</td>
 
                                 <!-- Foto -->
@@ -166,21 +183,7 @@
                                 <td>
                                     @if (!string.IsNullOrEmpty(item.CaminhoReceita))
                                     {
-                                        var extensao = System.IO.Path.GetExtension(item.CaminhoReceita).ToLower();
-
-                                        if (extensao == ".pdf")
-                                        {
-                                            <a href="@item.CaminhoReceita" target="_blank" class="btn btn-outline-primary btn-sm">
-                                                Visualizar PDF
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a href="@item.CaminhoReceita" target="_blank" title="Ampliar imagem">
-                                                <img src="@item.CaminhoReceita" alt="Receita Médica"
-                                                     style="max-width:80px; border-radius:8px; box-shadow:0 0 4px rgba(0,0,0,0.2);" />
-                                            </a>
-                                        }
+                                        <a href="@item.CaminhoReceita" target="_blank" class="btn btn-outline-primary btn-sm">Ver Receita</a>
                                     }
                                     else
                                     {
@@ -188,10 +191,10 @@
                                     }
                                 </td>
 
-                                <!-- Instituição -->
+                                <!-- Doador -->
                                 <td>
-                                    <div class="fw-semibold">@item.Instituicao?.InstituicaoNome</div>
-                                    <div class="small text-muted">@item.Instituicao?.InstituicaoEndereco</div>
+                                    @item.Doador?.DoadorNome <br />
+                                    <small>@item.Doador?.DoadorEmail</small>
                                 </td>
 
                                 <!-- Status -->
@@ -216,19 +219,42 @@
                                     }
                                 </td>
 
-                                <!-- Botões -->
+                                <!-- AÇÕES -->
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Editar">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white" title="Ver detalhes">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Cancelar doação">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
+                                    @if (item.Status == MedShare.Models.StatusDoacao.Pendente)
+                                    {
+                                        <form asp-action="AlterarStatus" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="novoStatus" value="1" />
+                                            <button type="submit" class="btn-action btn-accept">
+                                                <span class="icon-circle">
+                                                    <i class="bi bi-check-lg"></i>
+                                                </span>
+                                            </button>
+                                        </form>
+
+                                        <form asp-action="AlterarStatus" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="novoStatus" value="2" />
+                                            <button type="submit" class="btn-action btn-reject">
+                                                <span class="icon-circle">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </span>
+                                            </button>
+                                        </form>
+                                    }
+                                    else if (item.Status == MedShare.Models.StatusDoacao.Aprovado)
+                                    {
+                                        <form asp-action="AlterarStatus" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="novoStatus" value="3" />
+                                            <button type="submit" class="btn-action btn-finish">
+                                                <span class="icon-circle">
+                                                    <i class="bi bi-check-lg"></i>
+                                                </span>
+                                            </button>
+                                        </form>
+                                    }
                                 </td>
                             </tr>
                         }

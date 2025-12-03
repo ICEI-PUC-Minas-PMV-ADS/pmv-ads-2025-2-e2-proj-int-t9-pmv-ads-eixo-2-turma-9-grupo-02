@@ -166,5 +166,32 @@ namespace MedShare.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> BuscarInstituicoes(string busca)
+        {
+            // 1. Busca instituições (com ou sem filtro por cidade)
+            var instituicoesQuery = _context.Instituicoes.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(busca))
+            {
+                var lower = busca.Trim().ToLower();
+                instituicoesQuery = instituicoesQuery
+                    .Where(i => i.InstituicaoEndereco.ToLower().Contains(lower));
+            }
+
+            var instituicoes = await instituicoesQuery.ToListAsync();
+
+            // 2. Carrega TODOS os estoques (não dá para filtrar por quantidade mínima via SQL)
+            var todosEstoques = await _context.EstoqueMedicamentos.ToListAsync();
+
+            // 3. Filtra os críticos em memória usando QuantidadeMinima
+            var criticosPorInstituicao = todosEstoques
+                .Where(e => e.Quantidade.HasValue && e.Quantidade.Value <= e.QuantidadeMinima) // <= 15
+                .GroupBy(e => e.InstituicaoId)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            ViewBag.CriticosNomes = criticosPorInstituicao;
+
+            return View(instituicoes);
+        }
     }
 }

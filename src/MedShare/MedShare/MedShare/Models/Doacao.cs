@@ -8,9 +8,9 @@ namespace MedShare.Models
     public class Doacao
     {
         [Key]
-        public  int Id { get; set; }
+        public int Id { get; set; }
 
-        [Required(ErrorMessage ="Obrigatório informar o nome do medicamento!")]
+        [Required(ErrorMessage = "Obrigatório informar o nome do medicamento!")]
         [Display(Name = "Nome do Medicamento")]
         public string NomeDoacao { get; set; }
 
@@ -41,7 +41,7 @@ namespace MedShare.Models
 
         [Required(ErrorMessage = "Obrigatório selecionar a instituição!")]
         [Display(Name = "Instituição")]
-        public int InstituicaoId { get; set; }
+        public int? InstituicaoId { get; set; }
 
         [ForeignKey("InstituicaoId")]
         public Instituicao Instituicao { get; set; }
