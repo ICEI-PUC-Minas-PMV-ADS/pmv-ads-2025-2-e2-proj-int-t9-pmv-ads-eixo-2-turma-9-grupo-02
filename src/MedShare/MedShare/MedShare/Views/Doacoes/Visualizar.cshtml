@@ -54,7 +54,7 @@
             background-color: #f8f9fa;
         }
 
-        /* BOTÕES - ÍCONES BRANCOS COM CÍRCULO DE BORDA BRANCA */
+        /* BOTÕES */
         .btn-action {
             width: 34px;
             height: 34px;
@@ -71,7 +71,7 @@
         .icon-circle {
             width: 22px;
             height: 22px;
-            border: 2px solid #fff; /* borda branca */
+            border: 2px solid #fff;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -83,7 +83,6 @@
                 font-size: 0.9rem;
             }
 
-        /* Cores de fundo dos botões */
         .btn-accept {
             background-color: #28a745 !important;
         }
@@ -159,7 +158,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.OrderByDescending(x => x.Id))
                         {
                             <tr>
                                 <td>@item.NomeDoacao</td>
