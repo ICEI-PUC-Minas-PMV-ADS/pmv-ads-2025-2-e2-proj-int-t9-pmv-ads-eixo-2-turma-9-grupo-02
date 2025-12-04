@@ -30,5 +30,9 @@ namespace MedShare.Models {
         [Required(ErrorMessage = "Obrigatorio Senha!")]
         [Display(Name = "Senha")]
         public string InstituicaoSenha { get; set; }
+
+        [Display(Name = "Último Login")]
+        public DateTime? UltimoLogin { get; set; }
+        public bool Ativo { get; set; } = true;
     }
-}    
+}   

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace MedShare.Models {
 
@@ -26,6 +27,13 @@ namespace MedShare.Models {
         [Required(ErrorMessage = "Obrigatorio Senha!")]
         [Display(Name = "Senha")]
         public string DoadorSenha { get; set; }
+
+        public DateTime? UltimoLogin { get; set; }
+
+        public bool Ativo { get; set; } = true;
+
+        // Relacionamento com notificações
+        public ICollection<Notificacao> Notificacoes { get; set; }
     }
 
 }

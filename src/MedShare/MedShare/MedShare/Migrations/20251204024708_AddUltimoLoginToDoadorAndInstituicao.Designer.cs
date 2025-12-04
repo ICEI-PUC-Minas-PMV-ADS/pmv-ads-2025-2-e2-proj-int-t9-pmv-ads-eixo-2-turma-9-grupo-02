@@ -3,6 +3,7 @@ using System;
 using MedShare.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedShare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251204024708_AddUltimoLoginToDoadorAndInstituicao")]
+    partial class AddUltimoLoginToDoadorAndInstituicao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -61,9 +64,6 @@ namespace MedShare.Migrations
                 {
                     b.Property<int>("DoadorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Ativo")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DoadorCPF")
@@ -120,9 +120,6 @@ namespace MedShare.Migrations
                 {
                     b.Property<int>("InstituicaoId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Ativo")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("InstituicaoCNPJ")
@@ -200,15 +197,6 @@ namespace MedShare.Migrations
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
-
-                    b.HasData(
-                        new
-                        {
-                            UsuarioId = 1,
-                            Perfil = 0,
-                            UsuarioEmail = "admin@medshare.com",
-                            UsuarioSenha = "admin123"
-                        });
                 });
 
             modelBuilder.Entity("MedShare.Models.Doacao", b =>

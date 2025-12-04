@@ -1,4 +1,5 @@
 @* Página inicial do doador, exibe estatísticas e opções de navegação. *@
+@model IEnumerable<MedShare.Models.Doacao>
 @{
     ViewData["Title"] = "MedShare - Home Doador";
     Layout = null;
@@ -150,12 +151,17 @@
         }
         
         .menu-item.buscar {
-            top: 70px;
+            top: 120px; /* Aumentado para descer o botão */
             right: -30px;
         }
         
+        .menu-item.historico {
+            top: 120px;
+            right: 10px;
+        }
+        
         .menu-item.doacoes {
-            bottom: 70px;
+            bottom: 100px; /* Subido para ficar mais próximo do botão de cima */
             right: -30px;
         }
         
@@ -286,64 +292,62 @@
             <div class="stats-container">
                 <!-- Card Verde - Total de Medicamentos -->
                 <div class="stat-card primary">
-                    <h1 class="stat-number">13</h1>
+                    <h1 class="stat-number">@ViewBag.DoacoesFinalizadas</h1>
                     <div class="stat-label">
                         TOTAL<br>
                         DE MEDICAMENTOS DOADOS
                     </div>
                 </div>
 
-                <!-- Card Azul - Medicamentos Disponíveis -->
+                <!-- Card Azul - Estoque Críticos -->
                 <div class="stat-card blue">
-                    <h1 class="stat-number">3</h1>
+                    <h1 class="stat-number">@ViewBag.EstoquesCriticos</h1>
                     <div class="stat-label">
-                        MEDICAMENTOS DISPONÍVEIS<br>
-                        PARA DOAÇÃO
+                        ESTOQUE CRITICOS<br>
                     </div>
                 </div>
 
                 <!-- Card Amarelo - Medicamentos Pendentes -->
                 <div class="stat-card yellow">
-                    <h1 class="stat-number">1</h1>
+                    <h1 class="stat-number" style="color:#222;">@ViewBag.DoacoesPendentes</h1>
                     <div class="stat-label">
                         MEDICAMENTOS PENDENTES
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile Menu (visível apenas no mobile) -->
-            <!--
-                <div class="d-md-none">
-                <div class="row g-2 mt-4">
-                    <div class="col-12">
-                        <a href="/Doacao/Doar" class="btn btn-primary w-100 py-3">
-                            <i class="bi bi-plus-circle me-2"></i>DOAR
-                        </a>
-                    </div>
-                    <div class="col-12">
-                        <a href="/Busca/Instituicoes" class="btn btn-info w-100 py-3 text-white">
-                            <i class="bi bi-search me-2"></i>BUSCAR INSTITUIÇÕES
-                        </a>
-                    </div>
-                    <div class="col-12">
-                        <a href="/Doacao/MinhasDoacoes" class="btn btn-warning w-100 py-3">
-                            <i class="bi bi-clipboard-data me-2"></i>MINHAS DOAÇÕES
-                        </a>
-                    </div>
-                </div>
-            </div>
-            -->
+            <!-- Removido o badge de doações finalizadas -->
         </div>
 
         <!-- Circular Menu (desktop) -->
         <div class="circular-menu d-none d-md-block">
             <div class="menu-circle">
+                <!-- Botão de Notificações -->
+                <button id="btnNotificacoes" class="menu-item notificacao" style="top: 10px; right: -30px;">
+                    <i class="bi bi-bell-fill"></i>
+                    <span id="notificacoesCount" style="font-weight:bold; margin-left:4px;"></span>
+                </button>
                 <a href="/EstoqueMedicamentos/BuscarInstituicoes" class="menu-item buscar">BUSCAR INSTITUIÇÕES</a>
                 <a href="/Doacoes/Index" class="menu-item doacoes">MINHAS DOAÇÕES</a>
                 <div class="profile-icon" onclick="toggleProfileMenu()">
                     <i class="bi bi-person-fill"></i>
                 </div>
             </div>
+        </div>
+
+        <!-- Modal de Notificações -->
+        <div class="modal fade" id="modalNotificacoes" tabindex="-1" aria-labelledby="modalNotificacoesLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalNotificacoesLabel">Minhas Notificações</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body" id="notificacoesConteudo">
+                <div class="text-center text-muted">Carregando...</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Footer Information -->
@@ -402,7 +406,7 @@
         // Toggle profile menu
         function toggleProfileMenu() {
             // Verifica autenticação e perfil via backend (Razor)
-            var menuHtml = `<div id="profileDropdownMenu" class="dropdown-menu show" style="position: absolute; left: -120px; bottom: 60px; min-width: 180px;">
+            var menuHtml = `<div id="profileDropdownMenu" class="dropdown-menu show" style="position: absolute; left: 0; top: 100%; min-width: 180px;">
                 @if (User.Identity.IsAuthenticated)
                 {
                     if (User.IsInRole("Doador"))
@@ -424,9 +428,9 @@
             // Remove menu anterior se existir
             var oldMenu = document.getElementById('profileDropdownMenu');
             if (oldMenu) oldMenu.remove();
-            // Adiciona menu ao profile-icon
+            // Adiciona menu como filho do profile-icon
             var icon = document.querySelector('.profile-icon');
-            icon.insertAdjacentHTML('afterend', menuHtml);
+            icon.insertAdjacentHTML('beforeend', menuHtml);
             // Fecha ao clicar fora
             document.addEventListener('click', function handler(e) {
                 if (!icon.contains(e.target)) {
@@ -518,6 +522,36 @@
                 };
             }
         }
+
+        // Notificações
+        function carregarNotificacoes() {
+            fetch('/Home/Notificacoes')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('notificacoesConteudo').innerHTML = html;
+                    // Atualiza contador e cor do botão
+                    var tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+                    var count = tempDiv.querySelectorAll('.alert-warning').length;
+                    var btn = document.getElementById('btnNotificacoes');
+                    document.getElementById('notificacoesCount').textContent = count > 0 ? count : '';
+                    if (count > 0) {
+                        btn.style.background = '#ffc107'; // laranja
+                        btn.style.color = '#333';
+                    } else {
+                        btn.style.background = 'white';
+                        btn.style.color = '#333';
+                    }
+                });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarNotificacoes();
+            document.getElementById('btnNotificacoes').addEventListener('click', function() {
+                carregarNotificacoes();
+                var modal = new bootstrap.Modal(document.getElementById('modalNotificacoes'));
+                modal.show();
+            });
+        });
     </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ using System;
 using MedShare.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedShare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251204034505_NovohashSenha")]
+    partial class NovohashSenha
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -207,7 +210,7 @@ namespace MedShare.Migrations
                             UsuarioId = 1,
                             Perfil = 0,
                             UsuarioEmail = "admin@medshare.com",
-                            UsuarioSenha = "admin123"
+                            UsuarioSenha = "$2a$11$wH8QwQJQwQJQwQJQwQJQwOQJQwQJQwQJQwQJQwQJQwQJQwQJQwQJQwQJQ"
                         });
                 });
 

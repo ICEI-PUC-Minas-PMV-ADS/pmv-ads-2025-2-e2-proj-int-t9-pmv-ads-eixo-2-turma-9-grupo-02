@@ -3,6 +3,7 @@ using System;
 using MedShare.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedShare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251204000402_AddNotificacoesTable")]
+    partial class AddNotificacoesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -63,9 +66,6 @@ namespace MedShare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("DoadorCPF")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -80,9 +80,6 @@ namespace MedShare.Migrations
 
                     b.Property<string>("DoadorSenha")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("UltimoLogin")
                         .HasColumnType("TEXT");
 
                     b.HasKey("DoadorId");
@@ -122,9 +119,6 @@ namespace MedShare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("InstituicaoCNPJ")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -143,9 +137,6 @@ namespace MedShare.Migrations
 
                     b.Property<string>("InstituicaoSenha")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("UltimoLogin")
                         .HasColumnType("TEXT");
 
                     b.HasKey("InstituicaoId");
@@ -200,15 +191,6 @@ namespace MedShare.Migrations
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
-
-                    b.HasData(
-                        new
-                        {
-                            UsuarioId = 1,
-                            Perfil = 0,
-                            UsuarioEmail = "admin@medshare.com",
-                            UsuarioSenha = "admin123"
-                        });
                 });
 
             modelBuilder.Entity("MedShare.Models.Doacao", b =>

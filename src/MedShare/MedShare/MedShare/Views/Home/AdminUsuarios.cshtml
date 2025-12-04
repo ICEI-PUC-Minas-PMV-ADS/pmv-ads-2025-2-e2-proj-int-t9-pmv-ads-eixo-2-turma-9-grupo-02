@@ -1,0 +1,87 @@
+@{
+    var doadores = ViewBag.Doadores as List<MedShare.Models.Doador>;
+    var instituicoes = ViewBag.Instituicoes as List<MedShare.Models.Instituicao>;
+    int totalFinalizadas = ViewBag.TotalFinalizadas ?? 0;
+    int totalCriticos = ViewBag.TotalCriticos ?? 0;
+    int totalPendentes = ViewBag.TotalPendentes ?? 0;
+    string GetUltimoLogin(DateTime? dt)
+    {
+        if (dt == null) return "Nunca logou";
+        var diff = DateTime.Now - dt.Value;
+        if (diff.TotalDays > 365) return $"há mais de um ano";
+        if (diff.TotalDays >= 1) return $"há {Math.Floor(diff.TotalDays)} dias";
+        if (diff.TotalHours >= 1) return $"há {Math.Floor(diff.TotalHours)} horas";
+        if (diff.TotalMinutes >= 1) return $"há {Math.Floor(diff.TotalMinutes)} min";
+        return "agora";
+    }
+}
+<div style="display:flex;gap:32px;margin-bottom:32px;">
+    <div style="background:linear-gradient(135deg,#4caf50,#388e3c);color:#fff;padding:32px 0;width:300px;border-radius:20px;text-align:center;box-shadow:0 4px 16px #0001;">
+        <div style="font-size:64px;font-weight:bold;">@totalFinalizadas</div>
+        <div style="font-size:18px;font-weight:bold;">TOTAL<br />DE MEDICAMENTOS DOADOS</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#42a5f5,#1976d2);color:#fff;padding:32px 0;width:300px;border-radius:20px;text-align:center;box-shadow:0 4px 16px #0001;">
+        <div style="font-size:64px;font-weight:bold;">@totalCriticos</div>
+        <div style="font-size:18px;font-weight:bold;">ESTOQUE CRITICOS</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#ffe259,#ffa751);color:#222;padding:32px 0;width:300px;border-radius:20px;text-align:center;box-shadow:0 4px 16px #0001;">
+        <div style="font-size:64px;font-weight:bold;">@totalPendentes</div>
+        <div style="font-size:18px;font-weight:bold;">MEDICAMENTOS PENDENTES</div>
+    </div>
+</div>
+<h2>Doadores</h2>
+<table>
+    <tr><th>Nome</th><th>Email</th><th>Último Login</th><th>Ações</th></tr>
+    @foreach (var d in doadores)
+    {
+        var loginMsg = GetUltimoLogin(d.UltimoLogin);
+        bool podeDesativar = d.UltimoLogin != null && (DateTime.Now - d.UltimoLogin.Value).TotalDays > 365 && d.Ativo;
+        <tr>
+            <td>@d.DoadorNome</td>
+            <td>@d.DoadorEmail</td>
+            <td>@loginMsg</td>
+            <td>
+                @if (podeDesativar)
+                {
+                    <form method="post" asp-action="DesativarUsuario" asp-controller="Home" style="display:inline">
+                        <input type="hidden" name="id" value="@d.DoadorId" />
+                        <input type="hidden" name="tipo" value="Doador" />
+                        <button type="submit">Desativar</button>
+                    </form>
+                }
+                else if (!d.Ativo)
+                {
+                    <span style="color:red;font-weight:bold">Desativado</span>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<h2>Instituições</h2>
+<table>
+    <tr><th>Nome</th><th>Email</th><th>Último Login</th><th>Ações</th></tr>
+    @foreach (var i in instituicoes)
+    {
+        var loginMsg = GetUltimoLogin(i.UltimoLogin);
+        bool podeDesativar = i.UltimoLogin != null && (DateTime.Now - i.UltimoLogin.Value).TotalDays > 365 && i.Ativo;
+        <tr>
+            <td>@i.InstituicaoNome</td>
+            <td>@i.InstituicaoEmail</td>
+            <td>@loginMsg</td>
+            <td>
+                @if (podeDesativar)
+                {
+                    <form method="post" asp-action="DesativarUsuario" asp-controller="Home" style="display:inline">
+                        <input type="hidden" name="id" value="@i.InstituicaoId" />
+                        <input type="hidden" name="tipo" value="Instituicao" />
+                        <button type="submit">Desativar</button>
+                    </form>
+                }
+                else if (!i.Ativo)
+                {
+                    <span style="color:red;font-weight:bold">Desativado</span>
+                }
+            </td>
+        </tr>
+    }
+</table>

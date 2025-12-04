@@ -9,6 +9,7 @@ using MedShare.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace MedShare.Controllers
 {
@@ -16,10 +17,12 @@ namespace MedShare.Controllers
     public class AuthController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(AppDbContext context)
+        public AuthController(AppDbContext context, ILogger<AuthController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [AllowAnonymous]
@@ -68,34 +71,46 @@ namespace MedShare.Controllers
         // POST: Auth/Login
         public async Task<IActionResult> Login(string UsuarioEmail, string UsuarioSenha, string perfil)
         {
+            _logger.LogInformation($"Tentativa de login: Email={UsuarioEmail}, Perfil={perfil}");
             object dados = null;
             bool senhaOk = false;
 
-            if (perfil == "Usuario")
+            if (perfil == "Usuario" || perfil == "Admin")
             {
                 dados = await _context.Usuarios.FirstOrDefaultAsync(m => m.UsuarioEmail == UsuarioEmail);
+                _logger.LogInformation($"Usuario encontrado: {(dados != null ? "Sim" : "Não")}");
                 if (dados != null)
                 {
                     Usuario usuario = (Usuario)dados;
-                    senhaOk = BCrypt.Net.BCrypt.Verify(UsuarioSenha, usuario.UsuarioSenha);
+                    // Para admin, compara senha em texto puro
+                    if (usuario.Perfil == Perfil.Admin)
+                        senhaOk = UsuarioSenha == usuario.UsuarioSenha;
+                    else
+                        senhaOk = BCrypt.Net.BCrypt.Verify(UsuarioSenha, usuario.UsuarioSenha);
+                    _logger.LogInformation($"Senha correta: {senhaOk}");
+                    _logger.LogInformation($"Perfil do usuario no banco: {usuario.Perfil}");
                 }
             }
             else if (perfil == "Doador")
             {
                 dados = await _context.Doadores.FirstOrDefaultAsync(m => m.DoadorEmail == UsuarioEmail);
+                _logger.LogInformation($"Doador encontrado: {(dados != null ? "Sim" : "Não")}");
                 if (dados != null)
                 {
                     Doador doador = (Doador)dados;
                     senhaOk = BCrypt.Net.BCrypt.Verify(UsuarioSenha, doador.DoadorSenha);
+                    _logger.LogInformation($"Senha correta: {senhaOk}");
                 }
             }
             else if (perfil == "Instituicao")
             {
                 dados = await _context.Instituicoes.FirstOrDefaultAsync(m => m.InstituicaoEmail == UsuarioEmail);
+                _logger.LogInformation($"Instituicao encontrada: {(dados != null ? "Sim" : "Não")}");
                 if (dados != null)
                 {
                     Instituicao instituicao = (Instituicao)dados;
                     senhaOk = BCrypt.Net.BCrypt.Verify(UsuarioSenha, instituicao.InstituicaoSenha);
+                    _logger.LogInformation($"Senha correta: {senhaOk}");
                 }
             }
 
@@ -103,13 +118,13 @@ namespace MedShare.Controllers
             {
                 var claims = new List<Claim>();
 
-                if (perfil == "Usuario")
+                if (perfil == "Usuario" || perfil == "Admin")
                 {
                     Usuario usuario = (Usuario)dados;
                     claims.Add(new Claim(ClaimTypes.Name, usuario.UsuarioEmail));
                     claims.Add(new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString()));
                     claims.Add(new Claim("UsuarioEmail", usuario.UsuarioEmail));
-                    claims.Add(new Claim(ClaimTypes.Role, "Usuario"));
+                    claims.Add(new Claim(ClaimTypes.Role, usuario.Perfil.ToString()));
                 }
                 else if (perfil == "Doador")
                 {
@@ -118,6 +133,10 @@ namespace MedShare.Controllers
                     claims.Add(new Claim(ClaimTypes.NameIdentifier, doador.DoadorId.ToString()));
                     claims.Add(new Claim("DoadorEmail", doador.DoadorEmail));
                     claims.Add(new Claim(ClaimTypes.Role, "Doador"));
+                    // Atualiza último login
+                    doador.UltimoLogin = DateTime.Now;
+                    _context.Doadores.Update(doador);
+                    await _context.SaveChangesAsync();
                 }
                 else if (perfil == "Instituicao")
                 {
@@ -126,6 +145,10 @@ namespace MedShare.Controllers
                     claims.Add(new Claim(ClaimTypes.NameIdentifier, instituicao.InstituicaoId.ToString()));
                     claims.Add(new Claim("InstituicaoEmail", instituicao.InstituicaoEmail));
                     claims.Add(new Claim(ClaimTypes.Role, "Instituicao"));
+                    // Atualiza último login
+                    instituicao.UltimoLogin = DateTime.Now;
+                    _context.Instituicoes.Update(instituicao);
+                    await _context.SaveChangesAsync();
                 }
 
                 var usuarioIdentity = new ClaimsIdentity(claims, "login");
@@ -144,6 +167,8 @@ namespace MedShare.Controllers
                     return RedirectToAction("HomePageDoador", "Home");
                 else if (perfil == "Instituicao")
                     return RedirectToAction("HomePageInstituicao", "Home");
+                else if (perfil == "Admin")
+                    return RedirectToAction("HomePageAdmin", "Home");
                 else
                     return RedirectToAction("Index", "Home");
             }

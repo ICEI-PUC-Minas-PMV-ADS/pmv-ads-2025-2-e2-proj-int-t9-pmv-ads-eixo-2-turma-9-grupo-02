@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<MedShare.Services.INotificacaoService, MedShare.Services.NotificacaoService>();
 
 builder.Services.Configure<CookiePolicyOptions>(options => 
 {

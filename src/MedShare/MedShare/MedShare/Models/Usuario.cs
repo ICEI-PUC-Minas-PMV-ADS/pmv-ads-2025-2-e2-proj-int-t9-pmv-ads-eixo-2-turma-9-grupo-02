@@ -22,6 +22,16 @@ namespace MedShare.Models {
 
         [Required(ErrorMessage = "Obrigatorio selecionar perfil Antes")]
         public Perfil Perfil { get; set; }
+
+        public static Usuario GetAdminUsuario()
+        {
+            return new Usuario
+            {
+                UsuarioEmail = "admin@medshare.com",
+                UsuarioSenha = BCrypt.Net.BCrypt.HashPassword("admin123"),
+                Perfil = Perfil.Admin
+            };
+        }
     }
 
     /*Vamos criar os perfis de acesso e autenticação*/

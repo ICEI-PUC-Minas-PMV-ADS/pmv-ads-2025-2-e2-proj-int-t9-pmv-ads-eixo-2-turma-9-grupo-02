@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MedShare.Models;
 using System.Security.Claims;
+using MedShare.Services;
 
 namespace MedShare.Controllers
 {
@@ -14,16 +15,17 @@ namespace MedShare.Controllers
     public class DoacoesController : Controller
     {
         private readonly AppDbContext _context;
-        public DoacoesController(AppDbContext context)
+        private readonly INotificacaoService _notificacaoService;
+        public DoacoesController(AppDbContext context, INotificacaoService notificacaoService)
         {
             _context = context;
+            _notificacaoService = notificacaoService;
         }
 
         public async Task<IActionResult> Index()
         {
             // Pega o ID do doador logado
             var doadorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             if (!int.TryParse(doadorId, out int id))
                 return Unauthorized();
 
@@ -32,6 +34,10 @@ namespace MedShare.Controllers
                 .Include(d => d.Instituicao)
                 .Where(d => d.DoadorId == id)
                 .ToListAsync();
+
+            // Contagem de doações finalizadas para o doador logado
+            var finalizadas = dados.Count(d => d.Status == StatusDoacao.Finalizado);
+            ViewBag.Finalizadas = finalizadas;
 
             return View(dados);
         }
@@ -229,16 +235,13 @@ namespace MedShare.Controllers
             if (doacao == null)
                 return NotFound();
 
-            // Pega o ID da instituição logada
             var instituicaoIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!int.TryParse(instituicaoIdStr, out int instituicaoId))
                 return Unauthorized();
 
-            // Verifica se a doação pertence a essa instituição
             if (doacao.InstituicaoId != instituicaoId)
                 return Forbid();
 
-            // Valida mudança de status
             switch (novoStatus)
             {
                 case StatusDoacao.Aprovado:
@@ -257,6 +260,30 @@ namespace MedShare.Controllers
             doacao.Status = novoStatus;
             _context.Doacoes.Update(doacao);
             await _context.SaveChangesAsync();
+
+            // Notificação para o doador
+            if (doacao.DoadorId.HasValue)
+            {
+                string mensagem = null;
+                if (novoStatus == StatusDoacao.Aprovado)
+                {
+                    var instituicao = await _context.Instituicoes.FindAsync(doacao.InstituicaoId);
+                    var nomeInstituicao = instituicao?.InstituicaoNome ?? "Instituição não informada";
+                    var endereco = instituicao?.InstituicaoEndereco ?? "Endereço não informado";
+                    var horarios = "Segunda a sexta, das 08h às 18h.";
+                    mensagem = $"Sua doação de {doacao.NomeDoacao} foi aprovada pela instituição {nomeInstituicao}.\nEndereço: {endereco}\nHorários de funcionamento: {horarios}";
+                }
+                else if (novoStatus == StatusDoacao.Rejeitado)
+                {
+                    mensagem = $"Sua doação de {doacao.NomeDoacao} foi rejeitada pela instituição.";
+                }
+                else if (novoStatus == StatusDoacao.Finalizado)
+                {
+                    mensagem = $"Sua doação de {doacao.NomeDoacao} foi finalizada pela instituição.";
+                }
+                if (mensagem != null)
+                    await _notificacaoService.CriarNotificacaoAsync(doacao.DoadorId.Value, mensagem);
+            }
 
             return RedirectToAction("Visualizar");
         }

@@ -1,0 +1,17 @@
+@model IEnumerable<MedShare.Models.Notificacao>
+@if (Model.Any())
+{
+    var notificacao = Model.First();
+    <div class="notificacoes-list">
+        <a href="/Home/HistoricoNotificacoes" style="text-decoration:none; color:inherit;">
+            <div class="alert @(notificacao.Lida ? "alert-secondary" : "alert-warning")" style="cursor:pointer;">
+                <strong>@notificacao.Mensagem</strong><br />
+                <small>@notificacao.DataCriacao.ToString("dd/MM/yyyy HH:mm")</small>
+            </div>
+        </a>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">Nenhuma notificação encontrada.</div>
+}

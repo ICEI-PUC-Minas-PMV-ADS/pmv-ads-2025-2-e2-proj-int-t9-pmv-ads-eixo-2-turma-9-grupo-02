@@ -12,5 +12,19 @@ namespace MedShare.Models {
         public DbSet<Instituicao> Instituicoes { get; set; }
         public DbSet<Doacao> Doacoes { get; set; }
         public DbSet<EstoqueMedicamento> EstoqueMedicamentos { get; set; }
+        public DbSet<Notificacao> Notificacoes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // Seed admin user com senha comum (sem hash)
+            modelBuilder.Entity<Usuario>().HasData(new Usuario
+            {
+                UsuarioId = 1,
+                UsuarioEmail = "admin@medshare.com",
+                UsuarioSenha = "admin123", // senha em texto puro
+                Perfil = Perfil.Admin
+            });
+        }
     }
 }
