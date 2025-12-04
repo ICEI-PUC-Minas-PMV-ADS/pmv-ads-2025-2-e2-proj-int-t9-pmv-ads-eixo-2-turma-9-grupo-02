@@ -26,7 +26,7 @@ O projeto tem como objetivo promover o acesso a medicamentos por meio do reaprov
 ## Instruções de Instalação, Execução e Acesso
 
 **Acesso rápido**
-* URL da aplicação: https://hmgmedshare.azurewebsites.net
+* URL da aplicação: https://#
 * Status: online
 * Ambiente: homologação
 
