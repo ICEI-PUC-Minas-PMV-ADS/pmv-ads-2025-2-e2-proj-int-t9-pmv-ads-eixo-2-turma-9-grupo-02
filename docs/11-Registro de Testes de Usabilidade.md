@@ -76,6 +76,8 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | Usuário 4   | 19 |  9  |  sim   |   0  | Gostou muito |                     | 
 | Usuário 5   | 24 | 16 |  sim | 1: Tentou Editar no botão de excluir   | Não deixou sugestões  |                     | 
 
+**Cenário 7**: O usuário (instituição) deseja visualizar a lista de doações recebidas no sistema MedShare. Para isso, ele deverá acessar a opção “Visualizar Doações”, visualizar a tabela contendo os medicamentos doados, suas respectivas validades, quantidades, foto do medicamento, receita, além do nome e e-mail do doador. O usuário deve conseguir identificar rapidamente cada informação apresentada na lista.
+
 | **Usuário** | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |-------------|------------------------|-----------------------------|--------------------------------------|------------------------|------------------------------|
 | **Usuário 1** | 55 | 8 | Sim | **1 erro:** não percebeu que a foto era clicável para ampliar | Achou fácil visualizar os dados; sugeriu destacar melhor arquivos anexados |
@@ -84,6 +86,9 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | **Usuário 4** | 81 | 14 | Sim | 0 erros | Pediu uma mensagem mais explícita quando não houver foto ou receita anexada |
 | **Usuário 5** | 49 | 7 | Sim | 0 erros | Achou tudo funcional e direto |
 
+
+**Cenário 8**: O usuário (instituição) deseja aprovar ou rejeitar doações pendentes dentro do prazo limite de 48 horas. Para isso, ele deverá acessar a área “Visualizar Doações”, verificar quais doações estão com status “Pendente” e utilizar os botões “Aprovar” ou “Rejeitar”. Caso a doação esteja aprovada, poderá finalizá-la. Doações vencidas devem ser automaticamente rejeitadas pelo sistema.
+
 | **Usuário** | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |-------------|------------------------|-----------------------------|--------------------------------------|------------------------|------------------------------|
 | **Usuário 1** | 38 | 6 | Sim | 0 erros | Achou o fluxo rápido e direto |
@@ -91,6 +96,7 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | **Usuário 3** | 59 | 9 | Sim | 0 erros | Considerou o processo simples e intuitivo |
 | **Usuário 4** | 41 | 6 | Sim | **1 erro:** confundiu o status “Aprovado” com “Finalizado” e tentou aprovar novamente | Sugeriu ícones e cores diferentes para cada status |
 | **Usuário 5** | 35 | 5 | Sim | 0 erros | Achou o fluxo objetivo e de fácil navegação |
+
 
 
 ## Relatório dos testes de usabilidade 
