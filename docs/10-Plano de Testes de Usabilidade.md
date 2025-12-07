@@ -52,6 +52,30 @@ Os cenários representam tarefas reais dos usuários. Cada cenário inclui: obje
   - Status exibido de forma clara.
   - Usuário entende se a doação foi aceita, rejeitada ou finalizada.
 
+**Cenário 5 - Cadastro de medicamentos em estoque**
+- Objetivo: Avaliar clareza e praticidade do cadastro dos medicamentos em estoque da intituição.
+- Contexto: Instituição quer cadastrar os medicamentos que possui em estoque.
+-  Tarefa: Informar nome, validade e quantidade do medicamento em estoque.
+-  Critérios de Sucesso:
+  - Todos os campos são preenchidos sem dúvidas.
+  - Medicamento aparece na lista do estoque após cadastro.
+
+**Cenário 7 - Quantidade de medicamentos em estoque**
+- Objetivo: Avaliar clareza do status das doações.
+- Contexto: Instituição quer aprovar/rejeitar/finalizar uma doação.
+-  Tarefa: Mudar status para "Aprovado", "Rejeitado" ou "Finalizado".
+-  Critérios de Sucesso:
+  - Campo alterado sem mensagens de erro.
+  - Novo status aparece na lista das doações recebidas.
+
+**Cenário 8 - Aprovar/rejeitar doações**
+- Objetivo: Avaliar clareza e praticidade da alteração da quantidade de medicamentos em estoque.
+- Contexto: Instituição quer alterar a quantidade dos medicamentos que possui em estoque.
+-  Tarefa: Alterar a quantidade do medicamento em estoque.
+-  Critérios de Sucesso:
+  - Campo alterado sem mensagens de erro.
+  - Nova quantidade aparece na lista do estoque após cadastro.
+
 ##
 
 ### 4. Métodos de Coleta de Dados
