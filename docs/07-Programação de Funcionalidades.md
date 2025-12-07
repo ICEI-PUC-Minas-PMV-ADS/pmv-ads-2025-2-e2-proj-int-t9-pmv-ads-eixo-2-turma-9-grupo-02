@@ -10,10 +10,8 @@
 | **RF-06** | A instituição deve publicar lista de medicamentos em falta. |**Controllers:** MedicamentosInstituicaoController.cs, DoacoesController.cs <br> **Models:** MedicamentoInstituicao.cs, Instituicao.cs, Doacao.cs, AppDbContext.cs <br> **Views** – MedicamentosInstituicao: Index.cshtml,Escassez.cshtml, Create.cshtml, Edit.cshtml, Details.cshtml, Delete.cshtml<br> **Views** – Doações: Create.cshtml <br> **Banco de Dados:** MedicamentosInstituicao, Instituicoes, Doacoes.  | Thaís Souto |
 | **RF-07** | A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita. | | Lavínia Santos |
 | **RF-08** | A instituição deve aprovar ou rejeitar doações em até 24 horas. || Lavínia Santos |
-| **RF-09** | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. | | Estevão Dias |
+| **RF-09** | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. | | Jefferson Torres |
 | **RF-10** | A instituição deve confirmar o recebimento dos medicamentos no painel. || Estevão Dias |
-| **RF-11** | A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. | | Higor Conceição |
-| **RF-12** | A aplicação deve gerar relatórios de impacto com base no histórico de doações. || Higor Conceição |
 
 
 # Instruções de acesso
