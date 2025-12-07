@@ -54,10 +54,7 @@
 | **Caso de Teste** 	| **CT13 – Edição e exclusão de Medicamentos da Instituição**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-06 - 	A aplicação deve permitir que o usuário localize um medicamento existente e modifique quaisquer informações cadastrais assim como exclusão do mesmo. | 
-|Registro de evidência | https://github.com/user-attachments/assets/baa7a923-41c2-459a-ac12-321949c2caa6 |
-
-
-
+|Registro de evidência | https://github.com/user-attachments/assets/30c16a9f-938f-4d71-9416-3a4802b6a674 |
 
 
 
