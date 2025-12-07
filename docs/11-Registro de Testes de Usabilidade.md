@@ -58,14 +58,14 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | **Usuário 4** | 24 | 5  | Sim | Nenhum | Gostou da tabela/lista; disse que ajudou na visualização.|
 | **Usuário 5**   | 14 | 1  | Sim  | Nenhum | Tudo funcional e intuitivo. |
 
-**Cenário 5**:         
+**Cenário 5**:   O sistema deve permitir que a instituição gerencie seu inventário, cadastrando os medicamentos disponíveis e sinalizando aqueles com estoque crítico ou em falta.      
 | **Usuário**  | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |-------------|--------------------|---------------------------------|-----------------|------------------------|------------------------------|
-| Usuário 1   |                    |                                 |                 |                        |                              |                     |      
-| Usuário 2   |                    |                                 |                 |                        |                              |                     |      
-| Usuário 3   |                    |                                 |                 |                        |                              |                     |  
-| Usuário 4   |                    |                                 |                 |                        |                              |                     | 
-| Usuário 5   |                    |                                 |                 |                        |                              |                     | 
+| Usuário 1   |  36 |  11 |  sim  |  0 |  Sugeriu um botão direto para cadastro sem ter que entrar no estoque para cadastrar  |                     |      
+| Usuário 2   | 48 | 14 | sim  |   1  |  Esqueceu de colocar a data de validade do medicamento   mas  achou eficiente  |                  |      
+| Usuário 3   | 31|  10 |  sim  |  0  |    Achou intuitivo |                     |  
+| Usuário 4   | 37 |  15  |  sim   |   0  | Recomendou mudar as cores, talvez um "modo noturno" |                     | 
+| Usuário 5   | 33 | 13  |  sim | 1  | Tentou clicar em "ADICIONAR MEDICAMENTO AO ESTOQUE" e não é o botão correto |                     | 
 
 ## Relatório dos testes de usabilidade 
 
