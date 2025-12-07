@@ -62,10 +62,10 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | **Usuário**  | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
 |-------------|--------------------|---------------------------------|-----------------|------------------------|------------------------------|
 | Usuário 1   |  36 |  11 |  sim  |  0 |  Sugeriu um botão direto para cadastro sem ter que entrar no estoque para cadastrar  |                     |      
-| Usuário 2   | 48 | 14 | sim  |   1  |  Esqueceu de colocar a data de validade do medicamento   mas  achou eficiente  |                  |      
+| Usuário 2   | 48 | 14 | sim  |   1: Esqueceu de colocar a data de validade do medicamento  |  Achou eficiente  |                  |      
 | Usuário 3   | 31|  10 |  sim  |  0  |    Achou intuitivo |                     |  
 | Usuário 4   | 37 |  15  |  sim   |   0  | Recomendou mudar as cores, talvez um "modo noturno" |                     | 
-| Usuário 5   | 33 | 13  |  sim | 1  | Tentou clicar em "ADICIONAR MEDICAMENTO AO ESTOQUE" e não é o botão correto |                     | 
+| Usuário 5   | 33 | 13  |  sim | 1: Tentou clicar em "ADICIONAR MEDICAMENTO AO ESTOQUE" e não é o botão correto  | Sugeriu mdudar o formato do texto "ADICIONAR MEDICAMENTO AO ESTOQUE" pois achou que parece um botão  |                     | 
 
 ## Relatório dos testes de usabilidade 
 
