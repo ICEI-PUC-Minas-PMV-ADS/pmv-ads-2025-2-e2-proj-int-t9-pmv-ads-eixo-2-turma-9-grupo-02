@@ -67,6 +67,15 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | Usuário 4   | 37 |  15  |  sim   |   0  | Recomendou mudar as cores, talvez um "modo noturno" |                     | 
 | Usuário 5   | 33 | 13  |  sim | 1: Tentou clicar em "ADICIONAR MEDICAMENTO AO ESTOQUE" e não é o botão correto  | Sugeriu mdudar o formato do texto "ADICIONAR MEDICAMENTO AO ESTOQUE" pois achou que parece um botão  |                     | 
 
+**Cenário 6**:   O usuário deve conseguir visualizar e editar a quantidade atual de um medicamento no sistema de estoque, seja para aumentar o número de caixas recebidas ou para diminuir o número de caixas que foram utilizadas/dispensadas.     
+| **Usuário**  | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
+|-------------|--------------------|---------------------------------|-----------------|------------------------|------------------------------|
+| Usuário 1   |  21 |  6 |  sim  |  0 |  Sugeriu um botão + e - para facilitar a remoção e inclusão de mais caixas de medicamento |                     |      
+| Usuário 2   | 28 | 11 | sim  |   0  |  Gostou  |                  |      
+| Usuário 3   | 31|  10 |  sim  |  1: Tentou salvar medicamento com quantidade de caixas  |    Sugeriu conseguir cadastrar medicamentos em falta total (0)|                     |  
+| Usuário 4   | 19 |  9  |  sim   |   0  | Gostou muito |                     | 
+| Usuário 5   | 24 | 16 |  sim | 1: Tentou Editar no botão de excluir   | Não deixou sugestões  |                     | 
+
 ## Relatório dos testes de usabilidade 
 
 O relatório de testes de usabilidade deve ser um documento claro e estruturado, contendo análises dos testes realizados, identificação de problemas, propostas de correção, melhorias e sugestões para a evolução do sistema. 
