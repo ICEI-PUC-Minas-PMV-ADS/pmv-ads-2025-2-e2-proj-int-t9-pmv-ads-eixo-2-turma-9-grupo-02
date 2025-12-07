@@ -35,9 +35,21 @@ O projeto tem como objetivo promover o acesso a medicamentos por meio do reaprov
 * Status: Em breve 
 * Ambiente: produção
 
-**Usuário(s) de teste (se houver):**
-* Login: usuario_teste
-* Senha: senha_teste
+**Usuário(s) de teste (Doador):**
+* Login: helena@email.com
+* Senha: 123
+
+* **Usuário(s) de teste (Doador):**
+* Login: joao@email.com
+* Senha: 123
+
+* **Usuário(s) de teste (Instituição):**
+* Login: viverbem@email.com
+* Senha: 123
+
+* * **Usuário(s) de teste (Instituição):**
+* Login: hospitalparaiso@email.com
+* Senha: 123
 
 # Documentação
 
