@@ -76,6 +76,23 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | Usuário 4   | 19 |  9  |  sim   |   0  | Gostou muito |                     | 
 | Usuário 5   | 24 | 16 |  sim | 1: Tentou Editar no botão de excluir   | Não deixou sugestões  |                     | 
 
+| **Usuário** | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
+|-------------|------------------------|-----------------------------|--------------------------------------|------------------------|------------------------------|
+| **Usuário 1** | 55 | 8 | Sim | **1 erro:** não percebeu que a foto era clicável para ampliar | Achou fácil visualizar os dados; sugeriu destacar melhor arquivos anexados |
+| **Usuário 2** | 72 | 12 | Sim | 0 erros | Achou a tabela clara, mas sugeriu melhorar o contraste dos botões |
+| **Usuário 3** | 64 | 10 | Sim | 0 erros | Elogiou a organização; achou intuitiva a listagem |
+| **Usuário 4** | 81 | 14 | Sim | 0 erros | Pediu uma mensagem mais explícita quando não houver foto ou receita anexada |
+| **Usuário 5** | 49 | 7 | Sim | 0 erros | Achou tudo funcional e direto |
+
+| **Usuário** | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
+|-------------|------------------------|-----------------------------|--------------------------------------|------------------------|------------------------------|
+| **Usuário 1** | 38 | 6 | Sim | 0 erros | Achou o fluxo rápido e direto |
+| **Usuário 2** | 44 | 7 | Sim | 0 erros | Gostou do retorno visual imediato após a ação |
+| **Usuário 3** | 59 | 9 | Sim | 0 erros | Considerou o processo simples e intuitivo |
+| **Usuário 4** | 41 | 6 | Sim | **1 erro:** confundiu o status “Aprovado” com “Finalizado” e tentou aprovar novamente | Sugeriu ícones e cores diferentes para cada status |
+| **Usuário 5** | 35 | 5 | Sim | 0 erros | Achou o fluxo objetivo e de fácil navegação |
+
+
 ## Relatório dos testes de usabilidade 
 
 O relatório de testes de usabilidade deve ser um documento claro e estruturado, contendo análises dos testes realizados, identificação de problemas, propostas de correção, melhorias e sugestões para a evolução do sistema. 
