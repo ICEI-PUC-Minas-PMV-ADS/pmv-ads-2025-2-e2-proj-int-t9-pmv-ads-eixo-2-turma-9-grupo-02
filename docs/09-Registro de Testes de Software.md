@@ -45,6 +45,25 @@
 |	Requisito Associado 	| RF-11 - 	A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. | 
 |Registro de evidência | https://drive.google.com/file/d/12VEFozIK63FpSmkv8YzXZhGGB99LN2M9/view?usp=sharing |
 
+| **Caso de Teste** 	| **CT12 – Cadastro de Medicamentos da Instituição**	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-06 - 	A aplicação deve permitir que o usuário cadastre e gerencie a lista completa de medicamentos disponíveis para uso dentro da instituição, incluindo informações essenciais como nome, data de validade e quantidade de caixas disponíveis | 
+|Registro de evidência |      https://github.com/user-attachments/assets/0d59462f-6225-4d87-9e01-4bdfa8e8c5ed     |
+
+
+| **Caso de Teste** 	| **CT13 – Edição e exclusão de Medicamentos da Instituição**	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-06 - 	A aplicação deve permitir que o usuário localize um medicamento existente e modifique quaisquer informações cadastrais assim como exclusão do mesmo. | 
+|Registro de evidência | https://github.com/user-attachments/assets/baa7a923-41c2-459a-ac12-321949c2caa6 |
+
+
+
+
+
+
+
+
+
 ## Relatório de testes de software
 
 Durante a fase inicial de testes, algumas falhas foram identificadas, especialmente relacionadas à fluidez e à conectividade entre as funcionalidades. Embora cada parte do sistema funcionasse individualmente, elas não estavam plenamente integradas, o que comprometia o fluxo geral e impedia que determinadas ações ocorressem de maneira contínua e coerente. Além disso, alguns ajustes nas telas foram necessários para garantir que cada elemento acionasse a função correta, conforme previsto no projeto.
