@@ -98,6 +98,19 @@ O Registro de Testes de Usabilidade reúne informações quantitativas e qualita
 | **Usuário 5** | 35 | 5 | Sim | 0 erros | Achou o fluxo objetivo e de fácil navegação |
 
 
+**Cenário 9**: Assim que usuário (Doador) cria uma nova doação, uma notificação é enviada para a instiuição de nova doação. O aviso de notificação fica visivel na home page da instiuição. Assim que a instiuição clica na 
+notificação é direcionado para uma tela e historico de notificações de novas doações. Da mesma forma quando a instiuição altera o status da doação criada, é enviado uma notificação para doador que houve mudança de status. A notificação de mudança de status da doação fica visivel na home page do doador. Assim que o doador clica na notificação é direcionado a uma tela de historico de notificações.
+
+| **Usuário** | **Tempo Total (seg)** | **Quantidade de cliques** | **Tarefa foi concluída?** (Sim/Não) | **Erros Cometidos** | **Feedback do Usuário** |
+|-------------|------------------------|-----------------------------|--------------------------------------|------------------------|------------------------------|
+| **Usuário 1** | 38 | 6 | Sim | 0 erros | Achou o fluxo rápido e direto |
+| **Usuário 2** | 44 | 7 | Sim | 0 erros | Gostou do retorno visual imediato após a ação |
+| **Usuário 3** | 59 | 9 | Sim | 0 erros | Considerou o processo simples e intuitivo |
+| **Usuário 4** | 41 | 6 | Sim | 0 eros | Nenhum
+| **Usuário 5** | 35 | 5 | Sim | 0 erros | Achou o fluxo objetivo |
+
+
+
 
 ## Relatório dos testes de usabilidade 
 
