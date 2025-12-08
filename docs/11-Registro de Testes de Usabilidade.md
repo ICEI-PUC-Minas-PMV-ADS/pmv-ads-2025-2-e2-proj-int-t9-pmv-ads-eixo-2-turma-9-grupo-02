@@ -109,28 +109,153 @@ notificação é direcionado para uma tela e historico de notificações de nova
 | **Usuário 4** | 41 | 6 | Sim | 0 eros | Nenhum
 | **Usuário 5** | 35 | 5 | Sim | 0 erros | Achou o fluxo objetivo |
 
-
-
-
 ## Relatório dos testes de usabilidade 
 
-O relatório de testes de usabilidade deve ser um documento claro e estruturado, contendo análises dos testes realizados, identificação de problemas, propostas de correção, melhorias e sugestões para a evolução do sistema. 
-Ele servirá como base para refinamentos no sistema e futuras iterações de testes.
-Deve incluir: 
-- Taxa de sucesso por cenário
-- Tempo médio para completar cada cenário
-- Número médio de erros cometidos por tarefa
-- Taxa de abandono (usuários que não conseguiram concluir a tarefa do cenário)
-- Feedback qualitativo
+Este relatório apresenta os resultados dos testes de usabilidade realizados no sistema MedShare, reunindo dados quantitativos (tempo, taxa de sucesso, erros, cliques) e qualitativos (feedback dos usuários). O objetivo é identificar dificuldades, avaliar a clareza da interface e propor melhorias que tornem o uso mais intuitivo e eficiente.
+
+Os cenários avaliados foram:
+1. Cadastro do perfil doador
+2. Cadastro do perfil instituição
+3. Login
+4. Cadastro de medicamentos para doação
+5. Acompanhamento das doações – Doador
+6. Acompanhamento das doações – Instituição
+7. Busca / Visualização de instituições / Visualizar doações recebidas (instituição)
+8. Cadastro de medicamentos em estoque / Gerenciar inventário
+9. Notificações do processo de doação
+
+Participaram cinco usuários com diferentes idades e níveis de familiaridade digital, permitindo observar comportamentos distintos entre iniciantes e usuários experientes.
+
+## Análise Quantitativa
+
+### Taxa de Sucesso por Cenário
+| Cenário                                          | Sucesso |
+| ------------------------------------------------ | ------- |
+| Cadastro Doador                                  | 100%    |
+| Cadastro Instituição                             | 100%    |
+| Login                                            | 100%    |
+| Cadastro de Medicamento                          | 100%    |
+| Acompanhamento de Doações                        | 100%    |
+| Busca de Instituições                            | 100%    |
+| Cadastro de Medicamentos em Estoque              | 100%    |
+| Notificações                                     | 100%    |
+| Atualização/Visualização de Status (Instituição) | 100%    |
+
+Apesar da taxa de sucesso total, erros e dificuldades aparecem em praticamente todos os cenários.
+##
+### Tempo Médio por Cenário
+
+| Cenário                             | Tempo Médio |
+| ----------------------------------- | ----------- |
+| Cadastro Doador                     | 150,0 s     |
+| Cadastro Instituição                | 150,0 s     |
+| Login                               | 30,2 s      |
+| Cadastro de Medicamento             | 131,4 s     |
+| Acompanhamento de Doações           | 31,4 s      |
+| Busca de Instituições               | 25,0 s     |
+| Cadastro de Medicamentos em Estoque | 110,0 s   |
+| Notificações                        | 10,0 s     |
+| Atualização/Visualização de Status  | 20,0 s    |
+
+Os cadastros são os cenários mais longos, indicando maior carga cognitiva.
+##
+### Número Médio de Erros por Cenário
+
+| Cenário                             | Erros Médios |
+| ----------------------------------- | ------------ |
+| Cadastro Doador                     | 0,6          |
+| Cadastro Instituição                | 0,4          |
+| Login                               | 0,4          |
+| Cadastro de Medicamento             | 1,2          |
+| Acompanhamento de Doações           | 0,2          |
+| Busca de Instituições               | 0,0         |
+| Cadastro de Medicamentos em Estoque | 0,4         |
+| Notificações                        | 0,0        |
+| Atualização/Visualização de Status  | 0,2        |
+
+O cenário de cadastro de medicamentos é o que apresenta mais erros.
+##
+### Taxa de Abandono
+Como todos os participantes concluíram as tarefas, a taxa de abandono é: **0% em todos os cenários.**
+
+## Feedback Qualitativo (Síntese Geral)
+### Aspectos elogiados:
+- Interface intuitiva (especialmente após login);
+- Rapidez do sistema;
+- Organização em lista das doações;
+- Preview de imagem e PDF no cadastro de medicamentos;
+- Navegação clara nas páginas de consulta;
+- Processo de login simples e direto.
+
+### Sugestões e dificuldades frequentes:
+- Erros envolvendo campos obrigatórios discretos;
+- Confusão com o campo de status (usuários tentando interagir);
+- Falta de destaque para anexar receita;
+- Rolagem longa no formulário de medicamentos;
+- Textos e ícones pequenos na página “Minhas Doações”;
+- Usuários mais velhos sentiram falta de instruções mais claras;
+- Ausência de etapas visuais no cadastro de medicamentos.
+
+## Identificação de Padrões
+### Principais Dificuldades
+- Não percepção de campos obrigatórios no cadastro (CEP, senha, termos);
+- Fluxo extenso no cadastro de medicamentos, com etapas pouco visuais e rolagem longa;
+- Confusão com o campo “Status”, que não é editável;
+- Falta de contraste ou destaque em itens importantes (receita, seleção de instituição);
+- Texto pequeno para alguns usuários.
   
-A partir disso, organize os resultados e identifique padrões:
-- Principais dificuldades enfrentadas pelos usuários.
-- Quais tarefas foram concluídas sem problemas e quais apresentaram falhas.
-- Sugestões de melhorias para interface, navegação e acessibilidade.
+### Tarefas sem problemas relevantes
+- Login (apesar de erros pontuais, fluxo é rápido e claro);
+- Acompanhar doações (claro e intuitivo para usuários experientes);
+- Cadastro instituição apresentou menos erros que o cadastro doador;
+- Busca de instituições (simples e rápida).
+  
+### Tarefas com maior incidência de falhas
+- Cadastro de Medicamentos (erros, tempo alto, rolagem extensa);
+- Cadastros iniciais (erros por falta de validação visual mais evidente).
 
-Dica: Agrupe problemas em níveis de prioridade:
-- Crítico: Impede o uso do sistema.
-- Moderado: Dificulta a experiência, mas não impede o uso.
-- Leve: Pode ser melhorado, mas não compromete a usabilidade.
+## Priorização dos Problemas
 
-Apresente propostas de ações para corrigir os problemas críticos e recorrentes identificados e proponha melhorias incrementais para otimizar a experiência do usuário.
+### Críticos (impedem ou confundem fortemente o uso)
+- Falta de indicação clara dos campos obrigatórios (gera tentativas frustradas);
+- Campo de status sendo interpretado como editável;
+- Falta de destaque para anexar receita (gera erro recorrente no fluxo);
+- Seleção de instituição pouco visível no cadastro de medicamentos.
+
+### Moderados (dificultam, mas não impedem)
+- Rolagem longa no formulário de medicamentos;
+- Tamanho pequeno de textos na listagem de doações;
+- Ausência de diferenciação visual entre os tipos de status;
+- Escolha de perfil pouco intuitiva na tela de login.
+
+### Leves (impacto reduzido)
+- Ajustes de estética e organização;
+- Melhor contexto explicativo nos cadastros;
+- Microtextos auxiliares poderiam melhorar a clareza geral;
+- Feedbacks visuais de confirmação podem ser mais evidentes.
+
+## Propostas de Ações e Melhorias
+### Correções Prioritárias (Problemas Críticos)
+- Destacar campos obrigatórios com cores fortes, texto “Obrigatório” ou borda vermelha ao tentar enviar.
+- Transformar o campo “Status” em apenas leitura e claramente bloqueado (ícone de cadeado, cinza claro, tooltip).
+- Reforçar visualmente a necessidade de anexar a receita:
+- Bloco separado com borda colorida;
+- Ícone de alerta;
+- Etiqueta “OBRIGATÓRIO”.
+- Destacar a seleção da instituição com cor, borda, animação ou tooltip.
+
+### Melhorias Moderadas
+- Dividir o formulário de medicamento em etapas (“1. Dados do Medicamento”, “2. Instituição”, “3. Confirmação”) para reduzir a rolagem.
+- Aumentar tamanho de fonte e ícones na página “Minhas Doações”.
+- Melhorar a etapa de escolha de perfil no login, tornando-a mais acessível.
+
+### Melhorias Leves e Incrementais
+- Adicionar microtextos explicativos em pontos estratégicos.
+- Criar mensagens de erro mais amigáveis.
+- Ajustar espaçamentos e hierarquia visual em formulários.
+- Melhorar o visual da listagem de instituições (ordenar por proximidade, relevância ou nome).
+
+## Conclusão
+Os testes revelam que o sistema MedShare possui boa navegabilidade e clareza geral, mantendo taxa de sucesso elevada mesmo entre usuários com pouca experiência digital. Contudo, alguns pontos exigem atenção, especialmente nos formulários de cadastro e no fluxo de doação de medicamentos, onde ocorrem mais erros e maior tempo de execução.
+
+A aplicação das melhorias propostas tende a reduzir falhas, tornar a experiência mais fluida e atender de forma mais eficaz usuários de todos os perfis, sobretudo os iniciantes e os mais velhos. Com ajustes relativamente simples, o sistema pode alcançar eficiência ainda maior e proporcionar uma experiência de uso mais intuitiva, acessível e satisfatória.
