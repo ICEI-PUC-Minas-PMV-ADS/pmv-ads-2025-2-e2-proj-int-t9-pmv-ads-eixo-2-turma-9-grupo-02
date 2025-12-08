@@ -16,7 +16,7 @@
 
 # Instruções de acesso
 
-**Link da aplicação disponível para acesso:** https://hmgmedshare.azurewebsites.net
+**Link da aplicação disponível para acesso:** [https://hmgmedshare.azurewebsites.net](https://prodprojectmedshare.azurewebsites.net/)
 
 Obs: Se houver algum erro ao acesso o link, copie e cole a url em outra aba.
 
