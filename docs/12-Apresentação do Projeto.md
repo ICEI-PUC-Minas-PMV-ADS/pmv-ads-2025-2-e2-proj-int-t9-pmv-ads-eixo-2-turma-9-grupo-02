@@ -14,4 +14,4 @@ https://github.com/user-attachments/assets/0d6193f5-a707-437c-b8e7-ebc24c8a84aa
 
 ## Vídeo de apresentação - Etapa 05
 
-[Link do vídeo de apresentação da etapa 05] (https://l1nq.com/vFmdn)
+[Link do vídeo de apresentação da etapa 05](https://l1nq.com/vFmdn)
