@@ -40,6 +40,17 @@
 |	Requisito Associado 	| RF-08 - 	A instituição deve aprovar ou rejeitar doações em até 48 horas. |
 |Registro de evidência | https://drive.google.com/file/d/1hQS-VOz18ljr5jXUl0IuZ4FRBXRbzWhH/view?usp=sharing |
 
+| **Caso de Teste** 	| **CT09 – Notificações do processo de doação**	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-09.01 - 	A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. |
+|Registro de evidência | [CT09](https://sl1nk.com/wmrV1) |
+
+| **Caso de Teste** 	| **CT09 – Notificações do processo de doação**	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-09.02 - 	A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. |
+|Registro de evidência | [CT09](https://sl1nk.com/wmrV1) |
+
+
 | **Caso de Teste** 	| **CT11 – Histórico de doações**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-11 - 	A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. | 
