@@ -23,7 +23,7 @@ Obs: Se houver algum erro ao acesso o link, copie e cole a url em outra aba.
 ## Usuários teste:
 
 **Usuário(s) de teste (Doador):**
-- Login: joaopedro@email.com
+- Login: marina@email.com
 - Senha: 123
 
 **Usuário(s) de teste (Instituição):**
