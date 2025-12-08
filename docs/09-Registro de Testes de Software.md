@@ -30,6 +30,16 @@
 |	Requisito Associado 	| RF-05 - O doador deve acompanhar o status das suas doações em uma tela dedicada ("Minhas Doações"). |
 |Registro de evidência | ![CT05](img/CT05.jpg) |
 
+| **Caso de Teste** 	| **CT06 – Cadastro de Medicamentos da Instituição**	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-06 - 	A aplicação deve permitir que o usuário cadastre e gerencie a lista completa de medicamentos disponíveis para uso dentro da instituição, incluindo informações essenciais como nome, data de validade e quantidade de caixas disponíveis | 
+|Registro de evidência |      https://github.com/user-attachments/assets/0d59462f-6225-4d87-9e01-4bdfa8e8c5ed     |
+
+| **Caso de Teste** 	| **CT06.01 – Edição e exclusão de Medicamentos da Instituição**	|
+|:---:	|:---:	|
+|	Requisito Associado 	| RF-06 - 	A aplicação deve permitir que o usuário localize um medicamento existente e modifique quaisquer informações cadastrais assim como exclusão do mesmo. | 
+|Registro de evidência | https://github.com/user-attachments/assets/6df831d8-c538-483b-9288-4996269bc387 |
+
 | **Caso de Teste** 	| **CT07 – Visualização de doações disponíveis**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-07 - A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita. | 
@@ -50,26 +60,10 @@
 |	Requisito Associado 	| RF-09.02 - 	A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. |
 |Registro de evidência | [CT09](https://sl1nk.com/wmrV1) |
 
-
 | **Caso de Teste** 	| **CT11 – Histórico de doações**	|
 |:---:	|:---:	|
 |	Requisito Associado 	| RF-11 - 	A aplicação deve disponibilizar um histórico de doações, listando doações feitas pelo doador e doações recebidas pela instituição. | 
 |Registro de evidência | https://drive.google.com/file/d/12VEFozIK63FpSmkv8YzXZhGGB99LN2M9/view?usp=sharing |
-
-| **Caso de Teste** 	| **CT12 – Cadastro de Medicamentos da Instituição**	|
-|:---:	|:---:	|
-|	Requisito Associado 	| RF-06 - 	A aplicação deve permitir que o usuário cadastre e gerencie a lista completa de medicamentos disponíveis para uso dentro da instituição, incluindo informações essenciais como nome, data de validade e quantidade de caixas disponíveis | 
-|Registro de evidência |      https://github.com/user-attachments/assets/0d59462f-6225-4d87-9e01-4bdfa8e8c5ed     |
-
-
-| **Caso de Teste** 	| **CT13 – Edição e exclusão de Medicamentos da Instituição**	|
-|:---:	|:---:	|
-|	Requisito Associado 	| RF-06 - 	A aplicação deve permitir que o usuário localize um medicamento existente e modifique quaisquer informações cadastrais assim como exclusão do mesmo. | 
-|Registro de evidência | https://github.com/user-attachments/assets/6df831d8-c538-483b-9288-4996269bc387 |
-
-
-
-
 
 
 ## Relatório de testes de software
