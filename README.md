@@ -12,8 +12,6 @@ O projeto tem como objetivo promover o acesso a medicamentos por meio do reaprov
 
 ## Integrantes
 
-* Estevão Dias Mello dos Santos
-* Higor Eduardo da Paz Conceição
 * Jefferson Torres do Patrocinio
 * Lavínia Santos Garcia
 * Maria Luisa Resende Greco Madeira Silva
@@ -49,6 +47,10 @@ O projeto tem como objetivo promover o acesso a medicamentos por meio do reaprov
 
 * * **Usuário(s) de teste (Instituição):**
 * Login: hospitalparaiso@email.com
+* Senha: 123
+
+* * **Usuário(s) de teste (Administrador):**
+* Login: admin@email.com
 * Senha: 123
 
 # Documentação
