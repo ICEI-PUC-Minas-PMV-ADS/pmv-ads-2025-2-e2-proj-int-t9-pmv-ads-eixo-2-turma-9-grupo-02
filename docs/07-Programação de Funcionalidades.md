@@ -11,7 +11,7 @@
 | **RF-07** | A instituição deve visualizar a lista de doações disponíveis com informações do doador, medicamento, validade e receita. | **Controllers:** InstituicaoController.cs → DoacoesRecebidas() <br> **Models:** Doacao.cs (NomeDoacao, ValidadeDoacao, QuantidadeDoacao, CaminhoFoto, CaminhoReceita, Status, DataCriacao, DoadorId, InstituicaoId), Doador.cs (DoadorNome, DoadorEmail), StatusDoacao.cs <br> **Views – Instituição:** DoacoesRecebidas.cshtml <br> **Banco de Dados:** Tabela Doacoes, Tabela Doadores, Relação Doacoes ↔ Doadores, Relação Doacoes ↔ Instituicoes | Lavínia Santos |
 | **RF-08** | A instituição deve aprovar ou rejeitar doações em até 24 horas. | **Controllers:** InstituicaoController.cs → DoacoesRecebidas(); InstituicaoController.cs → AlterarStatus() <br> **Models:** Doacao.cs (Status, DataCriacao, Id), StatusDoacao.cs <br> **Views – Instituição:** DoacoesRecebidas.cshtml <br> **Banco de Dados:** Tabela Doacoes| Lavínia Santos |
 | **RF-09** | A aplicação deve enviar notificações automáticas e lembretes para o doador e a instituição sobre etapas críticas do processo, incluindo decisão de aceite ou recusa e prazos de entrega/análise. | **Controllers:** HomeController.cs → DoadorNotificacoes(); HomeController.cs → InstituicaoNotificacoes(); HomeController.cs → DoadorHistoricoNotificacoes(); HomeController.cs → InstituicaoHistoricoNotificacoes(); <br> **Models:** Notificacoes.cs (DoadorId, Doador, Mensagem, DataCriacao, Lida, InstituicoesNotificacoes), InstituicaoNotificacoes.cs (NotificacaoId, Notificacao, InstituicaoId, Instituicao) <br> **Views – Instituição:** HistoricoNotificacoesInstituicao.cshtml <br> **Views – Doador:** HistoricoNotificacoes.cshtml <br> **Banco de Dados:** Tabela Notificacoes, IntituicaoNotificacao | Jefferson Torres |
-| **RF-10** | A instituição deve confirmar o recebimento dos medicamentos no painel. || Estevão Dias |
+| **RF-10** | A instituição deve confirmar o recebimento dos medicamentos no painel. |**Controllers:** InstituicaoController.cs → DoacoesRecebidas(); InstituicaoController.cs → AlterarStatus() <br> **Models:** Doacao.cs (Status, DataCriacao, Id), StatusDoacao.cs <br> **Views – Instituição:** DoacoesRecebidas.cshtml <br> **Banco de Dados:** Tabela Doacoes| Maria Luisa Greco |
 
 
 # Instruções de acesso
@@ -20,6 +20,16 @@
 
 Obs: Se houver algum erro ao acesso o link, copie e cole a url em outra aba.
 
-Se houver usuário de teste, o login e a senha também deverão ser informados aqui (por exemplo: usuário - admin / senha - admin).
+## Usuários teste:
 
-O link e o usuário/senha descritos acima são apenas exemplos de como tais informações deverão ser apresentadas.
+**Usuário(s) de teste (Doador):**
+- Login: joaopedro@email.com
+- Senha: 123
+
+**Usuário(s) de teste (Instituição):**
+- Login: vidaativa@email.com
+- Senha: 123
+
+**Usuário(s) de teste (Administrador):**
+- Login: admin@email.com
+- Senha: 123
